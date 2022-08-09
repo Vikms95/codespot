@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const logger = require('morgan')
+const passport = require('passport')
+const jwtStrategy = require('./strategies/jwt')
 const createError = require('http-errors')
 const cookieParser = require('cookie-parser')
 const indexRouter = require('./routes/index')
@@ -14,16 +17,16 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
-).then(console.log('Connected to DB'))
+)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error'))
-db.once('open', () => console.log('DB connected!'))
+db.once('open', () => console.log('MongoDB connected'))
 
 const app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'jade')
+app.set('view engine', 'ejs')
 
 app.use(logger('dev'))
 app.use(express.json())
