@@ -1,4 +1,4 @@
-require('doten').config()
+require('dotenv').config()
 const path = require('path')
 const express = require('express')
 const logger = require('morgan')
@@ -7,8 +7,9 @@ const cookieParser = require('cookie-parser')
 const indexRouter = require('./routes/index')
 const mongoose = require('mongoose')
 
+const DEV_MONGODB_URI = 'mongodb+srv://vikms:ustdedt8@cluster0.rtqxvkw.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(
-  process.env.MONGODB_URI,
+  process.env.MONGODB_URI || DEV_MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
