@@ -1,10 +1,22 @@
-const createError = require('http-errors')
-const express = require('express')
+require('doten').config()
 const path = require('path')
-const cookieParser = require('cookie-parser')
+const express = require('express')
 const logger = require('morgan')
-
+const createError = require('http-errors')
+const cookieParser = require('cookie-parser')
 const indexRouter = require('./routes/index')
+const mongoose = require('mongoose')
+
+mongoose.connect(
+  process.env.MONGODB_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+).then(console.log('Connected to DB'))
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'MongoDB connection error'))
+db.once('open', () => console.log('DB connected!'))
 
 const app = express()
 
