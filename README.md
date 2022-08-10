@@ -3,9 +3,10 @@ https://www.youtube.com/watch?v=kJA9rDX7azM
 
 TODO-
 <!-- -Create models -->
-- Create routes structure
+<!-- - Create routes structure -->
+<!-- - Setup db with mongo and mongoose -->
+- Implement user creation
 - Plan on where would I need routes
-- Setup db with mongo and mongoose
 
 
 1. user registers - OK returned
