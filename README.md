@@ -5,7 +5,11 @@ TODO-
 <!-- -Create models -->
 <!-- - Create routes structure -->
 <!-- - Setup db with mongo and mongoose -->
-- Implement user creation
+<!-- - Implement user creation -->
+<!-- - Implement user login -->
+<!-- - Implement route protecting -->
+- How do I attach the token to the client when logged in?
+
 - Plan on where would I need routes
 
 

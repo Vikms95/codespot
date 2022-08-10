@@ -1,12 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const passport = require('passport')
-const jwtStrategy = require('../strategies/jwt')
 const userController = require('../controllers/userController')
-const protect = require('../middleware/authMiddleware')
+const { protect } = require('../middleware/authMiddleware')
 require('dotenv').config()
-
-passport.use(jwtStrategy)
 
 /* GET home page. */
 // Here is where all the routes will get imported and exported to the whole app

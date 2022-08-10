@@ -14,6 +14,8 @@ const registerUser = asyncHandler(async function (req, res, next) {
   const userExist = await User.findOne({ username })
   if (userExist) {
     res.status(400)
+    console.log('user already exists')
+
     throw new Error('User already exists')
   }
 
@@ -43,6 +45,7 @@ const registerUser = asyncHandler(async function (req, res, next) {
 const loginUser = asyncHandler(async function (req, res) {
   const { username, password } = req.body
   const user = await User.findOne({ username })
+  console.log('Hi')
 
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
