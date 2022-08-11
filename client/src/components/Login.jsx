@@ -15,17 +15,19 @@ function Login () {
     }))
   }
 
-  const onSubmit = (e) => {
-    fetch('http://localhost:4000/api/login', {
+  const onSubmit = async (e) => {
+    const token = await fetch('http://localhost:4000/api/login', {
       method: 'POST',
       body: JSON.stringify({
-        username: '1',
-        password: '1'
+        username,
+        password
       }),
-      header: {
-        'Content-type': 'application/json; charset=UTF-8'
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
       }
-    }).then(token => console.log(token.json()))
+    })
+    const tokenString = await token.json()
+    localStorage.setItem('token', JSON.stringify(tokenString))
   }
 
   return (

@@ -8,8 +8,10 @@ TODO-
 <!-- - Implement user creation -->
 <!-- - Implement user login -->
 <!-- - Implement route protecting -->
-- Create user from frontend
+<!-- - Create user from frontend -->
+
 - How do I attach the token to the client when logged in?
+- Implement useEffect getting the token on protected routes?
 - The token is only saved when the user logs in and is succesful
 
 - Plan on where would I need routes

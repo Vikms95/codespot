@@ -12,7 +12,9 @@ router.post('/api/register', userController.registerUser, (req,res) => {
   res.setHeader('Content-Type', 'application/json')
 })
 
-router.post('/api/login', userController.loginUser)
+router.post('/api/login', userController.loginUser, (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+})
 
 router.get('/dashboard', userController.verifyToken, (req, res, next) => {
   jwt.verify(req.token, 'secret', (err, authData) => {

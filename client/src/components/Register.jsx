@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
-
+import { useNavigate } from 'react-router-dom'
 function Register () {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -27,7 +28,8 @@ function Register () {
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }
-    }).then(response => console.log(response))
+    })
+    return navigate('/login')
   }
 
   return (
