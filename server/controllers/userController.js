@@ -1,10 +1,9 @@
 require('dotenv').config()
-const asyncHandler = require('express-async-handler')
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const registerUser = asyncHandler(async function (req, res, next) {
+const registerUser = async function (req, res, next) {
   const { username, password } = req.body
   if (!username || !password) {
     res.status(400)
@@ -14,8 +13,6 @@ const registerUser = asyncHandler(async function (req, res, next) {
   const userExist = await User.findOne({ username })
   if (userExist) {
     res.status(400)
-    console.log('user already exists')
-
     throw new Error('User already exists')
   }
 
@@ -31,42 +28,48 @@ const registerUser = asyncHandler(async function (req, res, next) {
 
   if (user) {
     user.save()
-    res.status(201).json({
+    res.status(201).send({
       _id: user.id,
-      name: user.username,
-      token: generateToken(user._id)
+      name: user.username
     })
   } else {
     res.status(400)
     throw new Error('Invalid user data')
   }
-})
+}
 
-const loginUser = asyncHandler(async function (req, res) {
+const loginUser = async function (req, res, next) {
+  console.log("login backend")
   const { username, password } = req.body
   const user = await User.findOne({ username })
-  console.log('Hi')
 
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
-      _id: user.id,
-      name: user.username,
-      token: generateToken(user._id)
+    jwt.sign({ user: user._id }, 'secret', (err, token) => {
+      if (err) return next(err)
+      // Send the token to the frontend so it can save it in localStorage?
+      res.json(token)
     })
   } else {
     res.status(400)
     throw new Error('Invalid credentials')
   }
-})
+}
 
-// Generates JWT token and returns
-const generateToken = id => {
-  return jwt.sign({ id }, 'secret', {
-    expiresIn: '30d'
-  })
+const verifyToken = (req, res, next) => {
+  // Get auth header value
+  const bearerHeader = req.headers.authorization
+  if (typeof bearerHeader !== 'undefined') {
+    const bearer = bearerHeader.split(' ')
+    const bearerToken = bearer[1]
+    req.token = bearerToken
+    next()
+  } else {
+    res.sendStatus(403)
+  }
 }
 
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  verifyToken
 }

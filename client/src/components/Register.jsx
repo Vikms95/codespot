@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 
 function Register () {
@@ -17,7 +17,17 @@ function Register () {
   }
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    fetch('http://localhost:4000/api/register', {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password,
+        password2
+      }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    }).then(response => console.log(response))
   }
 
   return (

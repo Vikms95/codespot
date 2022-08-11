@@ -1,24 +1,30 @@
 const express = require('express')
 const router = express.Router()
+const jwt = require('jsonwebtoken')
 const userController = require('../controllers/userController')
-const { protect } = require('../middleware/authMiddleware')
 require('dotenv').config()
 
 /* GET home page. */
 // Here is where all the routes will get imported and exported to the whole app
-router.get('/', (req, res, next) => {
-  res.render('index')
+
+
+router.post('/api/register', userController.registerUser, (req,res) => {
+  res.setHeader('Content-Type', 'application/json')
 })
 
-router.post('/', userController.registerUser)
+router.post('/api/login', userController.loginUser)
 
-router.get('/login', (req, res, next) => {
-  res.render('login-form')
-})
-
-router.post('/login', userController.loginUser)
-
-router.get('/dashboard', protect, (req, res, next) => {
+router.get('/dashboard', userController.verifyToken, (req, res, next) => {
+  jwt.verify(req.token, 'secret', (err, authData) => {
+    if (err) {
+      res.status(403)
+    } else {
+      res.json({
+        message: 'Entered dashboard..',
+        authData
+      })
+    }
+  })
   return res.status(200).json({ message: 'You are in a protected route' })
 })
 

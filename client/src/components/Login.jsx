@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 
 function Login () {
@@ -16,7 +16,16 @@ function Login () {
   }
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    fetch('http://localhost:4000/api/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: '1',
+        password: '1'
+      }),
+      header: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    }).then(token => console.log(token.json()))
   }
 
   return (
@@ -25,7 +34,7 @@ function Login () {
         <h1>
           <FaSignInAlt> Login </FaSignInAlt>
         </h1>
-        <p>Please create an account</p>
+        <p>Please login</p>
       </section>
 
       <section className='form'>

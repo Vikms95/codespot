@@ -4,9 +4,11 @@ const path = require('path')
 const express = require('express')
 const logger = require('morgan')
 const createError = require('http-errors')
+const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const indexRouter = require('./routes/index')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const DEV_MONGODB_URI = 'mongodb+srv://vikms:ustdedt8@cluster0.rtqxvkw.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(
@@ -26,8 +28,11 @@ const app = express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+app.use(cors())
 app.use(logger('dev'))
 app.use(express.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
