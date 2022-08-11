@@ -9,12 +9,12 @@ TODO-
 <!-- - Implement user login -->
 <!-- - Implement route protecting -->
 <!-- - Create user from frontend -->
+<!-- - Login user and attach token to the client -->
+- Implement verification of token on protected routes
+  :figure out how to send token to the backend from Dashboard component to verify that the token is valid
+  :implement useEffect getting the token on protected routes?
 
-- How do I attach the token to the client when logged in?
-- Implement useEffect getting the token on protected routes?
-- The token is only saved when the user logs in and is succesful
-
-- Plan on where would I need routes
+- Plan on where would I need endpoints
 
 
 1. user registers - OK returned

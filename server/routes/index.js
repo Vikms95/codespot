@@ -16,8 +16,9 @@ router.post('/api/login', userController.loginUser, (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 })
 
-router.get('/dashboard', userController.verifyToken, (req, res, next) => {
+router.post('/dashboard', userController.verifyToken, (req, res, next) => {
   jwt.verify(req.token, 'secret', (err, authData) => {
+    console.log(authData)
     if (err) {
       res.status(403)
     } else {

@@ -57,8 +57,12 @@ const loginUser = async function (req, res, next) {
 }
 
 const verifyToken = (req, res, next) => {
+  console.log("verifying");
+  
   // Get auth header value
+  // This is the part thar passport abstracts
   const bearerHeader = req.headers.authorization
+  console.log(bearerHeader)
   if (typeof bearerHeader !== 'undefined') {
     const bearer = bearerHeader.split(' ')
     const bearerToken = bearer[1]
