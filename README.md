@@ -22,3 +22,12 @@ TODO-
 3. user saves token
 4. user includes token in the header when accessing protected route
 5. server verifies token and either lets user in or denies
+
+- Dashboard is where all your posts are located
+- Home will be where all the posts from all the users are shown
+- Post will be the details of each post which is accesible from the homepage or the dashboard
+
+- Collections
+  - Users
+  - Posts - hold all the posts with a id key of the author(user)
+          - hold an array of the comments and an id key of the post

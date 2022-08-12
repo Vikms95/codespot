@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 function Login () {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -16,6 +18,7 @@ function Login () {
   }
 
   const onSubmit = async (e) => {
+    e.preventDefault()
     const token = await fetch('http://localhost:4000/api/login', {
       method: 'POST',
       body: JSON.stringify({
@@ -28,6 +31,7 @@ function Login () {
     })
     const tokenString = await token.json()
     localStorage.setItem('token', JSON.stringify(tokenString))
+    return navigate('/dashboard')
   }
 
   return (

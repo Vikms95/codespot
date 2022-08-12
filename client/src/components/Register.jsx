@@ -18,6 +18,7 @@ function Register () {
   }
 
   const onSubmit = (e) => {
+    e.preventDefault()
     fetch('http://localhost:4000/api/register', {
       method: 'POST',
       body: JSON.stringify({

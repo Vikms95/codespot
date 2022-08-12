@@ -41,11 +41,9 @@ const registerUser = async function (req, res, next) {
 const loginUser = async function (req, res, next) {
   console.log("login backend")
   const { username, password } = req.body
-  console.log(req.body)
   const user = await User.findOne({ username })
-  console.log(user)
   if (user && (await bcrypt.compare(password, user.password))) {
-    jwt.sign({ user: user._id }, 'secret', (err, token) => {
+    jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
       if (err) return next(err)
       // Send the token to the frontend so it can save it in localStorage?
       return res.json(token)
@@ -57,16 +55,9 @@ const loginUser = async function (req, res, next) {
 }
 
 const verifyToken = (req, res, next) => {
-  console.log("verifying");
-  
-  // Get auth header value
-  // This is the part thar passport abstracts
-  const bearerHeader = req.headers.authorization
-  console.log(bearerHeader)
+  const bearerHeader = req.headers['authorization']
   if (typeof bearerHeader !== 'undefined') {
-    const bearer = bearerHeader.split(' ')
-    const bearerToken = bearer[1]
-    req.token = bearerToken
+    req.token = JSON.parse(bearerHeader)
     next()
   } else {
     res.sendStatus(403)

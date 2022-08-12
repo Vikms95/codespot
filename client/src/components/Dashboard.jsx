@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Dashboard () {
+  const [isAllowed, setIsAllowed] = useState(false)
   useEffect(() => {
     fetch('http://localhost:4000/dashboard', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         Authorization: localStorage.getItem('token')
       }
-    }).then(response => response.json())
-      .then(data => console.log(data))
+    }).then(response => (response.status === 200)
+      ? setIsAllowed(true)
+      : setIsAllowed(false)
+    )
   }, [])
+
   return (
-    <div>Dashboard</div>
+    (isAllowed
+      ? <div>Here you have your posts</div>
+      : <div>Not allowed</div>)
+
   )
 }
 
