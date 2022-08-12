@@ -19,7 +19,7 @@ function Login () {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    const token = await fetch('http://localhost:4000/api/login', {
+    const token = await fetch('/api/login', {
       method: 'POST',
       body: JSON.stringify({
         username,

@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+// import AuthContext from '../context/AuthContext'
 
 function Dashboard () {
-  const [isAllowed, setIsAllowed] = useState(false)
-  useEffect(() => {
-    fetch('http://localhost:4000/dashboard', {
-      method: 'GET',
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
-    }).then(response => (response.status === 200)
-      ? setIsAllowed(true)
-      : setIsAllowed(false)
-    )
-  }, [])
-
+  // const userIsAuthorized = useContext(AuthContext)
   return (
-    (isAllowed
-      ? <div>Here you have your posts</div>
-      : <div>Not allowed</div>)
-
+    <h1>hi</h1>
+    // (userIsAuthorized
+    //   ? <h1>authorized{console.log(userIsAuthorized)}</h1>
+    //   : <h1>unauthorized{console.log(userIsAuthorized)}</h1>
+    // )
   )
 }
 

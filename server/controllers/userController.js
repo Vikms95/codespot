@@ -39,7 +39,6 @@ const registerUser = async function (req, res, next) {
 }
 
 const loginUser = async function (req, res, next) {
-  console.log("login backend")
   const { username, password } = req.body
   const user = await User.findOne({ username })
   if (user && (await bcrypt.compare(password, user.password))) {

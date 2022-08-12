@@ -15,16 +15,14 @@ router.post('/api/login', loginUser, (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 })
 
-router.get('/dashboard', verifyToken, (req, res, next) => {
+router.get('/api/verify', verifyToken, (req, res, next) => {
   jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
     if (err) {
-      return res.status(403).json({
-         message: 'You are in a protected route' 
-        })
+      return res.status(403)
     } else {
+      console.log(authData)
       return res.json({
-        message: 'Entered dashboard..',
-        authData
+        user: authData
       })
     }
   })
