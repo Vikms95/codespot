@@ -55,11 +55,13 @@ const loginUser = async function (req, res, next) {
 
 const verifyToken = (req, res, next) => {
   const bearerHeader = req.headers['authorization']
+  // Here we just check if the token EXISTS
   if (typeof bearerHeader !== 'undefined') {
-    req.token = JSON.parse(bearerHeader)
+    const bearerToken = bearerHeader.split(' ')[1]
+    req.token = JSON.parse(bearerToken)
     next()
   } else {
-    res.sendStatus(403)
+    return res.sendStatus(403)
   }
 }
 

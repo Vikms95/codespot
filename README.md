@@ -27,9 +27,17 @@ TODO-
 
 
 - Give context to the app about the logged in user
-  :AuthRoute is just checking if there is a token, not if the token is valid
-    :? Should I use AuthContext inside AuthRoute? Wrap something?
-  
+  :The problem is that after logging in, the state is still not updated
+
+x - Can't access directly when not logged in
+x - Can acces directly when logged in
+- Can't access directly when token set manually
+- Can't access directly when token is modified manually to an invalid one
+
+
+
+
+
 
 - Dashboard is where all your posts are located
   :implement functionality to a user create a post

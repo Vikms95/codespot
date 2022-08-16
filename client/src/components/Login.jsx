@@ -31,6 +31,7 @@ function Login () {
     })
     const tokenString = await token.json()
     localStorage.setItem('token', JSON.stringify(tokenString))
+    // Call verifyUser here?
     return navigate('/dashboard')
   }
 

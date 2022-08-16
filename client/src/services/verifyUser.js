@@ -2,12 +2,16 @@ const verifyUser = async () => {
   const response = await fetch('/api/verify', {
     method: 'GET',
     headers: {
-      authorization: localStorage.getItem('token')
+      'content-type': 'application/json',
+      authorization: 'Bearer ' + localStorage.getItem('token')
     }
   })
   const user = await response.json()
-  console.log(user)
-  return user
+  if (response.statusCode === 403) {
+    return null
+  } else {
+    return user
+  }
 }
 
 export default verifyUser
