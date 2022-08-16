@@ -53,7 +53,7 @@ const loginUser = async function (req, res, next) {
   }
 }
 
-const verifyToken = (req, res, next) => {
+const retrieveToken = (req, res, next) => {
   const bearerHeader = req.headers['authorization']
   if (typeof bearerHeader !== 'undefined') {
     // Token is received as 'Bearer token' string, so we split the 
@@ -66,8 +66,21 @@ const verifyToken = (req, res, next) => {
   }
 }
 
+const verifyToken = (req,res) => {
+  jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
+    if (err) {
+      return res.status(403)
+    } else {
+      return res.json({
+        user: authData
+      })
+    }
+  })
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  retrieveToken,
   verifyToken
 }

@@ -47,6 +47,7 @@ x- Can't access directly when token is modified manually to an invalid one -->
     :the post method will get the user id and attach it to the created post object
       :how to get the userid?
       :should I prefix protected routes with the userid?
+      :should I create context for userId?
 
 - /dashboard is where all your own posts are located
     :implement functionality to fetch posts with your id by calling GET /api/fetchposts/:userid?
