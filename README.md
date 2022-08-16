@@ -36,17 +36,19 @@ x - Can't access directly when token set manually
 x- Can't access directly when token is modified manually to an invalid one -->
 
 
-- /createpost is just a form where you will have to fill the required
-  :implement functionality for a user to create a post
-    <!-- :create a form webpage -->
-    <!-- :make that form make a call POST /api/createpost -->
-    <!-- :that endpoint will create a new item in the posts mongo collection -->
-    <!-- :get user from jwt.verify payload -->
-    :refactor context so it uses the userid?
+<!-- - /createpost is just a form where you will have to fill the required
+  :implement functionality for a user to create a post -->
+  <!-- :create a form webpage -->
+  <!-- :make that form make a call POST /api/createpost -->
+  <!-- :that endpoint will create a new item in the posts mongo collection -->
+  <!-- :get user from jwt.verify payload -->
+  <!-- :refactor context so it uses the userid? -->
+
 
 - /dashboard is where all your own posts are located
     :implement functionality to fetch posts with your id by calling GET /api/fetchposts/:userid?
-    :you can make a post public and private, edit and delete from there
+    :get the post that match the id taken from React context
+    :you can make a post public and private, edit and delete from /dashboard
 
 
 - / will be where all the posts from all the users are shown
