@@ -4,13 +4,14 @@ import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 function Login (props) {
+  const { setUser } = props
+
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   })
   const { username, password } = formData
-  const { setIsAuth } = props
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -31,10 +32,9 @@ function Login (props) {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     })
-    const token = await response.json()
-    localStorage.setItem('token', JSON.stringify(token))
-
-    setIsAuth(true)
+    const data = await response.json()
+    localStorage.setItem('token', JSON.stringify(data.token))
+    setUser(data.user)
 
     return navigate('/dashboard')
   }

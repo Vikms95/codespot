@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { useNavigate, useOutletContext } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 
 function CreatePost () {
   const navigate = useNavigate()
-  const user = useOutletContext()
+  const { user } = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     title: '',
@@ -22,11 +23,10 @@ function CreatePost () {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(user)
     const response = fetch('/api/create', {
       method: 'POST',
       body: JSON.stringify({
-        user: user.user,
+        user,
         title,
         text,
         isPrivate

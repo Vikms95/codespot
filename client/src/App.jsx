@@ -11,8 +11,9 @@ import { useState } from 'react'
 import CreatePost from './components/CreatePost'
 
 function App () {
-  const [isAuth, setIsAuth] = useState(false)
-  const authContext = { isAuth, setIsAuth }
+  // Need to create state in app to pass it as value from the context provider?
+  const [user, setUser] = useState(false)
+  const authContext = { user, setUser }
 
   return (
     <>
@@ -31,7 +32,7 @@ function App () {
                   <Route path='/create' element={<CreatePost/>}/>
                 </Route>
 
-              <Route path='/login' element={<Login setIsAuth={setIsAuth}/>}/>
+              <Route path='/login' element={<Login setUser={setUser}/>}/>
               <Route path='/register' element={<Register/>}/>
 
             </Routes>
