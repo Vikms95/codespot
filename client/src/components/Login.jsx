@@ -12,14 +12,14 @@ function Login (props) {
   const { username, password } = formData
   const { setIsAuth } = props
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [e.target.name]: e.target.value
     }))
   }
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const response = await fetch('/api/login', {
       method: 'POST',
@@ -49,9 +49,9 @@ function Login (props) {
       </section>
 
       <section className='form'>
-        <form action="" onSubmit={onSubmit}>
-          <input type="text" id='username' name='username' value={username} placeholder='Enter username' onChange={onChange} />
-          <input type="password" id='password' name='password' value={password} placeholder='Enter password' onChange={onChange} />
+        <form action="" onSubmit={handleSubmit}>
+          <input type="text" id='username' name='username' value={username} placeholder='Enter username' onChange={handleChange} />
+          <input type="password" id='password' name='password' value={password} placeholder='Enter password' onChange={handleChange} />
           <button type='submit '> Login </button>
         </form>
       </section>

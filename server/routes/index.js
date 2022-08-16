@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
 const {registerUser, loginUser, verifyToken} = require('../controllers/userController')
+const {createPost} = require('../controllers/postController')
 
 /* GET home page. */
 // Here is where all the routes will get imported and exported to the whole app
@@ -15,11 +16,12 @@ router.post('/api/login', loginUser, (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 })
 
-router.post('/api/create')
+router.post('/api/create', createPost, (req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+})
 
 router.get('/api/verify', verifyToken, (req, res, next) => {
   jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
-    // It's been already CHECKED IF ITS VALID
     if (err) {
       return res.status(403)
     } else {

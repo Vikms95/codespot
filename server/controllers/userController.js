@@ -55,8 +55,9 @@ const loginUser = async function (req, res, next) {
 
 const verifyToken = (req, res, next) => {
   const bearerHeader = req.headers['authorization']
-  // Here we just check if the token EXISTS
   if (typeof bearerHeader !== 'undefined') {
+    // Token is received as 'Bearer token' string, so we split the 
+    // authorization header at the space and retrieve the second index
     const bearerToken = bearerHeader.split(' ')[1]
     req.token = JSON.parse(bearerToken)
     next()

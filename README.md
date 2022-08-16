@@ -39,13 +39,23 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 
 
+- /createpost is just a form where you will have to fill the required
+  :implement functionality for a user to create a post
+    <!-- :create a form webpage -->
+    <!-- :make that form make a call POST /api/createpost -->
+    <!-- :that endpoint will create a new item in the posts mongo collection -->
+    :the post method will get the user id and attach it to the created post object
+      :how to get the userid?
+      :should I prefix protected routes with the userid?
 
-- Dashboard is where all your posts are located
-  :implement functionality to a user create a post
-    :create a form
-    :make that form make a post call to the /api/createpost
-    :that endpoint will create a new item in the post collection
-    :that item will hold an user field with the user id
+- /dashboard is where all your own posts are located
+    :implement functionality to fetch posts with your id by calling GET /api/fetchposts/:userid?
+    :you can make a post public and private, edit and delete from there
+
 
 - Home will be where all the posts from all the users are shown
+  :implement functionality to fetch for all the posts
+
 - Post will be the details of each post which is accesible from the homepage or the dashboard
+
+- Implement sanitization of inputs

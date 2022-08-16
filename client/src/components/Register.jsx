@@ -10,14 +10,14 @@ function Register () {
   })
   const { username, password, password2 } = formData
 
-  const onChange = (e) => {
+  const handleChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [e.target.name]: e.target.value
     }))
   }
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     fetch('/api/register', {
       method: 'POST',
@@ -43,10 +43,10 @@ function Register () {
       </section>
 
       <section className='form'>
-        <form action="" onSubmit={onSubmit}>
-          <input type="text" id='username' name='username' value={username} placeholder='Enter username' onChange={onChange} />
-          <input type="password" id='password' name='password' value={password} placeholder='Enter password' onChange={onChange} />
-          <input type="password" id='password2' name='password2' value={password2} placeholder='Repeat password' onChange={onChange} />
+        <form action="" onSubmit={handleSubmit}>
+          <input type="text" id='username' name='username' value={username} placeholder='Enter username' onChange={handleChange} />
+          <input type="password" id='password' name='password' value={password} placeholder='Enter password' onChange={handleChange} />
+          <input type="password" id='password2' name='password2' value={password2} placeholder='Repeat password' onChange={handleChange} />
           <button type='submit '> Register </button>
         </form>
       </section>
