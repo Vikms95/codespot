@@ -1,10 +1,10 @@
 const Post = require('../models/Post')
 
 const createPost = (req, res, next) => {
-  const {title, text, isPrivate } = req.body
-  console.log(req.user)
+  const {title, text, isPrivate, user } = req.body
   // Retrieve user from request?
   const post = new Post({
+    user: user,
     title,
     text,
     private: isPrivate

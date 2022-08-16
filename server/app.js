@@ -36,7 +36,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
-
+// make currently logged in user available to all the app middleware
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user
+  console.log(res.locals.currentUser)
+  next()
+})
 
 app.use('/', indexRouter)
 

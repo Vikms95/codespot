@@ -44,6 +44,7 @@ const loginUser = async function (req, res, next) {
   if (user && (await bcrypt.compare(password, user.password))) {
     jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
       if (err) return next(err)
+      console.log(user._id)
       // Send the token to the frontend so it can save it in localStorage?
       return res.json(token)
     })
@@ -72,7 +73,7 @@ const verifyToken = (req,res) => {
       return res.status(403)
     } else {
       return res.json({
-        user: authData
+        user: authData.user
       })
     }
   })

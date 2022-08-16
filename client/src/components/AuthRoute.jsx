@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import verifyUser from '../services/verifyUser'
 import AuthContext from '../context/AuthContext'
 import { Outlet } from 'react-router-dom'
@@ -10,14 +10,15 @@ import { Outlet } from 'react-router-dom'
 // the children of this component
 function AuthRoute () {
   const { isAuth, setIsAuth } = useContext(AuthContext)
-
+  const [user, setUser] = useState('')
   useEffect(() => {
     verifyUser().then(authResult => {
       setIsAuth(!!authResult)
+      setUser(authResult)
     })
   }, [])
   return (
-    (isAuth && <Outlet/>)
+    (isAuth && <Outlet context={ user }/>)
   )
 }
 
