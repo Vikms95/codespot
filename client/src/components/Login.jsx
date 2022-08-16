@@ -1,14 +1,16 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
-function Login () {
+function Login (props) {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   })
   const { username, password } = formData
+  const { setIsAuth } = props
 
   const onChange = (e) => {
     setFormData((prevFormData) => ({
@@ -19,7 +21,7 @@ function Login () {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    const token = await fetch('/api/login', {
+    const response = await fetch('/api/login', {
       method: 'POST',
       body: JSON.stringify({
         username,
@@ -29,9 +31,11 @@ function Login () {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     })
-    const tokenString = await token.json()
-    localStorage.setItem('token', JSON.stringify(tokenString))
-    // Call verifyUser here?
+    const token = await response.json()
+    localStorage.setItem('token', JSON.stringify(token))
+
+    setIsAuth(true)
+
     return navigate('/dashboard')
   }
 

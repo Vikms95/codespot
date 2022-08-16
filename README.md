@@ -25,14 +25,15 @@ TODO-
   <!-- :implement useEffect getting the token on protected routes? -->
 
 
-
+<!-- 
 - Give context to the app about the logged in user
   :The problem is that after logging in, the state is still not updated
+  :Call setter from context before redirecting to the route -->
 
-x - Can't access directly when not logged in
+<!-- x - Can't access directly when not logged in
 x - Can acces directly when logged in
-- Can't access directly when token set manually
-- Can't access directly when token is modified manually to an invalid one
+x - Can't access directly when token set manually
+x- Can't access directly when token is modified manually to an invalid one -->
 
 
 

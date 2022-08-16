@@ -15,14 +15,14 @@ router.post('/api/login', loginUser, (req, res) => {
   res.setHeader('Content-Type', 'application/json')
 })
 
+router.post('/api/create')
+
 router.get('/api/verify', verifyToken, (req, res, next) => {
   jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
     // It's been already CHECKED IF ITS VALID
     if (err) {
-      console.log("NOT VALID")
       return res.status(403)
     } else {
-      console.log("VALID")
       return res.json({
         user: authData
       })

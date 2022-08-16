@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import verifyUser from '../services/verifyUser'
-// import AuthContext from '../context/AuthContext'
+import AuthContext from '../context/AuthContext'
 import { Outlet } from 'react-router-dom'
 
 // Component to wrap any component that is rendered after a protected route.
@@ -9,16 +9,15 @@ import { Outlet } from 'react-router-dom'
 // Then it does set the value to the component state and this one will set it to the context provider that will wrap
 // the children of this component
 function AuthRoute () {
-  // Use context here?
-  const [isUserAuth, setIsUserAuth] = useState('')
+  const { isAuth, setIsAuth } = useContext(AuthContext)
 
   useEffect(() => {
     verifyUser().then(authResult => {
-      setIsUserAuth(!!authResult)
+      setIsAuth(!!authResult)
     })
   }, [])
   return (
-    (isUserAuth && <Outlet/>)
+    (isAuth && <Outlet/>)
   )
 }
 
