@@ -11,7 +11,11 @@ function Post (props) {
 
   }
 
-  const handleDelete = async (e) => {
+  // const handleDeleteConfirm = () => {
+  //   // Reveal a modal which will ask for confirmation
+  // }
+
+  const handleDelete = (e) => {
     // Fetch for DELETE request with id as param
     fetch(`/api/posts/${id}`, {
       method: 'DELETE',
@@ -19,7 +23,6 @@ function Post (props) {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     })
-    // If successfully deleted refresh page
   }
 
   return (

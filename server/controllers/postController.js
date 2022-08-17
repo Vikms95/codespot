@@ -1,24 +1,23 @@
 const Post = require('../models/Post')
 
 const getPosts = (req, res, next) => {
-  Post
-    .find()
-    .populate('user')
-    .exec(function(err,posts){
-      if(err) return next(err)   
-      res.json(posts)
-    })
+  Post.find()
+      .populate('user')
+      .exec(function(err,posts){
+        if(err) return next(err)   
+        res.json(posts)
+      })
 }
 
 const getUserPosts = (req, res, next) => {
   const {userid} = req.params
-  Post
-    .find({'user': userid})
-    .populate('user')
-    .exec(function(err,posts){
+
+  Post.find({'user': userid})
+      .populate('user')
+      .exec(function(err,posts){
       if(err) return next(err)   
-      res.json(posts)
-    })
+        res.json(posts)
+      })
 }
 
 const createPost = (req, res, next) => {
@@ -46,17 +45,14 @@ const updatePost = (req, res, next) => {
 }
 
 const deletePost = (req, res, next) => {
-  const {postId} = req.params
+  const {postid} = req.params
 
-  Post
-    .findByIdAndRemove(postId, function(err, doc){
-      console.log(doc)
-      if(err) {
-        console.log(err)
-        return res.status(400)
-      }
-      return res.status(204).json({deleted: true})
-    })
+  Post.findByIdAndDelete(postid, (err) => {
+    if(err) {
+      return res.status(400).json({deleted:false})
+    }  
+  })
+    return res.status(204).json({deleted: true})
 }
 
 module.exports = {getPosts, getUserPosts, createPost, updatePost, deletePost}
