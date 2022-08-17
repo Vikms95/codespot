@@ -2,7 +2,6 @@ const Post = require('../models/Post')
 
 const createPost = (req, res, next) => {
   const {title, text, isPrivate, user } = req.body
-  // Retrieve user from request?
   const post = new Post({
     user: user,
     title,
@@ -18,4 +17,14 @@ const createPost = (req, res, next) => {
   })
 }
 
-module.exports = {createPost}
+const getUserPosts = (req, res, next) => {
+  const {userid} = req.params
+  Post
+    .find({'user': userid})
+    .exec(function(err,posts){
+      if(err) return next(err)   
+      res.json(posts)
+    })
+}
+
+module.exports = {createPost, getUserPosts}

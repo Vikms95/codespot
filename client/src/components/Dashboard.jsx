@@ -1,14 +1,22 @@
-import React from 'react'
-// import AuthContext from '../context/AuthContext'
+import React, { useEffect, useContext, useState } from 'react'
+import AuthContext from '../context/AuthContext'
 
 function Dashboard () {
-  // const userIsAuthorized = useContext(AuthContext)
+  const [posts, setPosts] = useState([])
+  const { user } = useContext(AuthContext)
+  useEffect(() => {
+    fetch(`/api/${user}/posts`, {
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    }).then(response => response.json())
+      .then(postsData => setPosts(postsData))
+      // Would only fetching the posts when the user changes not update the posts info on the client-side?
+  }, [])
+
   return (
     <h1>hi</h1>
-    // (userIsAuthorized
-    //   ? <h1>authorized{console.log(userIsAuthorized)}</h1>
-    //   : <h1>unauthorized{console.log(userIsAuthorized)}</h1>
-    // )
+    // Here is where an array of the fetched post data will be rendered
   )
 }
 

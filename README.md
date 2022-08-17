@@ -4,6 +4,11 @@
   - Posts - hold all the posts with a id key of the author(user)
           - hold an array of the comments and an id key of the post
 
+REST URL CONVENTIONS
+https://www.theodinproject.com/lessons/nodejs-api-basics
+https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/#h-use-nouns-instead-of-verbs-in-endpoint-paths
+/api/posts/:postid/comments
+
 1. user registers - OK returned
 2. user logs in - Token returned
 3. user saves token
@@ -46,9 +51,13 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 
 - /dashboard is where all your own posts are located
+  /api/:userid/posts
     :implement functionality to fetch posts with your id by calling GET /api/fetchposts/:userid?
     :get the post that match the id taken from React context
     :you can make a post public and private, edit and delete from /dashboard
+  <Dashboard/>
+    :map all the fetched posts and pass the data as props to <Post/>
+    :only fetch new posts when the user context changes
 
 
 - / will be where all the posts from all the users are shown

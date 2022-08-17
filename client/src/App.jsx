@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './App.css'
+import { useState } from 'react'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Register from './components/Register'
@@ -7,7 +8,6 @@ import Login from './components/Login'
 import Dashboard from './components/Dashboard'
 import AuthRoute from './components/AuthRoute'
 import AuthContext from './context/AuthContext'
-import { useState } from 'react'
 import CreatePost from './components/CreatePost'
 
 function App () {
@@ -17,27 +17,27 @@ function App () {
 
   return (
     <>
-        <Router>
-          <div className='container'>
-            <Header/>
-            <Routes>
+      <Router>
+        <div className='container'>
+          <Header/>
+          <Routes>
 
-                <Route element=
-                {
-                  <AuthContext.Provider value={authContext}>
-                    <AuthRoute/>
-                  </AuthContext.Provider>
-                }>
-                  <Route path='/dashboard' element={<Dashboard/>}/>
-                  <Route path='/create' element={<CreatePost/>}/>
-                </Route>
+              <Route element=
+              {
+                <AuthContext.Provider value={authContext}>
+                  <AuthRoute/>
+                </AuthContext.Provider>
+              }>
+                <Route path='/dashboard' element={<Dashboard/>}/>
+                <Route path='/create' element={<CreatePost/>}/>
+              </Route>
 
-              <Route path='/login' element={<Login setUser={setUser}/>}/>
-              <Route path='/register' element={<Register/>}/>
+            <Route path='/login' element={<Login setUser={setUser}/>}/>
+            <Route path='/register' element={<Register/>}/>
 
-            </Routes>
-          </div>
-        </Router>
+          </Routes>
+        </div>
+      </Router>
     </>
   )
 }
