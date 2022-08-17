@@ -8,7 +8,7 @@ import useAuth from '../hooks/useAuth'
  * It will call the useAuth hook which will verify the user and return its id.
  * Then it does return the user id if it is verified, otherwise it returns null.
  */
-function AuthRoute () {
+function AuthRouteContainer () {
   const { user } = useAuth()
 
   return (
@@ -16,4 +16,4 @@ function AuthRoute () {
   )
 }
 
-export default AuthRoute
+export default AuthRouteContainer

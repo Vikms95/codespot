@@ -68,7 +68,7 @@ x- Can't access directly when token is modified manually to an invalid one -->
 - DELETE /posts/:postid
   <!-- :postid is returning undefined? -->
   :not finding post in the Post collection with findByIdAndRemove?
-    :is not asynchrony
+    :pass the post id to <Modal/> so it can be fetched and deleted from there 
 - PUT /posts/:postid
 
 - GET /posts/:postid/comments
@@ -76,6 +76,7 @@ x- Can't access directly when token is modified manually to an invalid one -->
 - PUT /posts/:postid/comments/:commentid
 - DELETE /posts/:postid/comments/:commentid
 
+- Extract fetch snippets onto useFetch custom hooks
 - Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard

@@ -8,6 +8,7 @@ function Dashboard () {
   const { user } = useContext(AuthContext)
 
   const [posts, setPosts] = useState([])
+  const [lastClickedPostId, setLastClickedPostId] = useState('')
   const [isModalActive, setIsModalActive] = useState(false)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function Dashboard () {
   return (
     <section className='dashboard-container'>
       <ModalContainer isModalActive={isModalActive}>
-        <Modal/>
+        <Modal lastClickedPostId={lastClickedPostId}/>
       </ModalContainer>
 
       {posts.map((post) => (
@@ -35,6 +36,7 @@ function Dashboard () {
           title={post.title}
           text={post.text}
           isPrivate={post.private}
+          setLastClickedPostId={setLastClickedPostId}
           setIsModalActive={setIsModalActive}
         >
         </Post>
