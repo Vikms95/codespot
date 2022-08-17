@@ -3,11 +3,12 @@ import AuthContext from '../context/AuthContext'
 import Post from './Post'
 
 function Dashboard () {
-  const [posts, setPosts] = useState([])
-
   const { user } = useContext(AuthContext)
 
+  const [posts, setPosts] = useState([])
+
   useEffect(() => {
+    console.log(user)
     fetch(`/api/${user}/posts`, {
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
@@ -15,7 +16,7 @@ function Dashboard () {
     }).then(response => response.json())
       .then(postsData => setPosts(postsData))
       // Would only fetching the posts when the user changes not update the posts info on the client-side?
-  }, [user])
+  }, [])
 
   return (
     <section>

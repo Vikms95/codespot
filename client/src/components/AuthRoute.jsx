@@ -9,7 +9,7 @@ import useAuth from '../hooks/useAuth'
  * Then it does return the user id if it is verified, otherwise it returns null.
  */
 function AuthRoute () {
-  const user = useAuth()
+  const { user } = useAuth()
 
   return (
     (user && <Outlet/>)

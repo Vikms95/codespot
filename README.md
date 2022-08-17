@@ -60,12 +60,20 @@ x- Can't access directly when token is modified manually to an invalid one -->
     :only fetch new posts when the user context changes?
 
 
-- / will be where all the posts from all the users are shown
-  :implement functionality to fetch for all the posts no matter the user
-    <!-- :posts on <Home/> do not receive the user context that is logged in? -->
-    :user does not persist on <Home/> when page is reloaded?
+<!-- - / will be where all the posts from all the users are shown -->
+  <!-- :implement functionality to fetch for all the posts no matter the user -->
+  <!-- :posts on <Home/> do not receive the user context that is logged in? -->
+  <!-- :user does not persist on <Home/> when page is reloaded? -->
 
+- PUT /posts/:postid
+- DELETE /posts/:postid
 
+- GET /posts/:postid/comments
+- POST /posts/:postid/comment
+- PUT /posts/:postid/comments/:commentid
+- DELETE /posts/:postid/comments/:commentid
+
+- When <Dashboard/> is reloaded, the user is undefined
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard
 - Implement sanitization of inputs

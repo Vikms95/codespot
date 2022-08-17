@@ -4,6 +4,7 @@ import AuthContext from '../context/AuthContext'
 
 function CreatePost () {
   const navigate = useNavigate()
+
   const { user } = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
@@ -24,7 +25,6 @@ function CreatePost () {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(isPrivate)
     const response = fetch('/api/create', {
       method: 'POST',
       body: JSON.stringify({

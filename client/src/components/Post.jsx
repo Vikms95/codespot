@@ -7,8 +7,6 @@ function Post (props) {
   const { user, title, text, isPrivate } = props
   return (
     <>
-      {console.log('post user id' + user._id)}
-      {console.log('logged user id ' + authoredUser)}
       <div>Username: {user.username}</div>
       <div>Title: {title}</div>
       <div>Text: {text}</div>
