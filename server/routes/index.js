@@ -22,8 +22,8 @@ router.get('/api/:userid/posts', getUserPosts)
 
 router.post('/api/post', createPost)
 
-router.put('/api/:postid', updatePost)
+router.put('/api/posts/:postid', updatePost)
 
-router.delete('/api/:postid', deletePost)
+router.delete('/api/posts/:postid', deletePost)
 
 module.exports = router

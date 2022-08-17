@@ -9,6 +9,7 @@ function Dashboard () {
 
   useEffect(() => {
     fetch(`/api/${user}/posts`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }
@@ -19,9 +20,11 @@ function Dashboard () {
 
   return (
     <section>
-      {posts.map(({ _id, user, title, text, private: isPrivate }) => (
+      {console.log(posts)}
+      {posts.map(({ user, title, text, private: isPrivate }) => (
         <Post
-          key={_id}
+          key={user._id}
+          id={user._id}
           user={user}
           title={title}
           text={text}

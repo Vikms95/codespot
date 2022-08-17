@@ -9,6 +9,7 @@ function Home () {
 
   useEffect(() => {
     fetch('/api/posts', {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }
@@ -18,9 +19,10 @@ function Home () {
 
   return (
     <section>
-      {posts.map(({ _id, user, title, text, private: isPrivate }) => (
+      {posts.map(({ user, title, text, private: isPrivate }) => (
         <Post
-          key={_id}
+          key={user._id}
+          id={user._id}
           user={user}
           title={title}
           text={text}

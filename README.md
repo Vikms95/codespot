@@ -65,15 +65,16 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :posts on <Home/> do not receive the user context that is logged in? -->
   <!-- :user does not persist on <Home/> when page is reloaded? -->
 
-- PUT /posts/:postid
 - DELETE /posts/:postid
+  :postid is returning undefined?
+- PUT /posts/:postid
 
 - GET /posts/:postid/comments
 - POST /posts/:postid/comment
 - PUT /posts/:postid/comments/:commentid
 - DELETE /posts/:postid/comments/:commentid
 
-- When <Dashboard/> is reloaded, the user is undefined
+- Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard
 - Implement sanitization of inputs

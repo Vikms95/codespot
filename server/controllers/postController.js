@@ -46,7 +46,9 @@ const updatePost = (req, res, next) => {
 }
 
 const deletePost = (req, res, next) => {
-  console.log("hi")
+  const {postId} = req.params
+  console.log(postId)
+  console.log(req.params)
 }
 
 module.exports = {getPosts, getUserPosts, createPost, updatePost, deletePost}

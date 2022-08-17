@@ -3,8 +3,9 @@ import React, { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
 
 function Post (props) {
+  const { id, user, title, text, isPrivate } = props
+
   const { user: currentUserId } = useContext(AuthContext)
-  const { _id, user, title, text, isPrivate } = props
 
   const handleUpdate = async (e) => {
 
@@ -12,8 +13,9 @@ function Post (props) {
 
   const handleDelete = async (e) => {
     // Fetch for DELETE request with id as param
-    fetch(`/api/${_id}`, {
-      method: 'DELETE',
+    console.log(id)
+    fetch(`/api/posts/${id}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }
