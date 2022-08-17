@@ -56,13 +56,15 @@ x- Can't access directly when token is modified manually to an invalid one -->
     <!-- :get the post that match the id taken from React context -->
     :you can make a post public and private, edit and delete from /dashboard
   <Dashboard/>
-    :map all the fetched posts and pass the data as props to <Post/>
-    :only fetch new posts when the user context changes
+    <!-- :map all the fetched posts and pass the data as props to <Post/> -->
+    :only fetch new posts when the user context changes?
 
 
 - / will be where all the posts from all the users are shown
-  :implement functionality to fetch for all the posts
+  :implement functionality to fetch for all the posts no matter the user
+    <!-- :posts on <Home/> do not receive the user context that is logged in? -->
+    :user does not persist on <Home/> when page is reloaded?
+
 
 - Post will be the details of each post which is accesible from the homepage or the dashboard
-
 - Implement sanitization of inputs

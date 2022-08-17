@@ -1,27 +1,34 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import AuthContext from '../context/AuthContext'
+import verifyUser from '../services/verifyUser'
 import Post from './Post'
 
-function Dashboard () {
+function Home () {
   const [posts, setPosts] = useState([])
 
-  const { user } = useContext(AuthContext)
+  const { setUser } = useContext(AuthContext)
 
   useEffect(() => {
-    fetch(`/api/${user}/posts`, {
+    fetch('/api/posts', {
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     }).then(response => response.json())
       .then(postsData => setPosts(postsData))
-      // Would only fetching the posts when the user changes not update the posts info on the client-side?
-  }, [user])
+  }, [])
+
+  useEffect(() => {
+    verifyUser()
+      .then(authResult => {
+        setUser(authResult.user)
+      })
+  }, [])
 
   return (
     <section>
       {posts.map(({ user, title, text, private: isPrivate }) => (
         <Post
-          key={user.username + title + text}
+          key={ title + text}
           user={user}
           title={title}
           text={text}
@@ -34,4 +41,4 @@ function Dashboard () {
   )
 }
 
-export default Dashboard
+export default Home

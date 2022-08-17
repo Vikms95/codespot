@@ -1,9 +1,8 @@
 require('dotenv').config() 
 const express = require('express')
 const router = express.Router()
-const jwt = require('jsonwebtoken')
 const {registerUser, loginUser, retrieveToken, verifyToken} = require('../controllers/userController')
-const {createPost, getUserPosts} = require('../controllers/postController')
+const {createPost, getPosts, getUserPosts} = require('../controllers/postController')
 
 /* GET home page. */
 // Here is where all the routes will get imported and exported to the whole app
@@ -11,6 +10,8 @@ const {createPost, getUserPosts} = require('../controllers/postController')
 router.post('/api/register', registerUser)
 
 router.post('/api/login', loginUser)
+
+router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 

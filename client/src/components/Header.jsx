@@ -1,18 +1,27 @@
 import React from 'react'
-import { FaSignInAlt, FaUser, FaBook, FaTable } from 'react-icons/fa'
+import { FaSignInAlt, FaUser, FaBook, FaTable, FaHouseUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 function Header () {
   return (
     <header className='header'>
       <div className='logo'>
-        <Link to='/dashboard'>
-        My posts
-          {' '}
-        <FaTable/>
-        </Link>
       </div>
       <ul>
+        <li>
+          <Link to='/'>
+          Home
+            {' '}
+          <FaHouseUser/>
+          </Link>
+        </li>
+        <li>
+          <Link to='/dashboard'>
+          Dashboard
+            {' '}
+          <FaTable/>
+          </Link>
+        </li>
         <li>
           <Link to='/create'>
           Create post

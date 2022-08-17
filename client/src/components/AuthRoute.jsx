@@ -10,12 +10,14 @@ import { Outlet } from 'react-router-dom'
 // the children of this component
 function AuthRoute () {
   const { user, setUser } = useContext(AuthContext)
+
   useEffect(() => {
     verifyUser()
       .then(authResult => {
         setUser(authResult.user)
       })
   }, [])
+
   return (
     (user && <Outlet/>)
   )
