@@ -52,8 +52,8 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 - /dashboard is where all your own posts are located
   /api/:userid/posts
-    :implement functionality to fetch posts with your id by calling GET /api/fetchposts/:userid?
-    :get the post that match the id taken from React context
+    <!-- :implement functionality to fetch posts with your id by calling GET /api/:userid/posts? -->
+    <!-- :get the post that match the id taken from React context -->
     :you can make a post public and private, edit and delete from /dashboard
   <Dashboard/>
     :map all the fetched posts and pass the data as props to <Post/>

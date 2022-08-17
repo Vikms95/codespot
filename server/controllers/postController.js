@@ -21,6 +21,7 @@ const getUserPosts = (req, res, next) => {
   const {userid} = req.params
   Post
     .find({'user': userid})
+    .populate('user')
     .exec(function(err,posts){
       if(err) return next(err)   
       res.json(posts)

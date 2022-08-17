@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react'
 import AuthContext from '../context/AuthContext'
+import Post from '../components/Post'
 
 function Dashboard () {
   const [posts, setPosts] = useState([])
@@ -15,7 +16,18 @@ function Dashboard () {
   }, [])
 
   return (
-    <h1>hi</h1>
+    <section>
+      {posts.map(({ user, title, text, private: isPrivate }) => (
+        <Post
+          key={user.username + title + text}
+          username={user.username}
+          title={title}
+          text={text}
+          isPrivate={isPrivate}
+        >
+        </Post>
+      ))}
+    </section>
     // Here is where an array of the fetched post data will be rendered
   )
 }
