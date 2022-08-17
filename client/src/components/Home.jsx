@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react'
-import AuthContext from '../context/AuthContext'
-import verifyUser from '../services/verifyUser'
+import React, { useState, useEffect } from 'react'
+import useAuth from '../hooks/useAuth'
 import Post from './Post'
 
 function Home () {
   const [posts, setPosts] = useState([])
 
-  const { setUser } = useContext(AuthContext)
+  useAuth()
 
   useEffect(() => {
     fetch('/api/posts', {
@@ -15,13 +14,6 @@ function Home () {
       }
     }).then(response => response.json())
       .then(postsData => setPosts(postsData))
-  }, [])
-
-  useEffect(() => {
-    verifyUser()
-      .then(authResult => {
-        setUser(authResult.user)
-      })
   }, [])
 
   return (

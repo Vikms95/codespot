@@ -66,5 +66,6 @@ x- Can't access directly when token is modified manually to an invalid one -->
     :user does not persist on <Home/> when page is reloaded?
 
 
+- useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard
 - Implement sanitization of inputs
