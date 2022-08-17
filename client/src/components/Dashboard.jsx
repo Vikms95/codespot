@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react'
 import AuthContext from '../context/AuthContext'
 import Modal from './Modal'
+import ModalContainer from '../containers/ModalContainer'
 import Post from './Post'
 
 function Dashboard () {
@@ -22,10 +23,9 @@ function Dashboard () {
 
   return (
     <section className='dashboard-container'>
-      <Modal
-        isModalActive={isModalActive}
-      >
-      </Modal>
+      <ModalContainer isModalActive={isModalActive}>
+        <Modal/>
+      </ModalContainer>
 
       {posts.map((post) => (
         <Post
