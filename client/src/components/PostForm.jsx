@@ -25,7 +25,6 @@ function PostForm () {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(isPrivate)
     const response = fetch('/api/post', {
       method: 'POST',
       body: JSON.stringify({

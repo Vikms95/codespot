@@ -2,22 +2,30 @@
 import React from 'react'
 
 function Modal (props) {
-  const { lastClickedPostId } = props
+  const { lastClickedPostId, setIsModalActive, setPosts } = props
 
-  const handleDelete = (e) => {
-    // Fetch for DELETE request with id as param
+  const handleDelete = async (e) => {
     fetch(`/api/posts/${lastClickedPostId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     })
+    setPosts(prevPosts => (
+      prevPosts.filter(post => post._id !== lastClickedPostId)
+    ))
+    setIsModalActive(false)
   }
+
+  const handleCancel = async (e) => {
+    setIsModalActive(false)
+  }
+
   return (
       <>
         <div> Are you sure you want to delete this post? </div>
-        <button > Cancel</button>
-        <button onClick={handleDelete} > Delete</button>
+        <button onClick={handleCancel}> Cancel</button>
+        <button onClick={handleDelete}> Delete</button>
       </>
   )
 }

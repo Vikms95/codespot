@@ -1,14 +1,15 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useContext, useState } from 'react'
 import AuthContext from '../context/AuthContext'
-import Modal from './Modal'
 import ModalContainer from '../containers/ModalContainer'
+import Modal from './Modal'
 import Post from './Post'
 
-function Dashboard () {
+function Dashboard (props) {
+  const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
+
   const { user } = useContext(AuthContext)
 
-  const [posts, setPosts] = useState([])
-  const [lastClickedPostId, setLastClickedPostId] = useState('')
   const [isModalActive, setIsModalActive] = useState(false)
 
   useEffect(() => {
@@ -19,13 +20,18 @@ function Dashboard () {
       }
     }).then(response => response.json())
       .then(postsData => setPosts(postsData))
-      // Would only fetching the posts when the user changes not update the posts info on the client-side?
   }, [])
 
   return (
     <section className='dashboard-container'>
-      <ModalContainer isModalActive={isModalActive}>
-        <Modal lastClickedPostId={lastClickedPostId}/>
+      <ModalContainer
+        isModalActive={isModalActive}
+      >
+        <Modal
+          setPosts={setPosts}
+          lastClickedPostId={lastClickedPostId}
+          setIsModalActive={setIsModalActive}
+        />
       </ModalContainer>
 
       {posts.map((post) => (
@@ -42,7 +48,6 @@ function Dashboard () {
         </Post>
       ))}
     </section>
-    // Here is where an array of the fetched post data will be rendered
   )
 }
 

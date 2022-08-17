@@ -1,11 +1,16 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
+import ModalContainer from '../containers/ModalContainer'
+import Modal from './Modal'
 import Post from './Post'
 
-function Home () {
-  const [posts, setPosts] = useState([])
+function Home (props) {
+  const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
 
   useAuth()
+
+  const [isModalActive, setIsModalActive] = useState(false)
 
   useEffect(() => {
     fetch('/api/posts', {
@@ -18,7 +23,16 @@ function Home () {
   }, [])
 
   return (
-    <section>
+    <section className='home-container'>
+      <ModalContainer
+        isModalActive={isModalActive}
+      >
+        <Modal
+          setPosts={setPosts}
+          lastClickedPostId={lastClickedPostId}
+          setIsModalActive={setIsModalActive}
+        />
+      </ModalContainer>
       {posts.map((post) => (
         <Post
           key={post._id}
@@ -27,11 +41,12 @@ function Home () {
           title={post.title}
           text={post.text}
           isPrivate={post.private}
+          setLastClickedPostId={setLastClickedPostId}
+          setIsModalActive={setIsModalActive}
         >
         </Post>
       ))}
     </section>
-    // Here is where an array of the fetched post data will be rendered
   )
 }
 

@@ -14,6 +14,8 @@ import AuthContext from './context/AuthContext'
 function App () {
   // Need to create state in app to pass it as value from the context provider?
   const [user, setUser] = useState()
+  const [posts, setPosts] = useState([])
+  const [lastClickedPostId, setLastClickedPostId] = useState('')
   const authContext = { user, setUser }
 
   return (
@@ -24,10 +26,28 @@ function App () {
           <AuthContext.Provider value={authContext}>
             <Routes>
                 <Route element={<AuthRouteContainer/>}>
-                  <Route path='/dashboard' element={<Dashboard/>}/>
+                  <Route
+                    path='/dashboard'
+                    element={
+                      <Dashboard
+                        posts={posts}
+                        setPosts={setPosts}
+                        lastClickedPostId={lastClickedPostId}
+                        setLastClickedPostId={setLastClickedPostId}
+                      />}
+                  />
                   <Route path='/create' element={<PostForm/>}/>
                 </Route>
-              <Route path='/' element={<Home/>}/>
+              <Route
+                path='/'
+                element={
+                  <Home
+                    posts={posts}
+                    setPosts={setPosts}
+                    lastClickedPostId={lastClickedPostId}
+                    setLastClickedPostId={setLastClickedPostId}
+                  />}
+                />
               <Route path='/login' element={<Login setUser={setUser}/>}/>
               <Route path='/register' element={<Register/>}/>
 

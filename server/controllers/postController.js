@@ -47,12 +47,12 @@ const updatePost = (req, res, next) => {
 const deletePost = (req, res, next) => {
   const {postid} = req.params
 
-  Post.findByIdAndDelete(postid, (err) => {
+  Post.findByIdAndDelete(postid, (err, docs) => {
     if(err) {
-      return res.status(400).json({deleted:false})
+      return res.status(400)
     }  
+    return res.status(200)
   })
-    return res.status(204).json({deleted: true})
 }
 
 module.exports = {getPosts, getUserPosts, createPost, updatePost, deletePost}

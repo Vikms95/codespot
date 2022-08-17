@@ -37,6 +37,7 @@
   }
 }
 
-.dashboard-container{
+.dashboard-container,
+.home-container{
   position: relative;
 }
