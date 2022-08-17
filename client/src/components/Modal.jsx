@@ -11,9 +11,11 @@ function Modal (props) {
         'Content-Type': 'application/json; charset=UTF-8'
       }
     })
+
     setPosts(prevPosts => (
       prevPosts.filter(post => post._id !== lastClickedPostId)
     ))
+
     setIsModalActive(false)
   }
 

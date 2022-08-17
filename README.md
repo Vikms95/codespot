@@ -81,7 +81,10 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- - Move posts to App and pass it to <Dashboard/> and <Home/> as props -->
 
 !!!- Extract fetch snippets onto useFetch custom hooks
-  :cannot assign the response from useFetch to posts prop
+  <!-- :cannot assign the response from useFetch to posts prop -->
+  :it seems like now, whenever I delete, it does not update the frontend state
+  again
+    :it works with useEffect, not with useFetch
 
 
 - Setup modal wrapper that covers the whole page so it can't be clicked outside
