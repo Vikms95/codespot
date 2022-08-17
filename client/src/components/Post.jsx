@@ -13,9 +13,8 @@ function Post (props) {
 
   const handleDelete = async (e) => {
     // Fetch for DELETE request with id as param
-    console.log(id)
     fetch(`/api/posts/${id}`, {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8'
       }

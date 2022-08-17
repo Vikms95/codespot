@@ -66,7 +66,8 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :user does not persist on <Home/> when page is reloaded? -->
 
 - DELETE /posts/:postid
-  :postid is returning undefined?
+  <!-- :postid is returning undefined? -->
+  !!!!!! :not finding post in the Post collection with findByIdAndRemove?
 - PUT /posts/:postid
 
 - GET /posts/:postid/comments

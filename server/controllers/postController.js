@@ -47,8 +47,16 @@ const updatePost = (req, res, next) => {
 
 const deletePost = (req, res, next) => {
   const {postId} = req.params
-  console.log(postId)
-  console.log(req.params)
+
+  Post
+    .findByIdAndRemove(postId, function(err, doc){
+      console.log(doc)
+      if(err) {
+        console.log(err)
+        return res.status(400)
+      }
+      return res.status(204).json({deleted: true})
+    })
 }
 
 module.exports = {getPosts, getUserPosts, createPost, updatePost, deletePost}
