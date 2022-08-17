@@ -17,12 +17,14 @@ function CreatePost () {
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
+      isPrivate: e.target.checked,
       [e.target.name]: e.target.value
     }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log(isPrivate)
     const response = fetch('/api/create', {
       method: 'POST',
       body: JSON.stringify({
