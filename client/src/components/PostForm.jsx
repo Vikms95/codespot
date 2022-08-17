@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 
-function CreatePost () {
+function PostForm () {
   const navigate = useNavigate()
 
   const { user } = useContext(AuthContext)
@@ -18,14 +18,15 @@ function CreatePost () {
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      isPrivate: e.target.checked,
+      isPrivate: e.target.checked || prevFormData.isPrivate,
       [e.target.name]: e.target.value
     }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = fetch('/api/create', {
+    console.log(isPrivate)
+    const response = fetch('/api/post', {
       method: 'POST',
       body: JSON.stringify({
         user,
@@ -61,4 +62,4 @@ function CreatePost () {
   )
 }
 
-export default CreatePost
+export default PostForm

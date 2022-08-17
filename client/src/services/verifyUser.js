@@ -1,5 +1,5 @@
 const verifyUser = async () => {
-  const response = await fetch('/api/verify', {
+  const response = await fetch('/api/session', {
     method: 'GET',
     headers: {
       'content-type': 'application/json',

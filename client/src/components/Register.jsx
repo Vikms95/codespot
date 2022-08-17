@@ -19,7 +19,7 @@ function Register () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch('/api/register', {
+    fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify({
         username,

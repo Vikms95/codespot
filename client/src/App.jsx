@@ -5,11 +5,11 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
 import Login from './components/Login'
 import Header from './components/Header'
+import PostForm from './components/PostForm'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import AuthRoute from './components/AuthRoute'
 import AuthContext from './context/AuthContext'
-import CreatePost from './components/CreatePost'
 
 function App () {
   // Need to create state in app to pass it as value from the context provider?
@@ -25,7 +25,7 @@ function App () {
             <Routes>
                 <Route element={<AuthRoute/>}>
                   <Route path='/dashboard' element={<Dashboard/>}/>
-                  <Route path='/create' element={<CreatePost/>}/>
+                  <Route path='/create' element={<PostForm/>}/>
                 </Route>
               <Route path='/' element={<Home/>}/>
               <Route path='/login' element={<Login setUser={setUser}/>}/>

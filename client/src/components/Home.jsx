@@ -18,9 +18,9 @@ function Home () {
 
   return (
     <section>
-      {posts.map(({ user, title, text, private: isPrivate }) => (
+      {posts.map(({ _id, user, title, text, private: isPrivate }) => (
         <Post
-          key={ title + text}
+          key={_id}
           user={user}
           title={title}
           text={text}

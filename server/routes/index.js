@@ -1,22 +1,29 @@
-require('dotenv').config() 
 const express = require('express')
 const router = express.Router()
-const {registerUser, loginUser, retrieveToken, verifyToken} = require('../controllers/userController')
-const {createPost, getPosts, getUserPosts} = require('../controllers/postController')
+const {createUser, loginUser, logoutUser, retrieveToken, verifyToken} = require('../controllers/userController')
+const {getPosts, getUserPosts, createPost, updatePost, deletePost} = require('../controllers/postController');
 
 /* GET home page. */
 // Here is where all the routes will get imported and exported to the whole app
 
-router.post('/api/register', registerUser)
+// User - Session
+router.get('/api/session', [retrieveToken, verifyToken])
 
-router.post('/api/login', loginUser)
+router.post('/api/user', createUser)
 
+router.post('/api/session', loginUser)
+
+router.delete('/api/session', logoutUser)
+
+// Post
 router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 
-router.post('/api/create', createPost)
+router.post('/api/post', createPost)
 
-router.get('/api/verify', [retrieveToken, verifyToken])
+router.put('/api/:postid', updatePost)
+
+router.delete('/api/:postid', deletePost)
 
 module.exports = router

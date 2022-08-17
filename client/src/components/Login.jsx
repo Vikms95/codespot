@@ -22,7 +22,7 @@ function Login (props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch('/api/login', {
+    const response = await fetch('/api/session', {
       method: 'POST',
       body: JSON.stringify({
         username,

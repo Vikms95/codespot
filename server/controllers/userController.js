@@ -3,7 +3,7 @@ const User = require('../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const registerUser = async function (req, res, next) {
+const createUser = async (req, res, next) => {
   const { username, password } = req.body
   if (!username || !password) {
     res.status(400)
@@ -38,7 +38,7 @@ const registerUser = async function (req, res, next) {
   }
 }
 
-const loginUser = async function (req, res, next) {
+const loginUser = async (req, res, next) => {
   const { username, password } = req.body
   const user = await User.findOne({ username })
   if (user && (await bcrypt.compare(password, user.password))) {
@@ -51,6 +51,10 @@ const loginUser = async function (req, res, next) {
     res.status(400)
     throw new Error('Invalid credentials')
   }
+}
+
+const logoutUser = async (req, res, next) => {
+
 }
 
 const retrieveToken = (req, res, next) => {
@@ -79,8 +83,9 @@ const verifyToken = (req,res) => {
 }
 
 module.exports = {
-  registerUser,
+  createUser,
   loginUser,
+  logoutUser,
   retrieveToken,
   verifyToken
 }
