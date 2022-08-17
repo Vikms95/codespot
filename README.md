@@ -80,8 +80,11 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :deleted the posts on the frontend too -->
 <!-- - Move posts to App and pass it to <Dashboard/> and <Home/> as props -->
 
+!!!- Extract fetch snippets onto useFetch custom hooks
+  :cannot assign the response from useFetch to posts prop
+
+
 - Setup modal wrapper that covers the whole page so it can't be clicked outside
-- Extract fetch snippets onto useFetch custom hooks
 - Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard
