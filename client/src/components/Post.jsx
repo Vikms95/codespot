@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
 
 function Post (props) {
-  const { id, user, title, text, isPrivate } = props
+  const { id, user, title, text, isPrivate, setIsModalActive } = props
 
   const { user: currentUserId } = useContext(AuthContext)
 
@@ -11,9 +11,10 @@ function Post (props) {
 
   }
 
-  // const handleDeleteConfirm = () => {
-  //   // Reveal a modal which will ask for confirmation
-  // }
+  const revealDeleteModal = () => {
+    setIsModalActive(true)
+    // Reveal a modal which will ask for confirmation
+  }
 
   const handleDelete = (e) => {
     // Fetch for DELETE request with id as param
@@ -35,7 +36,7 @@ function Post (props) {
       {(user._id === currentUserId) &&
       <>
         <button onClick={handleUpdate}>Update</button>
-        <button onClick={handleDelete}>Delete</button>
+        <button onClick={revealDeleteModal}>Delete</button>
       </>
       }
     </>

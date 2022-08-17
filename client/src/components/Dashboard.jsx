@@ -1,11 +1,13 @@
 import React, { useEffect, useContext, useState } from 'react'
 import AuthContext from '../context/AuthContext'
+import Modal from './Modal'
 import Post from './Post'
 
 function Dashboard () {
   const { user } = useContext(AuthContext)
 
   const [posts, setPosts] = useState([])
+  const [isModalActive, setIsModalActive] = useState(false)
 
   useEffect(() => {
     fetch(`/api/${user}/posts`, {
@@ -19,7 +21,12 @@ function Dashboard () {
   }, [])
 
   return (
-    <section>
+    <section className='dashboard-container'>
+      <Modal
+        isModalActive={isModalActive}
+      >
+      </Modal>
+
       {posts.map((post) => (
         <Post
           key={post._id}
@@ -28,6 +35,7 @@ function Dashboard () {
           title={post.title}
           text={post.text}
           isPrivate={post.private}
+          setIsModalActive={setIsModalActive}
         >
         </Post>
       ))}
