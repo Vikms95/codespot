@@ -25,7 +25,7 @@ function Login (props) {
     e.preventDefault()
 
     const response = await fetch('/api/session',
-      createResourceOptions({ username, password })
+      createResourceOptions('POST', { username, password })
     )
 
     const data = await response.json()

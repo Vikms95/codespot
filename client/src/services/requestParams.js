@@ -5,9 +5,9 @@ const getOptions = {
   }
 }
 
-const createResourceOptions = (bodyObject) => {
+const createResourceOptions = (method, bodyObject) => {
   return {
-    method: 'POST',
+    method,
     body: JSON.stringify(bodyObject),
     headers: {
       'Content-Type': 'application/json; charset=UTF-8'

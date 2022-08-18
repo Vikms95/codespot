@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import AuthContext from '../context/AuthContext'
+import { useNavigate, useParams } from 'react-router-dom'
 import { createResourceOptions } from '../services/requestParams'
+import AuthContext from '../context/AuthContext'
 
-function PostForm (props) {
+function PostForm () {
+  const { postid } = useParams()
   const navigate = useNavigate()
 
   const { user } = useContext(AuthContext)
@@ -24,11 +25,11 @@ function PostForm (props) {
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handlePostSubmit = async (e) => {
     e.preventDefault()
 
     const response = fetch('/api/post',
-      createResourceOptions({ user, title, text, isPrivate })
+      createResourceOptions('POST', { user, title, text, isPrivate })
     )
 
     const postIsCreated = await response
@@ -38,9 +39,23 @@ function PostForm (props) {
     }
   }
 
+  const handleUpdateSubmit = async (e) => {
+    e.preventDefault()
+
+    const response = fetch('/api/posts/' + postid,
+      createResourceOptions('PUT', { user, title, text, isPrivate })
+    )
+
+    const postIsUpdated = await response
+
+    if (postIsUpdated) {
+      return navigate('/dashboard')
+    }
+  }
+
   return (
     <section>
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={postid ? handleUpdateSubmit : handlePostSubmit }>
         <label htmlFor="title">Title: </label>
         <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' />
         <br />
@@ -50,7 +65,7 @@ function PostForm (props) {
         <label htmlFor="privacy">Should we keep this post private?</label>
         <input type="checkbox" name='privacy' onChange={handleChange} />
         <br />
-        <button type='submit'>Submit post</button>
+        <button type='submit'>{postid ? 'Update post' : 'Submit post'}</button>
       </form>
     </section>
   )

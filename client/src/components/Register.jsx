@@ -25,7 +25,7 @@ function Register () {
     e.preventDefault()
 
     fetch('/api/user',
-      createResourceOptions({ username, password, password2 })
+      createResourceOptions('POST', { username, password, password2 })
 
     )
     return navigate('/login')
