@@ -41,10 +41,11 @@ const createUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   const { username, password } = req.body
   const user = await User.findOne({ username })
+  
   if (user && (await bcrypt.compare(password, user.password))) {
     jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
       if (err) return next(err)
-      // Send the token to the frontend so it can save it in localStorage?
+      // Send the token and the user id to the front end
       return res.json({token, user: user._id})
     })
   } else {

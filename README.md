@@ -93,10 +93,14 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- - Set checked value as checked when the post to update has it like that -->
 <!-- - Fix /update/:postid crashing when reload the page -->
   <!-- :when reloading, posts is empty -->
-- Implement post update on the backend (frontend is not needed, since React will redirect to dashboard, thus making a new fetch)
+<!-- - Implement post update on the backend (frontend is not needed, since React will redirect to dashboard, thus making a new fetch) -->
 
 - Setup modal wrapper that covers the whole page so it can't be clicked outside
-- Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
+
+- Implement logout user functionality
+
+- When I get the posts on load with a GET request, those posts have the password since the user field is populated Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
+
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard
 - Implement sanitization of inputs

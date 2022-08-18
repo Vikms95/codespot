@@ -59,6 +59,7 @@ function PostForm (props) {
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
+
     const response = fetch('/api/posts/' + postid,
       createResourceOptions('PUT', { user, title, text, isPrivate })
     )
