@@ -1,12 +1,13 @@
-import React, { useState, useContext } from 'react'
+/* eslint-disable react/prop-types */
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createResourceOptions } from '../services/requestParams'
 import AuthContext from '../context/AuthContext'
 
-function PostForm () {
-  const { postid } = useParams()
+function PostForm (props) {
+  const { posts } = props
+  const { postid } = useParams() || localStorage.getItem('posttoupdate')
   const navigate = useNavigate()
-
   const { user } = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
@@ -17,10 +18,29 @@ function PostForm () {
 
   const { title, text, isPrivate } = formData
 
+  useEffect(() => {
+    if (postid) {
+      console.log(posts)
+      localStorage.setItem('posttoupdate', postid)
+      const postToUpdate = posts.find(post => post._id === postid)
+      console.log(postToUpdate)
+      setFormData(() => {
+        return {
+          title: postToUpdate.title,
+          text: postToUpdate.text,
+          isPrivate: postToUpdate.private
+        }
+      })
+    }
+    // Find the post in the posts array that has the same _id value as the postid
+    // Use setFormData and substitute the empty values to the values from the found post
+  }, [])
+
   const handleChange = (e) => {
+    console.log(e.target)
     setFormData((prevFormData) => ({
       ...prevFormData,
-      isPrivate: e.target.checked || prevFormData.isPrivate,
+      isPrivate: e.target.type === 'checkbox' ? !prevFormData.isPrivate : prevFormData.isPrivate,
       [e.target.name]: e.target.value
     }))
   }
@@ -57,13 +77,13 @@ function PostForm () {
     <section>
       <form action="" onSubmit={postid ? handleUpdateSubmit : handlePostSubmit }>
         <label htmlFor="title">Title: </label>
-        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' />
+        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={formData.title} />
         <br />
         <label htmlFor="text">Post: </label>
-        <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' />
+        <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' value={formData.text} />
         <br />
         <label htmlFor="privacy">Should we keep this post private?</label>
-        <input type="checkbox" name='privacy' onChange={handleChange} />
+        <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />
         <br />
         <button type='submit'>{postid ? 'Update post' : 'Submit post'}</button>
       </form>

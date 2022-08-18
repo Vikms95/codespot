@@ -72,6 +72,7 @@ x- Can't access directly when token is modified manually to an invalid one -->
   :use same <PostForm/> but with the input fields filled and the submit button with a different event listener
   :If no props are passed, this component will be used to create a new post. Otherwise, props will contain the data
     required to fetch the post info(from server or from posts state?) We will conditionally render the JSX depending if we have props or not.
+  :populate form inputs with the post data if post is located as parameter
     
 - GET /posts/:postid/comments
 - POST /posts/:postid/comment
@@ -88,6 +89,11 @@ x- Can't access directly when token is modified manually to an invalid one -->
   again
     :it works with useEffect, not with useFetch -->
 
+- Fix checked value on <PostForm>
+<!-- - Set checked value as checked when the post to update has it like that -->
+- Fix /update/:postid crashing when reload the page
+  :when reloading, posts is empty
+- Implement post update
 
 - Setup modal wrapper that covers the whole page so it can't be clicked outside
 - Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?

@@ -36,8 +36,12 @@ function App () {
                         setLastClickedPostId={setLastClickedPostId}
                       />}
                   />
-                  <Route path='/create' element={<PostForm/>}/>
-                  <Route path='/update/:postid' element={<PostForm/>}/>
+                  <Route
+                    path='/create'
+                      element={<PostForm posts={posts}/>}/>
+                  <Route
+                    path='/update/:postid'
+                      element={<PostForm posts={posts}/>}/>
                 </Route>
               <Route
                 path='/'
@@ -51,7 +55,6 @@ function App () {
                 />
               <Route path='/login' element={<Login setUser={setUser}/>}/>
               <Route path='/register' element={<Register/>}/>
-
             </Routes>
           </AuthContext.Provider>
         </div>
