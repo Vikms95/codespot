@@ -2,13 +2,14 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createResourceOptions } from '../services/requestParams'
+import { getPostToUpdate } from '../services/getPostToUpdate'
 import AuthContext from '../context/AuthContext'
 
 function PostForm (props) {
   const { posts } = props
-  const { postid } = useParams() || localStorage.getItem('posttoupdate')
-  const navigate = useNavigate()
+  const { postid } = useParams()
   const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     title: '',
@@ -20,10 +21,8 @@ function PostForm (props) {
 
   useEffect(() => {
     if (postid) {
-      console.log(posts)
-      localStorage.setItem('posttoupdate', postid)
-      const postToUpdate = posts.find(post => post._id === postid)
-      console.log(postToUpdate)
+      const postToUpdate = getPostToUpdate(posts, postid)
+
       setFormData(() => {
         return {
           title: postToUpdate.title,
@@ -32,15 +31,14 @@ function PostForm (props) {
         }
       })
     }
-    // Find the post in the posts array that has the same _id value as the postid
-    // Use setFormData and substitute the empty values to the values from the found post
   }, [])
 
   const handleChange = (e) => {
-    console.log(e.target)
     setFormData((prevFormData) => ({
       ...prevFormData,
-      isPrivate: e.target.type === 'checkbox' ? !prevFormData.isPrivate : prevFormData.isPrivate,
+      isPrivate: (e.target.type === 'checkbox')
+        ? !prevFormData.isPrivate
+        : prevFormData.isPrivate,
       [e.target.name]: e.target.value
     }))
   }

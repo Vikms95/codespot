@@ -89,11 +89,11 @@ x- Can't access directly when token is modified manually to an invalid one -->
   again
     :it works with useEffect, not with useFetch -->
 
-- Fix checked value on <PostForm>
+<!-- - Fix checked value on <PostForm> -->
 <!-- - Set checked value as checked when the post to update has it like that -->
-- Fix /update/:postid crashing when reload the page
-  :when reloading, posts is empty
-- Implement post update
+<!-- - Fix /update/:postid crashing when reload the page -->
+  <!-- :when reloading, posts is empty -->
+- Implement post update on the backend (frontend is not needed, since React will redirect to dashboard, thus making a new fetch)
 
 - Setup modal wrapper that covers the whole page so it can't be clicked outside
 - Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
