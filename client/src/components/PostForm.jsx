@@ -43,7 +43,7 @@ function PostForm (props) {
     }))
   }
 
-  const handlePostSubmit = async (e) => {
+  const handleCreateSubmit = async (e) => {
     e.preventDefault()
 
     const response = fetch('/api/post',
@@ -59,12 +59,12 @@ function PostForm (props) {
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
-
     const response = fetch('/api/posts/' + postid,
       createResourceOptions('PUT', { user, title, text, isPrivate })
     )
 
     const postIsUpdated = await response
+    console.log(postIsUpdated)
 
     if (postIsUpdated) {
       return navigate('/dashboard')
@@ -73,7 +73,7 @@ function PostForm (props) {
 
   return (
     <section>
-      <form action="" onSubmit={postid ? handleUpdateSubmit : handlePostSubmit }>
+      <form action="" onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit}>
         <label htmlFor="title">Title: </label>
         <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={formData.title} />
         <br />

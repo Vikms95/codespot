@@ -44,17 +44,19 @@ const updatePost = (req, res, next) => {
   const {postid} = req.params
   
   const post = new Post({
+    _id: postid,
     user,
     title,
     text,
     private: isPrivate
   })
-
-  Post.findByIdAndUpdate(postid, post, {} , (err) => {
+  console.log(post)
+  
+  Post.findByIdAndUpdate(postid, post, {} , (err, post) => {
     if(err) {
       return res.status(400)
     } else {
-      return res.status(204)
+      return res.status(200).json(post)
     }
   })
 }
@@ -62,11 +64,11 @@ const updatePost = (req, res, next) => {
 const deletePost = (req, res, next) => {
   const {postid} = req.params
 
-  Post.findByIdAndDelete(postid, (err, docs) => {
+  Post.findByIdAndDelete(postid, (err, post) => {
     if(err) {
       return res.status(400)
     } else {
-      return res.status(200)
+      return res.status(200).json(post)
     }
   })
 }
