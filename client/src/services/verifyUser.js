@@ -6,7 +6,9 @@ const verifyUser = async () => {
       authorization: 'Bearer ' + localStorage.getItem('token')
     }
   })
+
   const user = await response.json()
+
   if (response.status === 403) {
     return null
   } else {

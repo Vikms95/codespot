@@ -5,7 +5,7 @@ const getOptions = {
   }
 }
 
-const postOptions = (bodyObject) => {
+const createResourceOptions = (bodyObject) => {
   return {
     method: 'POST',
     body: JSON.stringify(bodyObject),
@@ -22,4 +22,4 @@ const deleteOptions = {
   }
 }
 
-export { getOptions, postOptions, deleteOptions }
+export { getOptions, createResourceOptions, deleteOptions }

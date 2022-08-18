@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { postOptions } from '../services/requestParams'
+import { createResourceOptions } from '../services/requestParams'
 
 function Login (props) {
   const { setUser } = props
@@ -25,7 +25,7 @@ function Login (props) {
     e.preventDefault()
 
     const response = await fetch('/api/session',
-      postOptions({ username, password })
+      createResourceOptions({ username, password })
     )
 
     const data = await response.json()

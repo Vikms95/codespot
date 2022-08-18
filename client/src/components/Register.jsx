@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { postOptions } from '../services/requestParams'
+import { createResourceOptions } from '../services/requestParams'
 
 function Register () {
   const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     password2: ''
   })
+
   const { username, password, password2 } = formData
 
   const handleChange = (e) => {
@@ -23,7 +25,7 @@ function Register () {
     e.preventDefault()
 
     fetch('/api/user',
-      postOptions({ username, password, password2 })
+      createResourceOptions({ username, password, password2 })
 
     )
     return navigate('/login')

@@ -57,7 +57,6 @@ x- Can't access directly when token is modified manually to an invalid one -->
     :you can make a post public and private, edit and delete from /dashboard
   <Dashboard/>
     <!-- :map all the fetched posts and pass the data as props to <Post/> -->
-    :only fetch new posts when the user context changes?
 
 
 <!-- - / will be where all the posts from all the users are shown -->
@@ -65,10 +64,10 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :posts on <Home/> do not receive the user context that is logged in? -->
   <!-- :user does not persist on <Home/> when page is reloaded? -->
 
-- DELETE /posts/:postid
-  <!-- :postid is returning undefined? -->
-  <!-- :not finding post in the Post collection with findByIdAndRemove? -->
-    <!-- :pass the post id to <Modal/> so it can be fetched and deleted from there  -->
+<!-- - DELETE /posts/:postid -->
+<!-- :postid is returning undefined? -->
+<!-- :not finding post in the Post collection with findByIdAndRemove? -->
+<!-- :pass the post id to <Modal/> so it can be fetched and deleted from there  -->
 - PUT /posts/:postid
 
 - GET /posts/:postid/comments
@@ -80,11 +79,11 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :deleted the posts on the frontend too -->
 <!-- - Move posts to App and pass it to <Dashboard/> and <Home/> as props -->
 
-!!!- Extract fetch snippets onto useFetch custom hooks
+<!-- - Extract fetch snippets onto useFetch custom hooks -->
   <!-- :cannot assign the response from useFetch to posts prop -->
-  :it seems like with useFetch, whenever I delete, it does not update the Post state
+  <!-- :it seems like with useFetch, whenever I delete, it does not update the Post state
   again
-    :it works with useEffect, not with useFetch
+    :it works with useEffect, not with useFetch -->
 
 
 - Setup modal wrapper that covers the whole page so it can't be clicked outside

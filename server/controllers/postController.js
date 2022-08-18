@@ -24,15 +24,14 @@ const createPost = (req, res, next) => {
   const {title, text, isPrivate, user } = req.body
 
   const post = new Post({
-    user: user,
+    user,
     title,
     text,
     private: isPrivate
   })
-
+  
   post.save(function(err){
     if(err){
-      console.log(err)
       return res.sendStatus(400)
     } else {
       return res.status(201).json(post)
@@ -41,7 +40,23 @@ const createPost = (req, res, next) => {
 }
 
 const updatePost = (req, res, next) => {
+  const {title, text, isPrivate, user} = req.body
+  const {postid} = req.params
+  
+  const post = new Post({
+    user,
+    title,
+    text,
+    private: isPrivate
+  })
 
+  Post.findByIdAndUpdate(postid, post, {} , (err) => {
+    if(err) {
+      return res.status(400)
+    } else {
+      return res.status(204)
+    }
+  })
 }
 
 const deletePost = (req, res, next) => {
@@ -50,8 +65,9 @@ const deletePost = (req, res, next) => {
   Post.findByIdAndDelete(postid, (err, docs) => {
     if(err) {
       return res.status(400)
-    }  
-    return res.status(200)
+    } else {
+      return res.status(200)
+    }
   })
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
-import { postOptions } from '../services/requestParams'
+import { createResourceOptions } from '../services/requestParams'
 
 function PostForm () {
   const navigate = useNavigate()
@@ -28,7 +28,7 @@ function PostForm () {
     e.preventDefault()
 
     const response = fetch('/api/post',
-      postOptions({ user, title, text, isPrivate })
+      createResourceOptions({ user, title, text, isPrivate })
     )
 
     const postIsCreated = await response

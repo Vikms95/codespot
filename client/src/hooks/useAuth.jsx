@@ -12,10 +12,9 @@ function useAuth () {
   const { user, setUser } = useContext(AuthContext)
 
   useEffect(() => {
-    verifyUser()
-      .then(authResult => {
-        setUser(authResult.user)
-      })
+    verifyUser().then(authResult => {
+      setUser(authResult.user)
+    })
   }, [])
 
   return { user }
