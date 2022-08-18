@@ -7,8 +7,6 @@ const {getPosts, getUserPosts, createPost, updatePost, deletePost} = require('..
 // Here is where all the routes will get imported and exported to the whole app
 
 // User - Session
-router.delete('/api/posts/:postid', deletePost)
-
 router.get('/api/session', [retrieveToken, verifyToken])
 
 router.post('/api/user', createUser)
@@ -26,5 +24,6 @@ router.post('/api/post', createPost)
 
 router.put('/api/posts/:postid', updatePost)
 
+router.delete('/api/posts/:postid', deletePost)
 
 module.exports = router

@@ -9,7 +9,7 @@ function useFetch (url, options) {
       .then(data => setResponse(data))
   }, [])
 
-  return Promise.resolve(response)
+  return response
 }
 
 export default useFetch

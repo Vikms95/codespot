@@ -1,24 +1,22 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
 import ModalContainer from '../containers/ModalContainer'
 import Modal from './Modal'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
+import { getOptions } from '../services/requestParams'
 
 function Dashboard (props) {
   const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
-
   const { user } = useContext(AuthContext)
-
-  useFetch(`/api/${user}/posts`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    }
-  }).then(data => setPosts(data))
-
   const [isModalActive, setIsModalActive] = useState(false)
+
+  const response = useFetch(`/api/${user}/posts`, getOptions)
+
+  useEffect(() => {
+    setPosts(response)
+  }, [response])
 
   return (
     <section className='dashboard-container'>

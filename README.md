@@ -82,7 +82,7 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 !!!- Extract fetch snippets onto useFetch custom hooks
   <!-- :cannot assign the response from useFetch to posts prop -->
-  :it seems like now, whenever I delete, it does not update the frontend state
+  :it seems like with useFetch, whenever I delete, it does not update the Post state
   again
     :it works with useEffect, not with useFetch
 

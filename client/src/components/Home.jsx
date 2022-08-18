@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
 import ModalContainer from '../containers/ModalContainer'
 import Modal from './Modal'
@@ -10,13 +10,16 @@ function Home (props) {
   const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
 
   useAuth()
-  useFetch('/api/posts', {
+  const response = useFetch('/api/posts', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json; charset=UTF-8'
     }
-  }).then(data => setPosts(data))
+  })
 
+  useEffect(() => {
+    setPosts(response)
+  }, [response])
   // useEffect(() => {
   //   fetch('/api/posts', {
   //     method: 'GET',

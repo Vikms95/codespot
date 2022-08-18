@@ -4,7 +4,7 @@ import React from 'react'
 function Modal (props) {
   const { lastClickedPostId, setIsModalActive, setPosts } = props
 
-  const handleDelete = async (e) => {
+  const handleDelete = () => {
     fetch(`/api/posts/${lastClickedPostId}`, {
       method: 'DELETE',
       headers: {
@@ -19,7 +19,7 @@ function Modal (props) {
     setIsModalActive(false)
   }
 
-  const handleCancel = async (e) => {
+  const handleCancel = () => {
     setIsModalActive(false)
   }
 
