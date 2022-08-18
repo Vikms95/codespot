@@ -41,3 +41,7 @@
 .home-container{
   position: relative;
 }
+
+button:hover{
+  cursor: pointer;
+}

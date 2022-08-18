@@ -10,27 +10,43 @@ const PostImageContainer = styled.article`
   `
 
 const PostContentContainer = styled.article`
-  padding: 2em 1em;
+  padding: 1.5em;
+  height: 100%;
 `
+const PostImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+`
+
 const PostUsername = styled.h3`
+  margin: 0 0 .8em 0;
+  font-size: smaller ;
+  color: #a0a0a0;
   display: flex;
-  font-weight: 900;
   align-self: flex-end;
   `
+const PostTitle = styled.h2`
+  margin: 0;
+`
+
+const PostDesc = styled.p`
+  
+`
+
+const PostButtonContainer = styled.article`
+  display: flex;
+  justify-content: space-evenly;
+`
 
 const PostButton = styled.button`
   color: white;
   background-color: #972897;
   font-size: 1em;
-  border-radius: 8px ;
+  border-radius: 10px ;
   border: none;
+  padding: .5em 2em;
   `
-
-const PostImage = styled.img`
-  width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-`
 
 function Post (props) {
   const navigate = useNavigate()
@@ -54,16 +70,15 @@ function Post (props) {
       </PostImageContainer>
 
       <PostContentContainer>
-        <PostUsername>{user.username}</PostUsername>
-        <div>{title}</div>
-        <div>{text}</div>
-
+        <PostUsername>by {user.username}</PostUsername>
+        <PostTitle>{title}</PostTitle>
+        <PostDesc>{text}</PostDesc>
         {
           (user._id === currentUserId) &&
-          <>
+          <PostButtonContainer>
             <PostButton onClick={handleUpdate}>Update</PostButton>
             <PostButton onClick={revealDeleteModal}>Delete</PostButton>
-          </>
+          </PostButtonContainer>
         }
       </PostContentContainer>
     </>

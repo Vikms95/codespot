@@ -3,9 +3,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledPostListContainer = styled.section`
+  gap: 5em;
   margin: 3em;
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
 `
 const PostListTitle = styled.h2`
   font-size:1.5em ;

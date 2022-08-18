@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {createUser, loginUser, logoutUser, retrieveToken, verifyToken} = require('../controllers/userController')
+const {createUser, loginUser, retrieveToken, verifyToken} = require('../controllers/userController')
 const {getPosts, getUserPosts, createPost, updatePost, deletePost} = require('../controllers/postController');
 
 /* GET home page. */
@@ -13,7 +13,6 @@ router.post('/api/user', createUser)
 
 router.post('/api/session', loginUser)
 
-router.delete('/api/session', logoutUser)
 
 // Post
 router.get('/api/posts', getPosts)

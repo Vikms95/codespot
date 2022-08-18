@@ -54,9 +54,6 @@ const loginUser = async (req, res, next) => {
   }
 }
 
-const logoutUser = (req, res, next) => {
-  res.cookie('jwt', '', {maxAge: 1})
-}
 
 const retrieveToken = (req, res, next) => {
   const bearerHeader = req.headers['authorization']
@@ -86,7 +83,6 @@ const verifyToken = (req,res) => {
 module.exports = {
   createUser,
   loginUser,
-  logoutUser,
   retrieveToken,
   verifyToken
 }

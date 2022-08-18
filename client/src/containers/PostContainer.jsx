@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 const StyledPostContainer = styled.article`
   display:flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: stretch;
   flex-direction: column;
   box-shadow: 4px 4px 10px -2px gray;
   border-top-left-radius: 10px;
