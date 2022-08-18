@@ -35,7 +35,7 @@ function Dashboard (props) {
               />
           </ModalContainer>
 
-          <PostListContainer>
+          <PostListContainer title='Published post'>
             {posts.map((post) => (
               (!post.private) &&
 
@@ -56,8 +56,7 @@ function Dashboard (props) {
             ))}
           </PostListContainer>
 
-          <div>PRIVATE</div>
-          <PostListContainer>
+          <PostListContainer title='Unpublished post'>
 
             {posts.map((post) => (
               (post.private) &&
@@ -68,7 +67,6 @@ function Dashboard (props) {
                     user={post.user}
                     title={post.title}
                     text={post.text}
-                    isPrivate={post.private}
                     setLastClickedPostId={setLastClickedPostId}
                     setIsModalActive={setIsModalActive}
                   >

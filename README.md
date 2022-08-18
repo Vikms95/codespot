@@ -9,6 +9,10 @@ https://www.theodinproject.com/lessons/nodejs-api-basics
 https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/#h-use-nouns-instead-of-verbs-in-endpoint-paths
 /api/posts/:postid/comments
 
+COMPOSITION WITH STYLED COMPONENTS
+https://reactjs.org/docs/composition-vs-inheritance.html
+https://styled-components.com/docs/basics
+
 1. user registers - OK returned
 2. user logs in - Token returned
 3. user saves token
@@ -94,15 +98,17 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- - Fix /update/:postid crashing when reload the page -->
   <!-- :when reloading, posts is empty -->
 <!-- - Implement post update on the backend (frontend is not needed, since React will redirect to dashboard, thus making a new fetch) -->
-
-- Setup modal wrapper that covers the whole page so it can't be clicked outside
-
 <!-- - Implement logout user functionality
   :logged in user seems to persist when redirecting and until the page is refreshed -->
 
-- Do not show private blogs on home
+<!-- - Do not show private blogs on home -->
 
 <!-- - When I get the posts on load with a GET request, those posts have the password since the user field is populated Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end? -->
+
+- Setup timestamp property por posts 
+- Setup multer to let the user upload post image value
+- Setup modal wrapper that covers the whole page so it can't be clicked outside
+
 
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard

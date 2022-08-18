@@ -6,6 +6,8 @@ import Modal from './Modal'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
+import PostListContainer from '../containers/PostListContainer'
+import PostContainer from '../containers/PostContainer'
 
 function Home (props) {
   const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
@@ -33,21 +35,23 @@ function Home (props) {
             setIsModalActive={setIsModalActive}
           />
         </ModalContainer>
-
-        {posts.map((post) => (
-          (!post.private) &&
-            <Post
-              key={post._id}
-              id={post._id}
-              user={post.user}
-              title={post.title}
-              text={post.text}
-              isPrivate={post.private}
-              setLastClickedPostId={setLastClickedPostId}
-              setIsModalActive={setIsModalActive}
-              >
-            </Post>
-        ))}
+        <PostListContainer>
+          {posts.map((post) => (
+            (!post.private) &&
+            <PostContainer>
+              <Post
+                key={post._id}
+                id={post._id}
+                user={post.user}
+                title={post.title}
+                text={post.text}
+                setLastClickedPostId={setLastClickedPostId}
+                setIsModalActive={setIsModalActive}
+                >
+              </Post>
+            </PostContainer>
+          ))}
+        </PostListContainer>
       </>
 }
     </section>
