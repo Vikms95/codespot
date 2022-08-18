@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import { createResourceOptions } from '../services/requestParams'
 
-function PostForm () {
+function PostForm (props) {
   const navigate = useNavigate()
 
   const { user } = useContext(AuthContext)

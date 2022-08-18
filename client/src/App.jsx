@@ -37,6 +37,7 @@ function App () {
                       />}
                   />
                   <Route path='/create' element={<PostForm/>}/>
+                  <Route path='/update/:postid' element={<PostForm/>}/>
                 </Route>
               <Route
                 path='/'

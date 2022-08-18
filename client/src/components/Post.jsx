@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react'
 import AuthContext from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 function Post (props) {
   const { id, user, title, text, isPrivate, setIsModalActive, setLastClickedPostId } = props
 
+  const navigate = useNavigate()
+
   const { user: currentUserId } = useContext(AuthContext)
 
   const handleUpdate = async (e) => {
-
+    return navigate('/update/' + id)
   }
 
   const revealDeleteModal = () => {

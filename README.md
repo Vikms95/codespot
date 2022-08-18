@@ -69,7 +69,10 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- :not finding post in the Post collection with findByIdAndRemove? -->
 <!-- :pass the post id to <Modal/> so it can be fetched and deleted from there  -->
 - PUT /posts/:postid
-
+  :use same <PostForm/> but with the input fields filled and the submit button with a different event listener
+  :If no props are passed, this component will be used to create a new post. Otherwise, props will contain the data
+    required to fetch the post info(from server or from posts state?) We will conditionally render the JSX depending if we have props or not.
+    
 - GET /posts/:postid/comments
 - POST /posts/:postid/comment
 - PUT /posts/:postid/comments/:commentid
