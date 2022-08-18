@@ -41,7 +41,7 @@ const createUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   const { username, password } = req.body
   const user = await User.findOne({ username })
-  
+
   if (user && (await bcrypt.compare(password, user.password))) {
     jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
       if (err) return next(err)
@@ -54,8 +54,8 @@ const loginUser = async (req, res, next) => {
   }
 }
 
-const logoutUser = async (req, res, next) => {
-
+const logoutUser = (req, res, next) => {
+  res.cookie('jwt', '', {maxAge: 1})
 }
 
 const retrieveToken = (req, res, next) => {

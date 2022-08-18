@@ -65,7 +65,6 @@ function PostForm (props) {
     )
 
     const postIsUpdated = await response
-    console.log(postIsUpdated)
 
     if (postIsUpdated) {
       return navigate('/dashboard')

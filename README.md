@@ -97,9 +97,12 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 - Setup modal wrapper that covers the whole page so it can't be clicked outside
 
-- Implement logout user functionality
+<!-- - Implement logout user functionality
+  :logged in user seems to persist when redirecting and until the page is refreshed -->
 
-- When I get the posts on load with a GET request, those posts have the password since the user field is populated Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end?
+- Do not show private blogs on home
+
+<!-- - When I get the posts on load with a GET request, those posts have the password since the user field is populated Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end? -->
 
 - useAuth and useContext are being used when it is moment to use them? (review it)
 - Post will be the details of each post which is accesible from the homepage or the dashboard

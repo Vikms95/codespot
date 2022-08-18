@@ -1,6 +1,7 @@
 import React from 'react'
-import { FaSignInAlt, FaUser, FaBook, FaTable, FaHouseUser } from 'react-icons/fa'
+import { FaSignInAlt, FaUser, FaBook, FaTable, FaHouseUser, FaDoorOpen } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { logoutUser } from '../services/logoutUser'
 
 function Header () {
   return (
@@ -30,6 +31,13 @@ function Header () {
           </Link>
         </li>
         <li>
+          <Link to='/register'>
+            Register
+            {' '}
+            <FaUser/>
+          </Link>
+        </li>
+        <li>
           <Link to='/login'>
           Login
           {' '}
@@ -37,10 +45,10 @@ function Header () {
           </Link>
         </li>
         <li>
-          <Link to='/register'>
-            Register
+          <Link to='/' onClick={logoutUser}>
+            Logout
             {' '}
-            <FaUser/>
+            <FaDoorOpen/>
           </Link>
         </li>
       </ul>

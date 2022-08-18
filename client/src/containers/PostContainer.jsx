@@ -1,9 +1,16 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import styled from 'styled-components'
 
-function PostContainer () {
+const StyledPostContainer = styled.article`
+  display:flex;
+`
+
+function PostContainer ({ children }) {
   return (
-    <div>PostContainer</div>
+    <StyledPostContainer>
+      {children}
+    </StyledPostContainer>
   )
 }
 

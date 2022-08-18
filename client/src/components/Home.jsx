@@ -35,17 +35,18 @@ function Home (props) {
         </ModalContainer>
 
         {posts.map((post) => (
-          <Post
-          key={post._id}
-            id={post._id}
-            user={post.user}
-            title={post.title}
-            text={post.text}
-            isPrivate={post.private}
-            setLastClickedPostId={setLastClickedPostId}
-            setIsModalActive={setIsModalActive}
-            >
-          </Post>
+          (!post.private) &&
+            <Post
+              key={post._id}
+              id={post._id}
+              user={post.user}
+              title={post.title}
+              text={post.text}
+              isPrivate={post.private}
+              setLastClickedPostId={setLastClickedPostId}
+              setIsModalActive={setIsModalActive}
+              >
+            </Post>
         ))}
       </>
 }
