@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { postOptions } from '../services/requestParams'
+
 function Register () {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -19,17 +21,11 @@ function Register () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    fetch('/api/user', {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        password,
-        password2
-      }),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      }
-    })
+
+    fetch('/api/user',
+      postOptions({ username, password, password2 })
+
+    )
     return navigate('/login')
   }
 

@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { postOptions } from '../services/requestParams'
 
 function Login (props) {
   const { setUser } = props
@@ -22,17 +23,13 @@ function Login (props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch('/api/session', {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        password
-      }),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      }
-    })
+
+    const response = await fetch('/api/session',
+      postOptions({ username, password })
+    )
+
     const data = await response.json()
+
     localStorage.setItem('token', JSON.stringify(data.token))
     setUser(data.user)
 

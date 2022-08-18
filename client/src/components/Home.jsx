@@ -5,32 +5,20 @@ import ModalContainer from '../containers/ModalContainer'
 import Modal from './Modal'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
+import { getOptions } from '../services/requestParams'
 
 function Home (props) {
   const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
 
-  useAuth()
-  const response = useFetch('/api/posts', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    }
-  })
+  const [isModalActive, setIsModalActive] = useState(false)
+
+  const response = useFetch('/api/posts', getOptions)
 
   useEffect(() => {
     setPosts(response)
   }, [response])
-  // useEffect(() => {
-  //   fetch('/api/posts', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json; charset=UTF-8'
-  //     }
-  //   }).then(response => response.json())
-  //     .then(postsData => setPosts(postsData))
-  // }, [])
 
-  const [isModalActive, setIsModalActive] = useState(false)
+  useAuth()
 
   return (
     <section className='home-container'>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
+import { postOptions } from '../services/requestParams'
 
 function PostForm () {
   const navigate = useNavigate()
@@ -25,19 +26,13 @@ function PostForm () {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = fetch('/api/post', {
-      method: 'POST',
-      body: JSON.stringify({
-        user,
-        title,
-        text,
-        isPrivate
-      }),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      }
-    })
+
+    const response = fetch('/api/post',
+      postOptions({ user, title, text, isPrivate })
+    )
+
     const postIsCreated = await response
+
     if (postIsCreated) {
       return navigate('/dashboard')
     }

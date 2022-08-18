@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react'
 
+/**
+ * Hook to use on the body of components
+ * that require fetching data on mount
+ */
 function useFetch (url, options) {
   const [response, setResponse] = useState(null)
 

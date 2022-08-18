@@ -5,4 +5,21 @@ const getOptions = {
   }
 }
 
-export { getOptions }
+const postOptions = (bodyObject) => {
+  return {
+    method: 'POST',
+    body: JSON.stringify(bodyObject),
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    }
+  }
+}
+
+const deleteOptions = {
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json; charset=UTF-8'
+  }
+}
+
+export { getOptions, postOptions, deleteOptions }

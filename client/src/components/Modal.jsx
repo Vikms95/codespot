@@ -1,16 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
+import { deleteOptions } from '../services/requestParams'
 
 function Modal (props) {
   const { lastClickedPostId, setIsModalActive, setPosts } = props
 
   const handleDelete = () => {
-    fetch(`/api/posts/${lastClickedPostId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8'
-      }
-    })
+    fetch(`/api/posts/${lastClickedPostId}`, deleteOptions)
 
     setPosts(prevPosts => (
       prevPosts.filter(post => post._id !== lastClickedPostId)
