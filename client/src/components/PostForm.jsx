@@ -73,12 +73,15 @@ function PostForm (props) {
 
   return (
     <section>
-      <form action="" onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit}>
+      <form action="" onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
         <label htmlFor="title">Title: </label>
         <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={formData.title} />
         <br />
         <label htmlFor="text">Post: </label>
         <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' value={formData.text} />
+        <br />
+        <label htmlFor="image"></label>
+        <input type="file" name='image'/>
         <br />
         <label htmlFor="privacy">Should we keep this post private?</label>
         <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />

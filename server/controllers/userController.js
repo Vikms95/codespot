@@ -46,7 +46,7 @@ const loginUser = async (req, res, next) => {
     jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
       if (err) return next(err)
       // Send the token and the user id to the front end
-      return res.json({token, user: user._id})
+      return res.json({ token, user: user._id })
     })
   } else {
     res.status(400)
@@ -54,11 +54,10 @@ const loginUser = async (req, res, next) => {
   }
 }
 
-
 const retrieveToken = (req, res, next) => {
-  const bearerHeader = req.headers['authorization']
+  const bearerHeader = req.headers.authorization
   if (typeof bearerHeader !== 'undefined') {
-    // Token is received as 'Bearer token' string, so we split the 
+    // Token is received as 'Bearer token' string, so we split the
     // authorization header at the space and retrieve the second index
     const bearerToken = bearerHeader.split(' ')[1]
     req.token = JSON.parse(bearerToken)
@@ -68,7 +67,7 @@ const retrieveToken = (req, res, next) => {
   }
 }
 
-const verifyToken = (req,res) => {
+const verifyToken = (req, res) => {
   jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
     if (err) {
       return res.status(403)

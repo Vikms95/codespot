@@ -1,4 +1,3 @@
-
 - Collections
   - Users
   - Posts - hold all the posts with a id key of the author(user)
@@ -103,6 +102,11 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 - Setup timestamp property por posts 
 - Setup multer to let the user upload post image value
+  https://www.npmjs.com/package/multer
+  https://github.com/expressjs/multer
+  https://stackoverflow.com/questions/63451157/how-can-i-use-multer-with-react
+
+
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
     

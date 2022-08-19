@@ -2,26 +2,26 @@ const Post = require('../models/Post')
 
 const getPosts = (req, res, next) => {
   Post.find()
-      .populate('user', ['_id', '__v','username'])
-      .exec(function(err,posts){
-        if(err) return next(err)   
-        res.json(posts)
-      })
+    .populate('user', ['_id', '__v', 'username'])
+    .exec(function (err, posts) {
+      if (err) return next(err)
+      res.json(posts)
+    })
 }
 
 const getUserPosts = (req, res, next) => {
-  const {userid} = req.params
+  const { userid } = req.params
 
-  Post.find({'user': userid})
-      .populate('user', ['_id', '__v','username'])
-      .exec(function(err,posts){
-      if(err) return next(err)   
-        res.json(posts)
-      })
+  Post.find({ user: userid })
+    .populate('user', ['_id', '__v', 'username'])
+    .exec(function (err, posts) {
+      if (err) return next(err)
+      res.json(posts)
+    })
 }
 
 const createPost = (req, res, next) => {
-  const {title, text, isPrivate, user } = req.body
+  const { title, text, isPrivate, user } = req.body
 
   const post = new Post({
     user,
@@ -29,9 +29,9 @@ const createPost = (req, res, next) => {
     text,
     private: isPrivate
   })
-  
-  post.save(function(err){
-    if(err){
+
+  post.save(function (err) {
+    if (err) {
       return res.sendStatus(400)
     } else {
       return res.status(201).json(post)
@@ -40,8 +40,8 @@ const createPost = (req, res, next) => {
 }
 
 const updatePost = (req, res, next) => {
-  const {title, text, isPrivate, user} = req.body
-  const {postid} = req.params
+  const { title, text, isPrivate, user } = req.body
+  const { postid } = req.params
 
   const post = new Post({
     _id: postid,
@@ -51,9 +51,9 @@ const updatePost = (req, res, next) => {
     private: isPrivate
   })
   console.log(post)
-  
-  Post.findByIdAndUpdate(postid, post, {} , (err, post) => {
-    if(err) {
+
+  Post.findByIdAndUpdate(postid, post, {}, (err, post) => {
+    if (err) {
       return res.status(400)
     } else {
       return res.status(200).json(post)
@@ -62,10 +62,10 @@ const updatePost = (req, res, next) => {
 }
 
 const deletePost = (req, res, next) => {
-  const {postid} = req.params
+  const { postid } = req.params
 
   Post.findByIdAndDelete(postid, (err, post) => {
-    if(err) {
+    if (err) {
       return res.status(400)
     } else {
       return res.status(200).json(post)
@@ -73,4 +73,4 @@ const deletePost = (req, res, next) => {
   })
 }
 
-module.exports = {getPosts, getUserPosts, createPost, updatePost, deletePost}
+module.exports = { getPosts, getUserPosts, createPost, updatePost, deletePost }
