@@ -114,6 +114,10 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
   :storage property on options is EMPTY
   :change the request params on the react requestParams service?
+  !:form was not being sent by React with the image, now it does. Still pending to see what is going on in the backend
+  TRY FIRST ANSWER:
+    https://stackoverflow.com/questions/71309865/file-upload-with-react-nodejs-multer-doesnt-work
+  :mongoose error > not receiving the form data after changing the parameters
 
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post

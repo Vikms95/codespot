@@ -9,10 +9,7 @@ const createResourceOptions = (method, bodyObject) => {
   console.log(bodyObject)
   return {
     method,
-    body: JSON.stringify(bodyObject),
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    }
+    body: bodyObject
   }
 }
 

@@ -22,7 +22,7 @@ const getUserPosts = (req, res, next) => {
 
 const createPost = (req, res, next) => {
   const { title, text, isPrivate, user } = req.body
-  console.log(req.file)
+
   const post = new Post({
     user,
     title,
@@ -32,6 +32,7 @@ const createPost = (req, res, next) => {
 
   post.save(function (err) {
     if (err) {
+      console.log(err)
       return res.sendStatus(400)
     } else {
       return res.status(201).json(post)

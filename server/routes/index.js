@@ -6,20 +6,21 @@ const { createUser, loginUser, retrieveToken, verifyToken } = require('../contro
 const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/')
-  },
-  filename: (req, file, cb) => {
+  destination: function (req, file, cb) {
     console.log(file)
-    cb(null, Date.now() + path.extname(file.originalname))
+    cb(null, '../uploads')
+  },
+  filename: function (req, file, cb) {
+    console.log(file)
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
   }
 })
 
-const upload = multer({
-  storage,
-  limits: { fileSize: 10000 }
-})
+const upload = multer({ storage: storage })
 
+// Simple implementation to test
+// const upload = multer({dest: 'uploads/'})
 
 // User - Session
 router.get('/api/session', [retrieveToken, verifyToken])
@@ -33,7 +34,7 @@ router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 
-router.post('/api/post', createPost)
+router.post('/api/post', [upload.single('image'), createPost])
 
 router.put('/api/posts/:postid', updatePost)
 
