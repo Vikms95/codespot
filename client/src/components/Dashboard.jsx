@@ -13,9 +13,8 @@ import { getOptions } from '../services/requestParams'
 // `
 
 function Dashboard (props) {
-  const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
+  const { posts, setPosts, lastClickedPostId, setLastClickedPostId, isModalActive, setIsModalActive } = props
   const { user } = useContext(AuthContext)
-  const [isModalActive, setIsModalActive] = useState(false)
 
   const response = useFetch(`/api/${user}/posts`, getOptions)
 

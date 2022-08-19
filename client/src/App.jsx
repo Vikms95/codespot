@@ -16,7 +16,13 @@ function App () {
   const [user, setUser] = useState()
   const [posts, setPosts] = useState([])
   const [lastClickedPostId, setLastClickedPostId] = useState('')
+  const [isModalActive, setIsModalActive] = useState(false)
+
   const authContext = { user, setUser }
+
+  const handleCancel = () => {
+    setIsModalActive(false)
+  }
 
   return (
     <>
@@ -34,6 +40,8 @@ function App () {
                         setPosts={setPosts}
                         lastClickedPostId={lastClickedPostId}
                         setLastClickedPostId={setLastClickedPostId}
+                        isModalActive={isModalActive}
+                        setIsModalActive={setIsModalActive}
                       />}
                   />
                   <Route
@@ -51,6 +59,8 @@ function App () {
                     setPosts={setPosts}
                     lastClickedPostId={lastClickedPostId}
                     setLastClickedPostId={setLastClickedPostId}
+                    isModalActive={isModalActive}
+                    setIsModalActive={setIsModalActive}
                   />}
                 />
               <Route path='/login' element={<Login setUser={setUser}/>}/>

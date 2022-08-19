@@ -10,9 +10,7 @@ import PostListContainer from '../wrappers/PostListContainer'
 import PostContainer from '../wrappers/PostContainer'
 
 function Home (props) {
-  const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
-
-  const [isModalActive, setIsModalActive] = useState(false)
+  const { posts, setPosts, lastClickedPostId, setLastClickedPostId, isModalActive, setIsModalActive } = props
 
   const response = useFetch('/api/posts', getOptions)
 
@@ -26,15 +24,12 @@ function Home (props) {
     <section className='home-container'>
       {posts &&
       <>
-        <ModalWrapper
+        <Modal
+          setPosts={setPosts}
+          lastClickedPostId={lastClickedPostId}
           isModalActive={isModalActive}
-        >
-          <Modal
-            setPosts={setPosts}
-            lastClickedPostId={lastClickedPostId}
-            setIsModalActive={setIsModalActive}
-          />
-        </ModalWrapper>
+          setIsModalActive={setIsModalActive}
+        />
         <PostListContainer>
           {posts.map((post) => (
             (!post.private) &&
