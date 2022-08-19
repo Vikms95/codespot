@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
-import ModalContainer from '../containers/ModalContainer'
-import PostListContainer from '../containers/PostListContainer'
-import PostContainer from '../containers/PostContainer'
+import PostListContainer from '../wrappers/PostListContainer'
+import PostContainer from '../wrappers/PostContainer'
 import Modal from './Modal'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
+
+// const StyledDashboard = styled.section`
+
+// `
 
 function Dashboard (props) {
   const { posts, setPosts, lastClickedPostId, setLastClickedPostId } = props
@@ -22,18 +25,14 @@ function Dashboard (props) {
 
   return (
     <section className='dashboard-container'>
-
       {posts &&
         <>
-          <ModalContainer
+          <Modal
+            setPosts={setPosts}
+            lastClickedPostId={lastClickedPostId}
             isModalActive={isModalActive}
-          >
-            <Modal
-              setPosts={setPosts}
-              lastClickedPostId={lastClickedPostId}
-              setIsModalActive={setIsModalActive}
-              />
-          </ModalContainer>
+            setIsModalActive={setIsModalActive}
+          />
 
           <PostListContainer title='Published post'>
             {posts.map((post) => (

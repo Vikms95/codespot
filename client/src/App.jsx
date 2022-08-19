@@ -8,7 +8,7 @@ import Header from './components/Header'
 import PostForm from './components/PostForm'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
-import AuthRouteContainer from './containers/AuthRouteContainer'
+import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
 import AuthContext from './context/AuthContext'
 
 function App () {
@@ -25,7 +25,7 @@ function App () {
           <Header/>
           <AuthContext.Provider value={authContext}>
             <Routes>
-                <Route element={<AuthRouteContainer/>}>
+                <Route element={<AuthRouteWrapper/>}>
                   <Route
                     path='/dashboard'
                     element={
