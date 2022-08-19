@@ -7,7 +7,6 @@ const StyledModalWrapper = styled.div`
   left:50%;
   height: 100vh;
   width: 120vw;
-  z-index: 1;
   position: fixed;
   transform: translate(-50%,-50%);
 `

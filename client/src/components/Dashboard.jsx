@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
 import PostListContainer from '../wrappers/PostListContainer'
 import PostContainer from '../wrappers/PostContainer'
-import Modal from './Modal'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
@@ -13,7 +12,7 @@ import { getOptions } from '../services/requestParams'
 // `
 
 function Dashboard (props) {
-  const { posts, setPosts, lastClickedPostId, setLastClickedPostId, isModalActive, setIsModalActive } = props
+  const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
   const { user } = useContext(AuthContext)
 
   const response = useFetch(`/api/${user}/posts`, getOptions)
@@ -26,13 +25,6 @@ function Dashboard (props) {
     <section className='dashboard-container'>
       {posts &&
         <>
-          <Modal
-            setPosts={setPosts}
-            lastClickedPostId={lastClickedPostId}
-            isModalActive={isModalActive}
-            setIsModalActive={setIsModalActive}
-          />
-
           <PostListContainer title='Published post'>
             {posts.map((post) => (
               (!post.private) &&

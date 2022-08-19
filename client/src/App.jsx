@@ -10,6 +10,7 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
 import AuthContext from './context/AuthContext'
+import Modal from './components/Modal'
 
 function App () {
   // Need to create state in app to pass it as value from the context provider?
@@ -20,15 +21,18 @@ function App () {
 
   const authContext = { user, setUser }
 
-  const handleCancel = () => {
-    setIsModalActive(false)
-  }
-
   return (
     <>
       <Router>
         <div className='container'>
           <Header/>
+          <Modal
+            setPosts={setPosts}
+            lastClickedPostId={lastClickedPostId}
+            isModalActive={isModalActive}
+            setIsModalActive={setIsModalActive}
+          />
+
           <AuthContext.Provider value={authContext}>
             <Routes>
                 <Route element={<AuthRouteWrapper/>}>

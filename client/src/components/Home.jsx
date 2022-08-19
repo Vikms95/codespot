@@ -1,16 +1,14 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
-import Modal from './Modal'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
-import ModalWrapper from '../wrappers/ModalWrapper'
 import PostListContainer from '../wrappers/PostListContainer'
 import PostContainer from '../wrappers/PostContainer'
 
 function Home (props) {
-  const { posts, setPosts, lastClickedPostId, setLastClickedPostId, isModalActive, setIsModalActive } = props
+  const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
 
   const response = useFetch('/api/posts', getOptions)
 
@@ -24,12 +22,6 @@ function Home (props) {
     <section className='home-container'>
       {posts &&
       <>
-        <Modal
-          setPosts={setPosts}
-          lastClickedPostId={lastClickedPostId}
-          isModalActive={isModalActive}
-          setIsModalActive={setIsModalActive}
-        />
         <PostListContainer>
           {posts.map((post) => (
             (!post.private) &&

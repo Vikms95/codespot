@@ -72,16 +72,11 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- :postid is returning undefined? -->
 <!-- :not finding post in the Post collection with findByIdAndRemove? -->
 <!-- :pass the post id to <Modal/> so it can be fetched and deleted from there  -->
-- PUT /posts/:postid
-  :use same <PostForm/> but with the input fields filled and the submit button with a different event listener
-  :If no props are passed, this component will be used to create a new post. Otherwise, props will contain the data
-    required to fetch the post info(from server or from posts state?) We will conditionally render the JSX depending if we have props or not.
-  :populate form inputs with the post data if post is located as parameter
-    
-- GET /posts/:postid/comments
-- POST /posts/:postid/comment
-- PUT /posts/:postid/comments/:commentid
-- DELETE /posts/:postid/comments/:commentid
+<!-- - PUT /posts/:postid -->
+  <!-- :use same <PostForm/> but with the input fields filled and the submit button with a different event listener -->
+  <!-- :If no props are passed, this component will be used to create a new post. Otherwise, props will contain the data
+    required to fetch the post info(from server or from posts state?) We will conditionally render the JSX depending if we have props or not. -->
+  <!-- :populate form inputs with the post data if post is located as parameter -->
 
 <!-- - Page will not reload if I don't update the posts state -->
   <!-- :deleted the posts on the frontend too -->
@@ -104,12 +99,17 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- - Do not show private blogs on home -->
 
 <!-- - When I get the posts on load with a GET request, those posts have the password since the user field is populated Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end? -->
+<!-- - Setup modal wrapper that covers the whole page so it can't be clicked outside -->
 
 - Setup timestamp property por posts 
 - Setup multer to let the user upload post image value
-- Setup modal wrapper that covers the whole page so it can't be clicked outside
-
-
-- useAuth and useContext are being used when it is moment to use them? (review it)
-- Post will be the details of each post which is accesible from the homepage or the dashboard
 - Implement sanitization of inputs
+- Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
+    
+- GET /posts/:postid/comments
+- POST /posts/:postid/comment
+- PUT /posts/:postid/comments/:commentid
+- DELETE /posts/:postid/comments/:commentid
+
+-QUESTIONS/TO REVIEW
+- useAuth and useContext are being used when it is moment to use them? (review it)

@@ -9,8 +9,7 @@ const StyledModal = styled.section`
   border:1px solid red; 
   top:50%;
   left:50%;
-  z-index:2;
-  position: fixed;
+  position: absolute;
   transform: translate(-50%,-50%);
 `
 
@@ -27,7 +26,7 @@ function Modal (props) {
     handleCancel()
   }
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
     setIsModalActive(false)
   }
 
@@ -36,11 +35,15 @@ function Modal (props) {
         isModalActive={isModalActive}
         handleCancel={handleCancel}
       >
-        <StyledModal>
+
+        <StyledModal onClick={(e) => e.stopPropagation()}>
+
           <p> Are you sure you want to delete this post? </p>
           <button onClick={handleCancel}> Cancel</button>
           <button onClick={handleDelete}> Delete</button>
+
         </StyledModal>
+
       </ModalWrapper>
   )
 }
