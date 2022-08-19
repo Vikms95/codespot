@@ -14,10 +14,11 @@ function PostForm (props) {
   const [formData, setFormData] = useState({
     title: '',
     text: '',
-    isPrivate: false
+    isPrivate: false,
+    image: ''
   })
 
-  const { title, text, isPrivate } = formData
+  const { title, text, isPrivate, image } = formData
 
   useEffect(() => {
     if (postid) {
@@ -47,7 +48,7 @@ function PostForm (props) {
     e.preventDefault()
 
     const response = fetch('/api/post',
-      createResourceOptions('POST', { user, title, text, isPrivate })
+      createResourceOptions('POST', { user, title, text, isPrivate, image })
     )
 
     const postIsCreated = await response
@@ -81,7 +82,7 @@ function PostForm (props) {
         <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' value={formData.text} />
         <br />
         <label htmlFor="image"></label>
-        <input type="file" name='image'/>
+        <input type="file" name='image' onChange={handleChange} value={formData.image}/>
         <br />
         <label htmlFor="privacy">Should we keep this post private?</label>
         <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />

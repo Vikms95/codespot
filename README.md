@@ -106,6 +106,14 @@ x- Can't access directly when token is modified manually to an invalid one -->
   https://github.com/expressjs/multer
   https://stackoverflow.com/questions/63451157/how-can-i-use-multer-with-react
 
+  :NOT PASSING THE FILE AT ALL
+    :  storage: {},
+  limits: { fileSize: 10000 },
+  preservePath: undefined, <!!!!
+  fileFilter: [Function: allowAll]
+
+  :storage property on options is EMPTY
+  :change the request params on the react requestParams service?
 
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post

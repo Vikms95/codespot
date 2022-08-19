@@ -6,6 +6,7 @@ const getOptions = {
 }
 
 const createResourceOptions = (method, bodyObject) => {
+  console.log(bodyObject)
   return {
     method,
     body: JSON.stringify(bodyObject),

@@ -1,17 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const { createUser, loginUser, retrieveToken, verifyToken } = require('../controllers/userController')
-const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
-
 const multer = require('multer')
 const path = require('path')
+const { createUser, loginUser, retrieveToken, verifyToken } = require('../controllers/userController')
+const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/')
   },
   filename: (req, file, cb) => {
-    // console.log(req.file)
     console.log(file)
     cb(null, Date.now() + path.extname(file.originalname))
   }
@@ -19,8 +17,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 1000000 }
+  limits: { fileSize: 10000 }
 })
+
 
 // User - Session
 router.get('/api/session', [retrieveToken, verifyToken])
@@ -34,10 +33,11 @@ router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 
-router.post('/api/post', upload.single('image'), createPost)
+router.post('/api/post', createPost)
 
 router.put('/api/posts/:postid', updatePost)
 
 router.delete('/api/posts/:postid', deletePost)
 
-module.exports = router
+module.exports = {router}
+

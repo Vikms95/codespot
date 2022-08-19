@@ -22,7 +22,7 @@ const getUserPosts = (req, res, next) => {
 
 const createPost = (req, res, next) => {
   const { title, text, isPrivate, user } = req.body
-
+  console.log(req.file)
   const post = new Post({
     user,
     title,
@@ -50,7 +50,6 @@ const updatePost = (req, res, next) => {
     text,
     private: isPrivate
   })
-  console.log(post)
 
   Post.findByIdAndUpdate(postid, post, {}, (err, post) => {
     if (err) {

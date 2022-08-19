@@ -27,7 +27,6 @@ function Login (props) {
     const response = await fetch('/api/session',
       createResourceOptions('POST', { username, password })
     )
-
     const data = await response.json()
 
     localStorage.setItem('token', JSON.stringify(data.token))
