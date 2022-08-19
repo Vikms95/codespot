@@ -4,6 +4,7 @@ import AuthContext from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import defaultPostImage from '../assets/default-image.jpg'
 import styled from 'styled-components'
+import Button from '../styled/Button'
 
 const PostImageContainer = styled.article`
   object-fit: fill;
@@ -39,15 +40,6 @@ const PostButtonContainer = styled.article`
   justify-content: space-evenly;
 `
 
-const PostButton = styled.button`
-  color: white;
-  background-color: #972897;
-  font-size: 1em;
-  border-radius: 10px ;
-  border: none;
-  padding: .5em 2em;
-  `
-
 function Post (props) {
   const navigate = useNavigate()
   const { id, user, title, text, setIsModalActive, setLastClickedPostId } = props
@@ -76,8 +68,8 @@ function Post (props) {
         {
           (user._id === currentUserId) &&
           <PostButtonContainer>
-            <PostButton onClick={handleUpdate}>Update</PostButton>
-            <PostButton onClick={revealDeleteModal}>Delete</PostButton>
+            <Button onClick={handleUpdate}>Update</Button>
+            <Button onClick={revealDeleteModal}>Delete</Button>
           </PostButtonContainer>
         }
       </PostContentContainer>

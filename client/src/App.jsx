@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard'
 import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
 import AuthContext from './context/AuthContext'
 import Modal from './components/Modal'
+import AppContainer from './styled/AppContainer'
 
 function App () {
   // Need to create state in app to pass it as value from the context provider?
@@ -24,7 +25,7 @@ function App () {
   return (
     <>
       <Router>
-        <div className='container'>
+        <AppContainer>
           <Header/>
           <Modal
             setPosts={setPosts}
@@ -71,7 +72,7 @@ function App () {
               <Route path='/register' element={<Register/>}/>
             </Routes>
           </AuthContext.Provider>
-        </div>
+        </AppContainer>
       </Router>
     </>
   )

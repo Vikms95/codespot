@@ -3,6 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledModalWrapper = styled.div`
+  backdrop-filter: brightness(70%);
   top:50%;
   left:50%;
   height: 100vh;

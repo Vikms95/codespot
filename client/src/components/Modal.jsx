@@ -3,14 +3,26 @@ import React from 'react'
 import ModalWrapper from '../wrappers/ModalWrapper'
 import { deleteOptions } from '../services/requestParams'
 import styled from 'styled-components'
+import Button from '../styled/Button'
 
 const StyledModal = styled.section`
-  background-color: red;
-  border:1px solid red; 
+  background-color: white;
   top:50%;
   left:50%;
   position: absolute;
   transform: translate(-50%,-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1em;
+  padding: 3em;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 0px;
+  z-index: 100;
+`
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 2em;
 `
 
 function Modal (props) {
@@ -39,8 +51,10 @@ function Modal (props) {
         <StyledModal onClick={(e) => e.stopPropagation()}>
 
           <p> Are you sure you want to delete this post? </p>
-          <button onClick={handleCancel}> Cancel</button>
-          <button onClick={handleDelete}> Delete</button>
+          <ButtonContainer>
+            <Button onClick={handleCancel}> Cancel</Button>
+            <Button onClick={handleDelete}> Delete</Button>
+          </ButtonContainer>
 
         </StyledModal>
 
