@@ -2,26 +2,33 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const path = require('path')
+const uuidv4 = require('uuid/v4')
 const { createUser, loginUser, retrieveToken, verifyToken } = require('../controllers/userController')
 const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
 
+// Setup multer
+const DIR = './public/';
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    console.log(file)
-    cb(null, '../uploads')
-  },
-  filename: function (req, file, cb) {
-    console.log(file)
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.fieldname + '-' + uniqueSuffix)
-  }
-})
-
-const upload = multer({ storage: storage })
-
-// Simple implementation to test
-// const upload = multer({dest: 'uploads/'})
-
+    destination: (req, file, cb) => {
+        cb(null, DIR);
+    },
+    filename: (req, file, cb) => {
+      console.log(file)
+        const fileName = file.originalname.toLowerCase().split(' ').join('-');
+        cb(null, uuidv4() + '-' + fileName)
+    }
+});
+let upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+        }
+    }
+});
 // User - Session
 router.get('/api/session', [retrieveToken, verifyToken])
 
@@ -34,7 +41,7 @@ router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 
-router.post('/api/post', [upload.single('image'), createPost])
+router.post('/api/post', upload.single('image'), createPost)
 
 router.put('/api/posts/:postid', updatePost)
 

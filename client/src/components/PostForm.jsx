@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { createResourceOptions } from '../services/requestParams'
+import { postCreateOptions } from '../services/requestParams'
 import { getPostToUpdate } from '../services/getPostToUpdate'
 import AuthContext from '../context/AuthContext'
+import axios from 'axios'
 
 function PostForm (props) {
   const { posts } = props
@@ -28,7 +29,8 @@ function PostForm (props) {
         return {
           title: postToUpdate.title,
           text: postToUpdate.text,
-          isPrivate: postToUpdate.private
+          isPrivate: postToUpdate.private,
+          image: postToUpdate.image
         }
       })
     }
@@ -44,25 +46,38 @@ function PostForm (props) {
     }))
   }
 
+  const handleFileChange = (e) => {
+    console.log(e.target.files[0])
+    setFormData({ image: e.target.files[0] })
+  }
+
   const handleCreateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = fetch('/api/post',
-      createResourceOptions('POST', { user, title, text, isPrivate, image })
-    )
+    const formDataRequest = new FormData()
 
-    const postIsCreated = await response
+    console.log(title)
+    formDataRequest.append('image', image)
+    formDataRequest.append('user', user)
+    formDataRequest.append('title', title)
+    formDataRequest.append('text', text)
+    formDataRequest.append('isPrivate', isPrivate)
+    console.log(formDataRequest.get('title'))
+    axios.post('http://localhost:4000/api/post', formDataRequest, {})
+      .then(res => console.log(res))
 
-    if (postIsCreated) {
-      return navigate('/dashboard')
-    }
+    // const postIsCreated = await response
+
+    // if (postIsCreated) {
+    return navigate('/dashboard')
+    // }
   }
 
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
     const response = fetch('/api/posts/' + postid,
-      createResourceOptions('PUT', { user, title, text, isPrivate })
+      postCreateOptions('PUT', { user, title, text, isPrivate })
     )
 
     const postIsUpdated = await response
@@ -82,7 +97,7 @@ function PostForm (props) {
         <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' value={formData.text} />
         <br />
         <label htmlFor="image"></label>
-        <input type="file" name='image' onChange={handleChange} value={formData.image}/>
+        <input type="file" name='image' onChange={handleFileChange}/>
         <br />
         <label htmlFor="privacy">Should we keep this post private?</label>
         <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />

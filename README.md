@@ -106,21 +106,23 @@ x- Can't access directly when token is modified manually to an invalid one -->
   https://github.com/expressjs/multer
   https://stackoverflow.com/questions/63451157/how-can-i-use-multer-with-react
 
-  :NOT PASSING THE FILE AT ALL
-    :  storage: {},
-  limits: { fileSize: 10000 },
-  preservePath: undefined, <!!!!
-  fileFilter: [Function: allowAll]
+  !!:NOT PASSING THE FILE AT ALL
+      :  storage: {},
+    limits: { fileSize: 10000 },
+    preservePath: undefined, <!!!!
+    fileFilter: [Function: allowAll]
 
-  :storage property on options is EMPTY
-  :change the request params on the react requestParams service?
-  !:form was not being sent by React with the image, now it does. Still pending to see what is going on in the backend
-  TRY FIRST ANSWER:
-    https://stackoverflow.com/questions/71309865/file-upload-with-react-nodejs-multer-doesnt-work
-  :mongoose error > not receiving the form data after changing the parameters
-  :all formdatas are not working(sending data as undefined)
-
-
+    :storage property on options is EMPTY
+    :change the request params on the react requestParams service?
+    !:form was not being sent by React with the image, now it does. Still pending to see what is going on in the backend
+    TRY FIRST ANSWER:
+      https://stackoverflow.com/questions/71309865/file-upload-with-react-nodejs-multer-doesnt-work
+    :mongoose error > not receiving the form data after changing the parameters
+    :all formdatas are not working(sending data as undefined)
+    TRY THIS:
+      https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
+  : now file is uploaded, but the rest of the data is not being found by mongoose, check formatting
+  
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
     

@@ -18,10 +18,7 @@ const userCreateOptions = (method, bodyObject) => {
 const postCreateOptions = (method, bodyObject) => {
   return {
     method,
-    body: bodyObject,
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    }
+    body: JSON.stringify(bodyObject)
   }
 }
 
@@ -32,4 +29,4 @@ const deleteOptions = {
   }
 }
 
-export { getOptions, userCreateOptions, deleteOptions }
+export { getOptions, userCreateOptions, postCreateOptions, deleteOptions }
