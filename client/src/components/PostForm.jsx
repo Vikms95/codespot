@@ -49,7 +49,7 @@ function PostForm (props) {
     }))
   }
 
-  const handleCreateSubmit = async (e) => {
+  const handleCreateSubmit = (e) => {
     e.preventDefault()
 
     const formDataRequest = new FormData()
