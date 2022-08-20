@@ -3,10 +3,10 @@ import './App.css'
 import { useState } from 'react'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
-import Login from './components/Login'
+import LoginForm from './components/LoginForm'
 import Header from './components/Header'
 import PostForm from './components/PostForm'
-import Register from './components/Register'
+import RegisterForm from './components/RegisterForm'
 import Dashboard from './components/Dashboard'
 import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
 import AuthContext from './context/AuthContext'
@@ -68,8 +68,8 @@ function App () {
                     setIsModalActive={setIsModalActive}
                   />}
                 />
-              <Route path='/login' element={<Login setUser={setUser}/>}/>
-              <Route path='/register' element={<Register/>}/>
+              <Route path='/login' element={<LoginForm setUser={setUser}/>}/>
+              <Route path='/register' element={<RegisterForm/>}/>
             </Routes>
           </AuthContext.Provider>
         </AppContainer>

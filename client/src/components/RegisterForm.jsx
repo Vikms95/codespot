@@ -1,18 +1,18 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
-import { createResourceOptions } from '../services/requestParams'
+import { userCreateOptions } from '../services/requestParams'
 
-function Login (props) {
-  const { setUser } = props
-
+function Register () {
   const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
+    password2: ''
   })
-  const { username, password } = formData
+
+  const { username, password, password2 } = formData
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -21,38 +21,35 @@ function Login (props) {
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
-    const response = await fetch('/api/session',
-      createResourceOptions('POST', { username, password })
+    fetch('/api/user',
+      userCreateOptions('POST', { username, password, password2 })
+
     )
-    const data = await response.json()
-
-    localStorage.setItem('token', JSON.stringify(data.token))
-    setUser(data.user)
-
-    return navigate('/dashboard')
+    return navigate('/login')
   }
 
   return (
     <>
       <section className='heading'>
         <h1>
-          <FaSignInAlt> Login </FaSignInAlt>
+          <FaUser> Register </FaUser>
         </h1>
-        <p>Please login</p>
+        <p>Please create an account</p>
       </section>
 
       <section className='form'>
         <form action="" onSubmit={handleSubmit}>
           <input type="text" id='username' name='username' value={username} placeholder='Enter username' onChange={handleChange} />
           <input type="password" id='password' name='password' value={password} placeholder='Enter password' onChange={handleChange} />
-          <button type='submit '> Login </button>
+          <input type="password" id='password2' name='password2' value={password2} placeholder='Repeat password' onChange={handleChange} />
+          <button type='submit '> Register </button>
         </form>
       </section>
     </>
   )
 }
 
-export default Login
+export default Register

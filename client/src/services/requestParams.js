@@ -5,11 +5,23 @@ const getOptions = {
   }
 }
 
-const createResourceOptions = (method, bodyObject) => {
-  console.log(bodyObject)
+const userCreateOptions = (method, bodyObject) => {
   return {
     method,
-    body: bodyObject
+    body: JSON.stringify(bodyObject),
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    }
+  }
+}
+
+const postCreateOptions = (method, bodyObject) => {
+  return {
+    method,
+    body: bodyObject,
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    }
   }
 }
 
@@ -20,4 +32,4 @@ const deleteOptions = {
   }
 }
 
-export { getOptions, createResourceOptions, deleteOptions }
+export { getOptions, userCreateOptions, deleteOptions }

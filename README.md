@@ -118,6 +118,8 @@ x- Can't access directly when token is modified manually to an invalid one -->
   TRY FIRST ANSWER:
     https://stackoverflow.com/questions/71309865/file-upload-with-react-nodejs-multer-doesnt-work
   :mongoose error > not receiving the form data after changing the parameters
+  :all formdatas are not working(sending data as undefined)
+
 
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
@@ -129,3 +131,4 @@ x- Can't access directly when token is modified manually to an invalid one -->
 
 -QUESTIONS/TO REVIEW
 - useAuth and useContext are being used when it is moment to use them? (review it)
+-Can create big components that will render specialized components through children props? (Form > (FormLogin/FormRegister))
