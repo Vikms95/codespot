@@ -42,14 +42,17 @@ function PostForm (props) {
       isPrivate: (e.target.type === 'checkbox')
         ? !prevFormData.isPrivate
         : prevFormData.isPrivate,
+      image: (e.target.type === 'file')
+        ? e.target.files[0]
+        : '',
       [e.target.name]: e.target.value
     }))
   }
 
-  const handleFileChange = (e) => {
-    console.log(e.target.files[0])
-    setFormData({ image: e.target.files[0] })
-  }
+  // const handleFileChange = (e) => {
+  //   console.log(e.target.files[0])
+  //   setFormData({ image: e.target.files[0] })
+  // }
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault()
@@ -97,7 +100,7 @@ function PostForm (props) {
         <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' value={formData.text} />
         <br />
         <label htmlFor="image"></label>
-        <input type="file" name='image' onChange={handleFileChange}/>
+        <input type="file" name='image' onChange={handleChange}/>
         <br />
         <label htmlFor="privacy">Should we keep this post private?</label>
         <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />
