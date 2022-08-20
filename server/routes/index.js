@@ -13,10 +13,10 @@ const storage = multer.diskStorage({
         cb(null, DIR);
     },
     filename: (req, file, cb) => {
-      console.log(file)
         const fileName = file.originalname.toLowerCase().split(' ').join('-');
         cb(null, uuidv4() + '-' + fileName)
-    }
+    },
+    
 });
 let upload = multer({
     storage: storage,
@@ -41,7 +41,7 @@ router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 
-router.post('/api/post', upload.single('image'), createPost)
+router.post('/api/post',upload.single('image'), createPost)
 
 router.put('/api/posts/:postid', updatePost)
 

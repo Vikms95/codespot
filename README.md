@@ -122,7 +122,12 @@ x- Can't access directly when token is modified manually to an invalid one -->
     TRY THIS:
       https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
   <!-- : now file is uploaded, but the rest of the data is not being found by mongoose, check formatting -->
-  :now file is uploaded and data is found, but req.file seems to be undefined
+  !:now file is uploaded and data is found, but req.file seems to be undefined
+    :post request errors because I'm trying to access req.file inside the middleware
+    :file won't print on the multer option callbacks
+    :now file is not saved T_T
+    :before deleting postController file it wassaving? maybe review the createPost on postController?
+
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
     

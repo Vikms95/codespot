@@ -24,7 +24,8 @@ const createPost = (req, res, next) => {
   const { title, text, isPrivate, user } = req.body
   const url = req.protocol + '://' + req.get('host') 
   
-  console.log(title, text, isPrivate, user)
+  
+
   const post = new Post({
     user,
     title,
@@ -33,7 +34,6 @@ const createPost = (req, res, next) => {
     image: url + '/public/' + req.file.filename
   })
 
-  console.log(post)
   post.save(function (err) {
     if (err) {
       console.log(err)

@@ -42,30 +42,24 @@ function PostForm (props) {
       isPrivate: (e.target.type === 'checkbox')
         ? !prevFormData.isPrivate
         : prevFormData.isPrivate,
-      image: (e.target.type === 'file')
+      image: (e.target.name === 'image')
         ? e.target.files[0]
-        : '',
+        : prevFormData.image,
       [e.target.name]: e.target.value
     }))
   }
-
-  // const handleFileChange = (e) => {
-  //   console.log(e.target.files[0])
-  //   setFormData({ image: e.target.files[0] })
-  // }
 
   const handleCreateSubmit = async (e) => {
     e.preventDefault()
 
     const formDataRequest = new FormData()
 
-    console.log(title)
     formDataRequest.append('image', image)
     formDataRequest.append('user', user)
     formDataRequest.append('title', title)
     formDataRequest.append('text', text)
     formDataRequest.append('isPrivate', isPrivate)
-    console.log(formDataRequest.get('title'))
+
     axios.post('http://localhost:4000/api/post', formDataRequest, {})
       .then(res => console.log(res))
 
