@@ -100,7 +100,7 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- - When I get the posts on load with a GET request, those posts have the password since the user field is populated Safe to pass the password on the frontend? Reassign the user object to be the same without the password on the b/end? -->
 <!-- - Setup modal wrapper that covers the whole page so it can't be clicked outside -->
 
-- Setup timestamp property por posts 
+
 - Setup multer to let the user upload post image value
   https://www.npmjs.com/package/multer
   https://github.com/expressjs/multer
@@ -128,6 +128,8 @@ x- Can't access directly when token is modified manually to an invalid one -->
     :now file is not saved T_T
     :before deleting postController file it wassaving? maybe review the createPost on postController?
 
+- Setup timestamp property por posts 
+- Fix bug where cancel button is shown above the cancel modal
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
     

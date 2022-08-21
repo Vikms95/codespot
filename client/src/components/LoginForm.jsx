@@ -12,6 +12,7 @@ function Login (props) {
     username: '',
     password: ''
   })
+
   const { username, password } = formData
 
   const handleChange = (e) => {

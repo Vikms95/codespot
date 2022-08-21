@@ -6,6 +6,16 @@ import defaultPostImage from '../assets/default-image.jpg'
 import styled from 'styled-components'
 import Button from '../styled/Button'
 
+const StyledPost = styled.section`
+  display:flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: column;
+  box-shadow: 4px 4px 10px -2px gray;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+`
+
 const PostImageContainer = styled.article`
   object-fit: fill;
   `
@@ -56,7 +66,7 @@ function Post (props) {
   }
 
   return (
-    <>
+    <StyledPost>
       <PostImageContainer>
         <PostImage src={defaultPostImage} alt="default-post"/>
       </PostImageContainer>
@@ -73,7 +83,7 @@ function Post (props) {
           </PostButtonContainer>
         }
       </PostContentContainer>
-    </>
+    </StyledPost>
   )
 }
 

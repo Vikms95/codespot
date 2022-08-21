@@ -5,7 +5,6 @@ import Post from './Post'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
 import PostListContainer from '../wrappers/PostListContainer'
-import PostContainer from '../wrappers/PostContainer'
 
 function Home (props) {
   const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
@@ -25,7 +24,6 @@ function Home (props) {
         <PostListContainer>
           {posts.map((post) => (
             (!post.private) &&
-            <PostContainer>
               <Post
                 key={post._id}
                 id={post._id}
@@ -36,7 +34,6 @@ function Home (props) {
                 setIsModalActive={setIsModalActive}
                 >
               </Post>
-            </PostContainer>
           ))}
         </PostListContainer>
       </>

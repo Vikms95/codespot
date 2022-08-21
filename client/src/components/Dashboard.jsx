@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
 import PostListContainer from '../wrappers/PostListContainer'
-import PostContainer from '../wrappers/PostContainer'
 import Post from './Post'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
@@ -29,7 +28,6 @@ function Dashboard (props) {
             {posts.map((post) => (
               (!post.private) &&
 
-              <PostContainer>
                 <Post
                   key={post._id}
                   id={post._id}
@@ -41,7 +39,6 @@ function Dashboard (props) {
                   setIsModalActive={setIsModalActive}
                 >
                 </Post>
-              </PostContainer>
 
             ))}
           </PostListContainer>
@@ -50,7 +47,6 @@ function Dashboard (props) {
 
             {posts.map((post) => (
               (post.private) &&
-                <PostContainer>
                   <Post
                     key={post._id}
                     id={post._id}
@@ -61,7 +57,6 @@ function Dashboard (props) {
                     setIsModalActive={setIsModalActive}
                   >
                 </Post>
-              </PostContainer>
             ))}
 
           </PostListContainer>

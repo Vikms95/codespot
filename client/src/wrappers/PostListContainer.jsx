@@ -6,10 +6,11 @@ const StyledPostListContainer = styled.section`
   gap: 5em;
   margin: 3em;
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
 `
 const PostListTitle = styled.h2`
   font-size:1.5em ;
+  margin-left: 2em;
 `
 
 function PostListContainer (props) {
