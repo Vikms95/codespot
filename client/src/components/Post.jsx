@@ -67,6 +67,7 @@ function Post (props) {
 
   return (
     <StyledPost>
+
       <PostImageContainer>
         <PostImage src={defaultPostImage} alt="default-post"/>
       </PostImageContainer>
@@ -77,12 +78,15 @@ function Post (props) {
         <PostDesc>{text}</PostDesc>
         {
           (user._id === currentUserId) &&
+
           <PostButtonContainer>
             <Button onClick={handleUpdate}>Update</Button>
             <Button onClick={revealDeleteModal}>Delete</Button>
           </PostButtonContainer>
+
         }
       </PostContentContainer>
+
     </StyledPost>
   )
 }
