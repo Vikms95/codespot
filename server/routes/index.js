@@ -7,19 +7,23 @@ const { createUser, loginUser, retrieveToken, verifyToken } = require('../contro
 const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
 
 // Setup multer
-const DIR = './public/';
+// const DIR = './public/';
+const absoluteDIR = 'C:\Users\Usuario\Downloads\P\Prog.Hos\blog-api\server\public';
+const DIR = '../public/';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, DIR);
+      cb(null, DIR);
     },
     filename: (req, file, cb) => {
         const fileName = file.originalname.toLowerCase().split(' ').join('-');
-        cb(null, uuidv4() + '-' + fileName)
+        cb(null, uuidv4() + '-' + 'hi')
     },
     
 });
+
 let upload = multer({
     storage: storage,
+    onFileUploadStart : (file) => console.log(file.originalname+ ' is starting ...'),
     fileFilter: (req, file, cb) => {
         if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
             cb(null, true);
@@ -41,7 +45,7 @@ router.get('/api/posts', getPosts)
 
 router.get('/api/:userid/posts', getUserPosts)
 
-router.post('/api/post',upload.single('image'), createPost)
+router.post('/api/post', upload.single('image'), createPost)
 
 router.put('/api/posts/:postid', updatePost)
 

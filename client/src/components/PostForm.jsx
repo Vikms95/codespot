@@ -55,13 +55,14 @@ function PostForm (props) {
     const formDataRequest = new FormData()
 
     formDataRequest.append('image', image)
-    formDataRequest.append('user', user)
-    formDataRequest.append('title', title)
-    formDataRequest.append('text', text)
-    formDataRequest.append('isPrivate', isPrivate)
 
-    axios.post('http://localhost:4000/api/post', formDataRequest, {})
+    axios.post('http://localhost:4000/api/post', formDataRequest, {
+    })
       .then(res => console.log(res))
+
+    // const request = new XMLHttpRequest()
+    // request.open('POST', 'http://localhost:4000/api/post')
+    // request.send(formDataRequest)
 
     // const postIsCreated = await response
 
