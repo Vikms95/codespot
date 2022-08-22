@@ -25,7 +25,6 @@ function PostForm (props) {
   const { postid } = useParams()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
-  const editorRef = useRef(null)
 
   const [formData, setFormData] = useState({
     title: '',
@@ -52,16 +51,32 @@ function PostForm (props) {
   }, [])
 
   const handleChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      isPrivate: (e.target.type === 'checkbox')
-        ? !prevFormData.isPrivate
-        : prevFormData.isPrivate,
-      image: (e.target.name === 'image')
-        ? e.target.files[0]
-        : prevFormData.image,
-      [e.target.name]: e.target.value
-    }))
+    setFormData((prevFormData) => ({ ...prevFormData, [e.target.name]: e.target.value }))
+  }
+
+  const handlePrivacyChange = (e) => {
+    setFormData(prevFormData => ({ ...prevFormData, isPrivate: !prevFormData.isPrivate }))
+  }
+
+  const handleImageChange = (e) => {
+    setFormData(prevFormData => ({ ...prevFormData, image: e.target.files[0] }))
+  }
+
+  const handleEditorChange = (content, editor) => {
+    console.log('content was updated ' + content)
+    setFormData(prevFormData => ({ ...prevFormData, text: content.value }))
+  }
+
+  const parseEditorData = (content, editor) => {
+    const { targetElm } = editor
+    const { name } = targetElm
+
+    return {
+      target: {
+        name,
+        value: content
+      }
+    }
   }
 
   const handleCreateSubmit = (e) => {
@@ -76,8 +91,7 @@ function PostForm (props) {
     formDataRequest.append('image', image)
 
     axios.post('http://localhost:4000/api/post', formDataRequest, {
-    })
-      .then(res => console.log(res))
+    }).then(res => console.log(res))
 
     // if (postIsCreated) {
     return navigate('/dashboard')
@@ -102,22 +116,32 @@ function PostForm (props) {
     <PostFormContainer>
       <StyledPostForm onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
         <label htmlFor="title">Title </label>
-        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={formData.title} />
+        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} />
         <br />
 
         <label htmlFor="text">Post </label>
         <Editor
-          onInit={(e, editor) => (editorRef.current = editor)}
-          init={{ height: 500, menubar: false }}
-          initialValue='<p> What are you thinking?</p>'
-          type="text" name='text' id='textarea' onChange={handleChange} placeholder='Post body ...' />
+          outputFormat='html'
+          value={formData.text}
+          onEditorChange={(content, editor) => {
+            handleEditorChange(parseEditorData(content, editor))
+          }}
+          init={{
+            height: 500,
+            width: 420,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link '
+            ]
+          }}
+        />
 
         <br />
         <label htmlFor="image"></label>
-        <input type="file" name='image' onChange={handleChange}/>
+        <input type="file" name='image' onChange={handleImageChange}/>
         <br />
         <label htmlFor="privacy">Should we keep this post private?</label>
-        <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />
+        <input type="checkbox" name='privacy' onChange={handlePrivacyChange} checked={isPrivate} />
         <br />
         <button type='submit'>{postid ? 'Update post' : 'Submit post'}</button>
       </StyledPostForm>
