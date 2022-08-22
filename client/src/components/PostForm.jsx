@@ -1,16 +1,31 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { postCreateOptions } from '../services/requestParams'
 import { getPostToUpdate } from '../services/getPostToUpdate'
 import AuthContext from '../context/AuthContext'
 import axios from 'axios'
+import styled from 'styled-components'
+import { Editor } from '@tinymce/tinymce-react'
+
+const PostFormContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const StyledPostForm = styled.form`
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+
+`
 
 function PostForm (props) {
   const { posts } = props
   const { postid } = useParams()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
+  const editorRef = useRef(null)
 
   const [formData, setFormData] = useState({
     title: '',
@@ -84,13 +99,19 @@ function PostForm (props) {
   }
 
   return (
-    <section>
-      <form action="" onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
-        <label htmlFor="title">Title: </label>
+    <PostFormContainer>
+      <StyledPostForm onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
+        <label htmlFor="title">Title </label>
         <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={formData.title} />
         <br />
-        <label htmlFor="text">Post: </label>
-        <textarea type="text" name='text' onChange={handleChange} placeholder='Post body ...' value={formData.text} />
+
+        <label htmlFor="text">Post </label>
+        <Editor
+          onInit={(e, editor) => (editorRef.current = editor)}
+          init={{ height: 500, menubar: false }}
+          initialValue='<p> What are you thinking?</p>'
+          type="text" name='text' id='textarea' onChange={handleChange} placeholder='Post body ...' />
+
         <br />
         <label htmlFor="image"></label>
         <input type="file" name='image' onChange={handleChange}/>
@@ -99,8 +120,8 @@ function PostForm (props) {
         <input type="checkbox" name='privacy' onChange={handleChange} checked={formData.isPrivate} />
         <br />
         <button type='submit'>{postid ? 'Update post' : 'Submit post'}</button>
-      </form>
-    </section>
+      </StyledPostForm>
+    </PostFormContainer>
   )
 }
 

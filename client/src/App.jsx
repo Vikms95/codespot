@@ -36,6 +36,7 @@ function App () {
 
           <AuthContext.Provider value={authContext}>
             <Routes>
+
                 <Route element={<AuthRouteWrapper/>}>
                   <Route
                     path='/dashboard'
@@ -56,6 +57,7 @@ function App () {
                     path='/update/:postid'
                       element={<PostForm posts={posts}/>}/>
                 </Route>
+
               <Route
                 path='/'
                 element={
