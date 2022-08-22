@@ -12,6 +12,14 @@ COMPOSITION WITH STYLED COMPONENTS
 https://reactjs.org/docs/composition-vs-inheritance.html
 https://styled-components.com/docs/basics
 
+-PENDING ROUTES-
+
+- GET /posts/:postid/comments
+- POST /posts/:postid/comment
+- PUT /posts/:postid/comments/:commentid
+- DELETE /posts/:postid/comments/:commentid
+
+- AUTH PROCESS  -
 1. user registers - OK returned
 2. user logs in - Token returned
 3. user saves token
@@ -128,16 +136,15 @@ x- Can't access directly when token is modified manually to an invalid one -->
     :now file is not saved T_T
     :before deleting postController file it wassaving? maybe review the createPost on postController?
 
+- Setup TinyMCE
+  :contents of the Editor are being passed as undefined
 - Setup timestamp property por posts 
 - Fix bug where cancel button is shown above the cancel modal
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
     
-- GET /posts/:postid/comments
-- POST /posts/:postid/comment
-- PUT /posts/:postid/comments/:commentid
-- DELETE /posts/:postid/comments/:commentid
 
--QUESTIONS/TO REVIEW
+
+-QUESTIONS/TO REVIEW-
 - useAuth and useContext are being used when it is moment to use them? (review it)
 -Can create big components that will render specialized components through children props? (Form > (FormLogin/FormRegister))

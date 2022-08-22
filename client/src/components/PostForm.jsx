@@ -25,6 +25,7 @@ function PostForm (props) {
   const { postid } = useParams()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
+  const editorRef = useRef(null)
 
   const [formData, setFormData] = useState({
     title: '',
@@ -63,14 +64,13 @@ function PostForm (props) {
   }
 
   const handleEditorChange = (content, editor) => {
-    console.log('content was updated ' + content)
     setFormData(prevFormData => ({ ...prevFormData, text: content.value }))
   }
 
   const parseEditorData = (content, editor) => {
     const { targetElm } = editor
     const { name } = targetElm
-
+    console.log(editor.targetElm.name)
     return {
       target: {
         name,
@@ -121,11 +121,14 @@ function PostForm (props) {
 
         <label htmlFor="text">Post </label>
         <Editor
+          apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
           outputFormat='html'
+          name='text'
           value={formData.text}
           onEditorChange={(content, editor) => {
             handleEditorChange(parseEditorData(content, editor))
           }}
+          onInit={(evt, editor) => (editorRef.current = editor)}
           init={{
             height: 500,
             width: 420,
