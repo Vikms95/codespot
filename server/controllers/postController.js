@@ -24,13 +24,13 @@ const createPost = (req, res, next) => {
   const { title, text, isPrivate, user } = req.body
   const url = req.protocol + '://' + req.get('host') 
   
-  // console.log(req.file)
+  console.log(req.file)
   const post = new Post({
     user,
     title,
     text,
     private: isPrivate,
-    // image: url + '/public/' + req.file.filename
+    image: url + '/public/' + req.file.filename
   })
 
   post.save(function (err) {
