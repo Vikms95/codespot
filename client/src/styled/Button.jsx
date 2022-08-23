@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from 'styled-components'
 
-const Button = styled.button`
+export const Button = styled.button`
   color: white;
   background-color: #531753;
   font-size: 1em;
@@ -12,4 +12,3 @@ const Button = styled.button`
     filter: brightness(.9) ;
   }
   `
-export default Button

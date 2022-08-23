@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import defaultPostImage from '../assets/default-image.jpg'
 import styled from 'styled-components'
-import Button from '../styled/Button'
+import { Button } from '../styled/Button'
 
 const StyledPost = styled.section`
   display:flex;

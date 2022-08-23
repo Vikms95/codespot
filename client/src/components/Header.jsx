@@ -2,58 +2,69 @@ import React from 'react'
 import { FaSignInAlt, FaUser, FaBook, FaTable, FaHouseUser, FaDoorOpen } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { logoutUser } from '../services/logoutUser'
+import styled from 'styled-components'
 
-function Header () {
+function NavBar () {
+  const StyledNavbar = styled.nav`
+  margin: 0 10em ;
+  & > ul{
+    list-style:none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    }
+  `
+  const NavItem = styled.li`
+  `
   return (
-    <header className='header'>
-      <div className='logo'>
-      </div>
+    <StyledNavbar>
       <ul>
-        <li>
+        <NavItem>
           <Link to='/'>
           Home
             {' '}
           <FaHouseUser/>
           </Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to='/dashboard'>
           Dashboard
             {' '}
           <FaTable/>
           </Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to='/create'>
           Create post
            {' '}
             <FaBook/>
           </Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to='/register'>
             Register
             {' '}
             <FaUser/>
           </Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to='/login'>
           Login
           {' '}
             <FaSignInAlt/>
           </Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <Link to='/' onClick={logoutUser}>
             Logout
             {' '}
             <FaDoorOpen/>
           </Link>
-        </li>
+        </NavItem>
       </ul>
-    </header>
+    </StyledNavbar>
   )
 }
 
-export default Header
+export default NavBar

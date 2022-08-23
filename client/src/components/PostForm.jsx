@@ -8,8 +8,11 @@ import styled from 'styled-components'
 import { Editor } from '@tinymce/tinymce-react'
 import { parseEditorData } from '../services/parseEditorData'
 import { usePostToUpdate } from '../hooks/usePostToUpdate'
+import { Label } from '../styled/Label'
+import { Button } from '../styled/Button'
 
 const PostFormContainer = styled.section`
+  margin:5em;  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,9 +20,18 @@ const PostFormContainer = styled.section`
 
 const StyledPostForm = styled.form`
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
-
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 `
+
+const TitleInput = styled.input`
+  padding:.5em;
+`
+
+const FormButton = styled(Button)`
+  width: 10em;
+  margin-left: 13em;
+`
+
 function PostForm (props) {
   const { posts } = props
   const { postid } = useParams()
@@ -92,16 +104,17 @@ function PostForm (props) {
   return (
     <PostFormContainer>
       <StyledPostForm onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
-        <label htmlFor="title">Title </label>
-        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} maxLength='25' />
+
+        <Label htmlFor="title">Title </Label>
+        <TitleInput type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} maxLength='25' />
         <br />
 
-        <label htmlFor="text">Post </label>
+        <Label htmlFor="text">Post </Label>
         <Editor
           onInit={(evt, editor) => (editorRef.current = editor)}
           init={{
             height: 500,
-            width: 420,
+            width: 600,
             menubar: false
           }}
           apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
@@ -113,13 +126,13 @@ function PostForm (props) {
         />
 
         <br />
-        <label htmlFor="image"></label>
+        <Label htmlFor="image"></Label>
         <input type="file" name='image' onChange={handleImageChange}/>
         <br />
-        <label htmlFor="privacy">Should we keep this post private?</label>
+        <Label htmlFor="privacy">Should we keep this post private?</Label>
         <input type="checkbox" name='privacy' onChange={handlePrivacyChange} checked={isPrivate} />
         <br />
-        <button type='submit'>{postid ? 'Update post' : 'Submit post'}</button>
+        <FormButton type='submit'>{postid ? 'Update post' : 'Submit post'}</FormButton>
       </StyledPostForm>
     </PostFormContainer>
   )
