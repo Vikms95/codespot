@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import defaultPostImage from '../assets/default-image.jpg'
@@ -61,9 +61,9 @@ function Post (props) {
   const navigate = useNavigate()
   const { id, user, title, text, image, setIsModalActive, setLastClickedPostId } = props
 
+  const [imageSrc, setImageSrc] = useState()
   const { user: currentUserId } = useContext(AuthContext)
   const descRef = useRef(null)
-
   useEffect(() => {
     if (descRef.current) {
       descRef.current.innerHTML = text
@@ -74,7 +74,9 @@ function Post (props) {
   useEffect(() => {
     // console.log(image)
     // const imageURL = image
-    fetch(image).then(res => console.log(res))
+    fetch(image)
+      .then(res => console.log(res))
+      .then()
   })
 
   const handleUpdate = () => {

@@ -138,9 +138,9 @@ TRY THIS:
   :now file is not saved T_T
   :before deleting postController file it wassaving? maybe review the createPost on postController? --> 
   :make the image appear on each posts based on the files saved on the backend and the path saved on the database
-
+    :how to retrieve image from the app.use(static..) ?? do i need that or another endpoint?
   https://expressjs.com/en/starter/static-files.html
-  
+
   https://stackoverflow.com/questions/61374786/how-to-use-serve-static-file-with-express-and-react
 
 - Create ability crud functionality and ui for comments
