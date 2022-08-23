@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef } from 'react'
-import AuthContext from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import AuthContext from '../context/AuthContext'
 import defaultPostImage from '../assets/default-image.jpg'
 import styled from 'styled-components'
 import { Button } from '../styled/Button'
@@ -70,7 +70,11 @@ function Post (props) {
     }
   })
 
-  const handleUpdate = async () => {
+  useEffect(() => {
+    
+  })
+
+  const handleUpdate = () => {
     return navigate('/update/' + id)
   }
 

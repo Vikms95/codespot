@@ -5,6 +5,7 @@ const getPosts = (req, res, next) => {
     .populate('user', ['_id', '__v', 'username'])
     .exec(function (err, posts) {
       if (err) return next(err)
+      console.log(posts[0])
       res.json(posts)
     })
 }

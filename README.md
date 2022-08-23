@@ -116,28 +116,28 @@ x- Can't access directly when token is modified manually to an invalid one -->
   https://github.com/expressjs/multer
   https://stackoverflow.com/questions/63451157/how-can-i-use-multer-with-react
 
-  !!:NOT PASSING THE FILE AT ALL
-      :  storage: {},
-    limits: { fileSize: 10000 },
-    preservePath: undefined, <!!!!
-    fileFilter: [Function: allowAll]
+<!-- !!:NOT PASSING THE FILE AT ALL
+:  storage: {},
+limits: { fileSize: 10000 },
+preservePath: undefined, <!!!!
+fileFilter: [Function: allowAll]
 
-    :storage property on options is EMPTY
-    :change the request params on the react requestParams service?
-    !:form was not being sent by React with the image, now it does. Still pending to see what is going on in the backend
-    TRY FIRST ANSWER:
-      https://stackoverflow.com/questions/71309865/file-upload-with-react-nodejs-multer-doesnt-work
-    :mongoose error > not receiving the form data after changing the parameters
-    :all formdatas are not working(sending data as undefined)
-    TRY THIS:
-      https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/
+:storage property on options is EMPTY
+:change the request params on the react requestParams service?
+!:form was not being sent by React with the image, now it does. Still pending to see what is going on in the backend
+TRY FIRST ANSWER:
+  https://stackoverflow.com/questions/71309865/file-upload-with-react-nodejs-multer-doesnt-work
+:mongoose error > not receiving the form data after changing the parameters
+:all formdatas are not working(sending data as undefined)
+TRY THIS:
+  https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/ -->
   <!-- : now file is uploaded, but the rest of the data is not being found by mongoose, check formatting -->
-  !:now file is uploaded and data is found, but req.file seems to be undefined
-    :post request errors because I'm trying to access req.file inside the middleware
-    :file won't print on the multer option callbacks
-    :now file is not saved T_T
-    :before deleting postController file it wassaving? maybe review the createPost on postController?
-
+  <!-- !:now file is uploaded and data is found, but req.file seems to be undefined
+  :post request errors because I'm trying to access req.file inside the middleware
+  :file won't print on the multer option callbacks
+  :now file is not saved T_T
+  :before deleting postController file it wassaving? maybe review the createPost on postController? --> 
+  :make the image appear on each posts based on the files saved on the backend and the path saved on the database
 
 - Create ability crud functionality and ui for comments
 - Change privacy button to a normal switch button(just like the one on Weather App)

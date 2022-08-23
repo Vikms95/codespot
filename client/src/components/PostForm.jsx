@@ -93,10 +93,6 @@ function PostForm (props) {
     formDataRequest.append('isPrivate', isPrivate)
     formDataRequest.append('user', user)
 
-    console.log(formDataRequest.get('title'))
-    console.log(formDataRequest.get('user'))
-    console.log(formDataRequest.get('image'))
-
     axios.post('http://localhost:4000/api/post', formDataRequest, {
     }).then(res => console.log(res))
 
