@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 import AuthContext from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import defaultPostImage from '../assets/default-image.jpg'
@@ -55,6 +55,13 @@ function Post (props) {
   const { id, user, title, text, setIsModalActive, setLastClickedPostId } = props
 
   const { user: currentUserId } = useContext(AuthContext)
+  const descRef = useRef(null)
+
+  useEffect(() => {
+    if (descRef.current) {
+      descRef.current.innerHTML = text
+    }
+  })
 
   const handleUpdate = async () => {
     return navigate('/update/' + id)
@@ -75,7 +82,7 @@ function Post (props) {
       <PostContentContainer>
         <PostUsername>by {user.username}</PostUsername>
         <PostTitle>{title}</PostTitle>
-        <PostDesc>{text}</PostDesc>
+        <PostDesc ref={descRef}></PostDesc>
         {
           (user._id === currentUserId) &&
 

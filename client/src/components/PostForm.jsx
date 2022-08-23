@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext, useEffect, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { postCreateOptions } from '../services/requestParams'
-import { getPostToUpdate } from '../services/getPostToUpdate'
 import AuthContext from '../context/AuthContext'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Editor } from '@tinymce/tinymce-react'
+import { parseEditorData } from '../services/parseEditorData'
+import { usePostToUpdate } from '../hooks/usePostToUpdate'
 
 const PostFormContainer = styled.section`
   display: flex;
@@ -19,37 +20,24 @@ const StyledPostForm = styled.form`
   grid-template-rows: repeat(5, 1fr);
 
 `
-
 function PostForm (props) {
   const { posts } = props
   const { postid } = useParams()
   const { user } = useContext(AuthContext)
+
   const navigate = useNavigate()
   const editorRef = useRef(null)
 
   const [formData, setFormData] = useState({
     title: '',
     text: '',
-    isPrivate: false,
-    image: ''
+    isPrivate: false
+    // image: ''
   })
 
+  usePostToUpdate(postid, posts, setFormData)
+
   const { title, text, isPrivate, image } = formData
-
-  useEffect(() => {
-    if (postid) {
-      const postToUpdate = getPostToUpdate(posts, postid)
-
-      setFormData(() => {
-        return {
-          title: postToUpdate.title,
-          text: postToUpdate.text,
-          isPrivate: postToUpdate.private,
-          image: postToUpdate.image
-        }
-      })
-    }
-  }, [])
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({ ...prevFormData, [e.target.name]: e.target.value }))
@@ -64,19 +52,8 @@ function PostForm (props) {
   }
 
   const handleEditorChange = (content, editor) => {
-    setFormData(prevFormData => ({ ...prevFormData, text: content.value }))
-  }
-
-  const parseEditorData = (content, editor) => {
-    const { targetElm } = editor
-    const { name } = targetElm
-    console.log(editor.targetElm.name)
-    return {
-      target: {
-        name,
-        value: content
-      }
-    }
+    const editorContent = editorRef.current.getContent()
+    setFormData(prevFormData => ({ ...prevFormData, text: editorContent }))
   }
 
   const handleCreateSubmit = (e) => {
@@ -86,9 +63,9 @@ function PostForm (props) {
 
     formDataRequest.append('image', image)
     formDataRequest.append('title', title)
-    formDataRequest.append('image', image)
-    formDataRequest.append('image', image)
-    formDataRequest.append('image', image)
+    formDataRequest.append('text', text)
+    formDataRequest.append('isPrivate', isPrivate)
+    formDataRequest.append('user', user)
 
     axios.post('http://localhost:4000/api/post', formDataRequest, {
     }).then(res => console.log(res))
@@ -121,21 +98,17 @@ function PostForm (props) {
 
         <label htmlFor="text">Post </label>
         <Editor
-          apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
-          outputFormat='html'
-          name='text'
-          value={formData.text}
-          onEditorChange={(content, editor) => {
-            handleEditorChange(parseEditorData(content, editor))
-          }}
           onInit={(evt, editor) => (editorRef.current = editor)}
           init={{
             height: 500,
             width: 420,
-            menubar: false,
-            plugins: [
-              'advlist autolink lists link '
-            ]
+            menubar: false
+          }}
+          apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
+          name='html'
+          value={formData.text}
+          onEditorChange={(content, editor) => {
+            handleEditorChange(parseEditorData(content, editor))
           }}
         />
 
