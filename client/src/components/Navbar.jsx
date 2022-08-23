@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import { logoutUser } from '../services/logoutUser'
 import styled from 'styled-components'
 
-function NavBar () {
-  const StyledNavbar = styled.nav`
+const StyledNavbar = styled.nav`
   margin: 0 10em ;
   & > ul{
     list-style:none;
@@ -15,8 +14,10 @@ function NavBar () {
 
     }
   `
-  const NavItem = styled.li`
+const NavItem = styled.li`
   `
+
+function Navbar () {
   return (
     <StyledNavbar>
       <ul>
@@ -67,4 +68,4 @@ function NavBar () {
   )
 }
 
-export default NavBar
+export default Navbar

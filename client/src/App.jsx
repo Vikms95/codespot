@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './components/Home'
 import LoginForm from './components/LoginForm'
-import Header from './components/Header'
+import Navbar from './components/Navbar'
 import PostForm from './components/PostForm'
 import RegisterForm from './components/RegisterForm'
 import Dashboard from './components/Dashboard'
@@ -26,7 +26,7 @@ function App () {
     <>
       <Router>
         <AppContainer>
-          <Header/>
+          <Navbar/>
           <Modal
             setPosts={setPosts}
             lastClickedPostId={lastClickedPostId}
