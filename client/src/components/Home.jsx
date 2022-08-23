@@ -30,6 +30,7 @@ function Home (props) {
                 user={post.user}
                 title={post.title}
                 text={post.text}
+                image={post.image}
                 setLastClickedPostId={setLastClickedPostId}
                 setIsModalActive={setIsModalActive}
                 >

@@ -59,7 +59,7 @@ const PostButtonContainer = styled.article`
 
 function Post (props) {
   const navigate = useNavigate()
-  const { id, user, title, text, setIsModalActive, setLastClickedPostId } = props
+  const { id, user, title, text, image, setIsModalActive, setLastClickedPostId } = props
 
   const { user: currentUserId } = useContext(AuthContext)
   const descRef = useRef(null)
@@ -70,8 +70,11 @@ function Post (props) {
     }
   })
 
+  // TRYING IT OUT ON DASHBOARD
   useEffect(() => {
-    
+    // console.log(image)
+    // const imageURL = image
+    fetch(image).then(res => console.log(res))
   })
 
   const handleUpdate = () => {

@@ -139,6 +139,10 @@ TRY THIS:
   :before deleting postController file it wassaving? maybe review the createPost on postController? --> 
   :make the image appear on each posts based on the files saved on the backend and the path saved on the database
 
+  https://expressjs.com/en/starter/static-files.html
+  
+  https://stackoverflow.com/questions/61374786/how-to-use-serve-static-file-with-express-and-react
+
 - Create ability crud functionality and ui for comments
 - Change privacy button to a normal switch button(just like the one on Weather App)
 - Setup timestamp property por posts 
