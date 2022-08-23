@@ -39,6 +39,7 @@ const PostUsername = styled.h3`
   `
 const PostTitle = styled.h2`
   margin: 0;
+  font-size: larger;
 `
 
 const PostDesc = styled.div`

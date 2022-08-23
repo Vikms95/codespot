@@ -12,9 +12,11 @@ const absoluteDIR = 'C:\Users\Usuario\Downloads\P\Prog.Hos\blog-api\server\publi
 const DIR = '../public/';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+      console.log(file)
       cb(null, DIR);
     },
     filename: (req, file, cb) => {
+      console.log(file)
         const fileName = file.originalname.toLowerCase().split(' ').join('-');
         cb(null, uuidv4() + '-' + 'hi')
     },

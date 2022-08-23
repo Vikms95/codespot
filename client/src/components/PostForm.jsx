@@ -25,6 +25,7 @@ const StyledPostForm = styled.form`
 
 const TitleInput = styled.input`
   padding:.5em;
+  width: 20em;
 `
 
 const FormButton = styled(Button)`
@@ -73,7 +74,7 @@ function PostForm (props) {
 
     const formDataRequest = new FormData()
 
-    formDataRequest.append('image', image)
+    // formDataRequest.append('image', image)
     formDataRequest.append('title', title)
     formDataRequest.append('text', text)
     formDataRequest.append('isPrivate', isPrivate)
@@ -106,15 +107,15 @@ function PostForm (props) {
       <StyledPostForm onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
 
         <Label htmlFor="title">Title </Label>
-        <TitleInput type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} maxLength='25' />
+        <TitleInput type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} maxLength='40' />
         <br />
 
         <Label htmlFor="text">Post </Label>
         <Editor
-          onInit={(evt, editor) => (editorRef.current = editor)}
+          onInit={(_e, editor) => (editorRef.current = editor)}
           init={{
             height: 500,
-            width: 600,
+            width: 700,
             menubar: false
           }}
           apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
@@ -129,9 +130,11 @@ function PostForm (props) {
         <Label htmlFor="image"></Label>
         <input type="file" name='image' onChange={handleImageChange}/>
         <br />
+
         <Label htmlFor="privacy">Should we keep this post private?</Label>
         <input type="checkbox" name='privacy' onChange={handlePrivacyChange} checked={isPrivate} />
         <br />
+
         <FormButton type='submit'>{postid ? 'Update post' : 'Submit post'}</FormButton>
       </StyledPostForm>
     </PostFormContainer>
