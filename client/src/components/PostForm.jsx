@@ -93,7 +93,7 @@ function PostForm (props) {
     <PostFormContainer>
       <StyledPostForm onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit} encType='multipart/form-data'>
         <label htmlFor="title">Title </label>
-        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} />
+        <input type="text" name='title' onChange={handleChange} placeholder='Post title ...' value={title} maxLength='25' />
         <br />
 
         <label htmlFor="text">Post </label>

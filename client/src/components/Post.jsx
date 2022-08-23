@@ -41,8 +41,14 @@ const PostTitle = styled.h2`
   margin: 0;
 `
 
-const PostDesc = styled.p`
-  
+const PostDesc = styled.div`
+  & > p{
+    text-overflow: ellipsis ;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+
+  }
 `
 
 const PostButtonContainer = styled.article`
