@@ -1,16 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function usePost (postid, posts) {
-  let post
-
+  const [post, setPost] = useState()
   useEffect(() => {
-    // if (posts) {
-    console.log(postid)
-    post = posts.find(post => {
-      console.log(post._id, postid)
-      return post._id === postid
-    })
-    // }
+    if (posts) {
+      setPost(posts.find(post => {
+        console.log(post)
+        console.log(post._id)
+        return post._id === postid
+      }))
+    }
   })
   return { post }
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PostsContext from '../context/PostsContext'
 import usePost from '../hooks/usePost'
@@ -10,7 +10,7 @@ function Post () {
 
   return (
     <>
-    <div>{console.log(post._id)}</div>
+    <div>{console.log(post)}</div>
     <div>{console.log(postid)}</div>
 
     </>

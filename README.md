@@ -152,7 +152,10 @@ TRY THIS:
 - Create Post component
   https://dribbble.com/shots/15993980-Blog-Photo-Website-concept
   :title > date above img > image > content 
-  :need to create posts context
+  <!-- :need to create posts context -->
+  :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
+  https://reactjs.org/docs/hooks-custom.html
+
 - Style header
 - Create ability crud functionality and ui for comments
 - Implement sanitization of inputs
