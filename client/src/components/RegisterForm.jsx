@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import { userCreateOptions } from '../services/requestParams'
 
 function Register () {
-  const navigate = useNavigate()
-
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     password2: ''
   })
+
+  const navigate = useNavigate()
 
   const { username, password, password2 } = formData
 

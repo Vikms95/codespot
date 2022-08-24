@@ -6,6 +6,7 @@ import Home from './components/Home'
 import LoginForm from './components/LoginForm'
 import Navbar from './components/Navbar'
 import PostForm from './components/PostForm'
+import Post from './components/Post'
 import RegisterForm from './components/RegisterForm'
 import Dashboard from './components/Dashboard'
 import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
@@ -65,6 +66,7 @@ function App () {
                 />
               <Route path='/login' element={<LoginForm setUser={setUser}/>}/>
               <Route path='/register' element={<RegisterForm/>}/>
+              <Route path='/:postid' element={<Post/>}/>
             </Routes>
           </AuthContext.Provider>
           <Modal

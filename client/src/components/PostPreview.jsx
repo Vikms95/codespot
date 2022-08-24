@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import defaultPostImage from '../assets/default-image.jpg'
 import styled from 'styled-components'
@@ -25,11 +25,21 @@ const PostContentContainer = styled.article`
   padding: 1.5em;
   height: 100%;
 `
+
 const PostImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 10px;
 `
+const PostLink = styled(Link)`
+  display: flex;
+
+  &:hover {
+    filter: brightness(.8);
+
+  }
+`
+
 const PostTopRowContainer = styled.article`
   display: flex;
   justify-content: space-between;
@@ -75,11 +85,12 @@ function PostPreview (props) {
     setIsModalActive,
     setLastClickedPostId
   } = props
-  const navigate = useNavigate()
 
   const [imageSrc, setImageSrc] = useState()
   const { user: currentUserId } = useContext(AuthContext)
   const descRef = useRef(null)
+
+  const navigate = useNavigate()
 
   useText(descRef, text)
 
@@ -106,7 +117,9 @@ function PostPreview (props) {
     <StyledPostPreview>
 
       <PostImageContainer>
-        <PostImage src={defaultPostImage} alt="default-post"/>
+        <PostLink to={`/${id}`}>
+          <PostImage src={defaultPostImage} alt="default-post"/>
+        </PostLink>
       </PostImageContainer>
 
       <PostContentContainer>
