@@ -152,7 +152,7 @@ function PostPreview (props) {
           <StyledBookImage>
           </StyledBookImage>
           <BookText>Read this article</BookText>
-          <PostImage src={imageSrc?.url || defaultPostImage} alt="default-post"/>
+          <PostImage src={imageSrc?.url || defaultPostImage} alt="post-preview"/>
         </PostLink>
       </PostImageContainer>
 

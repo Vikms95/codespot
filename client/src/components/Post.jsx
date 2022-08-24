@@ -6,18 +6,30 @@ import usePost from '../hooks/usePost'
 import styled from 'styled-components'
 import { usePosts } from '../hooks/usePosts'
 import { useHtmlAsText } from '../hooks/useText'
+import defaultPostImage from '../assets/default-image.jpg'
 
 const StyledPost = styled.section`
   margin: 5em;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `
 const Title = styled.h1`
-  font-size: 5em;
+  font-size: 4em;
+`
+const Image = styled.img`
+  max-width: 100%;
+  max-height: 100rem;
+  align-self: center;
+  margin-bottom: 3em;
 `
 
 const Text = styled.p`
-  
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  text-align:justify;
+  max-width: 70%;
 `
 
 function Post (props) {
@@ -26,12 +38,23 @@ function Post (props) {
   const { posts } = props
   const post = usePost(postid, posts)
   const textRef = useRef(null)
+  const [imageSrc, setImageSrc] = useState()
 
   useHtmlAsText(textRef, post.text)
+
+  useEffect(() => {
+    if (post) {
+      fetch('/images/' + post.image)
+        .then(res => setImageSrc(res || ''))
+    }
+  }, [posts, post])
 
   return (
     <StyledPost>
       <Title>{post.title}</Title>
+      {imageSrc?.ok &&
+        <Image src={imageSrc?.url} alt='post-portrait'></Image>
+      }
       <Text ref={textRef}></Text>
     </StyledPost>
   )
