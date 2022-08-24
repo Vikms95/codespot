@@ -5,7 +5,6 @@ const getPosts = (req, res, next) => {
     .populate('user', ['_id', '__v', 'username'])
     .exec(function (err, posts) {
       if (err) return next(err)
-      console.log(posts[0])
       res.json(posts)
     })
 }
@@ -35,25 +34,28 @@ const createPost = (req, res, next) => {
 
   post.save(function (err) {
     if (err) {
-      console.log(err)
       return res.sendStatus(400)
     } else {
-      console.log(post)
       return res.status(201).json(post)
     }
   })
 }
 
 const updatePost = (req, res, next) => {
-  const { title, text, isPublic, user } = req.body
+  const { title, text, isPublic, user, formerTimestamp } = req.body
   const { postid } = req.params
+  console.log(postid)
+  console.log(title)
+  console.log(user)
 
   const post = new Post({
     _id: postid,
     user,
     title,
     text,
-    public: isPublic
+    public: isPublic,
+    timestamp:formerTimestamp
+    // image: req.file.filename
   })
 
   Post.findByIdAndUpdate(postid, post, {}, (err, post) => {

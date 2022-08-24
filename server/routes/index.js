@@ -16,8 +16,11 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
       console.log(file)
-        const fileName = new Date().toISOString() + file.originalname;
-        cb(null, fileName)
+        // Changed to just the original name so when the picture gets updated, if
+        // the picture is not changed, it will not save a new one to /public
+        
+        // const fileName = new Date().toISOString() + file.originalname;
+        cb(null, file.originalname)
     },
     
 });
@@ -48,7 +51,7 @@ router.get('/api/:userid/posts', getUserPosts)
 
 router.post('/api/post', upload.single('image'), createPost)
 
-router.put('/api/posts/:postid', updatePost)
+router.put('/api/posts/:postid', upload.single('image'), updatePost)
 
 router.delete('/api/posts/:postid', deletePost)
 

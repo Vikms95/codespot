@@ -104,6 +104,7 @@ function PostForm (props) {
     text,
     isPublic
     // image
+
   } = formData
 
   const handleChange = (e) => {
@@ -142,11 +143,9 @@ function PostForm (props) {
         isPublic,
         user,
         // image,
-        formerTimestamp: formData.timestamp,
         timestamp
       }
     )
-
     axios.post('http://localhost:4000/api/post', formDataRequest, {
     }).then(res => console.log(res))
 
@@ -158,15 +157,21 @@ function PostForm (props) {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault()
 
-    const response = fetch('/api/posts/' + postid,
-      postCreateOptions('PUT', { user, title, text, isPublic })
+    const formDataRequest = createFormData(
+      {
+        title,
+        text,
+        isPublic,
+        user,
+        // image,
+        formerTimestamp: formData.timestamp
+      }
     )
 
-    const postIsUpdated = await response
+    axios.put('http://localhost:4000/api/posts/' + postid, formDataRequest, {
+    }).then(res => console.log(res))
 
-    if (postIsUpdated) {
-      return navigate('/dashboard')
-    }
+    return navigate('/dashboard')
   }
 
   return (
