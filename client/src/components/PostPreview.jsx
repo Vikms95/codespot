@@ -2,10 +2,11 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
-import defaultPostImage from '../assets/default-image.jpg'
 import styled from 'styled-components'
 import { Button } from '../styled/Button'
 import { useText } from '../hooks/useText'
+import defaultPostImage from '../assets/default-image.jpg'
+import { FaBookOpen } from 'react-icons/fa'
 
 const StyledPostPreview = styled.section`
   display:flex;
@@ -31,12 +32,23 @@ const PostImage = styled.img`
   height: 100%;
   border-radius: 10px;
 `
+const StyledBookImage = styled(FaBookOpen)`
+  display: none;
+  position: absolute;
+  color: white;
+  font-size: 3em;
+  top: 100px;
+  left: 300px;
+  z-index: 1;
+`
 const PostLink = styled(Link)`
   display: flex;
-
-  &:hover {
+  position: relative;
+  &:hover ${PostImage} {
     filter: brightness(.8);
-
+  }
+  &:hover ${StyledBookImage} {
+    display: block;
   }
 `
 
@@ -118,6 +130,7 @@ function PostPreview (props) {
 
       <PostImageContainer>
         <PostLink to={`/${id}`}>
+          <StyledBookImage> Open article </StyledBookImage>
           <PostImage src={defaultPostImage} alt="default-post"/>
         </PostLink>
       </PostImageContainer>
