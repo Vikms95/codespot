@@ -29,14 +29,19 @@ const PostImage = styled.img`
   height: 100%;
   border-radius: 10px;
 `
+const PostTopRowContainer = styled.article`
+  display: flex;
+  justify-content: space-between;
+`
 
-const PostUsername = styled.h3`
+const PostTopRow = styled.h3`
   margin: 0 0 .8em 0;
   font-size: smaller ;
-  color: #a0a0a0;
+  color: #8d8d8d;
   display: flex;
   align-self: flex-end;
-  `
+`
+
 const PostTitle = styled.h2`
   margin: 0;
   font-size: larger;
@@ -58,26 +63,37 @@ const PostButtonContainer = styled.article`
 `
 
 function Post (props) {
+  const {
+    id,
+    user,
+    title,
+    text,
+    image,
+    timestamp,
+    setIsModalActive,
+    setLastClickedPostId
+  } = props
   const navigate = useNavigate()
-  const { id, user, title, text, image, setIsModalActive, setLastClickedPostId } = props
 
   const [imageSrc, setImageSrc] = useState()
   const { user: currentUserId } = useContext(AuthContext)
   const descRef = useRef(null)
+
   useEffect(() => {
     if (descRef.current) {
       descRef.current.innerHTML = text
     }
   })
 
+  // Refactor into hook
   // TRYING IT OUT ON DASHBOARD
-  useEffect(() => {
-    // console.log(image)
-    // const imageURL = image
-    fetch(image)
-      .then(res => console.log(res))
-      .then()
-  })
+  // useEffect(() => {
+  //   // console.log(image)
+  //   // const imageURL = image
+  //   fetch(image)
+  //     .then(res => console.log(res))
+  //     .then()
+  // })
 
   const handleUpdate = () => {
     return navigate('/update/' + id)
@@ -96,7 +112,11 @@ function Post (props) {
       </PostImageContainer>
 
       <PostContentContainer>
-        <PostUsername>by {user.username}</PostUsername>
+        <PostTopRowContainer>
+          <PostTopRow>by {user.username}</PostTopRow>
+          <PostTopRow>{timestamp}</PostTopRow>
+        </PostTopRowContainer>
+
         <PostTitle>{title}</PostTitle>
         <PostDesc ref={descRef}></PostDesc>
         {
