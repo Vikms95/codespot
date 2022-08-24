@@ -56,12 +56,12 @@ const CheckBoxLabel = styled.label`
   }
 `
 const CheckBox = styled.input`
+  position:absolute;
   opacity: 0;
   z-index: 1;
   border-radius: 15px;
   width: 42px;
   height: 26px;
-  
   &:checked + ${CheckBoxLabel} {
     background: #531753;
     &::after {
