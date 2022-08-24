@@ -19,38 +19,54 @@ const StyledPostPreview = styled.section`
 `
 
 const PostImageContainer = styled.article`
-  object-fit: fill;
+  object-fit: cover;
   `
-
-const PostContentContainer = styled.article`
-  padding: 1.5em;
-  height: 100%;
-`
-
 const PostImage = styled.img`
-  width: 100%;
-  height: 100%;
   border-radius: 10px;
+  width: 100%;
+  max-height: 22em;
+  max-width: 30em; 
 `
 const StyledBookImage = styled(FaBookOpen)`
   display: none;
   position: absolute;
   color: white;
   font-size: 3em;
-  top: 100px;
-  left: 300px;
+  top: 40%;
+  left: 45%;
   z-index: 1;
 `
+
+const BookText = styled.span`
+  display: none;
+  position: absolute;
+  color: white;
+  font-size: 1em;
+  top: 60%;
+  left: 38%;
+  z-index: 1;
+`
+
 const PostLink = styled(Link)`
   display: flex;
   position: relative;
   &:hover ${PostImage} {
     filter: brightness(.8);
+    transform: scale(1.01, 1.01);
+    transition: transform .5s;
   }
   &:hover ${StyledBookImage} {
     display: block;
   }
+  &:hover ${BookText} {
+    display: block;
+  }
 `
+
+const PostContentContainer = styled.article`
+  padding: 1.5em;
+  height: 100%;
+  `
 
 const PostTopRowContainer = styled.article`
   display: flex;
@@ -111,8 +127,10 @@ function PostPreview (props) {
   useEffect(() => {
     // console.log(image)
     // const imageURL = image
-    fetch('/images/' + image)
-      .then(res => setImageSrc(res))
+    if (image) {
+      fetch('/images/' + image)
+        .then(res => setImageSrc(res))
+    }
   }, [])
 
   const handleUpdate = () => {
@@ -131,7 +149,8 @@ function PostPreview (props) {
         <PostLink to={`/${id}`}>
           <StyledBookImage>
           </StyledBookImage>
-          <PostImage src={imageSrc.url || defaultPostImage} alt="default-post"/>
+          <BookText>Read this article</BookText>
+          <PostImage src={imageSrc?.url || defaultPostImage} alt="default-post"/>
         </PostLink>
       </PostImageContainer>
 

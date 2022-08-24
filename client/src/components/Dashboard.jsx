@@ -54,6 +54,7 @@ function Dashboard (props) {
                     user={post.user}
                     title={post.title}
                     text={post.text}
+                    image={post.image}
                     timestamp={post.timestamp}
                     setLastClickedPostId={setLastClickedPostId}
                     setIsModalActive={setIsModalActive}
