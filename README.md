@@ -159,6 +159,9 @@ TRY THIS:
   :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
   :https://reactjs.org/docs/hooks-custom.html
 
+- Try to abstract context with this 
+https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
+
 - Create Post endpoints(same as with the PostPreview?)
 
 - Create Comments component
@@ -168,8 +171,6 @@ TRY THIS:
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
 
-- Try to abstract context with this 
-https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
 
 - Implement sanitization of inputs
 

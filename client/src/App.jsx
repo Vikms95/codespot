@@ -69,7 +69,7 @@ function App () {
                 />
               <Route path='/login' element={<LoginForm setUser={setUser}/>}/>
               <Route path='/register' element={<RegisterForm/>}/>
-              <Route path='/:postid' element={<Post/>}/>
+              <Route path='/:postid' element={<Post posts={posts}/>}/>
             </Routes>
 
             </PostsContext.Provider>
