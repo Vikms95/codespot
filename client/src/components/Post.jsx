@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import PostsContext from '../context/PostsContext'
 import usePost from '../hooks/usePost'
 import styled from 'styled-components'
-import { usePosts } from '../hooks/usePosts'
 import { useHtmlAsText } from '../hooks/useText'
-import defaultPostImage from '../assets/default-image.jpg'
 
 const StyledPost = styled.section`
   margin: 5em;
