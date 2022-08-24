@@ -22,14 +22,15 @@ const getUserPosts = (req, res, next) => {
 }
 
 const createPost = (req, res, next) => {
-  const { title, text, isPrivate, user } = req.body
+  const { title, text, isPrivate, user, timestamp } = req.body
   
   const post = new Post({
     user,
     title,
     text,
     private: isPrivate,
-    image: req.file.filename
+    timestamp
+    // image: req.file.filename
   })
 
   post.save(function (err) {
@@ -37,6 +38,7 @@ const createPost = (req, res, next) => {
       console.log(err)
       return res.sendStatus(400)
     } else {
+      console.log(post)
       return res.status(201).json(post)
     }
   })

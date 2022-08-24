@@ -10,6 +10,7 @@ import { parseEditorData } from '../services/parseEditorData'
 import { usePostToUpdate } from '../hooks/usePostToUpdate'
 import { Label } from '../styled/Label'
 import { Button } from '../styled/Button'
+import { getCurrentDate } from '../services/getCurrentDate'
 
 const PostFormContainer = styled.section`
   margin:5em;  
@@ -45,7 +46,8 @@ function PostForm (props) {
     title: '',
     text: '',
     isPrivate: false,
-    image: ''
+    // image: ''
+    timestamp: ''
   })
 
   usePostToUpdate(postid, posts, setFormData)
@@ -53,8 +55,8 @@ function PostForm (props) {
   const {
     title,
     text,
-    isPrivate,
-    image
+    isPrivate
+    // image
   } = formData
 
   const handleChange = (e) => {
@@ -85,13 +87,15 @@ function PostForm (props) {
   const handleCreateSubmit = (e) => {
     e.preventDefault()
 
+    const timestamp = getCurrentDate()
     const formDataRequest = new FormData()
 
-    formDataRequest.append('image', image)
+    // formDataRequest.append('image', image)
     formDataRequest.append('title', title)
     formDataRequest.append('text', text)
     formDataRequest.append('isPrivate', isPrivate)
     formDataRequest.append('user', user)
+    formDataRequest.append('timestamp', formData.timestamp || timestamp)
 
     axios.post('http://localhost:4000/api/post', formDataRequest, {
     }).then(res => console.log(res))

@@ -7,12 +7,12 @@ const { createUser, loginUser, retrieveToken, verifyToken } = require('../contro
 const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
 
 // Setup multer
-// const absoluteDIR = 'C:\Users\Usuario\Downloads\P\Prog.Hos\blog-api\server\public';
-const DIR = './public/';
+const dirLinux = './public/';
+// const dirWindows = '.\\ public|\ ';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       console.log(file)
-      cb(null, DIR);
+      cb(null, dirLinux);
     },
     filename: (req, file, cb) => {
       console.log(file)

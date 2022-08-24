@@ -5,8 +5,8 @@ const PostSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'UserSchema', required: true },
   // If the observer is not the same user that created the post and private is true, do not load the post
   private: { type: Boolean, required: true },
-  // timestamp: { type: String, required: true },
-  image: { type: String },
+  timestamp: { type: String},
+  // image: { type: String },
   title: { type: String, required: true },
   text: { type: String, required: true }
 })
