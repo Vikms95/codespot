@@ -150,7 +150,7 @@ TRY THIS:
 <!-- - Create hover on PostPreview to read the full Post -->
 
 <!-- -Fix PostReview text overflow -->
-  !:posts with elipsis have some less padding than the ones that do not
+  <!-- :posts with elipsis have some less padding than the ones that do not -->
 
 - Create Post component
   https://dribbble.com/shots/15993980-Blog-Photo-Website-concept
@@ -159,16 +159,20 @@ TRY THIS:
   :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
   :https://reactjs.org/docs/hooks-custom.html
 
+- Create Post endpoints(same as with the PostPreview?)
+
+- Create Comments component
+
 - Style header
+
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
 
 - Try to abstract context with this 
 https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
 
-- Create ability crud functionality and ui for comments
 - Implement sanitization of inputs
-- Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
+
     
 
 
