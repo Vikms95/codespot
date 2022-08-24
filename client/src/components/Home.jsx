@@ -1,30 +1,32 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
-import Post from './Post'
+import PostPreview from './PostPreview'
 import useFetch from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
 import PostListContainer from '../wrappers/PostListContainer'
+import { usePosts } from '../hooks/usePosts'
+import styled from 'styled-components'
+
+const StyledHome = styled.section`
+`
 
 function Home (props) {
   const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
 
   const response = useFetch('/api/posts', getOptions)
 
-  useEffect(() => {
-    setPosts(response)
-  }, [response])
-
+  usePosts(setPosts, response)
   useAuth()
 
   return (
-    <section className='home-container'>
+    <StyledHome>
       {posts &&
       <>
         <PostListContainer>
           {posts.map((post) => (
             (post.public) &&
-              <Post
+              <PostPreview
                 key={post._id}
                 id={post._id}
                 user={post.user}
@@ -35,12 +37,12 @@ function Home (props) {
                 setLastClickedPostId={setLastClickedPostId}
                 setIsModalActive={setIsModalActive}
                 >
-              </Post>
+              </PostPreview>
           ))}
         </PostListContainer>
       </>
 }
-    </section>
+    </StyledHome>
   )
 }
 

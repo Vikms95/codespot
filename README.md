@@ -145,7 +145,7 @@ TRY THIS:
 
 <!-- - Setup timestamp property for posts  -->
 <!-- - Change privacy button to a normal switch button(just like the one on Weather App) -->
-- Fix bug where cancel button is shown above the cancel modal
+<!-- - Fix bug where cancel button is shown above the cancel modal -->
 - Create ability crud functionality and ui for comments
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post

@@ -2,33 +2,32 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../context/AuthContext'
 import PostListContainer from '../wrappers/PostListContainer'
-import Post from './Post'
+import PostPreview from './PostPreview'
 import useFetch from '../hooks/useFetch'
+import { usePosts } from '../hooks/usePosts'
 import { getOptions } from '../services/requestParams'
+import styled from 'styled-components'
 
-// const StyledDashboard = styled.section`
+const StyledDashboard = styled.section`
 
-// `
+`
 
 function Dashboard (props) {
   const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
   const { user } = useContext(AuthContext)
 
   const response = useFetch(`/api/${user}/posts`, getOptions)
-
-  useEffect(() => {
-    setPosts(response)
-  }, [response])
+  usePosts(setPosts, response)
 
   return (
-    <section className='dashboard-container'>
+    <StyledDashboard>
       {posts &&
         <>
           <PostListContainer title='Published posts'>
             {posts.map((post) => (
               (post.public) &&
 
-                <Post
+                <PostPreview
                   key={post._id}
                   id={post._id}
                   user={post.user}
@@ -40,7 +39,7 @@ function Dashboard (props) {
                   setLastClickedPostId={setLastClickedPostId}
                   setIsModalActive={setIsModalActive}
                 >
-                </Post>
+                </PostPreview>
 
             ))}
           </PostListContainer>
@@ -49,7 +48,7 @@ function Dashboard (props) {
 
             {posts.map((post) => (
               (!post.public) &&
-                  <Post
+                  <PostPreview
                     key={post._id}
                     id={post._id}
                     user={post.user}
@@ -59,13 +58,13 @@ function Dashboard (props) {
                     setLastClickedPostId={setLastClickedPostId}
                     setIsModalActive={setIsModalActive}
                   >
-                </Post>
+                </PostPreview>
             ))}
 
           </PostListContainer>
         </>
       }
-    </section>
+    </StyledDashboard>
   )
 }
 

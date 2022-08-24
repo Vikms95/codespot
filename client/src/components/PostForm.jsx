@@ -11,6 +11,7 @@ import { usePostToUpdate } from '../hooks/usePostToUpdate'
 import { Label } from '../styled/Label'
 import { Button } from '../styled/Button'
 import { getCurrentDate } from '../services/getCurrentDate'
+import { createFormData } from '../services/createFormData'
 
 const PostFormContainer = styled.section`
   margin:5em;  
@@ -86,9 +87,6 @@ function PostForm (props) {
   const { postid } = useParams()
   const { user } = useContext(AuthContext)
 
-  const navigate = useNavigate()
-  const editorRef = useRef(null)
-
   const [formData, setFormData] = useState({
     title: '',
     text: '',
@@ -97,6 +95,8 @@ function PostForm (props) {
     timestamp: ''
   })
 
+  const navigate = useNavigate()
+  const editorRef = useRef(null)
   usePostToUpdate(postid, posts, setFormData)
 
   const {
@@ -135,14 +135,17 @@ function PostForm (props) {
     e.preventDefault()
 
     const timestamp = getCurrentDate()
-    const formDataRequest = new FormData()
-
-    // formDataRequest.append('image', image)
-    formDataRequest.append('title', title)
-    formDataRequest.append('text', text)
-    formDataRequest.append('isPublic', isPublic)
-    formDataRequest.append('user', user)
-    formDataRequest.append('timestamp', formData.timestamp || timestamp)
+    const formDataRequest = createFormData(
+      {
+        title,
+        text,
+        isPublic,
+        user,
+        // image,
+        formerTimestamp: formData.timestamp,
+        timestamp
+      }
+    )
 
     axios.post('http://localhost:4000/api/post', formDataRequest, {
     }).then(res => console.log(res))
@@ -169,10 +172,11 @@ function PostForm (props) {
   return (
     <PostFormContainer>
       <StyledPostForm
-      onSubmit={(postid)
-        ? handleUpdateSubmit
-        : handleCreateSubmit}
-      encType='multipart/form-data'>
+        onSubmit={(postid)
+          ? handleUpdateSubmit
+          : handleCreateSubmit}
+        encType='multipart/form-data'
+      >
 
         <Label htmlFor="title">Title </Label>
         <TitleInput

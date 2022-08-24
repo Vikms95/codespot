@@ -18,7 +18,6 @@ const StyledModal = styled.section`
   padding: 3em;
   border-radius: 5px;
   box-shadow: 2px 2px 10px 0px;
-  /* z-index: 1; */
 `
 const ButtonContainer = styled.div`
   display: flex;
@@ -26,7 +25,13 @@ const ButtonContainer = styled.div`
 `
 
 function Modal (props) {
-  const { lastClickedPostId, setIsModalActive, setPosts, isModalActive } = props
+  const
+    {
+      lastClickedPostId,
+      setIsModalActive,
+      setPosts,
+      isModalActive
+    } = props
 
   const handleDelete = () => {
     fetch('/api/posts/' + lastClickedPostId, deleteOptions)
