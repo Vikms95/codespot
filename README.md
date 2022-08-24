@@ -148,7 +148,12 @@ TRY THIS:
 <!-- - Fix bug where cancel button is shown above the cancel modal -->
 <!-- - UpdateForm apply the new logic -->
 
-- Create hover on PostPreview to read the full Post
+<!-- - Create hover on PostPreview to read the full Post -->
+- Create Post component
+  https://dribbble.com/shots/15993980-Blog-Photo-Website-concept
+  :title > date above img > image > content 
+  :need to create posts context
+- Style header
 - Create ability crud functionality and ui for comments
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post

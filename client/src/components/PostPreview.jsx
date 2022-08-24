@@ -130,7 +130,8 @@ function PostPreview (props) {
 
       <PostImageContainer>
         <PostLink to={`/${id}`}>
-          <StyledBookImage> Open article </StyledBookImage>
+          <StyledBookImage>
+          </StyledBookImage>
           <PostImage src={defaultPostImage} alt="default-post"/>
         </PostLink>
       </PostImageContainer>

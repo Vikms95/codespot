@@ -11,6 +11,7 @@ import RegisterForm from './components/RegisterForm'
 import Dashboard from './components/Dashboard'
 import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
 import AuthContext from './context/AuthContext'
+import PostsContext from './context/PostsContext'
 import Modal from './components/Modal'
 import AppContainer from './styled/AppContainer'
 
@@ -24,11 +25,13 @@ function App () {
   const authContext = { user, setUser }
 
   return (
-    <>
+
       <Router>
         <AppContainer>
           <Navbar/>
           <AuthContext.Provider value={authContext}>
+            <PostsContext.Provider value={{ posts }}>
+
             <Routes>
 
                 <Route element={<AuthRouteWrapper/>}>
@@ -68,16 +71,20 @@ function App () {
               <Route path='/register' element={<RegisterForm/>}/>
               <Route path='/:postid' element={<Post/>}/>
             </Routes>
+
+            </PostsContext.Provider>
           </AuthContext.Provider>
+
           <Modal
             setPosts={setPosts}
             lastClickedPostId={lastClickedPostId}
             isModalActive={isModalActive}
             setIsModalActive={setIsModalActive}
           />
+
         </AppContainer>
       </Router>
-    </>
+
   )
 }
 
