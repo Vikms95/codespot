@@ -16,7 +16,7 @@ const StyledPostPreview = styled.section`
   box-shadow: 4px 4px 10px -2px gray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  max-height: 30em;
+  max-height: 35em;
   text-overflow: ellipsis;
 `
 
@@ -66,8 +66,11 @@ const PostLink = styled(Link)`
 `
 
 const PostContentContainer = styled.article`
+  display: flex;
+  flex-direction: column;
+  row-gap: 1em;
   padding: 1.5em;
-  height: 100%;
+  height: 100% ;
   `
 
 const PostTopRowContainer = styled.article`
@@ -89,13 +92,12 @@ const PostTitle = styled.h2`
 `
 
 const PostDesc = styled.div`
-  & > p{
-    text-overflow: ellipsis;
-    /* white-space: nowrap; */
-    /* overflow: hidden; */
-    width: 100%;
-    height: 100%;
-  }
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  /* margin-bottom: 1rem; */
+  padding: 0;
 `
 
 const PostButtonContainer = styled.article`
@@ -127,8 +129,6 @@ function PostPreview (props) {
   // Refactor into hook
   // TRYING IT OUT ON DASHBOARD
   useEffect(() => {
-    // console.log(image)
-    // const imageURL = image
     if (image) {
       fetch('/images/' + image)
         .then(res => setImageSrc(res))

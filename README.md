@@ -61,13 +61,13 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :refactor context so it uses the userid? -->
 
 
-- /dashboard is where all your own posts are located
-  /api/:userid/posts
-    <!-- :implement functionality to fetch posts with your id by calling GET /api/:userid/posts? -->
-    <!-- :get the post that match the id taken from React context -->
-    :you can make a post public and private, edit and delete from /dashboard
-  <Dashboard/>
-    <!-- :map all the fetched posts and pass the data as props to <Post/> -->
+<!-- - /dashboard is where all your own posts are located -->
+  <!-- /api/:userid/posts -->
+  <!-- :implement functionality to fetch posts with your id by calling GET /api/:userid/posts? -->
+  <!-- :get the post that match the id taken from React context -->
+  <!-- :you can make a post public and private, edit and delete from /dashboard -->
+  <!-- <Dashboard/> -->
+  <!-- :map all the fetched posts and pass the data as props to <Post/> -->
 
 
 <!-- - / will be where all the posts from all the users are shown -->
@@ -111,12 +111,12 @@ x- Can't access directly when token is modified manually to an invalid one -->
   :contents of the Editor are being passed as undefined -->
 
 
-- Setup multer to let the user upload post image value
-  https://www.npmjs.com/package/multer
-  https://github.com/expressjs/multer
-  https://stackoverflow.com/questions/63451157/how-can-i-use-multer-with-react
+<!-- - Setup multer to let the user upload post image value
+https://www.npmjs.com/package/multer
+https://github.com/expressjs/multer -->
+<!-- https://stackoverflow.com/questions/63451157/how-can-i-use-multer-with-react -->
 
-<!-- !!:NOT PASSING THE FILE AT ALL
+<!--:NOT PASSING THE FILE AT ALL
 :  storage: {},
 limits: { fileSize: 10000 },
 preservePath: undefined, <!!!!
@@ -132,7 +132,7 @@ TRY FIRST ANSWER:
 TRY THIS:
   https://www.positronx.io/react-file-upload-tutorial-with-node-express-and-multer/ -->
   <!-- : now file is uploaded, but the rest of the data is not being found by mongoose, check formatting -->
-  <!-- !:now file is uploaded and data is found, but req.file seems to be undefined
+  <!-- :now file is uploaded and data is found, but req.file seems to be undefined
   :post request errors because I'm trying to access req.file inside the middleware
   :file won't print on the multer option callbacks
   :now file is not saved T_T
@@ -148,6 +148,10 @@ TRY THIS:
 <!-- - UpdateForm apply the new logic -->
 
 <!-- - Create hover on PostPreview to read the full Post -->
+
+<!-- -Fix PostReview text overflow -->
+  !:posts with elipsis have some less padding than the ones that do not
+
 - Create Post component
   https://dribbble.com/shots/15993980-Blog-Photo-Website-concept
   :title > date above img > image > content 
@@ -158,8 +162,10 @@ TRY THIS:
 - Style header
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
+
 - Try to abstract context with this 
 https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
+
 - Create ability crud functionality and ui for comments
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post
