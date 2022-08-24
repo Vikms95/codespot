@@ -137,11 +137,10 @@ TRY THIS:
   :file won't print on the multer option callbacks
   :now file is not saved T_T
   :before deleting postController file it wassaving? maybe review the createPost on postController? --> 
-  :make the image appear on each posts based on the files saved on the backend and the path saved on the database
-    :how to retrieve image from the app.use(static..) ?? do i need that or another endpoint?
-  https://expressjs.com/en/starter/static-files.html
-
-  https://stackoverflow.com/questions/61374786/how-to-use-serve-static-file-with-express-and-react
+  <!-- :make the image appear on each posts based on the files saved on the backend and the path saved on the database -->
+  <!-- :how to retrieve image from the app.use(static..) ?? do i need that or another endpoint? -->
+  <!-- https://expressjs.com/en/starter/static-files.html -->
+  <!-- https://stackoverflow.com/questions/61374786/how-to-use-serve-static-file-with-express-and-react -->
 
 <!-- - Setup timestamp property for posts  -->
 <!-- - Change privacy button to a normal switch button(just like the one on Weather App) -->
@@ -154,9 +153,13 @@ TRY THIS:
   :title > date above img > image > content 
   <!-- :need to create posts context -->
   :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
-  https://reactjs.org/docs/hooks-custom.html
+  :https://reactjs.org/docs/hooks-custom.html
 
 - Style header
+- Style file input
+  :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
+- Try to abstract context with this 
+https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
 - Create ability crud functionality and ui for comments
 - Implement sanitization of inputs
 - Post = PostPreview and then create a Post component which will be a full page view of all the content in the post

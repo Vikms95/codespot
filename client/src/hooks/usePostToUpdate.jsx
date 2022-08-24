@@ -11,7 +11,7 @@ export function usePostToUpdate (postid, posts, setFormData) {
           title: postToUpdate.title,
           text: postToUpdate.text,
           isPublic: postToUpdate.public,
-          image: postToUpdate.image
+          timestamp: postToUpdate.timestamp
         }
       })
     }

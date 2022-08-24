@@ -27,11 +27,21 @@ const StyledPostForm = styled.form`
 
 const TitleInput = styled.input`
   padding:.5em;
+  border-radius: 10px;
+  border: solid 1px  rgba(88, 87, 87, 0.2) ;
   width: 20em;
+`
+
+const FormBottomRow = styled.article`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 `
 
 const CheckBoxContainer = styled.div`
   position: relative;
+  align-self: flex-start;
+  margin-top: .2em;
 `
 
 const CheckBoxLabel = styled.label`
@@ -97,6 +107,7 @@ function PostForm (props) {
 
   const navigate = useNavigate()
   const editorRef = useRef(null)
+
   usePostToUpdate(postid, posts, setFormData)
 
   const {
@@ -134,7 +145,7 @@ function PostForm (props) {
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
-
+    console.log(image)
     const timestamp = getCurrentDate()
     const formDataRequest = createFormData(
       {
@@ -149,9 +160,7 @@ function PostForm (props) {
     axios.post('http://localhost:4000/api/post', formDataRequest, {
     }).then(res => console.log(res))
 
-    // if (postIsCreated) {
     return navigate('/dashboard')
-    // }
   }
 
   const handleUpdateSubmit = async (e) => {
@@ -199,8 +208,9 @@ function PostForm (props) {
           onInit={(_e, editor) => (editorRef.current = editor)}
           init={{
             height: 500,
-            width: 700,
-            menubar: false
+            width: 800,
+            menubar: false,
+            elementpath: false
           }}
           apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
           name='html'
@@ -211,31 +221,33 @@ function PostForm (props) {
         />
 
         <br />
-        <Label htmlFor="image"></Label>
-        <input
-          type="file"
-          name='image'
-          onChange={handleImageChange}
-        />
-        <br />
+        <FormBottomRow>
+          <Label htmlFor="image"></Label>
+          <input
+            type="file"
+            name='image'
+            onChange={handleImageChange}
+          />
+          <br />
 
-          <div >Publish this post</div>
-          <CheckBoxContainer>
-            <CheckBox
-              type="checkbox"
-              name='privacy'
-              onChange={handlePrivacyChange}
-              checked={isPublic}
-            />
-            <CheckBoxLabel htmlFor="privacy"></CheckBoxLabel>
-          </CheckBoxContainer>
-        <br />
+            <div >Publish this post</div>
+            <CheckBoxContainer>
+              <CheckBox
+                type="checkbox"
+                name='privacy'
+                onChange={handlePrivacyChange}
+                checked={isPublic}
+              />
+              <CheckBoxLabel htmlFor="privacy"></CheckBoxLabel>
+            </CheckBoxContainer>
+          <br />
 
-        <FormButton
-          type='submit'>{(postid)
-            ? 'Update post'
-            : 'Submit post'}
-        </FormButton>
+          <FormButton
+            type='submit'>{(postid)
+              ? 'Update post'
+              : 'Submit post'}
+          </FormButton>
+        </FormBottomRow>
       </StyledPostForm>
     </PostFormContainer>
   )

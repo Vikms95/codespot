@@ -16,16 +16,18 @@ const StyledPostPreview = styled.section`
   box-shadow: 4px 4px 10px -2px gray;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  max-height: 30em;
+  text-overflow: ellipsis;
 `
 
 const PostImageContainer = styled.article`
   object-fit: cover;
+  height: 100%;
   `
 const PostImage = styled.img`
   border-radius: 10px;
   width: 100%;
-  max-height: 22em;
-  max-width: 30em; 
+  height: 18em;
 `
 const StyledBookImage = styled(FaBookOpen)`
   display: none;
@@ -52,7 +54,7 @@ const PostLink = styled(Link)`
   position: relative;
   &:hover ${PostImage} {
     filter: brightness(.8);
-    transform: scale(1.01, 1.01);
+    transform: scale(1.005, 1.005);
     transition: transform .5s;
   }
   &:hover ${StyledBookImage} {
@@ -88,11 +90,11 @@ const PostTitle = styled.h2`
 
 const PostDesc = styled.div`
   & > p{
-    text-overflow: ellipsis ;
-    white-space: nowrap;
-    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
     width: 100%;
-
+    height: 100%;
   }
 `
 
