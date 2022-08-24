@@ -143,7 +143,7 @@ TRY THIS:
 
   https://stackoverflow.com/questions/61374786/how-to-use-serve-static-file-with-express-and-react
 
-- Setup timestamp property for posts 
+<!-- - Setup timestamp property for posts  -->
 - Change privacy button to a normal switch button(just like the one on Weather App)
 - Create ability crud functionality and ui for comments
 - Fix bug where cancel button is shown above the cancel modal
