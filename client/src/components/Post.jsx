@@ -60,6 +60,7 @@ const PostDesc = styled.div`
 const PostButtonContainer = styled.article`
   display: flex;
   justify-content: space-evenly;
+  
 `
 
 function Post (props) {

@@ -27,13 +27,6 @@ function App () {
       <Router>
         <AppContainer>
           <Navbar/>
-          <Modal
-            setPosts={setPosts}
-            lastClickedPostId={lastClickedPostId}
-            isModalActive={isModalActive}
-            setIsModalActive={setIsModalActive}
-          />
-
           <AuthContext.Provider value={authContext}>
             <Routes>
 
@@ -74,6 +67,12 @@ function App () {
               <Route path='/register' element={<RegisterForm/>}/>
             </Routes>
           </AuthContext.Provider>
+          <Modal
+            setPosts={setPosts}
+            lastClickedPostId={lastClickedPostId}
+            isModalActive={isModalActive}
+            setIsModalActive={setIsModalActive}
+          />
         </AppContainer>
       </Router>
     </>
