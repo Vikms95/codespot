@@ -29,7 +29,7 @@ const TitleInput = styled.input`
   width: 20em;
 `
 
-const CheckBoxWrapper = styled.div`
+const CheckBoxContainer = styled.div`
   position: relative;
 `
 
@@ -42,6 +42,7 @@ const CheckBoxLabel = styled.label`
   border-radius: 15px;
   background: #bebebe;
   cursor: pointer;
+  
   &::after {
     content: "";
     display: block;
@@ -60,6 +61,7 @@ const CheckBox = styled.input`
   border-radius: 15px;
   width: 42px;
   height: 26px;
+  
   &:checked + ${CheckBoxLabel} {
     background: #531753;
     &::after {
@@ -90,7 +92,7 @@ function PostForm (props) {
   const [formData, setFormData] = useState({
     title: '',
     text: '',
-    isPrivate: false,
+    isPublic: false,
     // image: ''
     timestamp: ''
   })
@@ -100,7 +102,7 @@ function PostForm (props) {
   const {
     title,
     text,
-    isPrivate
+    isPublic
     // image
   } = formData
 
@@ -112,7 +114,7 @@ function PostForm (props) {
 
   const handlePrivacyChange = (e) => {
     setFormData(prevFormData => (
-      { ...prevFormData, isPrivate: !prevFormData.isPrivate }
+      { ...prevFormData, isPublic: !prevFormData.isPublic }
     ))
   }
 
@@ -138,7 +140,7 @@ function PostForm (props) {
     // formDataRequest.append('image', image)
     formDataRequest.append('title', title)
     formDataRequest.append('text', text)
-    formDataRequest.append('isPrivate', isPrivate)
+    formDataRequest.append('isPublic', isPublic)
     formDataRequest.append('user', user)
     formDataRequest.append('timestamp', formData.timestamp || timestamp)
 
@@ -154,7 +156,7 @@ function PostForm (props) {
     e.preventDefault()
 
     const response = fetch('/api/posts/' + postid,
-      postCreateOptions('PUT', { user, title, text, isPrivate })
+      postCreateOptions('PUT', { user, title, text, isPublic })
     )
 
     const postIsUpdated = await response
@@ -208,15 +210,16 @@ function PostForm (props) {
         />
         <br />
 
-          <CheckBoxWrapper>
+          <div >Publish this post</div>
+          <CheckBoxContainer>
             <CheckBox
               type="checkbox"
               name='privacy'
               onChange={handlePrivacyChange}
-              checked={isPrivate}
+              checked={isPublic}
             />
             <CheckBoxLabel htmlFor="privacy"></CheckBoxLabel>
-          </CheckBoxWrapper>
+          </CheckBoxContainer>
         <br />
 
         <FormButton

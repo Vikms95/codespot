@@ -24,9 +24,9 @@ function Dashboard (props) {
     <section className='dashboard-container'>
       {posts &&
         <>
-          <PostListContainer title='Published post'>
+          <PostListContainer title='Published posts'>
             {posts.map((post) => (
-              (!post.private) &&
+              (post.public) &&
 
                 <Post
                   key={post._id}
@@ -36,7 +36,7 @@ function Dashboard (props) {
                   text={post.text}
                   image={post.image}
                   timestamp={post.timestamp}
-                  isPrivate={post.private}
+                  isPublic={post.public}
                   setLastClickedPostId={setLastClickedPostId}
                   setIsModalActive={setIsModalActive}
                 >
@@ -45,10 +45,10 @@ function Dashboard (props) {
             ))}
           </PostListContainer>
 
-          <PostListContainer title='Unpublished post'>
+          <PostListContainer title='Unpublished posts'>
 
             {posts.map((post) => (
-              (post.private) &&
+              (!post.public) &&
                   <Post
                     key={post._id}
                     id={post._id}

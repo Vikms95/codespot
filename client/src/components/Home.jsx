@@ -23,7 +23,7 @@ function Home (props) {
       <>
         <PostListContainer>
           {posts.map((post) => (
-            (!post.private) &&
+            (post.public) &&
               <Post
                 key={post._id}
                 id={post._id}

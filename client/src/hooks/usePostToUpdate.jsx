@@ -10,7 +10,7 @@ export function usePostToUpdate (postid, posts, setFormData) {
         return {
           title: postToUpdate.title,
           text: postToUpdate.text,
-          isPrivate: postToUpdate.private,
+          isPublic: postToUpdate.public,
           image: postToUpdate.image
         }
       })
