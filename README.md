@@ -152,6 +152,7 @@ TRY THIS:
 <!-- -Fix PostReview text overflow -->
   <!-- :posts with elipsis have some less padding than the ones that do not -->
 
+-Refactor custom Hooks to hold its own state!
 - Create Post component
   https://dribbble.com/shots/15993980-Blog-Photo-Website-concept
   :title > date above img > image > content 

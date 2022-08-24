@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import styled from 'styled-components'
 import { Button } from '../styled/Button'
-import { useText } from '../hooks/useText'
+import { useHtmlAsText } from '../hooks/useText'
 import defaultPostImage from '../assets/default-image.jpg'
 import { FaBookOpen } from 'react-icons/fa'
 
@@ -124,7 +124,7 @@ function PostPreview (props) {
 
   const navigate = useNavigate()
 
-  useText(descRef, text)
+  useHtmlAsText(descRef, text)
 
   // Refactor into hook
   // TRYING IT OUT ON DASHBOARD
