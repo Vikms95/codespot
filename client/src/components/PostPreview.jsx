@@ -108,13 +108,12 @@ function PostPreview (props) {
 
   // Refactor into hook
   // TRYING IT OUT ON DASHBOARD
-  // useEffect(() => {
-  //   // console.log(image)
-  //   // const imageURL = image
-  //   fetch(image)
-  //     .then(res => console.log(res))
-  //     .then()
-  // })
+  useEffect(() => {
+    // console.log(image)
+    // const imageURL = image
+    fetch('/images/' + image)
+      .then(res => setImageSrc(res))
+  }, [])
 
   const handleUpdate = () => {
     return navigate('/update/' + id)
@@ -132,7 +131,7 @@ function PostPreview (props) {
         <PostLink to={`/${id}`}>
           <StyledBookImage>
           </StyledBookImage>
-          <PostImage src={defaultPostImage} alt="default-post"/>
+          <PostImage src={imageSrc.url || defaultPostImage} alt="default-post"/>
         </PostLink>
       </PostImageContainer>
 

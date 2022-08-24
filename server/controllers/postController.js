@@ -22,14 +22,14 @@ const getUserPosts = (req, res, next) => {
 
 const createPost = (req, res, next) => {
   const { title, text, isPublic, user, timestamp } = req.body
-  
+
   const post = new Post({
     user,
     title,
     text,
     public: isPublic,
-    timestamp
-    // image: req.file.filename
+    timestamp,
+    image: req.file.filename
   })
 
   post.save(function (err) {
@@ -44,9 +44,6 @@ const createPost = (req, res, next) => {
 const updatePost = (req, res, next) => {
   const { title, text, isPublic, user, formerTimestamp } = req.body
   const { postid } = req.params
-  console.log(postid)
-  console.log(title)
-  console.log(user)
 
   const post = new Post({
     _id: postid,
@@ -54,8 +51,8 @@ const updatePost = (req, res, next) => {
     title,
     text,
     public: isPublic,
-    timestamp:formerTimestamp
-    // image: req.file.filename
+    timestamp:formerTimestamp,
+    image: req.file.filename
   })
 
   Post.findByIdAndUpdate(postid, post, {}, (err, post) => {

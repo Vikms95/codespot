@@ -91,7 +91,7 @@ function PostForm (props) {
     title: '',
     text: '',
     isPublic: false,
-    // image: ''
+    image: '',
     timestamp: ''
   })
 
@@ -102,8 +102,8 @@ function PostForm (props) {
   const {
     title,
     text,
-    isPublic
-    // image
+    isPublic,
+    image
 
   } = formData
 
@@ -142,7 +142,7 @@ function PostForm (props) {
         text,
         isPublic,
         user,
-        // image,
+        image,
         timestamp
       }
     )
@@ -163,7 +163,7 @@ function PostForm (props) {
         text,
         isPublic,
         user,
-        // image,
+        image,
         formerTimestamp: formData.timestamp
       }
     )

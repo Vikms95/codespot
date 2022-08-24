@@ -1,8 +1,17 @@
 export const createFormData = (data) => {
-  const { title, text, isPublic, user, formerTimestamp, timestamp } = data
+  const {
+    title,
+    text,
+    isPublic,
+    user,
+    image,
+    formerTimestamp,
+    timestamp
+  } = data
+
   const formData = new FormData()
 
-  // formDataRequest.append('image', image)
+  formData.append('image', image || '')
   formData.append('title', title)
   formData.append('text', text)
   formData.append('isPublic', isPublic)
