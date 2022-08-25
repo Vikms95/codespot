@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import { Button } from '../styled/Button'
 import { useHtmlAsText } from '../hooks/useHtmlAsText'
 import defaultPostImage from '../assets/default-image.jpg'
 import { FaBookOpen } from 'react-icons/fa'
+import { useImage } from '../hooks/useImage'
 
 const StyledPostPreview = styled.section`
   display:flex;
@@ -94,9 +95,9 @@ const PostTitle = styled.h2`
 const PostDesc = styled.div`
   display: -webkit-box;
   overflow: hidden;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  /* margin-bottom: 1rem; */
+  margin-bottom: 1rem;
   padding: 0;
 `
 
@@ -107,6 +108,8 @@ const PostButtonContainer = styled.article`
 `
 
 function PostPreview (props) {
+  const navigate = useNavigate()
+
   const {
     id,
     user,
@@ -118,22 +121,9 @@ function PostPreview (props) {
     setLastClickedPostId
   } = props
 
-  const [imageSrc, setImageSrc] = useState()
   const { user: currentUserId } = useContext(AuthContext)
-  const descRef = useRef(null)
-
-  const navigate = useNavigate()
-
-  useHtmlAsText(descRef, text)
-
-  // Refactor into hook
-  // TRYING IT OUT ON DASHBOARD
-  useEffect(() => {
-    if (image) {
-      fetch('/images/' + image)
-        .then(res => setImageSrc(res))
-    }
-  }, [])
+  const textRef = useHtmlAsText(text)
+  const imageSrc = useImage(image, [image])
 
   const handleUpdate = () => {
     return navigate('/update/' + id)
@@ -152,18 +142,27 @@ function PostPreview (props) {
           <StyledBookImage>
           </StyledBookImage>
           <BookText>Read this article</BookText>
-          <PostImage src={imageSrc?.url || defaultPostImage} alt="post-preview"/>
+
+          <PostImage
+            src={
+                  (imageSrc?.ok)
+                    ? imageSrc.url
+                    : defaultPostImage
+                }
+            alt="post-preview"
+          />
+
         </PostLink>
       </PostImageContainer>
 
       <PostContentContainer>
         <PostTopRowContainer>
-          <PostTopRow>by {user.username}</PostTopRow>
+          <PostTopRow>{user.username}</PostTopRow>
           <PostTopRow>{timestamp}</PostTopRow>
         </PostTopRowContainer>
 
         <PostTitle>{title}</PostTitle>
-        <PostDesc ref={descRef}></PostDesc>
+        <PostDesc ref={textRef}></PostDesc>
         {
           (user._id === currentUserId) &&
 

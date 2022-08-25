@@ -4,16 +4,14 @@ import { useState, useEffect } from 'react'
  * Hook to use on the body of components
  * that require fetching data on mount
  */
-function useFetch (url, options) {
-  const [response, setResponse] = useState(null)
+export function useFetch (url, options) {
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     fetch(url, options)
-      .then(response => response.json())
-      .then(data => setResponse(data))
+      .then(res => res.json())
+      .then(data => setData(data))
   }, [])
 
-  return response
+  return data
 }
-
-export default useFetch

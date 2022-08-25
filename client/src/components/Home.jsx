@@ -1,23 +1,30 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
 import PostPreview from './PostPreview'
-import useFetch from '../hooks/useFetch'
+import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
 import PostListContainer from '../wrappers/PostListContainer'
-import { usePosts } from '../hooks/usePosts'
 import styled from 'styled-components'
 
 const StyledHome = styled.section`
 `
 
 function Home (props) {
-  const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
-
-  const response = useFetch('/api/posts', getOptions)
-
-  usePosts(setPosts, response)
   useAuth()
+
+  const {
+    posts,
+    setPosts,
+    setLastClickedPostId,
+    setIsModalActive
+  } = props
+
+  const data = useFetch('/api/posts', getOptions)
+
+  useEffect(() => {
+    setPosts(data)
+  }, [data])
 
   return (
     <StyledHome>

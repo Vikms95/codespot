@@ -1,11 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-function useHtmlAsText (ref, text) {
+function useHtmlAsText (text) {
+  const textRef = useRef(null)
+
   useEffect(() => {
-    if (text) {
-      ref.current.innerHTML = text
+    if (textRef.current) {
+      textRef.current.innerHTML = text
     }
   }, [text])
+  return textRef
 }
 
 export { useHtmlAsText }

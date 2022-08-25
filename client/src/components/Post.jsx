@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { useHtmlAsText } from '../hooks/useHtmlAsText'
@@ -34,20 +34,9 @@ function Post (props) {
   const { posts } = props
   const { postid } = useParams()
 
-  const textRef = useRef(null)
   const post = usePost(postid, posts)
-  const imageSrc = useImage(post)
-
-  // const [imageSrc, setImageSrc] = useState()
-
-  // useEffect(() => {
-  //   if (post) {
-  //     fetch('/images/' + post.image)
-  //       .then(res => setImageSrc(res || ''))
-  //   }
-  // }, [posts, post])
-
-  useHtmlAsText(textRef, post.text)
+  const imageSrc = useImage(post.image, [post])
+  const textRef = useHtmlAsText(post.text)
 
   return (
     <StyledPost>

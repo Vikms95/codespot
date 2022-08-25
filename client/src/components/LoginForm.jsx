@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import { userCreateOptions } from '../services/requestParams'
 
 function Login (props) {
+  const navigate = useNavigate()
   const { setUser } = props
 
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: ''

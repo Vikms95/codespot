@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 
-export function useImage (post) {
+export function useImage (image, dependencies) {
   const [imageSrc, setImageSrc] = useState()
 
   useEffect(() => {
-    if (post) {
-      fetch('/images/' + post.image)
-        .then(res => {
-          setImageSrc(res || '')
-        })
+    if (image) {
+      fetch('/images/' + image)
+        .then(res => setImageSrc(res || ''))
     }
-  }, [post])
+  }, [...dependencies])
 
   return imageSrc
 }

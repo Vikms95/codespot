@@ -1,23 +1,30 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
+import styled from 'styled-components'
 import AuthContext from '../context/AuthContext'
 import PostListContainer from '../wrappers/PostListContainer'
 import PostPreview from './PostPreview'
-import useFetch from '../hooks/useFetch'
-import { usePosts } from '../hooks/usePosts'
+import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
-import styled from 'styled-components'
 
 const StyledDashboard = styled.section`
 
 `
 
 function Dashboard (props) {
-  const { posts, setPosts, setLastClickedPostId, setIsModalActive } = props
-  const { user } = useContext(AuthContext)
+  const {
+    posts,
+    setPosts,
+    setLastClickedPostId,
+    setIsModalActive
+  } = props
 
-  const response = useFetch(`/api/${user}/posts`, getOptions)
-  usePosts(setPosts, response)
+  const { user } = useContext(AuthContext)
+  const data = useFetch(`/api/${user}/posts`, getOptions)
+
+  useEffect(() => {
+    setPosts(data)
+  }, [data])
 
   return (
     <StyledDashboard>
