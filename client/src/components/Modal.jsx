@@ -27,9 +27,9 @@ const ButtonContainer = styled.div`
 function Modal (props) {
   const
     {
+      setPosts,
       lastClickedPostId,
       setIsModalActive,
-      setPosts,
       isModalActive
     } = props
 

@@ -10,8 +10,8 @@ import Post from './components/Post'
 import RegisterForm from './components/RegisterForm'
 import Dashboard from './components/Dashboard'
 import AuthRouteWrapper from './containers/AuthRouteWrapper'
+import { PostsContextProvider } from './context/PostsContext'
 import AuthContext from './context/AuthContext'
-import PostsContext from './context/PostsContext'
 import Modal from './components/Modal'
 import AppContainer from './style/AppContainer'
 import { getFromStorage } from './services/getFromStorage'
@@ -30,56 +30,53 @@ function App () {
       <Router>
         <AppContainer>
           <Navbar/>
+
           <AuthContext.Provider value={authContext}>
-            <PostsContext.Provider value={{ posts }}>
+            <PostsContextProvider posts={posts}>
 
             <Routes>
 
                 <Route element={<AuthRouteWrapper/>}>
+
+                  <Route path='/create'element={<PostForm/>}/>
+                  <Route path='/update/:postid' element={<PostForm/>}/>
                   <Route
                     path='/dashboard'
                     element={
                       <Dashboard
-                        posts={posts}
-                        setPosts={setPosts}
-                        lastClickedPostId={lastClickedPostId}
-                        setLastClickedPostId={setLastClickedPostId}
                         isModalActive={isModalActive}
+                        lastClickedPostId={lastClickedPostId}
+                        setPosts={setPosts}
                         setIsModalActive={setIsModalActive}
-                      />}
+                        setLastClickedPostId={setLastClickedPostId}
+                      />
+                    }
                   />
-                  <Route
-                    path='/create'
-                      element={<PostForm posts={posts}/>}/>
-                  <Route
-                    path='/update/:postid'
-                      element={<PostForm posts={posts}/>}/>
                 </Route>
 
+              <Route path='/login' element={<LoginForm setUser={setUser}/>}/>
+              <Route path='/register' element={<RegisterForm/>}/>
+              <Route path='/:postid' element={<Post/>}/>
               <Route
                 path='/'
                 element={
                   <Home
-                    posts={posts}
-                    setPosts={setPosts}
-                    lastClickedPostId={lastClickedPostId}
-                    setLastClickedPostId={setLastClickedPostId}
                     isModalActive={isModalActive}
+                    lastClickedPostId={lastClickedPostId}
+                    setPosts={setPosts}
                     setIsModalActive={setIsModalActive}
+                    setLastClickedPostId={setLastClickedPostId}
                   />}
                 />
-              <Route path='/login' element={<LoginForm setUser={setUser}/>}/>
-              <Route path='/register' element={<RegisterForm/>}/>
-              <Route path='/:postid' element={<Post posts={posts}/>}/>
             </Routes>
 
-            </PostsContext.Provider>
+            </PostsContextProvider>
           </AuthContext.Provider>
 
           <Modal
-            setPosts={setPosts}
-            lastClickedPostId={lastClickedPostId}
             isModalActive={isModalActive}
+            lastClickedPostId={lastClickedPostId}
+            setPosts={setPosts}
             setIsModalActive={setIsModalActive}
           />
 

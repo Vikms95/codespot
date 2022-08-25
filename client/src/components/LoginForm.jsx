@@ -3,16 +3,16 @@ import React, { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { userCreateOptions } from '../services/requestParams'
+import { setToStorage } from '../services/setToStorage'
 
 function LoginForm (props) {
-  const navigate = useNavigate()
   const { setUser } = props
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
     username: '',
     password: ''
   })
-
   const { username, password } = formData
 
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ function LoginForm (props) {
     )
     const data = await response.json()
 
-    localStorage.setItem('token', JSON.stringify(data.token))
+    setToStorage('token', data.token)
     setUser(data.user)
 
     return navigate('/dashboard')

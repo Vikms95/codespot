@@ -12,6 +12,7 @@ import { Label } from '../style/Label'
 import { Button } from '../style/Button'
 import { getCurrentDate } from '../services/getCurrentDate'
 import { createFormData } from '../services/createFormData'
+import { usePostsContext } from '../context/PostsContext'
 
 const PostFormContainer = styled.section`
   margin:5em;  
@@ -92,10 +93,10 @@ const FormButton = styled(Button)`
   margin-left: 13em;
 `
 
-function PostForm (props) {
+function PostForm () {
   const navigate = useNavigate()
-  const { posts } = props
   const { postid } = useParams()
+  const { posts } = usePostsContext()
   const { user } = useContext(AuthContext)
   const editorRef = useRef(null)
 

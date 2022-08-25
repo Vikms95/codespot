@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { usePost } from '../hooks/usePost'
 import { useImage } from '../hooks/useImage'
 import { useHtmlAsText } from '../hooks/useHtmlAsText'
+import { usePostsContext } from '../context/PostsContext'
 
 const StyledPost = styled.section`
   margin: 5em;
@@ -30,12 +31,11 @@ const Text = styled.p`
   max-width: 70%;
 `
 
-function Post (props) {
-  const { posts } = props
+function Post () {
+  const { posts } = usePostsContext()
   const { postid } = useParams()
 
   const post = usePost(postid, posts)
-
   const { title, image, text } = post
 
   const imageSrc = useImage(image, [post])

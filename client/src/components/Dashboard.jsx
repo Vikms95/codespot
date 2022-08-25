@@ -7,6 +7,7 @@ import PostPreview from './PostPreview'
 import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
 import { setToStorage } from '../services/setToStorage'
+import { usePostsContext } from '../context/PostsContext'
 
 const StyledDashboard = styled.section`
 
@@ -14,13 +15,13 @@ const StyledDashboard = styled.section`
 
 function Dashboard (props) {
   const {
-    posts,
     setPosts,
     setLastClickedPostId,
     setIsModalActive
   } = props
 
   const { user } = useContext(AuthContext)
+  const { posts } = usePostsContext()
   const data = useFetch(`/api/${user}/posts`, getOptions)
 
   useEffect(() => {

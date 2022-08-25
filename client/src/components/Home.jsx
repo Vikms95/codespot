@@ -7,6 +7,7 @@ import { getOptions } from '../services/requestParams'
 import PostListContainer from '../containers/PostListContainer'
 import styled from 'styled-components'
 import { setToStorage } from '../services/setToStorage'
+import { usePostsContext } from '../context/PostsContext'
 
 const StyledHome = styled.section`
 `
@@ -15,13 +16,13 @@ function Home (props) {
   useAuth()
 
   const {
-    posts,
     setPosts,
     setLastClickedPostId,
     setIsModalActive
   } = props
 
   const data = useFetch('/api/posts', getOptions)
+  const { posts } = usePostsContext()
 
   useEffect(() => {
     setPosts(data)
