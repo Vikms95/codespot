@@ -154,29 +154,30 @@ TRY THIS:
 
 <!-- -Refactor custom Hooks to hold its own state! -->
 
-- Create Post component
+<!-- - Create Post component -->
   <!-- https://dribbble.com/shots/15993980-Blog-Photo-Website-concept -->
   <!-- :title > date above img > image > content  -->
   <!-- :need to create posts context -->
   <!-- :make post not crash when page refreshed > localstorage -->
   <!-- :improve the logic so the past localStorage image does not get shown before the actual image
   :useLocalStorage hook? -->
-  :remember that you can return a setState from a custom hook
+  <!-- :remember that you can return a setState from a custom hook
   :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
   :https://reactjs.org/docs/hooks-custom.html
 
-- Try to abstract context with this 
-https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
-
-- Create Post endpoints(same as with the PostPreview?)
+<!-- - Try to abstract context with this 
+https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/ --> -->
 
 - Create Comments component
+  :comments have their own separate collection
+  : they have 2 Joins, the user id and the post id
 
 - Style header
 
+- Make not authorized page
+
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
-
 
 - Implement sanitization of inputs
 
@@ -186,4 +187,3 @@ https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regu
 
 -QUESTIONS/TO REVIEW-
 - useAuth and useContext are being used when it is moment to use them? (review it)
--Can create big components that will render specialized components through children props? (Form > (FormLogin/FormRegister))

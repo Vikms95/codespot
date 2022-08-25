@@ -1,42 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
-const path = require('path')
-const uuidv4 = require('uuid/v4')
+
 const { createUser, loginUser, retrieveToken, verifyToken } = require('../controllers/userController')
 const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
+const { getPostComments, createComment } = require('../controllers/commentController')
+const { upload } = require('../controllers/fileController')
 
 // Setup multer
-const dirLinux = './public/';
-// const dirWindows = '.\\ public|\ ';
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      console.log(file)
-      cb(null, dirLinux);
-    },
-    filename: (req, file, cb) => {
-      console.log(file)
-        // Changed to just the original name so when the picture gets updated, if
-        // the picture is not changed, it will not save a new one to /public
-        
-        // const fileName = new Date().toISOString() + file.originalname;
-        cb(null, file.originalname)
-    },
-    
-});
+// Refactor to another file
 
-let upload = multer({
-    storage: storage,
-    onFileUploadStart : (file) => console.log(file.originalname+ ' is starting ...'),
-    fileFilter: (req, file, cb) => {
-        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-            cb(null, true);
-        } else {
-            cb(null, false);
-            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-        }
-    }
-});
 // User - Session
 router.get('/api/session', [retrieveToken, verifyToken])
 
@@ -54,6 +26,13 @@ router.post('/api/post', upload.single('image'), createPost)
 router.put('/api/posts/:postid', upload.single('image'), updatePost)
 
 router.delete('/api/posts/:postid', deletePost)
+
+// Comments
+// Used when creating a comment
+router.post('/api/comment', createComment)
+
+// Used when loading a preview(to show how many comments there are) or a post
+router.get('/api/:postid/comments', getPostComments)
 
 module.exports = {router}
 
