@@ -9,11 +9,11 @@ import PostForm from './components/PostForm'
 import Post from './components/Post'
 import RegisterForm from './components/RegisterForm'
 import Dashboard from './components/Dashboard'
-import AuthRouteWrapper from './wrappers/AuthRouteWrapper'
+import AuthRouteWrapper from './containers/AuthRouteWrapper'
 import AuthContext from './context/AuthContext'
 import PostsContext from './context/PostsContext'
 import Modal from './components/Modal'
-import AppContainer from './styled/AppContainer'
+import AppContainer from './style/AppContainer'
 import { getFromStorage } from './services/getFromStorage'
 
 function App () {

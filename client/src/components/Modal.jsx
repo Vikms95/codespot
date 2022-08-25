@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import ModalWrapper from '../wrappers/ModalWrapper'
+import ModalWrapper from '../containers/ModalWrapper'
 import { deleteOptions } from '../services/requestParams'
 import styled from 'styled-components'
-import { Button } from '../styled/Button'
+import { Button } from '../style/Button'
 
 const StyledModal = styled.section`
   background-color: white;

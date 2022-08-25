@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth'
 import PostPreview from './PostPreview'
 import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
-import PostListContainer from '../wrappers/PostListContainer'
+import PostListContainer from '../containers/PostListContainer'
 import styled from 'styled-components'
 import { setToStorage } from '../services/setToStorage'
 

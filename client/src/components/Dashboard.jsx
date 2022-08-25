@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from 'react'
 import styled from 'styled-components'
 import AuthContext from '../context/AuthContext'
-import PostListContainer from '../wrappers/PostListContainer'
+import PostListContainer from '../containers/PostListContainer'
 import PostPreview from './PostPreview'
 import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
