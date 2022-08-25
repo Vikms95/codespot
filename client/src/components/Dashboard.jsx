@@ -6,6 +6,7 @@ import PostListContainer from '../wrappers/PostListContainer'
 import PostPreview from './PostPreview'
 import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
+import { setToStorage } from '../services/setToStorage'
 
 const StyledDashboard = styled.section`
 
@@ -24,6 +25,7 @@ function Dashboard (props) {
 
   useEffect(() => {
     setPosts(data)
+    setToStorage('posts', data)
   }, [data])
 
   return (

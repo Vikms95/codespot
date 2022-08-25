@@ -6,6 +6,7 @@ import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
 import PostListContainer from '../wrappers/PostListContainer'
 import styled from 'styled-components'
+import { setToStorage } from '../services/setToStorage'
 
 const StyledHome = styled.section`
 `
@@ -24,6 +25,7 @@ function Home (props) {
 
   useEffect(() => {
     setPosts(data)
+    setToStorage('posts', data)
   }, [data])
 
   return (

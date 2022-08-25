@@ -158,10 +158,12 @@ TRY THIS:
   <!-- https://dribbble.com/shots/15993980-Blog-Photo-Website-concept -->
   <!-- :title > date above img > image > content  -->
   <!-- :need to create posts context -->
-  :make post not crash when page refreshed > localstorage
+  <!-- :make post not crash when page refreshed > localstorage -->
+  :improve the logic so the past localStorage image does not get shown before the actual image
+  :useLocalStorage hook?
+
   :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
   :https://reactjs.org/docs/hooks-custom.html
-  :useLocalStorage hook?
 
 - Try to abstract context with this 
 https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/
