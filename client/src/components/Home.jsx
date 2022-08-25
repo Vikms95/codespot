@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import useAuth from '../hooks/useAuth'
 import PostPreview from './PostPreview'
+import PostListContainer from '../containers/PostListContainer'
 import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
-import PostListContainer from '../containers/PostListContainer'
-import styled from 'styled-components'
 import { usePostsContext } from '../context/PostsContext'
 
 const StyledHome = styled.section`
@@ -32,7 +32,7 @@ function Home (props) {
       {posts &&
       <>
         <PostListContainer>
-          {posts?.map((post) => (
+          {posts.map((post) => (
             (post.public) &&
               <PostPreview
                 key={post._id}

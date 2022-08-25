@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { createContext, useContext } from 'react'
 
-const PostsContext = createContext({ posts: [] })
+const PostsContext = createContext(
+  { posts: [], setPosts: () => {} }
+)
 
 const PostsContextProvider = (props) => {
   return <PostsContext.Provider

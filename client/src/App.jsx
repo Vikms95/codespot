@@ -14,7 +14,6 @@ import { PostsContextProvider } from './context/PostsContext'
 import AuthContext from './context/AuthContext'
 import Modal from './components/Modal'
 import AppContainer from './style/AppContainer'
-import { getFromStorage } from './services/getFromStorage'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
 function App () {
@@ -25,6 +24,7 @@ function App () {
   const [isModalActive, setIsModalActive] = useState(false)
 
   const authContext = { user, setUser }
+  const postsContext = { posts, setPosts }
 
   return (
 
