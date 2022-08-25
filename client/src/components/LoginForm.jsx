@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react'
+import React from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { useAuthForm } from '../hooks/useAuthForm'
+import { loginFields } from '../services/formFields'
 import { userCreateOptions } from '../services/requestParams'
 import { setToStorage } from '../services/setToStorage'
 
@@ -9,18 +11,8 @@ function LoginForm (props) {
   const { setUser } = props
   const navigate = useNavigate()
 
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  })
+  const { formData, handleChange } = useAuthForm(loginFields)
   const { username, password } = formData
-
-  const handleChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value
-    }))
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()

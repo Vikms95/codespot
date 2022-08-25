@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext, useRef } from 'react'
-import { postCreateOptions } from '../services/requestParams'
+import React, { useContext, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import axios from 'axios'
@@ -13,6 +12,8 @@ import { Button } from '../style/Button'
 import { getCurrentDate } from '../services/getCurrentDate'
 import { createFormData } from '../services/createFormData'
 import { usePostsContext } from '../context/PostsContext'
+import { usePostForm } from '../hooks/usePostForm'
+import { postFields } from '../services/formFields'
 
 const PostFormContainer = styled.section`
   margin:5em;  
@@ -100,50 +101,18 @@ function PostForm () {
   const { user } = useContext(AuthContext)
   const editorRef = useRef(null)
 
-  const [formData, setFormData] = useState(
-    {
-      title: '',
-      text: '',
-      isPublic: false,
-      image: '',
-      timestamp: ''
-    }
-  )
+  const {
+    formData,
+    setFormData,
+    handleChange,
+    handleImageChange,
+    handleEditorChange,
+    handlePrivacyChange
 
-  const
-    {
-      title,
-      text,
-      isPublic,
-      image
-    } = formData
+  } = usePostForm(editorRef, postFields)
+  const { title, text, isPublic, image } = formData
 
   usePostToUpdate(postid, posts, setFormData)
-
-  const handleChange = (e) => {
-    setFormData((prevFormData) => (
-      { ...prevFormData, [e.target.name]: e.target.value }
-    ))
-  }
-
-  const handlePrivacyChange = (e) => {
-    setFormData(prevFormData => (
-      { ...prevFormData, isPublic: !prevFormData.isPublic }
-    ))
-  }
-
-  const handleImageChange = (e) => {
-    setFormData(prevFormData => (
-      { ...prevFormData, image: e.target.files[0] }
-    ))
-  }
-
-  const handleEditorChange = (content, editor) => {
-    const editorContent = editorRef.current.getContent()
-    setFormData(prevFormData => (
-      { ...prevFormData, text: editorContent }
-    ))
-  }
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()

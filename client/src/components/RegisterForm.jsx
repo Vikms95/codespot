@@ -1,30 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
+import { useAuthForm } from '../hooks/useAuthForm'
+import { registerFields } from '../services/formFields'
 import { userCreateOptions } from '../services/requestParams'
 
 function RegisterForm () {
   const navigate = useNavigate()
 
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    password2: ''
-  })
-
-  const
-    {
-      username,
-      password,
-      password2
-    } = formData
-
-  const handleChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value
-    }))
-  }
+  const { formData, handleChange } = useAuthForm(registerFields)
+  const { username, password, password2 } = formData
 
   const handleSubmit = (e) => {
     e.preventDefault()
