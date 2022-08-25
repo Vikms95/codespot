@@ -29,7 +29,7 @@ const createPost = (req, res, next) => {
     text,
     public: isPublic,
     timestamp,
-    image: req.file?.filename || ''
+    // image: req.file?.filename || ''
   })
 
   post.save(function (err) {
@@ -52,7 +52,7 @@ const updatePost = (req, res, next) => {
     text,
     public: isPublic,
     timestamp:formerTimestamp,
-    image: req.file?.filename || ''
+    // image: req.file?.filename || ''
   })
 
   Post.findByIdAndUpdate(postid, post, {}, (err, post) => {

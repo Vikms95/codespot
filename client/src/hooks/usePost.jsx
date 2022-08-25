@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function usePost (postid, posts) {
+export function usePost (postid, posts) {
   const [post, setPost] = useState('')
 
   useEffect(() => {
@@ -8,8 +8,7 @@ function usePost (postid, posts) {
       const postToReturn = posts.find(post => post._id === postid)
       setPost(postToReturn)
     }
-  }, [posts, postid])
+  }, [])
+
   return post
 }
-
-export default usePost

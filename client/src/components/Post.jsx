@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import usePost from '../hooks/usePost'
 import styled from 'styled-components'
-import { useHtmlAsText } from '../hooks/useText'
+import { useHtmlAsText } from '../hooks/useHtmlAsText'
+import { useImage } from '../hooks/useImage'
+import { usePost } from '../hooks/usePost'
 
 const StyledPost = styled.section`
   margin: 5em;
@@ -30,28 +31,33 @@ const Text = styled.p`
 `
 
 function Post (props) {
-  const { postid } = useParams()
-  // const { posts } = useContext(PostsContext)
   const { posts } = props
-  const post = usePost(postid, posts)
+  const { postid } = useParams()
+
   const textRef = useRef(null)
-  const [imageSrc, setImageSrc] = useState()
+  const post = usePost(postid, posts)
+  const imageSrc = useImage(post)
+
+  // const [imageSrc, setImageSrc] = useState()
+
+  // useEffect(() => {
+  //   if (post) {
+  //     fetch('/images/' + post.image)
+  //       .then(res => setImageSrc(res || ''))
+  //   }
+  // }, [posts, post])
 
   useHtmlAsText(textRef, post.text)
-
-  useEffect(() => {
-    if (post) {
-      fetch('/images/' + post.image)
-        .then(res => setImageSrc(res || ''))
-    }
-  }, [posts, post])
 
   return (
     <StyledPost>
       <Title>{post.title}</Title>
-      {imageSrc?.ok &&
-        <Image src={imageSrc?.url} alt='post-portrait'></Image>
+
+      {
+        (imageSrc?.ok) &&
+          <Image src={imageSrc?.url} alt='post-portrait'></Image>
       }
+
       <Text ref={textRef}></Text>
     </StyledPost>
   )

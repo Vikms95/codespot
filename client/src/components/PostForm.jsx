@@ -145,7 +145,7 @@ function PostForm (props) {
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
-    console.log(image)
+
     const timestamp = getCurrentDate()
     const formDataRequest = createFormData(
       {

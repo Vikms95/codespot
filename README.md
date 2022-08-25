@@ -153,10 +153,12 @@ TRY THIS:
   <!-- :posts with elipsis have some less padding than the ones that do not -->
 
 -Refactor custom Hooks to hold its own state!
+
 - Create Post component
-  https://dribbble.com/shots/15993980-Blog-Photo-Website-concept
-  :title > date above img > image > content 
+  <!-- https://dribbble.com/shots/15993980-Blog-Photo-Website-concept -->
+  <!-- :title > date above img > image > content  -->
   <!-- :need to create posts context -->
+  :make post not crash when page refreshed > localstorage
   :lookup how to return state from inside a custom hook, since usePost only seems to work with the state put outside of it and passing the setState
   :https://reactjs.org/docs/hooks-custom.html
 

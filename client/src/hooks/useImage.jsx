@@ -1,9 +1,16 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 
-function useImage () {
-  return (
-    <div>useImage</div>
-  )
+export function useImage (post) {
+  const [imageSrc, setImageSrc] = useState()
+
+  useEffect(() => {
+    if (post) {
+      fetch('/images/' + post.image)
+        .then(res => {
+          setImageSrc(res || '')
+        })
+    }
+  }, [post])
+
+  return imageSrc
 }
-
-export default useImage

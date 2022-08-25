@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthContext'
 import styled from 'styled-components'
 import { Button } from '../styled/Button'
-import { useHtmlAsText } from '../hooks/useText'
+import { useHtmlAsText } from '../hooks/useHtmlAsText'
 import defaultPostImage from '../assets/default-image.jpg'
 import { FaBookOpen } from 'react-icons/fa'
 
