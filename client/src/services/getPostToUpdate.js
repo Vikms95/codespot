@@ -1,10 +1,11 @@
+import { getPost } from './getPost'
+import { setToStorage } from './setToStorage'
 export const getPostToUpdate = (posts, postid) => {
   let postToUpdate
 
   if (posts.length) {
-    postToUpdate = posts.find(post => post._id === postid)
-
-    localStorage.setItem('posttoupdate', JSON.stringify(postToUpdate))
+    postToUpdate = getPost(posts, postid)
+    setToStorage('postToUpdate', postToUpdate)
 
     return postToUpdate
   } else {
