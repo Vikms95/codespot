@@ -6,7 +6,6 @@ import PostListContainer from '../containers/PostListContainer'
 import PostPreview from './PostPreview'
 import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
-import { setToStorage } from '../services/setToStorage'
 import { usePostsContext } from '../context/PostsContext'
 
 const StyledDashboard = styled.section`
@@ -26,7 +25,6 @@ function Dashboard (props) {
 
   useEffect(() => {
     setPosts(data)
-    setToStorage('posts', data)
   }, [data])
 
   return (
@@ -34,7 +32,7 @@ function Dashboard (props) {
       {posts &&
         <>
           <PostListContainer title='Published posts'>
-            {posts.map((post) => (
+            {posts?.map((post) => (
               (post.public) &&
 
                 <PostPreview

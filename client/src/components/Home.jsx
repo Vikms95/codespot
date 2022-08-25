@@ -6,7 +6,6 @@ import { useFetch } from '../hooks/useFetch'
 import { getOptions } from '../services/requestParams'
 import PostListContainer from '../containers/PostListContainer'
 import styled from 'styled-components'
-import { setToStorage } from '../services/setToStorage'
 import { usePostsContext } from '../context/PostsContext'
 
 const StyledHome = styled.section`
@@ -26,7 +25,6 @@ function Home (props) {
 
   useEffect(() => {
     setPosts(data)
-    setToStorage('posts', data)
   }, [data])
 
   return (
@@ -34,7 +32,7 @@ function Home (props) {
       {posts &&
       <>
         <PostListContainer>
-          {posts.map((post) => (
+          {posts?.map((post) => (
             (post.public) &&
               <PostPreview
                 key={post._id}
