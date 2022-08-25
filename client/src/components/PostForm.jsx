@@ -93,30 +93,31 @@ const FormButton = styled(Button)`
 `
 
 function PostForm (props) {
+  const navigate = useNavigate()
   const { posts } = props
   const { postid } = useParams()
   const { user } = useContext(AuthContext)
-
-  const [formData, setFormData] = useState({
-    title: '',
-    text: '',
-    isPublic: false,
-    image: '',
-    timestamp: ''
-  })
-
-  const navigate = useNavigate()
   const editorRef = useRef(null)
 
+  const [formData, setFormData] = useState(
+    {
+      title: '',
+      text: '',
+      isPublic: false,
+      image: '',
+      timestamp: ''
+    }
+  )
+
+  const
+    {
+      title,
+      text,
+      isPublic,
+      image
+    } = formData
+
   usePostToUpdate(postid, posts, setFormData)
-
-  const {
-    title,
-    text,
-    isPublic,
-    image
-
-  } = formData
 
   const handleChange = (e) => {
     setFormData((prevFormData) => (

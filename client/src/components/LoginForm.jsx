@@ -4,7 +4,7 @@ import { FaSignInAlt } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { userCreateOptions } from '../services/requestParams'
 
-function Login (props) {
+function LoginForm (props) {
   const navigate = useNavigate()
   const { setUser } = props
 
@@ -56,4 +56,4 @@ function Login (props) {
   )
 }
 
-export default Login
+export default LoginForm

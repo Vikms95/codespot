@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 import { useHtmlAsText } from '../hooks/useHtmlAsText'
 import { useImage } from '../hooks/useImage'
 import { usePost } from '../hooks/usePost'
+import { useStorage } from '../hooks/useStorage'
 
 const StyledPost = styled.section`
   margin: 5em;
@@ -35,18 +36,20 @@ function Post (props) {
   const { postid } = useParams()
 
   const post = usePost(postid, posts)
-  const imageSrc = useImage(post.image, [post])
-  const textRef = useHtmlAsText(post.text)
+  const storagePost = useStorage('postToDisplay', post)
+
+  const { title, image, text } = post || storagePost
+
+  const imageSrc = useImage(image, [post])
+  const textRef = useHtmlAsText(text)
 
   return (
     <StyledPost>
-      <Title>{post.title}</Title>
-
+      <Title>{title || storagePost.title}</Title>
       {
         (imageSrc?.ok) &&
           <Image src={imageSrc?.url} alt='post-portrait'></Image>
       }
-
       <Text ref={textRef}></Text>
     </StyledPost>
   )

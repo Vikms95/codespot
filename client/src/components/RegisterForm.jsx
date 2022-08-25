@@ -3,16 +3,21 @@ import { FaUser } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { userCreateOptions } from '../services/requestParams'
 
-function Register () {
+function RegisterForm () {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     password2: ''
   })
 
-  const navigate = useNavigate()
-
-  const { username, password, password2 } = formData
+  const
+    {
+      username,
+      password,
+      password2
+    } = formData
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -52,4 +57,4 @@ function Register () {
   )
 }
 
-export default Register
+export default RegisterForm
