@@ -173,7 +173,10 @@ https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regu
   :comments have their own separate collection
   : they have 2 Joins, the user id and the post id
 
-- Style header
+- Style > make it a slide navbar with only icons at the beginning and button to show names
+https://dribbble.com/shots/16265164-Side-Menu-Design
+:use first-children to style the first post different from the others
+: use.reservese to get the latest post as the first one
 
 - Fix images showing the default one before fetching all the PostView images
 

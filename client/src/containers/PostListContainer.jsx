@@ -4,9 +4,9 @@ import styled from 'styled-components'
 
 const StyledPostListContainer = styled.section`
   gap: 5em;
-  margin: 3em;
+  margin: 2em 5em;
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(max(20em, 150px), 1fr));
+  grid-template-columns: repeat(3, 1fr);
 `
 const PostListTitle = styled.h2`
   font-size:1.5em ;

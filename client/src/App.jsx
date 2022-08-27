@@ -29,8 +29,8 @@ function App () {
   return (
 
       <Router>
+        <Navbar/>
         <AppContainer>
-          <Navbar/>
 
           <AuthContext.Provider value={authContext}>
             <PostsContextProvider posts={posts}>

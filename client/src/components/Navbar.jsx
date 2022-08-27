@@ -4,26 +4,35 @@ import { Link } from 'react-router-dom'
 import { logoutUser } from '../services/logoutUser'
 import styled from 'styled-components'
 
-const StyledNavbar = styled.nav`
-  padding: 2em 2em ;
-  color:  #531753;
+const StyledNavbar = styled.nav`  
+  position: fixed;
+  left: 0;
+  right: 0;
+  top:0;
+  padding: 5em 2em ;
+  max-width: 15em;
+
   & > ul{
     padding-inline-start: 0;
     list-style:none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: stretch;
     row-gap: 2em;
     }
   `
 const NavItem = styled.li`
-    padding: 1em 2em;
+    display: flex;
+    align-items: center;
+    padding: .5em 4em;
     border-radius: 15px;
-    & > a {
-      padding-left: .4em;
-      color:  #531753;
-      font-size: 1em;
+    padding: .5em 1.5em;
+    color:  #531753;
+    font-size: 1.4em;
+    font-weight: 500;
+    & > svg {
+      padding-right: 1em;
     }
 
     &:hover{
@@ -41,48 +50,53 @@ function Navbar () {
   return (
     <StyledNavbar>
       <ul>
+        <Link to='/'>
         <NavItem>
-          <FaHouseUser/>
-          <Link to='/'>
-          Home
-            {' '}
-          </Link>
-        </NavItem>
+            <FaHouseUser/>
+            Home
+              {' '}
+          </NavItem>
+        </Link>
+
+          <Link to='/dashboard'>
         <NavItem>
           <FaTable/>
-          <Link to='/dashboard'>
           Dashboard
             {' '}
-          </Link>
         </NavItem>
+          </Link>
+
+          <Link to='/create'>
         <NavItem>
             <FaBook/>
-          <Link to='/create'>
           Create post
            {' '}
-          </Link>
         </NavItem>
+          </Link>
+
+          <Link to='/register'>
         <NavItem>
             <FaUser/>
-          <Link to='/register'>
             Register
             {' '}
-          </Link>
         </NavItem>
+          </Link>
+
+          <Link to='/login'>
         <NavItem>
             <FaSignInAlt/>
-          <Link to='/login'>
           Login
           {' '}
-          </Link>
         </NavItem>
+          </Link>
+
+          <Link to='/' onClick={logoutUser}>
         <NavItem>
             <FaDoorOpen/>
-          <Link to='/' onClick={logoutUser}>
             Logout
             {' '}
-          </Link>
         </NavItem>
+          </Link>
       </ul>
     </StyledNavbar>
   )
