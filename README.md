@@ -167,6 +167,7 @@ TRY THIS:
 
 <!-- - Try to abstract context with this 
 https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/ --> -->
+<!-- - Make not authorized page -->
 
 - Create Comments component
   :comments have their own separate collection
@@ -174,7 +175,7 @@ https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regu
 
 - Style header
 
-- Make not authorized page
+- Fix images showing the default one before fetching all the PostView images
 
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button

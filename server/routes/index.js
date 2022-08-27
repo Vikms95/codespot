@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { createUser, loginUser, retrieveToken, verifyToken } = require('../controllers/userController')
 const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
-const { getPostComments, createComment } = require('../controllers/commentController')
+const { getPostComments, getPostCommentsCount, createComment } = require('../controllers/commentController')
 const { upload } = require('../controllers/fileController')
 
 // Setup multer
@@ -33,6 +33,12 @@ router.post('/api/comment', createComment)
 
 // Used when loading a preview(to show how many comments there are) or a post
 router.get('/api/:postid/comments', getPostComments)
+
+// Used when loading a PostPreview to display how many comments a Post has
+router.get('/api/:postid/comments-count', getPostCommentsCount)
+
+// Used when click the delete button on a comment
+router.delete('/api/:commentid')
 
 module.exports = {router}
 

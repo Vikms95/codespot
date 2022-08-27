@@ -5,16 +5,36 @@ import { logoutUser } from '../services/logoutUser'
 import styled from 'styled-components'
 
 const StyledNavbar = styled.nav`
-  margin: 0 10em ;
+  padding: 2em 2em ;
+  color:  #531753;
   & > ul{
+    padding-inline-start: 0;
     list-style:none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-
+    align-items: flex-start;
+    row-gap: 2em;
     }
   `
 const NavItem = styled.li`
+    padding: 1em 2em;
+    border-radius: 15px;
+    & > a {
+      padding-left: .4em;
+      color:  #531753;
+      font-size: 1em;
+    }
+
+    &:hover{
+      background-color:#531753;
+      color: white;
+    }
+
+    &:hover > a{
+      background-color:#531753;
+      color: white;
+    }
   `
 
 function Navbar () {
@@ -22,45 +42,45 @@ function Navbar () {
     <StyledNavbar>
       <ul>
         <NavItem>
+          <FaHouseUser/>
           <Link to='/'>
           Home
             {' '}
-          <FaHouseUser/>
           </Link>
         </NavItem>
         <NavItem>
+          <FaTable/>
           <Link to='/dashboard'>
           Dashboard
             {' '}
-          <FaTable/>
           </Link>
         </NavItem>
         <NavItem>
+            <FaBook/>
           <Link to='/create'>
           Create post
            {' '}
-            <FaBook/>
           </Link>
         </NavItem>
         <NavItem>
+            <FaUser/>
           <Link to='/register'>
             Register
             {' '}
-            <FaUser/>
           </Link>
         </NavItem>
         <NavItem>
+            <FaSignInAlt/>
           <Link to='/login'>
           Login
           {' '}
-            <FaSignInAlt/>
           </Link>
         </NavItem>
         <NavItem>
+            <FaDoorOpen/>
           <Link to='/' onClick={logoutUser}>
             Logout
             {' '}
-            <FaDoorOpen/>
           </Link>
         </NavItem>
       </ul>
