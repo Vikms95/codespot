@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
 const AppContainer = styled.div`
-  position: relative;
   margin:5em 20em;
-  display: grid;
-  grid-template-columns: 1fr 8fr;
+  display: flex;
+  width: 80%;
 `
 export default AppContainer

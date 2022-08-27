@@ -26,7 +26,7 @@ const NavItem = styled.li`
     display: flex;
     align-items: center;
     padding: .5em 4em;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: .5em 1.5em;
     color:  #531753;
     font-size: 1.4em;
