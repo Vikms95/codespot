@@ -1,27 +1,38 @@
-import React from 'react'
-import { FaSignInAlt, FaUser, FaBook, FaTable, FaHouseUser, FaDoorOpen } from 'react-icons/fa'
+import React, { useState } from 'react'
+import { FaSignInAlt, FaUser, FaBook, FaTable, FaHouseUser, FaDoorOpen, FaBars, FaArrowLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { logoutUser } from '../services/logoutUser'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-const StyledNavbar = styled.nav`  
+const StyledNavbar = styled(motion.nav)`  
   position: fixed;
   left: 0;
   right: 0;
   top:0;
-  padding: 5em 2em ;
+  padding: 5em 1em ;
   max-width: 15em;
+  height: 100%;
+  box-shadow: 21px 2px 48px -1px rgba(0,0,0,0.09);
 
-  & > ul{
-    padding-inline-start: 0;
+`
+
+const InnerNav = styled.ul`
+      padding-inline-start: 0;
     list-style:none;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: stretch;
     row-gap: 2em;
-    }
-  `
+`
+const ToggleButton = styled(motion.button)`
+  border: none;
+  background-color: transparent;
+  font-size: 1.4em;
+  padding: 0 1em;
+`
+
 const NavItem = styled.li`
     display: flex;
     align-items: center;
@@ -31,6 +42,7 @@ const NavItem = styled.li`
     color:  #531753;
     font-size: 1.4em;
     font-weight: 500;
+
     & > svg {
       padding-right: 1em;
     }
@@ -45,11 +57,34 @@ const NavItem = styled.li`
       color: white;
     }
   `
+const variants = {
+  open: { opacity: 0, x: 0 },
+  closed: { opacity: 0, x: '-100%' }
+}
 
 function Navbar () {
+  const [show, setShow] = useState(false)
+
   return (
-    <StyledNavbar>
-      <ul>
+    <StyledNavbar
+      animate={show ? 'open' : 'close'}
+      variants={variants}
+      transition={{ duration: 0.5 }}
+    >
+      <ToggleButton
+        className='toggle'
+        onClick={() => setShow(prevShow => !prevShow)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        {
+          (show)
+            ? <FaArrowLeft></FaArrowLeft>
+            : <FaBars></FaBars>
+        }
+      </ToggleButton>
+
+      <InnerNav>
         <Link to='/'>
         <NavItem>
             <FaHouseUser/>
@@ -97,7 +132,8 @@ function Navbar () {
             {' '}
         </NavItem>
           </Link>
-      </ul>
+      </InnerNav>
+
     </StyledNavbar>
   )
 }
