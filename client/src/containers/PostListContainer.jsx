@@ -6,9 +6,13 @@ const StyledPostListContainer = styled.section`
 	gap: 5em;
 	margin: 2em 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
+  grid-auto-rows: .5fr;
+  /* grid-template-rows: 2fr; */
+
   > * {
-    &:first-child {
+
+    &:first-child{
       grid-column: span 2;
     }
   }
