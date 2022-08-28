@@ -1,32 +1,32 @@
 const getOptions = {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json; charset=UTF-8'
-  }
-}
+	method: 'GET',
+	headers: {
+		'Content-Type': 'application/json; charset=UTF-8',
+	},
+};
 
 const userCreateOptions = (method, bodyObject) => {
-  return {
-    method,
-    body: JSON.stringify(bodyObject),
-    headers: {
-      'Content-Type': 'application/json; charset=UTF-8'
-    }
-  }
-}
+	return {
+		method,
+		body: JSON.stringify(bodyObject),
+		headers: {
+			'Content-Type': 'application/json; charset=UTF-8',
+		},
+	};
+};
 
 const postCreateOptions = (method, bodyObject) => {
-  return {
-    method,
-    body: JSON.stringify(bodyObject)
-  }
-}
+	return {
+		method,
+		body: JSON.stringify(bodyObject),
+	};
+};
 
 const deleteOptions = {
-  method: 'DELETE',
-  headers: {
-    'Content-Type': 'application/json; charset=UTF-8'
-  }
-}
+	method: 'DELETE',
+	headers: {
+		'Content-Type': 'application/json; charset=UTF-8',
+	},
+};
 
-export { getOptions, userCreateOptions, postCreateOptions, deleteOptions }
+export { getOptions, userCreateOptions, postCreateOptions, deleteOptions };

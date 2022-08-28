@@ -1,7 +1,6 @@
-
 const logoutUser = () => {
-  localStorage.removeItem('token')
-  document.location.reload()
-}
+	localStorage.removeItem('token');
+	document.location.reload();
+};
 
-export { logoutUser }
+export { logoutUser };

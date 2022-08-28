@@ -1,17 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
-const StyledComment = styled.article`
+const StyledComment = styled.article``;
 
-`
-
-function Comment (props) {
-  // Comment
-  return (
-   <StyledComment>
-
-   </StyledComment>
-  )
+function Comment(props) {
+	// Comment
+	return <StyledComment></StyledComment>;
 }
 
-export default Comment
+export default Comment;

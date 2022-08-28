@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-export function usePost (postid, posts) {
-  const [post, setPost] = useState('')
+export function usePost(postid, posts) {
+	const [post, setPost] = useState('');
 
-  useEffect(() => {
-    if (posts) {
-      const postToReturn = posts.find(post =>
-        (post._id === postid)
-      )
+	useEffect(() => {
+		if (posts) {
+			const postToReturn = posts.find(post => post._id === postid);
 
-      setPost(postToReturn)
-    }
-  }, [])
+			setPost(postToReturn);
+		}
+	}, []);
 
-  return post
+	return post;
 }

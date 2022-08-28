@@ -1,20 +1,20 @@
 const registerFields = {
-  username: '',
-  password: '',
-  password2: ''
-}
+	username: '',
+	password: '',
+	password2: '',
+};
 
 const loginFields = {
-  username: '',
-  password: ''
-}
+	username: '',
+	password: '',
+};
 
 const postFields = {
-  title: '',
-  text: '',
-  isPublic: false,
-  image: '',
-  timestamp: ''
-}
+	title: '',
+	text: '',
+	isPublic: false,
+	image: '',
+	timestamp: '',
+};
 
-export { registerFields, loginFields, postFields }
+export { registerFields, loginFields, postFields };

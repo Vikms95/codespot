@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledModalWrapper = styled.div`
-  backdrop-filter: brightness(70%);
-  top:50%;
-  left:50%;
-  height: 100vh;
-  width: 120vw;
-  position: fixed;
-  transform: translate(-50%,-50%);
-`
+	backdrop-filter: brightness(70%);
+	top: 50%;
+	left: 50%;
+	height: 100vh;
+	width: 120vw;
+	position: fixed;
+	transform: translate(-50%, -50%);
+`;
 
 /**
  * Handles the logic on whether the modal should be rendered
@@ -18,16 +18,14 @@ const StyledModalWrapper = styled.div`
  * to make any element behind unclickable. If that div ever gets
  * clicked, change isModalActive prop to false.
  */
-function ModalWrapper (props) {
-  const { children, isModalActive, handleCancel } = props
+function ModalWrapper(props) {
+	const { children, isModalActive, handleCancel } = props;
 
-  return (
-    (isModalActive &&
-      <StyledModalWrapper onClick={handleCancel}>
-        {children }
-      </StyledModalWrapper>
-    )
-  )
+	return (
+		isModalActive && (
+			<StyledModalWrapper onClick={handleCancel}>{children}</StyledModalWrapper>
+		)
+	);
 }
 
-export default ModalWrapper
+export default ModalWrapper;

@@ -1,57 +1,53 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
-import useAuth from '../hooks/useAuth'
-import PostPreview from './PostPreview'
-import PostListContainer from '../containers/PostListContainer'
-import { useFetch } from '../hooks/useFetch'
-import { getOptions } from '../services/requestParams'
-import { usePostsContext } from '../context/PostsContext'
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import useAuth from '../hooks/useAuth';
+import PostPreview from './PostPreview';
+import PostListContainer from '../containers/PostListContainer';
+import { useFetch } from '../hooks/useFetch';
+import { getOptions } from '../services/requestParams';
+import { usePostsContext } from '../context/PostsContext';
 
-const StyledHome = styled.section`
-`
+const StyledHome = styled.section``;
 
-function Home (props) {
-  useAuth()
+function Home(props) {
+	useAuth();
 
-  const {
-    setPosts,
-    setLastClickedPostId,
-    setIsModalActive
-  } = props
+	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
 
-  const data = useFetch('/api/posts', getOptions)
-  const { posts } = usePostsContext()
+	const data = useFetch('/api/posts', getOptions);
+	const { posts } = usePostsContext();
 
-  useEffect(() => {
-    setPosts(data)
-  }, [data])
+	useEffect(() => {
+		setPosts(data);
+	}, [data]);
 
-  return (
-    <StyledHome>
-      {posts &&
-      <>
-        <PostListContainer>
-          {posts.map((post) => (
-            (post.public) &&
-              <PostPreview
-                key={post._id}
-                id={post._id}
-                user={post.user}
-                title={post.title}
-                text={post.text}
-                image={post.image}
-                timestamp={post.timestamp}
-                setLastClickedPostId={setLastClickedPostId}
-                setIsModalActive={setIsModalActive}
-                >
-              </PostPreview>
-          ))}
-        </PostListContainer>
-      </>
-}
-    </StyledHome>
-  )
+	return (
+		<StyledHome>
+			{posts && (
+				<>
+					<PostListContainer>
+						{posts.map(
+							post =>
+								post.public && (
+									<PostPreview
+										key={post._id}
+										id={post._id}
+										user={post.user}
+										title={post.title}
+										text={post.text}
+										image={post.image}
+										timestamp={post.timestamp}
+										setLastClickedPostId={setLastClickedPostId}
+										setIsModalActive={setIsModalActive}
+									></PostPreview>
+								)
+						)}
+					</PostListContainer>
+				</>
+			)}
+		</StyledHome>
+	);
 }
 
-export default Home
+export default Home;

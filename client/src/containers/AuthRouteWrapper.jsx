@@ -1,19 +1,17 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 /**
  * Component to wrap any component that is rendered after a protected route.
  * It will call the useAuth hook which will verify the user and return its id.
  * Then it does return the user id if it is verified, otherwise it returns null.
  */
-function AuthRouteContainer () {
-  const { user } = useAuth()
+function AuthRouteContainer() {
+	const { user } = useAuth();
 
-  return (
-    (user && <Outlet/>)
-  )
+	return user && <Outlet />;
 }
 
-export default AuthRouteContainer
+export default AuthRouteContainer;

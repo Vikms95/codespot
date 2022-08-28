@@ -1,20 +1,18 @@
 /* eslint-disable react/prop-types */
-import React, { createContext, useContext } from 'react'
+import React, { createContext, useContext } from 'react';
 
-const PostsContext = createContext(
-  { posts: [], setPosts: () => {} }
-)
+const PostsContext = createContext({ posts: [], setPosts: () => {} });
 
-const PostsContextProvider = (props) => {
-  return <PostsContext.Provider
-            value={props}
-          >
-            {props.children}
-          </PostsContext.Provider>
-}
+const PostsContextProvider = props => {
+	return (
+		<PostsContext.Provider value={props}>
+			{props.children}
+		</PostsContext.Provider>
+	);
+};
 
 const usePostsContext = () => {
-  return useContext(PostsContext)
-}
+	return useContext(PostsContext);
+};
 
-export { usePostsContext, PostsContextProvider }
+export { usePostsContext, PostsContextProvider };

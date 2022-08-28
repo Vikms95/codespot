@@ -1,44 +1,58 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const { createUser, loginUser, retrieveToken, verifyToken } = require('../controllers/userController')
-const { getPosts, getUserPosts, createPost, updatePost, deletePost } = require('../controllers/postController')
-const { getPostComments, getPostCommentsCount, createComment } = require('../controllers/commentController')
-const { upload } = require('../controllers/fileController')
+const {
+	createUser,
+	loginUser,
+	retrieveToken,
+	verifyToken,
+} = require('../controllers/userController');
+const {
+	getPosts,
+	getUserPosts,
+	createPost,
+	updatePost,
+	deletePost,
+} = require('../controllers/postController');
+const {
+	getPostComments,
+	getPostCommentsCount,
+	createComment,
+} = require('../controllers/commentController');
+const { upload } = require('../controllers/fileController');
 
 // Setup multer
 // Refactor to another file
 
 // User - Session
-router.get('/api/session', [retrieveToken, verifyToken])
+router.get('/api/session', [retrieveToken, verifyToken]);
 
-router.post('/api/user', createUser)
+router.post('/api/user', createUser);
 
-router.post('/api/session', loginUser)
+router.post('/api/session', loginUser);
 
 // Post
-router.get('/api/posts', getPosts)
+router.get('/api/posts', getPosts);
 
-router.get('/api/:userid/posts', getUserPosts)
+router.get('/api/:userid/posts', getUserPosts);
 
-router.post('/api/post', upload.single('image'), createPost)
+router.post('/api/post', upload.single('image'), createPost);
 
-router.put('/api/posts/:postid', upload.single('image'), updatePost)
+router.put('/api/posts/:postid', upload.single('image'), updatePost);
 
-router.delete('/api/posts/:postid', deletePost)
+router.delete('/api/posts/:postid', deletePost);
 
 // Comments
 // Used when creating a comment
-router.post('/api/comment', createComment)
+router.post('/api/comment', createComment);
 
 // Used when loading a preview(to show how many comments there are) or a post
-router.get('/api/:postid/comments', getPostComments)
+router.get('/api/:postid/comments', getPostComments);
 
 // Used when loading a PostPreview to display how many comments a Post has
-router.get('/api/:postid/comments-count', getPostCommentsCount)
+router.get('/api/:postid/comments-count', getPostCommentsCount);
 
 // Used when click the delete button on a comment
-router.delete('/api/:commentid')
+router.delete('/api/:commentid');
 
-module.exports = {router}
-
+module.exports = { router };
