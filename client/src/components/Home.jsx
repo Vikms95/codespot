@@ -8,7 +8,7 @@ import { useFetch } from '../hooks/useFetch';
 import { getOptions } from '../services/requestParams';
 import { usePostsContext } from '../context/PostsContext';
 
-const StyledHome = styled.section``;
+const StyledHome = styled.main``;
 
 function Home(props) {
 	useAuth();

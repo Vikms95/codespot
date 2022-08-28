@@ -8,7 +8,7 @@ import { useFetch } from '../hooks/useFetch';
 import { getOptions } from '../services/requestParams';
 import { usePostsContext } from '../context/PostsContext';
 
-const StyledDashboard = styled.section``;
+const StyledDashboard = styled.main``;
 
 function Dashboard(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;

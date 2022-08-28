@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AppContainer = styled.div`
+const AppContainer = styled.main`
 	margin: 5em 20em;
 	display: flex;
 	width: 80%;

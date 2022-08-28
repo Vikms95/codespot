@@ -28,6 +28,21 @@
 	color: #61dafb;
 }
 
+body::-webkit-scrollbar{
+  width: .75rem;
+}
+
+body::-webkit-scrollbar-track{
+  background:  rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb{
+  background:   #6649b8;
+  border-radius: 10px;
+}
+
+
 button:hover,
 input:hover {
 	cursor: pointer;
