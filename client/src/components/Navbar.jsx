@@ -16,7 +16,9 @@ import styled from 'styled-components';
 const LinkText = styled.span`
   display: none;
 `
+
 const StyledNavbar = styled.nav`
+  background-color: white;
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -28,6 +30,8 @@ const StyledNavbar = styled.nav`
 	width: 7em;
 	height: 100%;
 	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
+  transition: width 200ms ease;
+  z-index: 100;
   
   &:hover {
     width:16rem;
@@ -35,7 +39,6 @@ const StyledNavbar = styled.nav`
   &:hover ${LinkText} {
     display: block;
   }
-
 `;
 
 const InnerNav = styled.ul`
@@ -46,6 +49,12 @@ const InnerNav = styled.ul`
 	justify-content: space-between;
 	align-items: stretch;
 	row-gap: 2em;
+
+  > * {
+    &:last-child{
+      margin-top: 25rem;
+    }
+  }
 
 `;
 const ToggleButton = styled.button`
@@ -62,20 +71,17 @@ const NavItem = styled.li`
 	color: #6649b8;
 	font-size: 1.5em;
 	font-weight: 500;
+  width: 100%;
+  filter: grayscale(100%) opacity(.7);
+  transition: filter 600ms;
 
 	& > svg {
-		min-width: 1rem;
+		width: 2rem;
     margin-right: 1rem;
 	}
 
 	&:hover {
-		background-color: #6649b8;
-		color: white;
-	}
-
-	&:hover > a {
-		background-color: #6649b8;
-		color: white;
+    filter: grayscale(0%) opacity(1);
 	}
 `;
 
