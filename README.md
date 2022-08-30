@@ -173,15 +173,28 @@ https://dribbble.com/shots/16265164-Side-Menu-Design
 https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Create Comments component
-  : comments have their own separate collection
-  : they have 2 Joins, the user id and the post id
+  <!-- : comments have their own separate collection -->
+  <!-- : they have 2 Joins, the user id and the post id -->
   <!-- : create comment count per post endpoint -->
   <!-- :create CommentSection component
     :pass PostComments as -->
-  :add form and endpoints to create a new comment on a Post
-    :attach user id and post id to the comment object
+  <!-- :add form and endpoints to create a new comment on a Post
+    :attach user id and post id to the comment object -->
+  :lookup composition to create base components and specific versions of those components with children props(Form - WithHeader)
+  :style comment form(lookup dribble)
+  :make comment form appear only if a user is logged in, show login link instead
+  :style comment list
 
-- Reverse posts render to have the last created as first
+
+- Fix images showing the default one before fetching all the PostView images
+
+- Fix Post showing undefined if you logout while a Post is displayed
+
+- Fix Navbar covering the whole screen when going from mobile to desktop view
+
+- Implement sanitization of inputs
+
+-STILYNG-
 
 - Style Home so the first Post is bigger than the rest
 :use first-children to style the first post different from the others
@@ -189,12 +202,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 : make first element occupy 1 row and 2 columns
   :first-child not being selected?
 
-- Fix images showing the default one before fetching all the PostView images
-
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
 
-- Implement sanitization of inputs
+- Style user managament forms
 
     
 
