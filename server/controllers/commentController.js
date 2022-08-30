@@ -19,7 +19,7 @@ const getPostCommentsCount = (req, res, next) => {
 }
 
 const createComment = (req, res, next) => {
-
+  console.log("Hi")
 }
 
 module.exports = { getPostComments, getPostCommentsCount, createComment}

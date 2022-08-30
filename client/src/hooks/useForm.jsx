@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useAuthForm = formFields => {
+export const useForm = formFields => {
 	const [formData, setFormData] = useState(formFields);
 
 	const handleChange = e => {

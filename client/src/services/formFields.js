@@ -17,4 +17,8 @@ const postFields = {
 	timestamp: '',
 };
 
-export { registerFields, loginFields, postFields };
+const commentFields = {
+	text: '',
+};
+
+export { registerFields, loginFields, postFields, commentFields };

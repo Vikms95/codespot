@@ -176,9 +176,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   : comments have their own separate collection
   : they have 2 Joins, the user id and the post id
   <!-- : create comment count per post endpoint -->
-  :create CommentSection component
-    :pass PostComments as
-
+  <!-- :create CommentSection component
+    :pass PostComments as -->
+  - Add form and endpoints to create a new comment on a Post
 
 - Reverse posts render to have the last created as first
 

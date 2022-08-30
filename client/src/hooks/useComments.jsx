@@ -10,6 +10,6 @@ export const useComments = postID => {
 			.then(data => setComments(data.comments));
 	}, []);
 
-  console.log(comments)
+	console.log(comments);
 	return comments;
 };

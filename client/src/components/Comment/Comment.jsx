@@ -5,7 +5,12 @@ import styled from 'styled-components';
 const StyledComment = styled.article``;
 
 function Comment(props) {
-	return <StyledComment>{props.user.username}{props.text}</StyledComment>;
+	return (
+		<StyledComment>
+			{props.user.username}
+			{props.text}
+		</StyledComment>
+	);
 }
 
 export default Comment;

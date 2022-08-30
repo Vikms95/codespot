@@ -1,14 +1,14 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useAuthForm } from '../hooks/useAuthForm';
+import { useForm } from '../hooks/useForm';
 import { registerFields } from '../services/formFields';
 import { userCreateOptions } from '../services/requestParams';
 
 function RegisterForm() {
 	const navigate = useNavigate();
 
-	const { formData, handleChange } = useAuthForm(registerFields);
+	const { formData, handleChange } = useForm(registerFields);
 	const { username, password, password2 } = formData;
 
 	const handleSubmit = e => {

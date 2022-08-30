@@ -2,7 +2,7 @@
 import React from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useAuthForm } from '../hooks/useAuthForm';
+import { useForm } from '../hooks/useForm';
 import { loginFields } from '../services/formFields';
 import { userCreateOptions } from '../services/requestParams';
 import { setToStorage } from '../services/setToStorage';
@@ -11,7 +11,7 @@ function LoginForm(props) {
 	const { setUser } = props;
 	const navigate = useNavigate();
 
-	const { formData, handleChange } = useAuthForm(loginFields);
+	const { formData, handleChange } = useForm(loginFields);
 	const { username, password } = formData;
 
 	const handleSubmit = async e => {
