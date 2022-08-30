@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../context/AuthContext';
 import PostListContainer from '../containers/PostListContainer';
-import PostPreview from './PostPreview';
+import PostPreview from './PostPreview/PostPreview';
 import { useFetch } from '../hooks/useFetch';
 import { getOptions } from '../services/requestParams';
 import { usePostsContext } from '../context/PostsContext';

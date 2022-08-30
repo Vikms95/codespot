@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import styled from 'styled-components';
-import { Button } from '../style/Button';
-import { useHtmlAsText } from '../hooks/useHtmlAsText';
-import defaultPostImage from '../assets/default-image.jpg';
-import { FaBookOpen } from 'react-icons/fa';
-import { useImage } from '../hooks/useImage';
+import { Button } from '../../style/Button';
+import { useHtmlAsText } from '../../hooks/useHtmlAsText';
+import defaultPostImage from '../../assets/default-image.jpg';
+import { FaBookOpen, FaComments } from 'react-icons/fa';
+import { useImage } from '../../hooks/useImage';
+import { useCommentsCount } from '../../hooks/useCommentsCount';
+
 
 const StyledPostPreview = styled.section`
 	display: flex;
@@ -106,10 +108,22 @@ const PostDesc = styled.div`
 	padding: 0;
 `;
 
+const PostBotRowContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+
 const PostButtonContainer = styled.article`
 	display: flex;
-	justify-content: space-evenly;
+  column-gap: 2em;
 `;
+
+const PostCommentsContainer = styled.article`
+  display: flex;
+  color: #c8c6c6;
+  font-size: 2em;
+  gap: .2em;
+`
 
 function PostPreview(props) {
 	const navigate = useNavigate();
@@ -128,6 +142,7 @@ function PostPreview(props) {
 	const { user: currentUserId } = useContext(AuthContext);
 	const textRef = useHtmlAsText(text);
 	const imageSrc = useImage(image, [image]);
+  const commentsCount = useCommentsCount(id)
 
 	const handleUpdate = () => {
 		return navigate('/update/' + id);
@@ -160,12 +175,24 @@ function PostPreview(props) {
 
 				<PostTitle>{title}</PostTitle>
 				<PostDesc ref={textRef}></PostDesc>
-				{user._id === currentUserId && (
-					<PostButtonContainer>
-						<Button onClick={handleUpdate}>Update</Button>
-						<Button onClick={revealDeleteModal}>Delete</Button>
-					</PostButtonContainer>
-				)}
+        <PostBotRowContainer>
+          {
+            (user._id === currentUserId) && 
+              <PostButtonContainer>
+                <Button onClick={handleUpdate}>Update</Button>
+                <Button onClick={revealDeleteModal}>Delete</Button>
+              </PostButtonContainer>
+          
+          }
+          {
+            (commentsCount > 0) &&  
+            <PostCommentsContainer>
+              <FaComments/>
+              {commentsCount}
+            </PostCommentsContainer>
+
+          }
+        </PostBotRowContainer>
 			</PostContentContainer>
 		</StyledPostPreview>
 	);

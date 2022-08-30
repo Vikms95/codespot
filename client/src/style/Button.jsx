@@ -7,7 +7,7 @@ export const Button = styled.button`
 	font-size: 1em;
 	border-radius: 10px;
 	border: none;
-	padding: 0.5em 2em;
+	padding: 0.4em 1.8em;
 	&:hover {
 		filter: brightness(0.9);
 	}

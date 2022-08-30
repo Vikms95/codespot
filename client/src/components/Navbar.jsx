@@ -162,7 +162,7 @@ function Navbar() {
               {
                 (width > 600) 
                   ? <>
-                      <TitleText> BLOGSPOT </TitleText>
+                      <TitleText> CODESPOT </TitleText>
                       <NavArrow/>
                     </>  
                     : <FaHouseUser/> 

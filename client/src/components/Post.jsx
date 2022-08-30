@@ -42,11 +42,13 @@ function Post() {
 	const textRef = useHtmlAsText(text);
 
 	return (
-		<StyledPost>
-			<Title>{title}</Title>
-			{imageSrc?.ok && <Image src={imageSrc?.url} alt='post-portrait'></Image>}
-			<Text ref={textRef}></Text>
-		</StyledPost>
+    <>
+      <StyledPost>
+        <Title>{title}</Title>
+        {imageSrc?.ok && <Image src={imageSrc?.url} alt='post-portrait'></Image>}
+        <Text ref={textRef}></Text>
+      </StyledPost>
+    </>
 	);
 }
 

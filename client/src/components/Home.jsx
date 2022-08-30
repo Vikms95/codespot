@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import useAuth from '../hooks/useAuth';
-import PostPreview from './PostPreview';
+import PostPreview from './PostPreview/PostPreview';
 import PostListContainer from '../containers/PostListContainer';
 import { useFetch } from '../hooks/useFetch';
 import { getOptions } from '../services/requestParams';
