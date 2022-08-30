@@ -16,15 +16,23 @@ const LinkText = styled.span`
   display: none;
 `
 
+const StyledLink = styled(Link)`
+  width: 100%;
+`
+
 const NavArrow = styled(FaChevronRight)`
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 1rem;
-  text-align: center;
   width: 100%;
   margin-top: .5em;
+  color:#4f29b6;
+  width: 100%;
+  margin-left: .5em;
 
   & > svg {
+    filter: grayscale(0%);
+    color:#4f29b6;
     transform: rotate(0deg);
     transition: transform 300ms;
   }
@@ -35,9 +43,8 @@ const InnerNav = styled.ul`
 	list-style: none;
 	display: flex;
 	flex-direction: column;
-	justify-content: stretch;
-	align-items: stretch;
 	row-gap: 2em;
+  width: 100%;
 
   > * {
     &:last-child{
@@ -62,19 +69,21 @@ const StyledNavbar = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-	padding: 5em 0;
+	padding: 1em 0;
 	width: 7em;
 	height: 100%;
 	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
   transition: width 200ms ease;
   z-index: 100;
   
+  
   &:hover {
     width:16rem;
   }
 
   &:hover ${NavArrow} {
-    transform: rotate(-180deg);
+    transform: rotate(-180deg) translateX(-2rem);
+
   }
 
   &:hover ${LinkText} {
@@ -86,13 +95,14 @@ const StyledNavbar = styled.nav`
 
 const NavItem = styled.li`
 	display: flex;
+  justify-content: center;
 	align-items: center;
 	color: #6649b8;
 	font-size: 1.5em;
 	font-weight: 500;
-  width: 100%;
   filter: grayscale(100%) opacity(.7);
   transition: filter 400ms;
+  width: 100%;
 
 	& > svg {
 		width: 2rem;
@@ -104,60 +114,59 @@ const NavItem = styled.li`
 	}
 `;
 
-
-
-
 function Navbar() {
 
 	return (
 		<>
 			<StyledNavbar>
 				<InnerNav>
+
           <NavItem>
-            <LinkText> Blogspot </LinkText>
+            <LinkText> BLOGSPOT </LinkText>
             <NavArrow/>
           </NavItem>
-					<Link to='/'>
+
+					<StyledLink to='/'>
 						<NavItem>
 							<FaHouseUser />
               <LinkText> Home </LinkText>
 						</NavItem>
-					</Link>
+					</StyledLink>
 
-					<Link to='/dashboard'>
+					<StyledLink to='/dashboard'>
 						<NavItem>
 							<FaTable />
 							<LinkText> Dashboard </LinkText>
 						</NavItem>
-					</Link>
+					</StyledLink>
 
-					<Link to='/create'>
+					<StyledLink to='/create'>
 						<NavItem>
 							<FaBook />
 							<LinkText> New post </LinkText>
 						</NavItem>
-					</Link>
+					</StyledLink>
 
-					<Link to='/register'>
+					<StyledLink to='/register'>
 						<NavItem>
 							<FaUser />
 							<LinkText> Register </LinkText>
 						</NavItem>
-					</Link>
+					</StyledLink>
 
-					<Link to='/login'>
+					<StyledLink to='/login'>
 						<NavItem>
 							<FaSignInAlt />
 							<LinkText> Login </LinkText>
 						</NavItem>
-					</Link>
+					</StyledLink>
 
-					<Link to='/' onClick={logoutUser}>
+					<StyledLink to='/' onClick={logoutUser}>
 						<NavItem>
 							<FaDoorOpen />
 							<LinkText> Logout </LinkText>
 						</NavItem>
-					</Link>
+					</StyledLink>
 				</InnerNav>
 			</StyledNavbar>
 		</>
