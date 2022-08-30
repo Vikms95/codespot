@@ -6,5 +6,11 @@ const AppContainer = styled.main`
   margin-left:12em;
 	display: flex;
 	width: 85%;
+  transition: all 200ms;
+
+  @media only screen and (max-width: 600px) {
+    margin-left: 2em;
+  }
+
 `;
 export default AppContainer;

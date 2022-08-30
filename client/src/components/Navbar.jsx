@@ -7,10 +7,11 @@ import {
 	FaUser,
 	FaBook,
 	FaTable,
-	FaHouseUser,
 	FaDoorOpen,
+  FaHouseUser,
   FaChevronRight
 } from 'react-icons/fa';
+import { useWindowDimensions } from '../hooks/useWindowDimensions';
 
 const LinkText = styled.span`
   display: none;
@@ -61,47 +62,8 @@ const InnerNav = styled.ul`
     }
   }
 
-  > * {
-    &:last-child{
-      margin-top: 15rem;
-    }
-  }
-
-
 `;
 
-const StyledNavbar = styled.nav`
-  background-color: white;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-	padding: 1em 0;
-	width: 7em;
-	height: 100%;
-	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
-  transition: width 300ms ease;
-  z-index: 100;
-  overflow:hidden;
-  
-  
-  &:hover {
-    width:16rem;
-  }
-
-  &:hover ${NavArrow} {
-    transform: rotate(-180deg) translateX(-2rem);
-
-  }
-
-  &:hover ${LinkText} {
-    display: block;
-  }
-
-`;
 
 const NavItem = styled.li`
 	display: flex;
@@ -126,24 +88,91 @@ const NavItem = styled.li`
 
 	&:hover {
     filter: grayscale(0%) opacity(1);
-    text-shadow: .5px 0 0 #000, 0 -.5px 0 #000, 0 .5px 0 #000, -.5px 0 0 #000;
 	}
 `;
 
-function Navbar() {
+const StyledNavbar = styled.nav`
+  background-color: white;
+	position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	padding: 1em 0;
+	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
+  transition: width 300ms ease;
+  z-index: 100;
+  overflow:hidden;
 
+  &:hover ${NavArrow} {
+    transform: rotate(-180deg) translateX(-2rem);
+
+  }
+
+  &:hover ${LinkText} {
+    display: block;
+  }
+
+  @media only screen and (min-width: 600px) {
+    top: 0;
+    width: 7em;
+    height: 100%;
+
+    & ${NavItem} {
+      height: 100%;
+    }
+
+    &:hover {
+      width:16rem;
+    }
+
+    &:hover ${LinkText} {
+      display: inline;
+      transition: opacity 400ms;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    bottom:0;
+    width:100%;
+    height:3rem;
+    justify-content: center;
+  
+
+    & ${InnerNav} {
+      flex-direction: row;
+      justify-content: flex-end;
+      > *{
+        background-color: white;
+      }
+    }
+
+    &:hover ${LinkText} {
+      display: none;
+    }
+  }
+`;
+
+
+
+function Navbar() {
+  const {height, width} = useWindowDimensions()
+  
 	return (
 		<>
 			<StyledNavbar>
 				<InnerNav>
-          
 					<StyledLink to='/'>
-            <NavItem>
-              <TitleText> BLOGSPOT </TitleText>
-              <NavArrow/>
-            </NavItem>
+             <NavItem>
+              {
+                (width > 600) 
+                  ? <>
+                      <TitleText> BLOGSPOT </TitleText>
+                      <NavArrow/>
+                    </>  
+                    : <FaHouseUser/> 
+              }
+              </NavItem>
 					</StyledLink>
-
 
 					<StyledLink to='/dashboard'>
 						<NavItem>
