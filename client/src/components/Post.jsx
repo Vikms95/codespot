@@ -7,6 +7,7 @@ import { useImage } from '../hooks/useImage';
 import { useHtmlAsText } from '../hooks/useHtmlAsText';
 import { usePostsContext } from '../context/PostsContext';
 import {useComments} from '../hooks/useComments'
+import {CommentSection} from './Comment/CommentSection'
 
 const StyledPost = styled.section`
 	margin: 5em;
@@ -14,6 +15,8 @@ const StyledPost = styled.section`
 	flex-direction: column;
 	align-items: center;
 `;
+
+
 const Title = styled.h1`
 	font-size: 4em;
 `;
@@ -51,10 +54,10 @@ function Post() {
 					<Image src={imageSrc?.url} alt='post-portrait'></Image>
 				)}
 				<Text ref={textRef}></Text>
+        <CommentSection comments={comments}>
+
+        </CommentSection>
 			</StyledPost>
-      {comments?.map(comment => {
-        return comment.text
-      })}
 		</>
 	);
 }
