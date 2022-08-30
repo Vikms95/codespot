@@ -176,6 +176,8 @@ https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regu
 - Style Navbar > make it a slide navbar with only icons at the beginning and button to show names
 https://dribbble.com/shots/16265164-Side-Menu-Design
 https://www.youtube.com/watch?v=biOMz4puGt8
+  :make a border appear on the nav item that you are hovering along with the colour highlight
+
 
 - Style Home so the first Post is bigger than the rest
 :use first-children to style the first post different from the others
