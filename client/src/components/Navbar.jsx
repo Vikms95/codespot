@@ -14,6 +14,7 @@ import {
 
 const LinkText = styled.span`
   display: none;
+  white-space: nowrap;
 `
 
 const TitleText = styled(LinkText)`
@@ -79,7 +80,7 @@ const StyledNavbar = styled.nav`
 	width: 7em;
 	height: 100%;
 	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
-  transition: width 10000ms ease;
+  transition: width 200ms ease;
   z-index: 100;
   
   
@@ -93,7 +94,8 @@ const StyledNavbar = styled.nav`
   }
 
   &:hover ${LinkText} {
-    display: inline-flex;
+    display: flex;
+    
   }
 `;
 
@@ -110,8 +112,10 @@ const NavItem = styled.li`
   
   
 	& > svg {
-    padding-left: 2em;
-		min-width: 2rem;
+    padding-top:.2em;
+    padding-bottom:.2em;
+    padding-left: 1.5em;
+		min-width: 3rem;
     margin-right: 1rem;
 	}
 
