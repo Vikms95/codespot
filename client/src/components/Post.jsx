@@ -52,6 +52,9 @@ function Post() {
 				)}
 				<Text ref={textRef}></Text>
 			</StyledPost>
+      {comments?.map(comment => {
+        return comment.text
+      })}
 		</>
 	);
 }

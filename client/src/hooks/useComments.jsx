@@ -7,7 +7,9 @@ export const useComments = postID => {
 	useEffect(() => {
 		fetch(`/api/${postID}/comments`, getOptions)
 			.then(res => res.json())
-			.then(data => setComments(data));
+			.then(data => setComments(data.comments));
 	}, []);
+
+  console.log(comments)
 	return comments;
 };

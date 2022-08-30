@@ -9,6 +9,6 @@ export const useCommentsCount = commentID => {
 			.then(res => res.json())
 			.then(data => setCommentsCount(data.count));
 	}, []);
-	console.log(commentsCount);
+
 	return commentsCount;
 };
