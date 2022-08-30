@@ -2,7 +2,9 @@ const Comment = require('../models/Comment')
 
 const getPostComments = (req, res, next) => {
   Comment
-    .find({post:req.params.postid}, (err, comments) => {
+    .find({post:req.params.postid})
+    .populate('user', ['_id', '__v', 'username'])
+    .exec((err, comments) => {
       if(err) return next(err)
       res.json({comments: comments})
     })

@@ -15,7 +15,8 @@ export function CommentSection(props) {
       {props.comments?.map(comment => {
         return  <Comment 
                   key={comment.text}
-                  commentText={comment.text}
+                  text={comment.text}
+                  user={comment.user}
                 ></Comment>
       })}
     </StyledCommentSection>
