@@ -43,8 +43,8 @@ router.put('/api/posts/:postid', upload.single('image'), updatePost);
 router.delete('/api/posts/:postid', deletePost);
 
 // Comments
-// Used when creating a comment
 router.post('/api/comment', createComment);
+// Used when creating a comment
 
 // Used when loading a preview(to show how many comments there are) or a post
 router.get('/api/:postid/comments', getPostComments);

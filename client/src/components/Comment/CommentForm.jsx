@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import { commentFields } from '../../services/formFields';
 import { useForm } from '../../hooks/useForm';
+import { useAuth } from '../../hooks/useAuth';
 import { userCreateOptions } from '../../services/requestParams';
 import { Button } from '../../style/Button';
 
@@ -19,16 +21,21 @@ const StyledCommentInput = styled.textarea`
 	min-height: 10em;
 	padding: 2em;
 `;
-export function CommentForm() {
+export function CommentForm(props) {
+	const { postid } = props;
+	const { user: userid } = useAuth();
 	const { formData, handleChange } = useForm(commentFields);
 	const { text } = formData;
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+
 		const response = await fetch(
 			'/api/comment',
-			userCreateOptions('POST', { formData })
+			userCreateOptions('POST', { text, postid, userid })
 		);
+
+		const data = await response.json();
 	};
 
 	return (

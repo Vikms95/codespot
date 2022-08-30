@@ -178,7 +178,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- : create comment count per post endpoint -->
   <!-- :create CommentSection component
     :pass PostComments as -->
-  - Add form and endpoints to create a new comment on a Post
+  :add form and endpoints to create a new comment on a Post
+    :attach user id and post id to the comment object
 
 - Reverse posts render to have the last created as first
 

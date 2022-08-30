@@ -8,7 +8,7 @@ import verifyUser from '../services/verifyUser';
  * outside of the protected routes. It won't be used for Post since that would
  * mean making a JWT verification for each Post rendered
  */
-function useAuth() {
+export function useAuth() {
 	const { user, setUser } = useContext(AuthContext);
 
 	useEffect(() => {
@@ -19,5 +19,3 @@ function useAuth() {
 
 	return { user };
 }
-
-export default useAuth;

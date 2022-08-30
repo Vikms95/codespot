@@ -40,9 +40,9 @@ function App() {
 									path='/dashboard'
 									element={
 										<Dashboard
+											setPosts={setPosts}
 											isModalActive={isModalActive}
 											lastClickedPostId={lastClickedPostId}
-											setPosts={setPosts}
 											setIsModalActive={setIsModalActive}
 											setLastClickedPostId={setLastClickedPostId}
 										/>
@@ -57,9 +57,9 @@ function App() {
 								path='/'
 								element={
 									<Home
+										setPosts={setPosts}
 										isModalActive={isModalActive}
 										lastClickedPostId={lastClickedPostId}
-										setPosts={setPosts}
 										setIsModalActive={setIsModalActive}
 										setLastClickedPostId={setLastClickedPostId}
 									/>
@@ -70,9 +70,9 @@ function App() {
 				</AuthContext.Provider>
 
 				<Modal
+					setPosts={setPosts}
 					isModalActive={isModalActive}
 					lastClickedPostId={lastClickedPostId}
-					setPosts={setPosts}
 					setIsModalActive={setIsModalActive}
 				/>
 			</AppContainer>

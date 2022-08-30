@@ -19,7 +19,23 @@ const getPostCommentsCount = (req, res, next) => {
 }
 
 const createComment = (req, res, next) => {
-  console.log("Hi")
+  const {text, postid, userid} = req.body
+
+
+  const comment = new Comment({
+    text,
+    user: userid,
+    post: postid
+  })
+
+  comment.save(function(err){
+    if(err){
+      console.log(err)
+      return res.sendStatus(400)
+    } else {
+      return res.status(201).json(comment)
+    }
+  })
 }
 
 module.exports = { getPostComments, getPostCommentsCount, createComment}

@@ -54,7 +54,7 @@ function Post() {
 					<Image src={imageSrc?.url} alt='post-portrait'></Image>
 				)}
 				<Text ref={textRef}></Text>
-				<CommentForm></CommentForm>
+				<CommentForm postid={postid}></CommentForm>
 				<CommentSection comments={comments}></CommentSection>
 			</StyledPost>
 		</>
