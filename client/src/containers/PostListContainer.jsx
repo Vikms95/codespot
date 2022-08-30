@@ -7,15 +7,13 @@ const StyledPostListContainer = styled.section`
 	margin: 2em 0;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
-  grid-auto-rows: .5fr;
-  /* grid-template-rows: 2fr; */
+	grid-auto-rows: 0.5fr;
 
-  > * {
-
-    &:first-child{
-      grid-column: span 2;
-    }
-  }
+	> * {
+		&:first-child {
+			grid-column: span 2;
+		}
+	}
 `;
 const PostListTitle = styled.h2`
 	font-size: 1.5em;

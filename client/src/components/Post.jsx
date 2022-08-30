@@ -6,6 +6,7 @@ import { usePost } from '../hooks/usePost';
 import { useImage } from '../hooks/useImage';
 import { useHtmlAsText } from '../hooks/useHtmlAsText';
 import { usePostsContext } from '../context/PostsContext';
+import {useComments} from '../hooks/useComments'
 
 const StyledPost = styled.section`
 	margin: 5em;
@@ -40,15 +41,18 @@ function Post() {
 
 	const imageSrc = useImage(image, [post]);
 	const textRef = useHtmlAsText(text);
+  const comments = useComments(postid)
 
 	return (
-    <>
-      <StyledPost>
-        <Title>{title}</Title>
-        {imageSrc?.ok && <Image src={imageSrc?.url} alt='post-portrait'></Image>}
-        <Text ref={textRef}></Text>
-      </StyledPost>
-    </>
+		<>
+			<StyledPost>
+				<Title>{title}</Title>
+				{imageSrc?.ok && (
+					<Image src={imageSrc?.url} alt='post-portrait'></Image>
+				)}
+				<Text ref={textRef}></Text>
+			</StyledPost>
+		</>
 	);
 }
 

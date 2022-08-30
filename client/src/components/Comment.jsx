@@ -4,10 +4,7 @@ import styled from 'styled-components';
 const StyledComment = styled.article``;
 
 function Comment(props) {
-	return <StyledComment>
-
-
-        </StyledComment>;
+	return <StyledComment></StyledComment>;
 }
 
 export default Comment;
