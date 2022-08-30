@@ -6,6 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useAuth';
 import { userCreateOptions } from '../../services/requestParams';
 import { Button } from '../../style/Button';
+import { getCurrentDate } from '../../services/getCurrentDate';
 
 const StyledCommentForm = styled.form`
 	display: flex;
@@ -30,9 +31,10 @@ export function CommentForm(props) {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
+		const timestamp = getCurrentDate();
 		const response = await fetch(
 			'/api/comment',
-			userCreateOptions('POST', { text, postid, userid })
+			userCreateOptions('POST', { text, postid, userid, timestamp })
 		);
 
 		const data = await response.json();

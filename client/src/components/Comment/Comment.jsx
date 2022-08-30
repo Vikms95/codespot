@@ -9,6 +9,7 @@ function Comment(props) {
 		<StyledComment>
 			{props.user.username}
 			{props.text}
+			{props.timestamp}
 		</StyledComment>
 	);
 }
