@@ -18,7 +18,10 @@ const LinkText = styled.span`
 `
 
 const TitleText = styled(LinkText)`
-  padding-left: 2em;
+  &&& {
+    filter: none ;
+  }
+  padding-left: 1.5em;
 `
 
 const StyledLink = styled(Link)`
@@ -33,10 +36,9 @@ const NavArrow = styled(FaChevronRight)`
   margin-top: .5em;
   color:#4f29b6;
   width: 100%;
-  margin-left: .5em;
+  margin-left: -.5em;
 
   & > svg {
-    filter: grayscale(0%);
     color:#4f29b6;
     transform: rotate(0deg);
     transition: transform 300ms;
@@ -50,8 +52,14 @@ const InnerNav = styled.ul`
   justify-content: flex-start;
   align-items: flex-start;
 	flex-direction: column;
-	row-gap: 3em;
+	row-gap: 1em;
   width: 100%;
+  
+  > * {
+    &:first-child{
+      background-color: #dcdcdc;
+    }
+  }
 
   > * {
     &:last-child{
@@ -59,11 +67,6 @@ const InnerNav = styled.ul`
     }
   }
 
-  > * {
-    &:first-child{
-      background-color: #dcdcdc;
-    }
-  }
 
 `;
 
@@ -80,8 +83,9 @@ const StyledNavbar = styled.nav`
 	width: 7em;
 	height: 100%;
 	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
-  transition: width 200ms ease;
+  transition: width 300ms ease;
   z-index: 100;
+  overflow:hidden;
   
   
   &:hover {
@@ -94,15 +98,16 @@ const StyledNavbar = styled.nav`
   }
 
   &:hover ${LinkText} {
-    display: flex;
-    
+    display: block;
   }
+
 `;
 
 const NavItem = styled.li`
 	display: flex;
   justify-content: flex-start;
 	align-items: center;
+  padding:.5em 0;
 	color: #6649b8;
 	font-size: 1.5em;
 	font-weight: 500;
@@ -121,6 +126,7 @@ const NavItem = styled.li`
 
 	&:hover {
     filter: grayscale(0%) opacity(1);
+    text-shadow: .5px 0 0 #000, 0 -.5px 0 #000, 0 .5px 0 #000, -.5px 0 0 #000;
 	}
 `;
 
@@ -130,18 +136,14 @@ function Navbar() {
 		<>
 			<StyledNavbar>
 				<InnerNav>
-
-          <NavItem>
-            <TitleText> BLOGSPOT </TitleText>
-            <NavArrow/>
-          </NavItem>
-
+          
 					<StyledLink to='/'>
-						<NavItem>
-							<FaHouseUser />
-              <LinkText> Home </LinkText>
-						</NavItem>
+            <NavItem>
+              <TitleText> BLOGSPOT </TitleText>
+              <NavArrow/>
+            </NavItem>
 					</StyledLink>
+
 
 					<StyledLink to='/dashboard'>
 						<NavItem>
