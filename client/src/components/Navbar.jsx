@@ -117,10 +117,6 @@ const StyledNavbar = styled.nav`
     width: 7em;
     height: 100%;
 
-    & ${NavItem} {
-      height: 100%;
-    }
-
     &:hover {
       width:16rem;
     }

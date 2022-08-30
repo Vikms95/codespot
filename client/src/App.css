@@ -51,3 +51,7 @@ input:hover {
 a {
 	text-decoration: none;
 }
+
+/* *{
+  outline:solid 1px lime;
+} */
