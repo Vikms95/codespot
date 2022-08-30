@@ -16,6 +16,10 @@ const LinkText = styled.span`
   display: none;
 `
 
+const TitleText = styled(LinkText)`
+  padding-left: 2em;
+`
+
 const StyledLink = styled(Link)`
   width: 100%;
 `
@@ -42,13 +46,15 @@ const InnerNav = styled.ul`
 	padding-inline-start: 0;
 	list-style: none;
 	display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 	flex-direction: column;
-	row-gap: 2em;
+	row-gap: 3em;
   width: 100%;
 
   > * {
     &:last-child{
-      margin-top: 20rem;
+      margin-top: 15rem;
     }
   }
 
@@ -73,7 +79,7 @@ const StyledNavbar = styled.nav`
 	width: 7em;
 	height: 100%;
 	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
-  transition: width 200ms ease;
+  transition: width 10000ms ease;
   z-index: 100;
   
   
@@ -87,15 +93,13 @@ const StyledNavbar = styled.nav`
   }
 
   &:hover ${LinkText} {
-    display: block;
+    display: inline-flex;
   }
-
-
 `;
 
 const NavItem = styled.li`
 	display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 	align-items: center;
 	color: #6649b8;
 	font-size: 1.5em;
@@ -103,9 +107,11 @@ const NavItem = styled.li`
   filter: grayscale(100%) opacity(.7);
   transition: filter 400ms;
   width: 100%;
-
+  
+  
 	& > svg {
-		width: 2rem;
+    padding-left: 2em;
+		min-width: 2rem;
     margin-right: 1rem;
 	}
 
@@ -122,7 +128,7 @@ function Navbar() {
 				<InnerNav>
 
           <NavItem>
-            <LinkText> BLOGSPOT </LinkText>
+            <TitleText> BLOGSPOT </TitleText>
             <NavArrow/>
           </NavItem>
 
