@@ -6,7 +6,8 @@ const StyledPostsLayout = styled.section`
 	gap: 5em;
 	margin: 2em 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
+	grid-template-rows: repeat(1, 40rem) repeat(auto-fill, minmax(3rem, 1fr));
 
 	& > section {
 		grid-column: auto/ span 4;
@@ -15,10 +16,20 @@ const StyledPostsLayout = styled.section`
 	> * {
 		:nth-child(1) {
 			grid-column: 1 / 8;
+			max-height: 40rem;
+
+			& > article > a > img {
+				height: 25rem;
+			}
 		}
 
 		:nth-child(2) {
 			grid-column: 8 / 13;
+			max-height: 40rem;
+
+			& > article > a > img {
+				height: 25rem;
+			}
 		}
 	}
 `;

@@ -205,10 +205,11 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 -STILYNG-
 
 - Style Home so the first Post is bigger than the rest
-:use first-children to style the first post different from the others
+<!-- :use first-children to style the first post different from the others -->
 : use.reservese to get the latest post as the first one
-: make first element occupy 1 row and 2 columns
-  :first-child not being selected?
+<!-- : make first element occupy 1 row and 2 columns -->
+  <!-- :first-child not being selected? -->
+  <!-- :make first two elements be bigger -->
 
 - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
