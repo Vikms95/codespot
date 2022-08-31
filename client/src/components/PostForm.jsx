@@ -2,14 +2,12 @@
 import React, { useContext, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
-import axios from 'axios';
 import styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
 import { parseEditorData } from '../utils/parseEditorData';
 import { usePostToUpdate } from '../hooks/usePostToUpdate';
 import { Label } from '../style/Label';
 import { Button } from '../style/Button';
-import { getCurrentDate } from '../utils/getCurrentDate';
 import { createFormData } from '../utils/createFormData';
 import { usePostsContext } from '../context/PostsContext';
 import { usePostForm } from '../hooks/usePostForm';
@@ -40,6 +38,11 @@ const FormBottomRow = styled.article`
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+`;
+
+const InputContainer = styled.div`
+	display: flex;
+	flex-direction: column;
 `;
 
 const CheckBoxContainer = styled.div`
@@ -118,6 +121,7 @@ function PostForm() {
 
 	const handleCreateSubmit = e => {
 		e.preventDefault();
+		console.log(image);
 
 		const formDataRequest = createFormData({
 			title,
@@ -134,7 +138,6 @@ function PostForm() {
 
 	const handleUpdateSubmit = async e => {
 		e.preventDefault();
-
 		const formDataRequest = createFormData({
 			title,
 			text,
@@ -185,8 +188,17 @@ function PostForm() {
 
 				<br />
 				<FormBottomRow>
-					<Label htmlFor='image'></Label>
-					<input type='file' name='image' onChange={handleImageChange} />
+					<InputContainer>
+						<Label htmlFor='image'>Attach an image</Label>
+						<input
+							style={{ display: 'none' }}
+							type='file'
+							name='image'
+							id='image'
+							onChange={handleImageChange}
+						/>
+						{image && <div>{image.name}</div>}
+					</InputContainer>
 					<br />
 
 					<div>Publish this post</div>
