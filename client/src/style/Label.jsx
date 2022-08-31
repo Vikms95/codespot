@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const Label = styled.label`
-	color: #531753;
+	color: #6649b8;
 	font-size: 1em;
 	font-weight: 800;
 	cursor: pointer;

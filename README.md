@@ -182,15 +182,20 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     :attach user id and post id to the comment object -->
   <!-- :make comments appear right after you create them(update the state) -->
   <!-- :make comment form appear only if a user is logged in, show login link instead -->
-  :style comment form(lookup dribble)
-  
-  :style comment list
-    https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
-  :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
-  
+  <!-- :style comment form(lookup dribble) -->
+
+  :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
+  :make commentForm appear whenever the reply button is clicked
+
   :implement functionality to reply comments(parent, child relations)
     https://www.youtube.com/watch?v=lyNetvEfvT0&t=6687s
     https://www.youtube.com/watch?v=sjAeLwuezxo
+  
+  :style comment list
+    https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
+
+  :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
+  
 
 - Fix images showing the default one before fetching all the PostView images
 
@@ -211,8 +216,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :first-child not being selected? -->
   <!-- :make first two elements be bigger -->
 
-- Style file input
-  :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button
+<!-- - Style file input
+  :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button -->
 
 - Style user managament forms
 

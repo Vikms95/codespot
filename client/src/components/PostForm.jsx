@@ -14,6 +14,7 @@ import { usePostForm } from '../hooks/usePostForm';
 import { postFields } from '../data/formFields';
 import { createPost } from '../services/createPost';
 import { updatePost } from '../services/updatePost';
+import { FaCheck } from 'react-icons/fa';
 
 const PostFormContainer = styled.section`
 	margin: 5em;
@@ -36,19 +37,28 @@ const TitleInput = styled.input`
 
 const FormBottomRow = styled.article`
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
 `;
 
 const InputContainer = styled.div`
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	gap: 5px;
 `;
+
+const ImageName = styled.div``;
 
 const CheckBoxContainer = styled.div`
 	position: relative;
 	align-self: flex-start;
 	margin-top: 0.2em;
+`;
+
+const CheckBoxTitle = styled.div`
+	display: flex;
+	align-items: center;
+	margin-right: 5px;
 `;
 
 const CheckBoxLabel = styled.label`
@@ -81,7 +91,7 @@ const CheckBox = styled.input`
 	width: 42px;
 	height: 26px;
 	&:checked + ${CheckBoxLabel} {
-		background: #531753;
+		background: #6649b8;
 		&::after {
 			content: '';
 			display: block;
@@ -96,7 +106,16 @@ const CheckBox = styled.input`
 
 const FormButton = styled(Button)`
 	width: 10em;
-	margin-left: 13em;
+	margin-left: 4em;
+`;
+
+const BottomRight = styled.div`
+	display: flex;
+	justify-content: flex-end;
+`;
+
+const StyledFaCheck = styled(FaCheck)`
+	color: green;
 `;
 
 function PostForm() {
@@ -197,25 +216,26 @@ function PostForm() {
 							id='image'
 							onChange={handleImageChange}
 						/>
-						{image && <div>{image.name}</div>}
+						{image && <StyledFaCheck></StyledFaCheck>}
 					</InputContainer>
 					<br />
+					<BottomRight>
+						<CheckBoxTitle>Make this post public</CheckBoxTitle>
+						<CheckBoxContainer>
+							<CheckBox
+								type='checkbox'
+								name='privacy'
+								onChange={handlePrivacyChange}
+								checked={isPublic}
+							/>
+							<CheckBoxLabel htmlFor='privacy'></CheckBoxLabel>
+						</CheckBoxContainer>
+						<br />
 
-					<div>Publish this post</div>
-					<CheckBoxContainer>
-						<CheckBox
-							type='checkbox'
-							name='privacy'
-							onChange={handlePrivacyChange}
-							checked={isPublic}
-						/>
-						<CheckBoxLabel htmlFor='privacy'></CheckBoxLabel>
-					</CheckBoxContainer>
-					<br />
-
-					<FormButton type='submit'>
-						{postid ? 'Update post' : 'Submit post'}
-					</FormButton>
+						<FormButton type='submit'>
+							{postid ? 'Update post' : 'Submit post'}
+						</FormButton>
+					</BottomRight>
 				</FormBottomRow>
 			</StyledPostForm>
 		</PostFormContainer>
