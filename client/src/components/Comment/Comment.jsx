@@ -1,13 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
+import { CommentsLayout } from '../../layouts/CommentsLayout';
 
 const StyledComment = styled.article`
 	display: flex;
 	flex-direction: column;
-	align-content: stretch;
-	padding: 1.5em;
+	line-height: 22px;
+	padding-left: 1.5em;
 	width: 100%;
+`;
+
+const Username = styled.div`
+	color: #6649b8;
+`;
+const Text = styled.p`
+	padding-bottom: 1em;
 	border: 2px solid;
 	border-image: linear-gradient(
 			90deg,
@@ -20,17 +29,27 @@ const StyledComment = styled.article`
 	border-right: none;
 `;
 
-const Username = styled.div`
-	color: #6649b8;
-`;
-const Text = styled.p``;
-
 function Comment(props) {
+	const { id, text, user, timestamp, getReplies } = props;
+	const childComments = getReplies(id);
+	const areChildrenHidden = false;
+
+	console.log(childComments);
 	return (
 		<StyledComment>
-			<Username>{props.user.username}</Username>
-			<Text>{props.text}</Text>
-			{props.timestamp}
+			<Username>{user.username}</Username>
+			<Text>{text}</Text>
+
+			{childComments?.length > 0 && (
+				<>
+					<ChildrenCommentsLayout areChildrenHidden={areChildrenHidden}>
+						<CommentsLayout
+							comments={childComments}
+							getReplies={getReplies}
+						></CommentsLayout>
+					</ChildrenCommentsLayout>
+				</>
+			)}
 		</StyledComment>
 	);
 }
