@@ -6,12 +6,19 @@ const StyledPostsLayout = styled.section`
 	gap: 5em;
 	margin: 2em 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(25em, 1fr));
-	grid-auto-rows: 0.5fr;
+	grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr));
+
+	& > section {
+		grid-column: auto/ span 4;
+	}
 
 	> * {
-		&:first-child {
-			grid-column: span 2;
+		:nth-child(1) {
+			grid-column: 1 / 8;
+		}
+
+		:nth-child(2) {
+			grid-column: 8 / 13;
 		}
 	}
 `;

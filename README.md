@@ -180,13 +180,17 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     :pass PostComments as -->
   <!-- :add form and endpoints to create a new comment on a Post
     :attach user id and post id to the comment object -->
-  :lookup composition to create base components and specific versions of those components with children props(Form - WithHeader)
   <!-- :make comments appear right after you create them(update the state) -->
   <!-- :make comment form appear only if a user is logged in, show login link instead -->
   :style comment form(lookup dribble)
+  
   :style comment list
-  https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
-
+    https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
+  :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
+  
+  :implement functionality to reply comments(parent, child relations)
+    https://www.youtube.com/watch?v=lyNetvEfvT0&t=6687s
+    https://www.youtube.com/watch?v=sjAeLwuezxo
 
 - Fix images showing the default one before fetching all the PostView images
 
@@ -195,7 +199,6 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 - Fix Navbar covering the whole screen when going from mobile to desktop view
 
 - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
-
 
 - Implement sanitization of inputs
 

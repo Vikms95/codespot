@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PostPreview from './PostPreview/PostPreview';
-import PostListContainer from '../layouts/PostsLayout';
+import PostsLayout from '../layouts/PostsLayout';
 import { useAuth } from '../hooks/useAuth';
 import { useFetch } from '../hooks/useFetch';
 import { getOptions } from '../data/requestParams';
@@ -26,7 +26,7 @@ function Home(props) {
 		<StyledHome>
 			{posts && (
 				<>
-					<PostListContainer>
+					<PostsLayout>
 						{posts.map(
 							post =>
 								post.public && (
@@ -43,7 +43,7 @@ function Home(props) {
 									></PostPreview>
 								)
 						)}
-					</PostListContainer>
+					</PostsLayout>
 				</>
 			)}
 		</StyledHome>

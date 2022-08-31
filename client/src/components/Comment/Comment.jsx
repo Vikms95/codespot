@@ -20,7 +20,9 @@ const StyledComment = styled.article`
 	border-right: none;
 `;
 
-const Username = styled.div``;
+const Username = styled.div`
+	color: #6649b8;
+`;
 const Text = styled.p``;
 
 function Comment(props) {

@@ -12,9 +12,13 @@ const StyledCommentsLayout = styled.section`
 	width: 60%;
 `;
 
+const CommentsTitle = styled.h1``;
+
 export function CommentsLayout(props) {
 	return (
 		<StyledCommentsLayout>
+			<CommentsTitle>Comments</CommentsTitle>
+
 			{props.comments?.map(comment => {
 				return (
 					<Comment
