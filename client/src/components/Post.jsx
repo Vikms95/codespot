@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { usePost } from '../hooks/usePost';
+import { useAuth } from '../hooks/useAuth';
 import { useImage } from '../hooks/useImage';
 import { useHtmlAsText } from '../hooks/useHtmlAsText';
 import { usePostsContext } from '../context/PostsContext';
@@ -35,6 +36,12 @@ const Text = styled.p`
 	max-width: 70%;
 `;
 
+const LoginLinkText = styled.div`
+	display: flex;
+	column-gap: 2em;
+	font-weight: 800;
+`;
+
 function Post() {
 	const { posts } = usePostsContext();
 	const { postid } = useParams();
@@ -42,6 +49,7 @@ function Post() {
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
+	const { user } = useAuth();
 	const imageSrc = useImage(image, [post]);
 	const textRef = useHtmlAsText(text);
 	const comments = useComments(postid);
@@ -50,11 +58,22 @@ function Post() {
 		<>
 			<StyledPost>
 				<Title>{title}</Title>
+
 				{imageSrc?.ok && (
 					<Image src={imageSrc?.url} alt='post-portrait'></Image>
 				)}
+
 				<Text ref={textRef}></Text>
-				<CommentForm postid={postid}></CommentForm>
+
+				{user ? (
+					<CommentForm postid={postid}></CommentForm>
+				) : (
+					<LoginLinkText>
+						<span>Want to leave your comment?</span>{' '}
+						<Link to='/login'>Login</Link>
+					</LoginLinkText>
+				)}
+
 				<CommentSection comments={comments}></CommentSection>
 			</StyledPost>
 		</>

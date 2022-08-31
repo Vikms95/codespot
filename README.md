@@ -181,6 +181,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :add form and endpoints to create a new comment on a Post
     :attach user id and post id to the comment object -->
   :lookup composition to create base components and specific versions of those components with children props(Form - WithHeader)
+  :make comments appear right after you create them(update the state)
   :style comment form(lookup dribble)
   :make comment form appear only if a user is logged in, show login link instead
   :style comment list
@@ -191,6 +192,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 - Fix Post showing undefined if you logout while a Post is displayed
 
 - Fix Navbar covering the whole screen when going from mobile to desktop view
+
+- Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
+
 
 - Implement sanitization of inputs
 

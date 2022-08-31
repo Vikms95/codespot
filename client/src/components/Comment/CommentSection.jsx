@@ -13,7 +13,6 @@ export function CommentSection(props) {
 	return (
 		<StyledCommentSection>
 			{props.comments?.map(comment => {
-				console.log(comment.timestamp);
 				return (
 					<Comment
 						key={comment.text}
