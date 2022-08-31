@@ -2,7 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../context/AuthContext';
-import PostListContainer from '../layouts/PostListContainer';
+import PostListLayout from '../layouts/PostsLayout';
 import PostPreview from './PostPreview/PostPreview';
 import { useFetch } from '../hooks/useFetch';
 import { getOptions } from '../data/requestParams';
@@ -25,7 +25,7 @@ function Dashboard(props) {
 		<StyledDashboard>
 			{posts && (
 				<>
-					<PostListContainer title='Published posts'>
+					<PostListLayout title='Published posts'>
 						{posts?.map(
 							post =>
 								post.public && (
@@ -43,9 +43,9 @@ function Dashboard(props) {
 									></PostPreview>
 								)
 						)}
-					</PostListContainer>
+					</PostListLayout>
 
-					<PostListContainer title='Unpublished posts'>
+					<PostListLayout title='Unpublished posts'>
 						{posts.map(
 							post =>
 								!post.public && (
@@ -62,7 +62,7 @@ function Dashboard(props) {
 									></PostPreview>
 								)
 						)}
-					</PostListContainer>
+					</PostListLayout>
 				</>
 			)}
 		</StyledDashboard>

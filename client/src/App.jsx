@@ -13,7 +13,7 @@ import AuthRouteWrapper from './containers/AuthRouteWrapper';
 import { PostsContextProvider } from './context/PostsContext';
 import AuthContext from './context/AuthContext';
 import Modal from './components/Modal';
-import AppContainer from './layouts/AppContainer';
+import AppContainer from './layouts/AppLayout';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {

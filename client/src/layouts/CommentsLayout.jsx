@@ -9,7 +9,7 @@ const StyledCommentSection = styled.section`
 	grid-auto-rows: 1fr;
 `;
 
-export function CommentSection(props) {
+export function CommentsLayout(props) {
 	return (
 		<StyledCommentSection>
 			{props.comments?.map(comment => {

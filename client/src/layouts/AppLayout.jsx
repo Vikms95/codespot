@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const AppContainer = styled.main`
+const AppLayout = styled.main`
 	margin-top: 5em;
 	margin-bottom: 5em;
 	margin-left: 12em;
@@ -12,4 +12,4 @@ const AppContainer = styled.main`
 		margin-left: 2em;
 	}
 `;
-export default AppContainer;
+export default AppLayout;

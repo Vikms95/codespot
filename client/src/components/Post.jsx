@@ -8,7 +8,7 @@ import { useImage } from '../hooks/useImage';
 import { useHtmlAsText } from '../hooks/useHtmlAsText';
 import { usePostsContext } from '../context/PostsContext';
 import { useComments } from '../hooks/useComments';
-import { CommentSection } from '../layouts/CommentContainer';
+import { CommentsLayout } from '../layouts/CommentsLayout';
 import { CommentForm } from './Comment/CommentForm';
 
 const StyledPost = styled.section`
@@ -74,7 +74,7 @@ function Post() {
 					</LoginLinkText>
 				)}
 
-				<CommentSection comments={comments}></CommentSection>
+				<CommentsLayout comments={comments}></CommentsLayout>
 			</StyledPost>
 		</>
 	);

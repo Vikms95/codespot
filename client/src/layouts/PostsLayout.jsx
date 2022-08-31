@@ -20,7 +20,7 @@ const PostListTitle = styled.h2`
 	margin-left: 2em;
 `;
 
-function PostListContainer(props) {
+function PostListLayout(props) {
 	const { children, title } = props;
 	return (
 		<>
@@ -31,4 +31,4 @@ function PostListContainer(props) {
 	);
 }
 
-export default PostListContainer;
+export default PostListLayout;
