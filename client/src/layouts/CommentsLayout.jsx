@@ -15,21 +15,23 @@ const StyledCommentsLayout = styled.section`
 const CommentsTitle = styled.h1``;
 
 export function CommentsLayout(props) {
-	const { comments, rootComments, getReplies } = props;
+	const { rootComments, getReplies } = props;
 	return (
-		<StyledCommentsLayout>
+		<>
 			<CommentsTitle>Comments</CommentsTitle>
-
-			{rootComments?.map(comment => {
-				return (
-					<Comment
-						key={comment._id}
-						text={comment.text}
-						user={comment.user}
-						timestamp={comment.timestamp}
-					></Comment>
-				);
-			})}
-		</StyledCommentsLayout>
+			<StyledCommentsLayout>
+				{rootComments?.map(comment => {
+					getReplies(comment._id);
+					return (
+						<Comment
+							key={comment._id}
+							text={comment.text}
+							user={comment.user}
+							timestamp={comment.timestamp}
+						></Comment>
+					);
+				})}
+			</StyledCommentsLayout>
+		</>
 	);
 }

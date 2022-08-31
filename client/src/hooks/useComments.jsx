@@ -4,9 +4,12 @@ import { getComments } from '../services/getComments';
 export const useComments = postID => {
 	const [comments, setComments] = useState();
 
+	useEffect(() => {
+		getComments(postID).then(data => setComments(data.comments));
+	}, []);
+
 	const commentByParentID = useMemo(() => {
 		if (!comments) return [];
-
 		const group = {};
 
 		comments.forEach(comment => {
@@ -21,14 +24,10 @@ export const useComments = postID => {
 		return commentByParentID[parent];
 	};
 
-	useEffect(() => {
-		getComments(postID).then(data => setComments(data.comments));
-	}, []);
-
 	return {
 		comments,
 		setComments,
 		getReplies,
-		rootComments: commentByParentID.null,
+		rootComments: commentByParentID.undefined,
 	};
 };

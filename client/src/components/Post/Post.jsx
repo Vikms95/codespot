@@ -45,8 +45,7 @@ const LoginLinkText = styled.div`
 function Post() {
 	const { posts } = usePostsContext();
 	const { postid } = useParams();
-	const { comments, setComments, getReplies, rootComments } =
-		useComments(postid);
+	const { rootComments, setComments, getReplies } = useComments(postid);
 
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
@@ -76,7 +75,6 @@ function Post() {
 				)}
 
 				<CommentsLayout
-					comments={comments}
 					rootComments={rootComments}
 					getReplies={getReplies}
 				></CommentsLayout>
