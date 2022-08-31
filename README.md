@@ -186,6 +186,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
   :implement icons for CRUD actions on the comments
     :when Reply button is clicked, that button has attached the id from the component, so the comment form will have the parentid on state
+    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized PostFormWithParent which will have the id passed as props + extra features?
 
   :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
 
