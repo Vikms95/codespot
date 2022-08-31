@@ -216,8 +216,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Style user managament forms
 
-    
-
+- Implement error handling on api calls or asynchronous operations
 
 
 -QUESTIONS/TO REVIEW-

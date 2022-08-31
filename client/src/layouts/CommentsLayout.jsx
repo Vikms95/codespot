@@ -15,11 +15,12 @@ const StyledCommentsLayout = styled.section`
 const CommentsTitle = styled.h1``;
 
 export function CommentsLayout(props) {
+	const { comments, rootComments, getReplies } = props;
 	return (
 		<StyledCommentsLayout>
 			<CommentsTitle>Comments</CommentsTitle>
 
-			{props.comments?.map(comment => {
+			{rootComments?.map(comment => {
 				return (
 					<Comment
 						key={comment._id}
