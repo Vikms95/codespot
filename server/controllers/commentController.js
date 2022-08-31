@@ -19,14 +19,15 @@ const getPostCommentsCount = (req, res, next) => {
 }
 
 const createComment = (req, res, next) => {
-  const {text, postid, userid, timestamp} = req.body
+  const {text, postid, userid, timestamp, parent} = req.body
   console.log(req.body)
 
   const comment = new Comment({
     text,
     timestamp,
+    parent,
     user: userid,
-    post: postid
+    post: postid,
   })
   
   comment.save(function(err){

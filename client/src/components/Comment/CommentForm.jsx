@@ -24,7 +24,7 @@ const StyledCommentInput = styled.textarea`
 	outline: 1px solid #6649b8;
 `;
 export function CommentForm(props) {
-	const { postid, setComments } = props;
+	const { postid, setComments, parentid } = props;
 	const { user: userid } = useAuth();
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
@@ -32,7 +32,7 @@ export function CommentForm(props) {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		const comment = await createComment(text, postid, userid);
+		const comment = await createComment(text, postid, userid, parentid);
 
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);

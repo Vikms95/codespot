@@ -184,7 +184,11 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :make comment form appear only if a user is logged in, show login link instead -->
   <!-- :style comment form(lookup dribble) -->
 
+  :implement icons for CRUD actions on the comments
+    :when Reply button is clicked, that button has attached the id from the component, so the comment form will have the parentid on state
+
   :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
+
   :make commentForm appear whenever the reply button is clicked
 
   :implement functionality to reply comments(parent, child relations)
@@ -209,7 +213,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 -STILYNG-
 
-- Style Home so the first Post is bigger than the rest
+<!-- - Style Home so the first Post is bigger than the rest -->
 <!-- :use first-children to style the first post different from the others -->
 : use.reservese to get the latest post as the first one
 <!-- : make first element occupy 1 row and 2 columns -->
@@ -223,6 +227,3 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Implement error handling on api calls or asynchronous operations
 
-
--QUESTIONS/TO REVIEW-
-- useAuth and useContext are being used when it is moment to use them? (review it)
