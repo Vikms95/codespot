@@ -181,10 +181,11 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :add form and endpoints to create a new comment on a Post
     :attach user id and post id to the comment object -->
   :lookup composition to create base components and specific versions of those components with children props(Form - WithHeader)
-  :make comments appear right after you create them(update the state)
+  <!-- :make comments appear right after you create them(update the state) -->
+  <!-- :make comment form appear only if a user is logged in, show login link instead -->
   :style comment form(lookup dribble)
-  :make comment form appear only if a user is logged in, show login link instead
   :style comment list
+  https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
 
 
 - Fix images showing the default one before fetching all the PostView images

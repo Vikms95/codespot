@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledPostListContainer = styled.section`
+const StyledPostsLayout = styled.section`
 	gap: 5em;
 	margin: 2em 0;
 	display: grid;
@@ -26,7 +26,7 @@ function PostsLayout(props) {
 		<>
 			<PostListTitle>{title}</PostListTitle>
 
-			<StyledPostListContainer>{children}</StyledPostListContainer>
+			<StyledPostsLayout>{children}</StyledPostsLayout>
 		</>
 	);
 }

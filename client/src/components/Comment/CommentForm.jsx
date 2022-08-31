@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { commentFields } from '../../data/formFields';
 import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useAuth';
-import { userCreateOptions } from '../../data/requestParams';
 import { Button } from '../../style/Button';
-import { getCurrentDate } from '../../utils/getCurrentDate';
 import { createComment } from '../../services/createComment';
 
 const StyledCommentForm = styled.form`
@@ -14,6 +12,7 @@ const StyledCommentForm = styled.form`
 	flex-direction: column;
 	align-items: center;
 	row-gap: 1em;
+	margin: 5em 0;
 `;
 
 const StyledCommentInput = styled.textarea`
@@ -33,6 +32,7 @@ export function CommentForm(props) {
 		e.preventDefault();
 
 		const comment = await createComment(text, postid, userid);
+
 		setComments(prevComments => [...prevComments, comment]);
 	};
 

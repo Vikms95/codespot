@@ -2,14 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useParams, Link } from 'react-router-dom';
-import { usePost } from '../hooks/usePost';
-import { useAuth } from '../hooks/useAuth';
-import { useImage } from '../hooks/useImage';
-import { useHtmlAsText } from '../hooks/useHtmlAsText';
-import { usePostsContext } from '../context/PostsContext';
-import { useComments } from '../hooks/useComments';
-import { CommentsLayout } from '../layouts/CommentsLayout';
-import { CommentForm } from './Comment/CommentForm';
+import { usePost } from '../../hooks/usePost';
+import { useAuth } from '../../hooks/useAuth';
+import { useImage } from '../../hooks/useImage';
+import { useHtmlAsText } from '../../hooks/useHtmlAsText';
+import { usePostsContext } from '../../context/PostsContext';
+import { useComments } from '../../hooks/useComments';
+import { CommentsLayout } from '../../layouts/CommentsLayout';
+import { CommentForm } from '../Comment/CommentForm';
 
 const StyledPost = styled.section`
 	margin: 5em;

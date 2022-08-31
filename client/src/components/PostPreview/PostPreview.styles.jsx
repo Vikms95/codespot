@@ -7,7 +7,7 @@ export const StyledPostPreview = styled.section`
 	justify-content: space-between;
 	align-items: stretch;
 	flex-direction: column;
-	box-shadow: 4px 4px 10px -2px gray;
+	box-shadow: 1px 2px 5px -1px gray;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	max-height: 40em;
@@ -111,7 +111,7 @@ export const PostButtonContainer = styled.article`
 
 export const PostCommentsContainer = styled.article`
 	display: flex;
-	color: #c8c6c6;
-	font-size: 2em;
+	color: #6649b8;
+	font-size: 1.5em;
 	gap: 0.2em;
 `;
