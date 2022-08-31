@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
-import { getOptions } from '../data/requestParams';
+import { getComments } from '../services/getComments';
 
 export const useComments = postID => {
 	const [comments, setComments] = useState();
 
 	useEffect(() => {
-		fetch(`/api/${postID}/comments`, getOptions)
-			.then(res => res.json())
-			.then(data => setComments(data.comments));
+		getComments(postID).then(data => setComments(data.comments));
 	}, []);
 
 	return { comments, setComments };

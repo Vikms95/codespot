@@ -6,7 +6,7 @@ const StyledPostsLayout = styled.section`
 	gap: 5em;
 	margin: 2em 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
 	grid-template-rows: repeat(1, 40rem) repeat(auto-fill, minmax(3rem, 1fr));
 
 	& > section {

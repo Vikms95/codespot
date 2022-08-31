@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import AuthContext from '../context/AuthContext';
-import verifyUser from '../utils/verifyUser';
+import { verifyUser } from '../services/verifyUser';
 
 /**
  * Hook used everytime we want to check for validity of the JWT token

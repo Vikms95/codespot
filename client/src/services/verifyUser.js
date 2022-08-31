@@ -1,4 +1,4 @@
-const verifyUser = async () => {
+export const verifyUser = async () => {
 	const response = await fetch('/api/session', {
 		method: 'GET',
 		headers: {
@@ -16,4 +16,3 @@ const verifyUser = async () => {
 	}
 };
 
-export default verifyUser;
