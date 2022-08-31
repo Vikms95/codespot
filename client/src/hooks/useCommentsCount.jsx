@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getOptions } from '../services/requestParams';
+import { getOptions } from '../data/requestParams';
 
 export const useCommentsCount = commentID => {
 	const [commentsCount, setCommentsCount] = useState();

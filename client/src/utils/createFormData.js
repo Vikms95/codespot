@@ -1,5 +1,5 @@
 export const createFormData = data => {
-	const { title, text, isPublic, user, image, formerTimestamp, timestamp } =
+	const { title, text, isPublic, user, image } =
 		data;
 
 	const formData = new FormData();
@@ -9,7 +9,6 @@ export const createFormData = data => {
 	formData.append('text', text);
 	formData.append('isPublic', isPublic);
 	formData.append('user', user);
-	formData.append('timestamp', formerTimestamp || timestamp);
 
 	return formData;
 };

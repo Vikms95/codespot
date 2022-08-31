@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../services/logoutUser';
+import { logoutUser } from '../utils/logoutUser';
 import styled from 'styled-components';
 import {
 	FaSignInAlt,

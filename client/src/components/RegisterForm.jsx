@@ -2,8 +2,8 @@ import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
-import { registerFields } from '../services/formFields';
-import { userCreateOptions } from '../services/requestParams';
+import { registerFields } from '../data/formFields';
+import { createUser } from '../services/createUser';
 
 function RegisterForm() {
 	const navigate = useNavigate();
@@ -14,10 +14,8 @@ function RegisterForm() {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		fetch(
-			'/api/user',
-			userCreateOptions('POST', { username, password, password2 })
-		);
+		createUser(username, password, password2);
+
 		return navigate('/login');
 	};
 

@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { commentFields } from '../../services/formFields';
+import { commentFields } from '../../data/formFields';
 import { useForm } from '../../hooks/useForm';
 import { useAuth } from '../../hooks/useAuth';
-import { userCreateOptions } from '../../services/requestParams';
+import { userCreateOptions } from '../../data/requestParams';
 import { Button } from '../../style/Button';
-import { getCurrentDate } from '../../services/getCurrentDate';
+import { getCurrentDate } from '../../utils/getCurrentDate';
+import { createComment } from '../../services/createComment';
 
 const StyledCommentForm = styled.form`
 	display: flex;
@@ -31,13 +32,7 @@ export function CommentForm(props) {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		const timestamp = getCurrentDate();
-		const response = await fetch(
-			'/api/comment',
-			userCreateOptions('POST', { text, postid, userid, timestamp })
-		);
-
-		const data = await response.json();
+		createComment(text, postid, userid);
 	};
 
 	return (

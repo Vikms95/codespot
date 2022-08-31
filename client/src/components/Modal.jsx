@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ModalWrapper from '../containers/ModalWrapper';
-import { deleteOptions } from '../services/requestParams';
+import { deleteOptions } from '../data/requestParams';
 import styled from 'styled-components';
 import { Button } from '../style/Button';
 

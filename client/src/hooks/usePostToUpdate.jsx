@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getPostToUpdate } from '../services/getPostToUpdate';
+import { getPostToUpdate } from '../utils/getPostToUpdate';
 
 export function usePostToUpdate(postid, posts, setFormData) {
 	useEffect(() => {

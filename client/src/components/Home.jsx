@@ -2,10 +2,10 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PostPreview from './PostPreview/PostPreview';
-import PostListContainer from '../containers/PostListContainer';
+import PostListContainer from '../layouts/PostListContainer';
 import { useAuth } from '../hooks/useAuth';
 import { useFetch } from '../hooks/useFetch';
-import { getOptions } from '../services/requestParams';
+import { getOptions } from '../data/requestParams';
 import { usePostsContext } from '../context/PostsContext';
 
 const StyledHome = styled.main``;

@@ -23,6 +23,8 @@ const getUserPosts = (req, res, next) => {
 const createPost = (req, res, next) => {
   const { title, text, isPublic, user, timestamp } = req.body
 
+  console.log(req.body)
+
   const post = new Post({
     user,
     title,
@@ -34,6 +36,7 @@ const createPost = (req, res, next) => {
 
   post.save(function (err) {
     if (err) {
+      console.log(err)
       return res.sendStatus(400)
     } else {
       return res.status(201).json(post)

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import Comment from './Comment';
+import Comment from '../components/Comment/Comment';
 
 const StyledCommentSection = styled.section`
 	display: grid;

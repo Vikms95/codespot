@@ -2,10 +2,10 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../context/AuthContext';
-import PostListContainer from '../containers/PostListContainer';
+import PostListContainer from '../layouts/PostListContainer';
 import PostPreview from './PostPreview/PostPreview';
 import { useFetch } from '../hooks/useFetch';
-import { getOptions } from '../services/requestParams';
+import { getOptions } from '../data/requestParams';
 import { usePostsContext } from '../context/PostsContext';
 
 const StyledDashboard = styled.main``;

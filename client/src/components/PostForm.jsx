@@ -5,15 +5,17 @@ import AuthContext from '../context/AuthContext';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
-import { parseEditorData } from '../services/parseEditorData';
+import { parseEditorData } from '../utils/parseEditorData';
 import { usePostToUpdate } from '../hooks/usePostToUpdate';
 import { Label } from '../style/Label';
 import { Button } from '../style/Button';
-import { getCurrentDate } from '../services/getCurrentDate';
-import { createFormData } from '../services/createFormData';
+import { getCurrentDate } from '../utils/getCurrentDate';
+import { createFormData } from '../utils/createFormData';
 import { usePostsContext } from '../context/PostsContext';
 import { usePostForm } from '../hooks/usePostForm';
-import { postFields } from '../services/formFields';
+import { postFields } from '../data/formFields';
+import { createPost } from '../services/createPost';
+import { updatePost } from '../services/updatePost';
 
 const PostFormContainer = styled.section`
 	margin: 5em;
@@ -109,6 +111,7 @@ function PostForm() {
 		handleEditorChange,
 		handlePrivacyChange,
 	} = usePostForm(editorRef, postFields);
+
 	const { title, text, isPublic, image } = formData;
 
 	usePostToUpdate(postid, posts, setFormData);
@@ -116,18 +119,15 @@ function PostForm() {
 	const handleCreateSubmit = e => {
 		e.preventDefault();
 
-		const timestamp = getCurrentDate();
 		const formDataRequest = createFormData({
 			title,
 			text,
 			isPublic,
 			user,
 			image,
-			timestamp,
 		});
-		axios
-			.post('http://localhost:4000/api/post', formDataRequest, {})
-			.then(res => console.log(res));
+
+		createPost(formDataRequest);
 
 		return navigate('/dashboard');
 	};
@@ -144,9 +144,7 @@ function PostForm() {
 			formerTimestamp: formData.timestamp,
 		});
 
-		axios
-			.put('http://localhost:4000/api/posts/' + postid, formDataRequest, {})
-			.then(res => console.log(res));
+		updatePost(postid, formDataRequest);
 
 		return navigate('/dashboard');
 	};

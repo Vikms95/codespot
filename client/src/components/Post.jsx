@@ -8,7 +8,7 @@ import { useImage } from '../hooks/useImage';
 import { useHtmlAsText } from '../hooks/useHtmlAsText';
 import { usePostsContext } from '../context/PostsContext';
 import { useComments } from '../hooks/useComments';
-import { CommentSection } from './Comment/CommentSection';
+import { CommentSection } from '../layouts/CommentContainer';
 import { CommentForm } from './Comment/CommentForm';
 
 const StyledPost = styled.section`

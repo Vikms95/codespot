@@ -3,9 +3,9 @@ import React from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
-import { loginFields } from '../services/formFields';
-import { userCreateOptions } from '../services/requestParams';
-import { setToStorage } from '../services/setToStorage';
+import { loginFields } from '../data/formFields';
+import { loginUser } from '../services/loginUser';
+import { setToStorage } from '../utils/setToStorage';
 
 function LoginForm(props) {
 	const { setUser } = props;
@@ -17,14 +17,10 @@ function LoginForm(props) {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		const response = await fetch(
-			'/api/session',
-			userCreateOptions('POST', { username, password })
-		);
-		const data = await response.json();
+		const data = await loginUser(username, password);
 
-		setToStorage('token', data.token);
 		setUser(data.user);
+		setToStorage('token', data.token);
 
 		return navigate('/dashboard');
 	};

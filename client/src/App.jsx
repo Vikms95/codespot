@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-import './App.css';
+import './assets/global.css';
 import { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -13,7 +13,7 @@ import AuthRouteWrapper from './containers/AuthRouteWrapper';
 import { PostsContextProvider } from './context/PostsContext';
 import AuthContext from './context/AuthContext';
 import Modal from './components/Modal';
-import AppContainer from './style/AppContainer';
+import AppContainer from './layouts/AppContainer';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
