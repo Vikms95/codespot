@@ -52,7 +52,7 @@ function Post() {
 	const { user } = useAuth();
 	const imageSrc = useImage(image, [post]);
 	const textRef = useHtmlAsText(text);
-	const comments = useComments(postid);
+	const { comments, setComments } = useComments(postid);
 
 	return (
 		<>
@@ -66,7 +66,7 @@ function Post() {
 				<Text ref={textRef}></Text>
 
 				{user ? (
-					<CommentForm postid={postid}></CommentForm>
+					<CommentForm postid={postid} setComments={setComments}></CommentForm>
 				) : (
 					<LoginLinkText>
 						<span>Want to leave your comment?</span>{' '}

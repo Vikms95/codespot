@@ -20,7 +20,7 @@ const PostListTitle = styled.h2`
 	margin-left: 2em;
 `;
 
-function PostListLayout(props) {
+function PostsLayout(props) {
 	const { children, title } = props;
 	return (
 		<>
@@ -31,4 +31,4 @@ function PostListLayout(props) {
 	);
 }
 
-export default PostListLayout;
+export default PostsLayout;

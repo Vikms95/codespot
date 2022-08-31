@@ -10,5 +10,5 @@ export const useComments = postID => {
 			.then(data => setComments(data.comments));
 	}, []);
 
-	return comments;
+	return { comments, setComments };
 };
