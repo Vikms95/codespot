@@ -192,6 +192,7 @@ function PostForm() {
 				<Editor
 					onInit={(_e, editor) => (editorRef.current = editor)}
 					init={{
+						forced_root_block: '',
 						height: 500,
 						width: 800,
 						menubar: false,

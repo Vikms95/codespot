@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -16,19 +16,7 @@ const StyledComment = styled.article`
 const Username = styled.div`
 	color: #6649b8;
 `;
-const Text = styled.p`
-	padding-bottom: 2em;
-	border: 2px solid;
-	border-image: linear-gradient(
-			90deg,
-			rgba(83, 65, 95, 0.9),
-			rgba(60, 74, 83, 0)
-		)
-		1;
-	border-left: none;
-	border-top: none;
-	border-right: none;
-`;
+const Text = styled.p``;
 
 const CollapseButton = styled.button`
 	border: none;
@@ -50,6 +38,24 @@ const ExpandButton = styled.button`
 	display: ${props => (props.areChildrenHidden ? 'flex' : 'none')};
 `;
 
+const IconsContainer = styled.div`
+	display: flex;
+	gap: 25px;
+	color: #6649b8;
+	padding-bottom: 1em;
+	margin-bottom: 2em;
+	border: 2px solid;
+	border-image: linear-gradient(
+			90deg,
+			rgba(83, 65, 95, 0.9),
+			rgba(60, 74, 83, 0)
+		)
+		1;
+	border-left: none;
+	border-top: none;
+	border-right: none;
+`;
+
 function Comment(props) {
 	const { id, text, user, timestamp, getReplies } = props;
 	const childComments = getReplies(id);
@@ -60,6 +66,12 @@ function Comment(props) {
 			<StyledComment>
 				<Username>{user.username}</Username>
 				<Text>{text}</Text>
+
+				<IconsContainer>
+					<FaReply />
+					<FaPen />
+					<FaTrash />
+				</IconsContainer>
 
 				{childComments?.length > 0 && (
 					<>

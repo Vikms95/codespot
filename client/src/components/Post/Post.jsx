@@ -33,7 +33,7 @@ const Text = styled.p`
 	display: flex;
 	flex-direction: column;
 	text-align: justify;
-	max-width: 70%;
+	max-width: 70ch;
 `;
 
 const CommentsTitle = styled.h1``;
