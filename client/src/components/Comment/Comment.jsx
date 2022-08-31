@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
+import { FaChevronDown } from 'react-icons/fa';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -16,7 +17,7 @@ const Username = styled.div`
 	color: #6649b8;
 `;
 const Text = styled.p`
-	padding-bottom: 1em;
+	padding-bottom: 2em;
 	border: 2px solid;
 	border-image: linear-gradient(
 			90deg,
@@ -29,28 +30,61 @@ const Text = styled.p`
 	border-right: none;
 `;
 
+const CollapseButton = styled.button`
+	border: none;
+	border-right: solid 5px white;
+	border-left: solid 5px white;
+	background-color: #6649b8;
+	padding: 1.2px;
+
+	&:hover {
+		background-color: #a899d4;
+	}
+`;
+
+const ExpandButton = styled.button`
+	display: flex;
+	gap: 5px;
+	border: none;
+	background-color: transparent;
+	display: ${props => (props.areChildrenHidden ? 'flex' : 'none')};
+`;
+
 function Comment(props) {
 	const { id, text, user, timestamp, getReplies } = props;
 	const childComments = getReplies(id);
-	const areChildrenHidden = false;
+	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
-	console.log(childComments);
 	return (
-		<StyledComment>
-			<Username>{user.username}</Username>
-			<Text>{text}</Text>
+		<>
+			<StyledComment>
+				<Username>{user.username}</Username>
+				<Text>{text}</Text>
 
-			{childComments?.length > 0 && (
-				<>
-					<ChildrenCommentsLayout areChildrenHidden={areChildrenHidden}>
-						<CommentsLayout
-							comments={childComments}
-							getReplies={getReplies}
-						></CommentsLayout>
-					</ChildrenCommentsLayout>
-				</>
-			)}
-		</StyledComment>
+				{childComments?.length > 0 && (
+					<>
+						<ChildrenCommentsLayout areChildrenHidden={areChildrenHidden}>
+							<CollapseButton
+								aria-label='Hide Replies'
+								onClick={() => setAreChildrenHidden(true)}
+							/>
+							<CommentsLayout
+								comments={childComments}
+								getReplies={getReplies}
+							></CommentsLayout>
+						</ChildrenCommentsLayout>
+
+						<ExpandButton
+							areChildrenHidden={areChildrenHidden}
+							onClick={() => setAreChildrenHidden(false)}
+						>
+							{'Show replies'}
+							<FaChevronDown />
+						</ExpandButton>
+					</>
+				)}
+			</StyledComment>
+		</>
 	);
 }
 

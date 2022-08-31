@@ -36,6 +36,8 @@ const Text = styled.p`
 	max-width: 70%;
 `;
 
+const CommentsTitle = styled.h1``;
+
 const LoginLinkText = styled.div`
 	display: flex;
 	column-gap: 2em;
@@ -73,6 +75,8 @@ function Post() {
 						<Link to='/login'>Login</Link>
 					</LoginLinkText>
 				)}
+
+				<CommentsTitle>Comments</CommentsTitle>
 
 				<CommentsLayout
 					comments={rootComments}

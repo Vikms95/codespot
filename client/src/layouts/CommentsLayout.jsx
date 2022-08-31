@@ -11,13 +11,10 @@ const StyledCommentsLayout = styled.section`
 	width: 80%;
 `;
 
-const CommentsTitle = styled.h1``;
-
 export function CommentsLayout(props) {
 	const { comments, getReplies } = props;
 	return (
 		<>
-			{/* <CommentsTitle>Comments</CommentsTitle> */}
 			<StyledCommentsLayout>
 				{comments != null &&
 					comments.length > 0 &&
