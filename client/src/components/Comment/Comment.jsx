@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
+import { useAuth } from '../../hooks/useAuth';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -41,7 +42,6 @@ const ExpandButton = styled.button`
 const IconsContainer = styled.div`
 	display: flex;
 	gap: 25px;
-	color: #6649b8;
 	padding-bottom: 1em;
 	margin-bottom: 2em;
 	border: 2px solid;
@@ -56,9 +56,16 @@ const IconsContainer = styled.div`
 	border-right: none;
 `;
 
+const IconButton = styled.button`
+	border: none;
+	background-color: transparent;
+	color: #6649b8;
+`;
+
 function Comment(props) {
 	const { id, text, user, timestamp, getReplies } = props;
 	const childComments = getReplies(id);
+	const { user: loggedInUserID } = useAuth();
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
 	return (
@@ -67,11 +74,23 @@ function Comment(props) {
 				<Username>{user.username}</Username>
 				<Text>{text}</Text>
 
-				<IconsContainer>
-					<FaReply />
-					<FaPen />
-					<FaTrash />
-				</IconsContainer>
+				{loggedInUserID && (
+					<IconsContainer>
+						<IconButton>
+							<FaReply />
+						</IconButton>
+						{user._id === loggedInUserID && (
+							<>
+								<IconButton>
+									<FaPen />
+								</IconButton>
+								<IconButton>
+									<FaTrash />
+								</IconButton>
+							</>
+						)}
+					</IconsContainer>
+				)}
 
 				{childComments?.length > 0 && (
 					<>

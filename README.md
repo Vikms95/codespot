@@ -183,10 +183,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :make comments appear right after you create them(update the state) -->
   <!-- :make comment form appear only if a user is logged in, show login link instead -->
   <!-- :style comment form(lookup dribble) -->
-  :conditionally render icons on the comment, if logged user id is not equals to the comment user, do not show edit and delete
+  :conditionally render icons on the comment, if logged user id is not equals to the comment user, do not show edit and delete, if no user at all, do not show reply button
 
   :implement icons for CRUD actions on the comments
-    :when Reply button is clicked, that button has attached the id from the component, so the comment form will have the parentid on state
+    :when Reply button is clicked, that button has attached the id from the comment, so the comment form will have the parentid on state
     :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized PostFormWithParent which will have the id passed as props + extra features?
 
   :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
