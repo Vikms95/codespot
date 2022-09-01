@@ -16,7 +16,7 @@ export const useComments = postID => {
 			group[comment.parent] ||= [];
 			group[comment.parent].push(comment);
 		});
-		console.log(group);
+
 		return group;
 	}, [comments]);
 

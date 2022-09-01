@@ -7,6 +7,7 @@ const {
 	retrieveToken,
 	verifyToken,
 } = require('../controllers/userController');
+
 const {
 	getPosts,
 	getUserPosts,
@@ -14,12 +15,15 @@ const {
 	updatePost,
 	deletePost,
 } = require('../controllers/postController');
+
 const {
 	getPostComments,
 	getPostCommentsCount,
 	createComment,
-  deleteComment
+  deleteComment,
+  deleteChildComments
 } = require('../controllers/commentController');
+
 const { upload } = require('../controllers/fileController');
 
 // Setup multer
@@ -55,5 +59,8 @@ router.get('/api/:postid/comments-count', getPostCommentsCount);
 
 // Used when click the delete button on a comment
 router.delete('/api/:commentid', deleteComment);
+
+// Used when click the delete button on a comment
+router.delete('/api/:comments', deleteChildComments);
 
 module.exports = { router };

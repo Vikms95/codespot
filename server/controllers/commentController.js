@@ -52,4 +52,9 @@ const deleteComment = (req, res, next) => {
   })
 }
 
-module.exports = { getPostComments, getPostCommentsCount, createComment, deleteComment}
+const deleteChildComments = (req, res, next) => {
+  console.log(req.comments)
+}
+
+
+module.exports = { getPostComments, getPostCommentsCount, createComment, deleteComment, deleteChildComments}

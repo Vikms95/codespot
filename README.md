@@ -192,8 +192,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   :implement icons for CRUD actions on the comments
     :when reply button is clicked, display a CommentForm right below the comment to reply
 
-    :when a comment with children is deleted, delete all the children too
-
+    :when a comment with children is deleted, delete all the children too on state and on the database
+      :create new endpoint that takes an array of comments and deletes them all from the database?
+      
     :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
     :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?

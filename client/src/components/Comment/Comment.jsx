@@ -5,6 +5,7 @@ import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { deleteComment } from '../../services/deleteComment';
+import { deleteChildComments } from '../../services/deleteChildComments';
 import AuthContext from '../../context/AuthContext';
 
 const StyledComment = styled.article`
@@ -74,9 +75,17 @@ function Comment(props) {
 
 		deleteComment(id);
 
-		setComments(prevComments =>
-			prevComments.filter(comment => comment._id !== id)
-		);
+		if (childComments !== null) {
+			deleteChildComments(childComments);
+		}
+
+		setComments(prevComments => {
+			prevComments.filter(comment => comment._id !== id);
+
+			childComments?.forEach(child =>
+				prevComments.filter(comment => child._id === comment._id)
+			);
+		});
 	};
 
 	return (
