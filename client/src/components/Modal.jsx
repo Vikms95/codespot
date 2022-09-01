@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ModalWrapper from '../containers/ModalWrapper';
-import { deleteOptions } from '../data/requestParams';
+import { deletePost } from '../services/deletePost';
 import styled from 'styled-components';
 import { Button } from '../style/Button';
 
@@ -29,7 +29,7 @@ function Modal(props) {
 		props;
 
 	const handleDelete = () => {
-		fetch('/api/posts/' + lastClickedPostId, deleteOptions);
+		deletePost(lastClickedPostId);
 
 		setPosts(prevPosts =>
 			prevPosts.filter(post => post._id !== lastClickedPostId)

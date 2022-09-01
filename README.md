@@ -185,18 +185,20 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :style comment form(lookup dribble) -->
   <!-- :conditionally render icons on the comment, if logged user id is not equals to the comment user, do not show edit and delete, if no user at all, do not show reply button -->
 
-  :implement icons for CRUD actions on the comments
-    :when reply button is clicked, display a CommentForm right below the comment to reply
-    :that reply button has attached the id from the comment, so the comment form will have the parentid on state
-    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized PostFormWithParent which will have the id passed as props + extra features?
-
-  :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
-
-  :make commentForm appear whenever the reply button is clicked
-
   :implement functionality to reply comments(parent, child relations)
     https://www.youtube.com/watch?v=lyNetvEfvT0&t=6687s
     https://www.youtube.com/watch?v=sjAeLwuezxo
+
+  :implement icons for CRUD actions on the comments
+    :when reply button is clicked, display a CommentForm right below the comment to reply
+
+    :when a comment with children is deleted, delete all the children too
+
+    :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
+
+    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?
+
+  :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
   
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media

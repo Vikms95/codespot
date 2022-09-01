@@ -81,6 +81,7 @@ function Post() {
 				<CommentsLayout
 					comments={rootComments}
 					getReplies={getReplies}
+					setComments={setComments}
 				></CommentsLayout>
 			</StyledPost>
 		</>

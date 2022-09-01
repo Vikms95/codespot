@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { commentFields } from '../../data/formFields';
+import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
-import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../style/Button';
 import { createComment } from '../../services/createComment';
 
@@ -47,8 +47,8 @@ const CommentFormButton = styled(Button)`
 `;
 
 export function CommentForm(props) {
-	const { postid, setComments, parentid } = props;
-	const { user: userid } = useAuth();
+	const { postid, setComments, parentid, autofocus = false } = props;
+	const { user: userid } = useContext(AuthContext);
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
 
@@ -64,12 +64,16 @@ export function CommentForm(props) {
 	return (
 		<StyledCommentForm onSubmit={handleSubmit}>
 			<StyledCommentInput
+				autoFocus={autofocus}
 				type='text'
 				name='text'
 				value={text}
 				onChange={handleChange}
 			/>
-			<CommentFormButton type='submit'> Comment </CommentFormButton>
+			<CommentFormButton type='submit'>
+				{' '}
+				{parentid ? 'Reply' : 'Comment'}{' '}
+			</CommentFormButton>
 		</StyledCommentForm>
 	);
 }

@@ -12,7 +12,7 @@ const StyledCommentsLayout = styled.section`
 `;
 
 export function CommentsLayout(props) {
-	const { comments, getReplies } = props;
+	const { comments, getReplies, setComments } = props;
 	return (
 		<>
 			<StyledCommentsLayout>
@@ -27,6 +27,7 @@ export function CommentsLayout(props) {
 								user={comment.user}
 								timestamp={comment.timestamp}
 								getReplies={getReplies}
+                setComments={setComments}
 							></Comment>
 						);
 					})}

@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
-import { useAuth } from '../../hooks/useAuth';
+import { deleteComment } from '../../services/deleteComment';
+import AuthContext from '../../context/AuthContext';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -41,7 +42,7 @@ const ExpandButton = styled.button`
 
 const IconsContainer = styled.div`
 	display: flex;
-	gap: 25px;
+	gap: 10px;
 	padding-bottom: 1em;
 	margin-bottom: 2em;
 	border: 2px solid;
@@ -63,10 +64,20 @@ const IconButton = styled.button`
 `;
 
 function Comment(props) {
-	const { id, text, user, timestamp, getReplies } = props;
+	const { id, text, user, timestamp, getReplies, setComments } = props;
 	const childComments = getReplies(id);
-	const { user: loggedInUserID } = useAuth();
+	const { user: loggedInUserID } = useContext(AuthContext);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
+
+	const handleDelete = e => {
+		e.preventDefault();
+
+		deleteComment(id);
+
+		setComments(prevComments =>
+			prevComments.filter(comment => comment._id !== id)
+		);
+	};
 
 	return (
 		<>
@@ -84,7 +95,7 @@ function Comment(props) {
 								<IconButton>
 									<FaPen />
 								</IconButton>
-								<IconButton>
+								<IconButton onClick={handleDelete}>
 									<FaTrash />
 								</IconButton>
 							</>

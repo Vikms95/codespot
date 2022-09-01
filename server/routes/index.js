@@ -18,6 +18,7 @@ const {
 	getPostComments,
 	getPostCommentsCount,
 	createComment,
+  deleteComment
 } = require('../controllers/commentController');
 const { upload } = require('../controllers/fileController');
 
@@ -53,6 +54,6 @@ router.get('/api/:postid/comments', getPostComments);
 router.get('/api/:postid/comments-count', getPostCommentsCount);
 
 // Used when click the delete button on a comment
-router.delete('/api/:commentid');
+router.delete('/api/:commentid', deleteComment);
 
 module.exports = { router };

@@ -40,4 +40,16 @@ const createComment = (req, res, next) => {
   })
 }
 
-module.exports = { getPostComments, getPostCommentsCount, createComment}
+const deleteComment = (req, res, next) => {
+  const {commentid} = req.params
+
+  Comment.findByIdAndDelete(commentid, (err, comment) => {
+    if(err) {
+      return res.status(400)
+    }else {
+      return res.status(200).json(comment)
+    }
+  })
+}
+
+module.exports = { getPostComments, getPostCommentsCount, createComment, deleteComment}
