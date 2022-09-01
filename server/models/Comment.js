@@ -7,6 +7,7 @@ const CommentSchema = new Schema({
   parent:{type: Schema.Types.Mixed, ref: 'CommentSchema'},
   timestamp: { type: String, required: true },
   text: { type: String, required: true },
+  isDeletedWithChildren: {type: Boolean}
 })
 
 CommentSchema

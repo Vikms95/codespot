@@ -65,7 +65,8 @@ const IconButton = styled.button`
 `;
 
 function Comment(props) {
-	const { id, text, user, timestamp, getReplies, setComments } = props;
+	const { id, text, user, timestamp, getReplies, setComments, comments } =
+		props;
 	const childComments = getReplies(id);
 	const { user: loggedInUserID } = useContext(AuthContext);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
@@ -73,19 +74,19 @@ function Comment(props) {
 	const handleDelete = e => {
 		e.preventDefault();
 
-		deleteComment(id);
+		if (childComments) {
+			// Find comment on frontend
+			const comment = comments.find(comment => comment._id === id);
+			// Modify the value isDeletedWithChildren to true
+      
+			// Pass the whole comment to the endpoint
+		} else {
+			deleteComment(id);
 
-		if (childComments !== null) {
-			deleteChildComments(childComments);
+			setComments(prevComments => {
+				prevComments.filter(comment => comment._id !== id);
+			});
 		}
-
-		setComments(prevComments => {
-			prevComments.filter(comment => comment._id !== id);
-
-			childComments?.forEach(child =>
-				prevComments.filter(comment => child._id === comment._id)
-			);
-		});
 	};
 
 	return (

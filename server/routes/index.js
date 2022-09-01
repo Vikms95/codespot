@@ -21,7 +21,7 @@ const {
 	getPostCommentsCount,
 	createComment,
   deleteComment,
-  deleteChildComments
+  flagCommentWithChildren
 } = require('../controllers/commentController');
 
 const { upload } = require('../controllers/fileController');
@@ -58,9 +58,11 @@ router.get('/api/:postid/comments', getPostComments);
 router.get('/api/:postid/comments-count', getPostCommentsCount);
 
 // Used when click the delete button on a comment
-router.delete('/api/:commentid', deleteComment);
+router.put('/api/comments/:commentid', flagCommentWithChildren);
 
 // Used when click the delete button on a comment
-router.delete('/api/:comments', deleteChildComments);
+router.delete('/api/:commentid', deleteComment);
+
+
 
 module.exports = { router };

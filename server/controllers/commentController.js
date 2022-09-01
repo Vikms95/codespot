@@ -20,7 +20,6 @@ const getPostCommentsCount = (req, res, next) => {
 
 const createComment = (req, res, next) => {
   const {text, postid, userid, timestamp, parent} = req.body
-  console.log(req.body)
 
   const comment = new Comment({
     text,
@@ -28,6 +27,7 @@ const createComment = (req, res, next) => {
     parent,
     user: userid,
     post: postid,
+    isDeletedWithChildren: false
   })
   
   comment.save(function(err){
@@ -52,9 +52,14 @@ const deleteComment = (req, res, next) => {
   })
 }
 
-const deleteChildComments = (req, res, next) => {
-  console.log(req.comments)
+const flagCommentWithChildren = (req, res, next) => {
+  const {commentid} = req.params
+  
+  const comment = new Comment({
+    
+  })
+  console.log(commentsArray)
 }
 
 
-module.exports = { getPostComments, getPostCommentsCount, createComment, deleteComment, deleteChildComments}
+module.exports = { getPostComments, getPostCommentsCount, createComment, deleteComment, flagCommentWithChildren}

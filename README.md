@@ -192,9 +192,25 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   :implement icons for CRUD actions on the comments
     :when reply button is clicked, display a CommentForm right below the comment to reply
 
-    :when a comment with children is deleted, delete all the children too on state and on the database
-      :create new endpoint that takes an array of comments and deletes them all from the database?
-      
+    :when a comment with children is deleted, delete all the children too on state  
+      :children on the database still exist, is it needed to delete them?
+      :the only side effect besides database clutter is the comment count form PostPreview showing
+      the amount with the child components too
+        :use the comments state instead of fetching them?(does not seem like a good idea)
+
+    >I think it'd be better if you kept the deleted users' comments as well, but show in your front end that the user was deleted due to XX. But while deleting a user, you could have a checkbox option - delete user comments - which will delete all comments and its replies, because if you do not wish to show the child comments on your site again, it would be a waste storing them in your db
+
+    >Logic<
+    Comment gets deleted 
+      If comment children === null
+        Delete from backend
+        Delete from frontend
+      If comment has children
+        Set deleted property to true on backend
+        Set deleted property to true on frontend
+        
+
+
     :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
     :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?

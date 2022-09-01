@@ -12,7 +12,7 @@ export const createComment = async (text, postid, userid, parentid) => {
   );
 
   const data = await response.json();
-  console.log(data)
+  
   return data
   
 }

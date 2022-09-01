@@ -27,7 +27,8 @@ export function CommentsLayout(props) {
 								user={comment.user}
 								timestamp={comment.timestamp}
 								getReplies={getReplies}
-                setComments={setComments}
+								setComments={setComments}
+								comments={comments}
 							></Comment>
 						);
 					})}
