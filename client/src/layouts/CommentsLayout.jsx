@@ -16,6 +16,7 @@ export function CommentsLayout(props) {
 	return (
 		<>
 			<StyledCommentsLayout>
+				{console.log(comments)}
 				{comments != null &&
 					comments.length > 0 &&
 					comments.map(comment => {

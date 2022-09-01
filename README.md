@@ -199,7 +199,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
         :use the comments state instead of fetching them?(does not seem like a good idea)
 
     >I think it'd be better if you kept the deleted users' comments as well, but show in your front end that the user was deleted due to XX. But while deleting a user, you could have a checkbox option - delete user comments - which will delete all comments and its replies, because if you do not wish to show the child comments on your site again, it would be a waste storing them in your db
-
+    https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table
     >Logic<
     Comment gets deleted 
       If comment children === null
@@ -208,7 +208,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
       If comment has children
         Set deleted property to true on backend
         Set deleted property to true on frontend
-        
+
 
 
     :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state

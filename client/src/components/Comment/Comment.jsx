@@ -5,7 +5,7 @@ import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { deleteComment } from '../../services/deleteComment';
-import { deleteChildComments } from '../../services/deleteChildComments';
+import { flagComment } from '../../services/flagComment';
 import AuthContext from '../../context/AuthContext';
 
 const StyledComment = styled.article`
@@ -67,7 +67,7 @@ const IconButton = styled.button`
 function Comment(props) {
 	const { id, text, user, timestamp, getReplies, setComments, comments } =
 		props;
-	const childComments = getReplies(id);
+	const childComments = getReplies(id) || ['hi'];
 	const { user: loggedInUserID } = useContext(AuthContext);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
@@ -78,11 +78,11 @@ function Comment(props) {
 			// Find comment on frontend
 			const comment = comments.find(comment => comment._id === id);
 			// Modify the value isDeletedWithChildren to true
-      
+			console.log(comment);
 			// Pass the whole comment to the endpoint
+			flagComment(comment);
 		} else {
 			deleteComment(id);
-
 			setComments(prevComments => {
 				prevComments.filter(comment => comment._id !== id);
 			});
