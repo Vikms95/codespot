@@ -46,7 +46,7 @@ const deleteComment = (req, res, next) => {
   Comment.findByIdAndDelete(commentid, (err, comment) => {
     if(err) {
       return res.status(400)
-    }else {
+    } else {
       return res.status(200).json(comment)
     }
   })
@@ -54,11 +54,24 @@ const deleteComment = (req, res, next) => {
 
 const flagCommentWithChildren = (req, res, next) => {
   const {commentid} = req.params
-  
+  const {user, post , parent, timestamp, text, isDeletedWithChildren} = req.body
   const comment = new Comment({
-    
+    _id: commentid,
+    user,
+    post,
+    parent,
+    timestamp,
+    text: '(deleted)',
+    isDeletedWithChildren: true
   })
-  console.log(commentsArray)
+
+  Comment.findByIdAndUpdate(commentid, comment, {}, (err, comment) => {
+    if (err) {
+      return res.status(400)
+    } else {
+      return res.status(200).json(comment)
+    }
+  } )
 }
 
 

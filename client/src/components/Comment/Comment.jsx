@@ -65,9 +65,17 @@ const IconButton = styled.button`
 `;
 
 function Comment(props) {
-	const { id, text, user, timestamp, getReplies, setComments, comments } =
-		props;
-	const childComments = getReplies(id) || ['hi'];
+	const {
+		id,
+		text,
+		user,
+		timestamp,
+		isDeletedWithChildren,
+		getReplies,
+		setComments,
+		comments,
+	} = props;
+	const childComments = getReplies(id);
 	const { user: loggedInUserID } = useContext(AuthContext);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
@@ -75,12 +83,18 @@ function Comment(props) {
 		e.preventDefault();
 
 		if (childComments) {
-			// Find comment on frontend
 			const comment = comments.find(comment => comment._id === id);
-			// Modify the value isDeletedWithChildren to true
 			console.log(comment);
-			// Pass the whole comment to the endpoint
 			flagComment(comment);
+			setComments(prevComments => {
+				prevComments.map(item => {
+					console.log(item);
+					return item._id === comment._id
+						? { ...item, isDeletedWithChildren: true }
+						: { ...item };
+				});
+				console.log(comments);
+			});
 		} else {
 			deleteComment(id);
 			setComments(prevComments => {
@@ -92,15 +106,16 @@ function Comment(props) {
 	return (
 		<>
 			<StyledComment>
-				<Username>{user.username}</Username>
+				<Username>{user?.username}</Username>
 				<Text>{text}</Text>
 
-				{loggedInUserID && (
+				{loggedInUserID && !isDeletedWithChildren && (
 					<IconsContainer>
 						<IconButton>
 							<FaReply />
 						</IconButton>
-						{user._id === loggedInUserID && (
+						{/* Add that comment is not deleted with children contidition */}
+						{user?._id === loggedInUserID && (
 							<>
 								<IconButton>
 									<FaPen />
