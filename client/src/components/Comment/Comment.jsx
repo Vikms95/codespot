@@ -8,6 +8,7 @@ import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { deleteComment } from '../../services/deleteComment';
 import { flagComment } from '../../services/flagComment';
 import AuthContext from '../../context/AuthContext';
+import { findByID } from '../../utils/findbyID';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -84,12 +85,11 @@ function Comment(props) {
 		e.preventDefault();
 
 		if (childComments) {
-			const comment = comments.find(comment => comment._id === id);
+			const comment = findByID(comments, id);
 
 			flagComment(comment);
 
 			setComments(prevComments => {
-				// debugger;
 				return prevComments.map(item => {
 					return item._id === comment._id
 						? { ...item, isDeletedWithChildren: true, text: '(deleted)' }

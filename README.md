@@ -205,12 +205,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
       <!-- Delete from frontend -->
       If comment has children
         <!-- Set deleted property to true on backend -->
-        Set deleted property to true on frontend
-        <!-- !:comments turn to undefined when deleted and no children -->
-        :the rest of the comments are not receiving an id?
-        
+        <!-- Set deleted property to true on frontend -->
+        <!-- :comments turn to undefined when deleted and no children -->
+      :delete all (deleted) comments that no longer have children comments        
 
-    :setComments is not available after one deleted comment? pass comments as context?
 
    >REPLY<
     :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state

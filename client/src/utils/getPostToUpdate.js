@@ -1,9 +1,9 @@
 import { getFromStorage } from './getFromStorage';
-import { getPost } from './getPost';
+import { findByID } from './findbyID';
 import { setToStorage } from './setToStorage';
 export const getPostToUpdate = (posts, postid) => {
 	if (posts.length) {
-		const postToUpdate = getPost(posts, postid);
+		const postToUpdate = findByID(posts, postid);
 
 		setToStorage('postToUpdate', postToUpdate);
 
