@@ -81,36 +81,52 @@ function Comment(props) {
 	const { user: loggedInUserID } = useContext(AuthContext);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
+	const softDeleteComment = comment => {
+		flagComment(comment);
+
+		setComments(prevComments =>
+			prevComments.map(item =>
+				item._id === comment._id
+					? { ...item, isDeletedWithChildren: true, text: '(deleted)' }
+					: { ...item }
+			)
+		);
+	};
+
+	const hardDeleteComment = (comment, id) => {
+		deleteComment(id);
+
+		setComments(prevComments =>
+			prevComments.filter(comment => comment._id !== id)
+		);
+		console.log(comment);
+		// comment.parent.isDeletedWithChildren === true
+		if (comment.parent) {
+			const parentComment = findByID(comments, comment.parent);
+			console.log(parentComment);
+
+			if (parentComment.isDeletedWithChildren) {
+				hardDeleteComment(comments, comment.parent);
+			}
+		}
+	};
+
 	const handleDelete = e => {
 		e.preventDefault();
 
+		const comment = findByID(comments, id);
+
 		if (childComments) {
-			const comment = findByID(comments, id);
-
-			flagComment(comment);
-
-			setComments(prevComments => {
-				return prevComments.map(item => {
-					return item._id === comment._id
-						? { ...item, isDeletedWithChildren: true, text: '(deleted)' }
-						: { ...item };
-				});
-			});
+			softDeleteComment(comment);
 		} else {
-			deleteComment(id);
-
-			setComments(prevComments => {
-				return prevComments.filter(comment => {
-					return comment._id !== id;
-				});
-			});
+			hardDeleteComment(comment, id);
 		}
 	};
 
 	return (
 		<>
 			<StyledComment>
-				<Username>{user?.username}</Username>
+				<Username>{user?.username || '(deleted user)'}</Username>
 				<Text>{text}</Text>
 
 				{loggedInUserID && !isDeletedWithChildren && (
@@ -118,7 +134,6 @@ function Comment(props) {
 						<IconButton>
 							<FaReply />
 						</IconButton>
-						{/* Add that comment is not deleted with children contidition */}
 						{user?._id === loggedInUserID && (
 							<>
 								<IconButton>

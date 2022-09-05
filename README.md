@@ -207,7 +207,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
         <!-- Set deleted property to true on backend -->
         <!-- Set deleted property to true on frontend -->
         <!-- :comments turn to undefined when deleted and no children -->
-      :delete all (deleted) comments that no longer have children comments        
+      :delete all (deleted) comments that no longer have children comments     
+        delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
+        <!-- !:parentComment is undefined when we try to find it -->
+
 
 
    >REPLY<
