@@ -91,9 +91,6 @@ function Comment(props) {
 			setComments(prevComments => {
 				// debugger;
 				return prevComments.map(item => {
-					console.log('iterated comment ', item._id);
-					console.log('deleted comment ', comment._id);
-					console.log('are equal? ', item._id === comment._id);
 					return item._id === comment._id
 						? { ...item, isDeletedWithChildren: true, text: '(deleted)' }
 						: { ...item };
@@ -101,8 +98,11 @@ function Comment(props) {
 			});
 		} else {
 			deleteComment(id);
+
 			setComments(prevComments => {
-				prevComments.filter(comment => comment._id !== id);
+				return prevComments.filter(comment => {
+					return comment._id !== id;
+				});
 			});
 		}
 	};
@@ -140,6 +140,7 @@ function Comment(props) {
 								onClick={() => setAreChildrenHidden(true)}
 							/>
 							<CommentsLayout
+								id={id}
 								comments={childComments}
 								setComments={setComments}
 								getReplies={getReplies}
