@@ -8,26 +8,8 @@ export const useComments = postID => {
 		getComments(postID).then(data => setComments(data.comments));
 	}, []);
 
-	const commentByParentID = useMemo(() => {
-		if (!comments) return [];
-		const group = {};
-
-		comments.forEach(comment => {
-			group[comment.parent] ||= [];
-			group[comment.parent].push(comment);
-		});
-
-		return group;
-	}, [comments]);
-
-	const getChildComments = parent => {
-		return commentByParentID[parent];
-	};
-
 	return {
-		commentsContext: comments,
-		rootComments: commentByParentID.null,
+		comments,
 		setComments,
-		getChildComments,
 	};
 };

@@ -8,6 +8,7 @@ import { useImage } from '../../hooks/useImage';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { usePostsContext } from '../../context/PostsContext';
 import { useComments } from '../../hooks/useComments';
+import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { CommentForm } from '../Comment/CommentForm';
 import { CommentsContextProvider } from '../../context/CommentsContext';
@@ -46,15 +47,17 @@ const LoginLinkText = styled.div`
 `;
 
 function Post() {
+  // Pass to both
+	const { user } = useAuth(); 
+
 	const { posts } = usePostsContext();
 	const { postid } = useParams();
-	const { commentsContext, rootComments, setComments, getChildComments } =
-		useComments(postid);
-
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
-	const { user } = useAuth();
+	const { comments, setComments } = useComments(postid);
+	const { rootComments, getChildComments } = useDerivedComments(comments);
+
 	const imageSrc = useImage(image, [post]);
 	const textRef = useHtmlAsText(text);
 
@@ -77,9 +80,9 @@ function Post() {
 						<Link to='/login'>Login</Link>
 					</LoginLinkText>
 				)}
-
+				{/* Make two components */}
 				<CommentsTitle>Comments</CommentsTitle>
-				<CommentsContextProvider value={commentsContext}>
+				<CommentsContextProvider value={comments}>
 					<CommentsLayout
 						comments={rootComments}
 						getChildComments={getChildComments}

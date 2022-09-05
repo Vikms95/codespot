@@ -7,9 +7,9 @@ import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { deleteComment } from '../../services/deleteComment';
 import { flagComment } from '../../services/flagComment';
-import AuthContext from '../../context/AuthContext';
 import { findByID } from '../../utils/findbyID';
 import { useCommentsContext } from '../../context/CommentsContext';
+import { useAuth } from '../../hooks/useAuth';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -77,7 +77,7 @@ function Comment(props) {
 		getChildComments,
 		setComments,
 	} = props;
-	const { user: loggedInUserID } = useContext(AuthContext);
+	const { user: loggedInUserID } = useAuth();
 	const childComments = getChildComments(id);
 	const commentsContext = useCommentsContext().value;
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
