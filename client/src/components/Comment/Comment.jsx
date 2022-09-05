@@ -140,7 +140,6 @@ function Comment(props) {
 								onClick={() => setAreChildrenHidden(true)}
 							/>
 							<CommentsLayout
-								id={id}
 								comments={childComments}
 								setComments={setComments}
 								getReplies={getReplies}
