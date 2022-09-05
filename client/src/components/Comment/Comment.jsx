@@ -9,6 +9,7 @@ import { deleteComment } from '../../services/deleteComment';
 import { flagComment } from '../../services/flagComment';
 import AuthContext from '../../context/AuthContext';
 import { findByID } from '../../utils/findbyID';
+import { useCommentsContext } from '../../context/CommentsContext';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -80,6 +81,7 @@ function Comment(props) {
 	const childComments = getReplies(id);
 	const { user: loggedInUserID } = useContext(AuthContext);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
+	const commentsContext = useCommentsContext().value;
 
 	const softDeleteComment = comment => {
 		flagComment(comment);
@@ -102,7 +104,7 @@ function Comment(props) {
 		console.log(comment);
 		// comment.parent.isDeletedWithChildren === true
 		if (comment.parent) {
-			const parentComment = findByID(comments, comment.parent);
+			const parentComment = findByID(commentsContext, comment.parent);
 			console.log(parentComment);
 
 			if (parentComment.isDeletedWithChildren) {
@@ -114,7 +116,7 @@ function Comment(props) {
 	const handleDelete = e => {
 		e.preventDefault();
 
-		const comment = findByID(comments, id);
+		const comment = findByID(commentsContext, id);
 
 		if (childComments) {
 			softDeleteComment(comment);

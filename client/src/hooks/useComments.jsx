@@ -25,6 +25,7 @@ export const useComments = postID => {
 	};
 
 	return {
+		commentsContext: comments,
 		rootComments: commentByParentID.null,
 		setComments,
 		getReplies,

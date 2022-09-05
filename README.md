@@ -210,7 +210,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
       :delete all (deleted) comments that no longer have children comments     
         delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
         <!-- !:parentComment is undefined when we try to find it -->
-
+        :undefined because the comments that the recursed comment is being passed are just the child comments, so the parent cannot be found
+        >pass all comments from a post as context?
 
 
    >REPLY<

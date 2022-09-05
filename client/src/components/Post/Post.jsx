@@ -10,6 +10,7 @@ import { usePostsContext } from '../../context/PostsContext';
 import { useComments } from '../../hooks/useComments';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { CommentForm } from '../Comment/CommentForm';
+import { CommentsContextProvider } from '../../context/CommentsContext';
 
 const StyledPost = styled.section`
 	margin: 5em;
@@ -47,7 +48,8 @@ const LoginLinkText = styled.div`
 function Post() {
 	const { posts } = usePostsContext();
 	const { postid } = useParams();
-	const { rootComments, setComments, getReplies } = useComments(postid);
+	const { commentsContext, rootComments, setComments, getReplies } =
+		useComments(postid);
 
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
@@ -77,12 +79,13 @@ function Post() {
 				)}
 
 				<CommentsTitle>Comments</CommentsTitle>
-
-				<CommentsLayout
-					comments={rootComments}
-					getReplies={getReplies}
-					setComments={setComments}
-				></CommentsLayout>
+				<CommentsContextProvider value={commentsContext}>
+					<CommentsLayout
+						comments={rootComments}
+						getReplies={getReplies}
+						setComments={setComments}
+					></CommentsLayout>
+				</CommentsContextProvider>
 			</StyledPost>
 		</>
 	);
