@@ -208,6 +208,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
         Set deleted property to true on frontend
         :first update state and then do the db request?
         <!-- !:comments turn to undefined and all of them dissapear -->
+        :if it gets too annoying, work on replying to comments functionality
         
 
     :setComments is not available after one deleted comment? pass comments as context?

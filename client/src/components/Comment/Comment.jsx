@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
@@ -84,16 +85,19 @@ function Comment(props) {
 
 		if (childComments) {
 			const comment = comments.find(comment => comment._id === id);
-			console.log(comment);
+
 			flagComment(comment);
+
 			setComments(prevComments => {
-				prevComments.map(item => {
-					console.log(item);
+				// debugger;
+				return prevComments.map(item => {
+					console.log('iterated comment ', item._id);
+					console.log('deleted comment ', comment._id);
+					console.log('are equal? ', item._id === comment._id);
 					return item._id === comment._id
-						? { ...item, isDeletedWithChildren: true }
+						? { ...item, isDeletedWithChildren: true, text: '(deleted)' }
 						: { ...item };
 				});
-				console.log(comments);
 			});
 		} else {
 			deleteComment(id);
@@ -137,6 +141,7 @@ function Comment(props) {
 							/>
 							<CommentsLayout
 								comments={childComments}
+								setComments={setComments}
 								getReplies={getReplies}
 							></CommentsLayout>
 						</ChildrenCommentsLayout>
