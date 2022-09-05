@@ -83,7 +83,9 @@ function Comment(props) {
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 	const commentsContext = useCommentsContext().value;
 
-	const softDeleteComment = comment => {
+	const softDeleteComment = () => {
+		const comment = findByID(commentsContext, id);
+
 		flagComment(comment);
 
 		setComments(prevComments =>
@@ -95,20 +97,24 @@ function Comment(props) {
 		);
 	};
 
-	const hardDeleteComment = (comment, id) => {
+	const hardDeleteComment = id => {
+		const comment = findByID(commentsContext, id);
+		console.log(comment);
+
 		deleteComment(id);
 
 		setComments(prevComments =>
 			prevComments.filter(comment => comment._id !== id)
 		);
-		console.log(comment);
-		// comment.parent.isDeletedWithChildren === true
+
+		console.log(comment.parent);
 		if (comment.parent) {
 			const parentComment = findByID(commentsContext, comment.parent);
 			console.log(parentComment);
+			console.log(parentComment.isDeletedWithChildren);
 
 			if (parentComment.isDeletedWithChildren) {
-				hardDeleteComment(comments, comment.parent);
+				hardDeleteComment(comment.parent);
 			}
 		}
 	};
@@ -116,12 +122,10 @@ function Comment(props) {
 	const handleDelete = e => {
 		e.preventDefault();
 
-		const comment = findByID(commentsContext, id);
-
 		if (childComments) {
-			softDeleteComment(comment);
+			softDeleteComment();
 		} else {
-			hardDeleteComment(comment, id);
+			hardDeleteComment(id);
 		}
 	};
 
