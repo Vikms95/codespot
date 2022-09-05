@@ -12,7 +12,7 @@ const StyledCommentsLayout = styled.section`
 `;
 
 export function CommentsLayout(props) {
-	const { comments, getReplies, setComments } = props;
+	const { comments, getChildComments, setComments } = props;
 	return (
 		<>
 			<StyledCommentsLayout>
@@ -26,9 +26,8 @@ export function CommentsLayout(props) {
 								text={comment.text}
 								user={comment.user}
 								timestamp={comment.timestamp}
-								getReplies={getReplies}
+								getChildComments={getChildComments}
 								setComments={setComments}
-								comments={comments}
 								isDeletedWithChildren={comment.isDeletedWithChildren}
 							></Comment>
 						);

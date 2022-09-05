@@ -212,7 +212,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
         <!-- !:parentComment is undefined when we try to find it -->
         <!-- :undefined because the comments that the recursed comment is being passed are just the child comments, so the parent cannot be found -->
         <!-- >pass all comments from a post as context? -->
-        :after 2 comments, the comments are not being deleted anymore
+        <!-- :after 2 comments, the comments are not being deleted anymore
+         -->
+         :refactor into cleaner code the way the comments are recursively deleted
 
 
 

@@ -74,14 +74,23 @@ function Comment(props) {
 		user,
 		timestamp,
 		isDeletedWithChildren,
-		getReplies,
+		getChildComments,
 		setComments,
-		comments,
 	} = props;
-	const childComments = getReplies(id);
 	const { user: loggedInUserID } = useContext(AuthContext);
-	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
+	const childComments = getChildComments(id);
 	const commentsContext = useCommentsContext().value;
+	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
+
+	const handleDelete = e => {
+		e.preventDefault();
+
+		if (childComments) {
+			softDeleteComment();
+		} else {
+			hardDeleteComment(id);
+		}
+	};
 
 	const softDeleteComment = () => {
 		const comment = findByID(commentsContext, id);
@@ -99,7 +108,6 @@ function Comment(props) {
 
 	const hardDeleteComment = id => {
 		const comment = findByID(commentsContext, id);
-		console.log(comment);
 
 		deleteComment(id);
 
@@ -107,25 +115,16 @@ function Comment(props) {
 			prevComments.filter(comment => comment._id !== id)
 		);
 
-		console.log(comment.parent);
+		checkForDeletedParentComent(commentsContext, comment);
+	};
+
+	const checkForDeletedParentComent = (commentsContext, comment) => {
 		if (comment.parent) {
 			const parentComment = findByID(commentsContext, comment.parent);
-			console.log(parentComment);
-			console.log(parentComment.isDeletedWithChildren);
 
 			if (parentComment.isDeletedWithChildren) {
 				hardDeleteComment(comment.parent);
 			}
-		}
-	};
-
-	const handleDelete = e => {
-		e.preventDefault();
-
-		if (childComments) {
-			softDeleteComment();
-		} else {
-			hardDeleteComment(id);
 		}
 	};
 
@@ -163,7 +162,7 @@ function Comment(props) {
 							<CommentsLayout
 								comments={childComments}
 								setComments={setComments}
-								getReplies={getReplies}
+								getChildComments={getChildComments}
 							></CommentsLayout>
 						</ChildrenCommentsLayout>
 

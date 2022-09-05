@@ -20,7 +20,7 @@ export const useComments = postID => {
 		return group;
 	}, [comments]);
 
-	const getReplies = parent => {
+	const getChildComments = parent => {
 		return commentByParentID[parent];
 	};
 
@@ -28,6 +28,6 @@ export const useComments = postID => {
 		commentsContext: comments,
 		rootComments: commentByParentID.null,
 		setComments,
-		getReplies,
+		getChildComments,
 	};
 };
