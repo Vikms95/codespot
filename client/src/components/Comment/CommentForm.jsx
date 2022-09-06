@@ -62,7 +62,7 @@ const CommentInputButtons = styled.div`
 export function CommentForm(props) {
 	const {
 		type,
-		parentid,
+		commentid,
 		autofocus,
 		isCommentForm,
 		setIsFormActive,
@@ -93,8 +93,8 @@ export function CommentForm(props) {
 			tabIndex='1'
 			onSubmit={e => {
 				type === 'edit'
-					? handleCommentUpdate(e, setFormData, text, userid, parentid)
-					: handleCommentSubmit(e, setFormData, text, userid, parentid);
+					? handleCommentUpdate(e, setFormData, text, userid, commentid)
+					: handleCommentSubmit(e, setFormData, text, userid, commentid);
 			}}
 		>
 			<StyledCommentInput

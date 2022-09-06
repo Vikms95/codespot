@@ -49,8 +49,8 @@ const CommentBorder = styled.div`
 
 function CommentBody(props) {
 	const {
-		id,
 		text,
+		commentid,
 		commentUser,
 		childComments,
 		setComments,
@@ -70,12 +70,12 @@ function CommentBody(props) {
 		if (childComments) {
 			softDeleteComment();
 		} else {
-			hardDeleteComment(id);
+			hardDeleteComment(commentid);
 		}
 	};
 
 	const softDeleteComment = () => {
-		const comment = findByID(commentsContext, id);
+		const comment = findByID(commentsContext, commentid);
 
 		flagComment(comment);
 
@@ -88,13 +88,13 @@ function CommentBody(props) {
 		);
 	};
 
-	const hardDeleteComment = id => {
-		const comment = findByID(commentsContext, id);
+	const hardDeleteComment = commentid => {
+		const comment = findByID(commentsContext, commentid);
 
-		deleteComment(id);
+		deleteComment(commentid);
 
 		setComments(prevComments =>
-			prevComments.filter(comment => comment._id !== id)
+			prevComments.filter(comment => comment._id !== commentid)
 		);
 
 		checkForDeletedParentComent(commentsContext, comment);
@@ -114,7 +114,6 @@ function CommentBody(props) {
 	};
 
 	const handleCommentReply = (e, setFormData, text, userid, parentid) => {
-		console.log('reply');
 		setIsFormActive(false);
 		handleCommentSubmit(e, setFormData, text, userid, parentid);
 	};
@@ -124,15 +123,18 @@ function CommentBody(props) {
 		setFormData,
 		text,
 		userid,
-		parentid
+		commentid,
 	) => {
 		e.preventDefault();
-		console.log('update');
+
+		setIsFormActive(false);
+
 		const comment = await updateComment(
 			text,
 			postid,
 			userid,
-			parentid,
+			commentid,
+			commentsContext,
 			isDeletedWithChildren
 		);
 		setComments(prevComments => [...prevComments, comment]);
@@ -181,7 +183,7 @@ function CommentBody(props) {
 				<CommentForm
 					isCommentForm={true}
 					autoFocus={true}
-					parentid={id}
+					commentid={commentid}
 					type={loggedInUserID !== commentUser?._id ? 'reply' : 'edit'}
 					setIsFormActive={setIsFormActive}
 					handleCommentSubmit={handleCommentReply}

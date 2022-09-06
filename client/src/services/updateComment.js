@@ -1,10 +1,12 @@
 import { userCreateOptions } from "../data/requestParams";
+import { findByID } from "../utils/findbyID";
 import { getCurrentDate } from "../utils/getCurrentDate";
 
-export const updateComment = async (text, postid, userid, commentid, parentid, isDeletedWithChildren) => {
+export const updateComment = async (text, postid, userid, commentid, comments, isDeletedWithChildren) => {
   const timestamp = getCurrentDate();
 
-  const parent = parentid || null
+  const commentToCheck = findByID(comments, commentid)
+  const parent = commentToCheck.parent
 
   const response = await fetch(`/api/${postid}/comments/${commentid}`,
     userCreateOptions('PUT', { text, postid, userid, timestamp, parent, isDeletedWithChildren})

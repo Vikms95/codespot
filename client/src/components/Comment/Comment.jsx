@@ -16,7 +16,7 @@ const StyledComment = styled.article`
 
 function Comment(props) {
 	const {
-		id,
+		commentid,
 		text,
 		commentUser,
 		timestamp,
@@ -27,13 +27,13 @@ function Comment(props) {
 	} = props;
 
 	const { user: loggedInUserID } = useContext(AuthContext);
-	const childComments = getChildComments(id);
+	const childComments = getChildComments(commentid);
 
 	return (
 		<StyledComment>
 			<CommentBody
-				id={id}
 				text={text}
+				commentid={commentid}
 				commentUser={commentUser}
 				childComments={childComments}
 				setComments={setComments}

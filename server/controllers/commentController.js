@@ -82,6 +82,8 @@ const flagCommentWithChildren = (req, res, next) => {
 const updateComment = async (req, res, next) => {
   const {text, postid, userid, timestamp, parent, isDeletedWithChildren} = req.body
   const {commentid} = req.params
+  console.log(req.body)
+  console.log(req.params)
 
   const comment = new Comment({
     _id: commentid,

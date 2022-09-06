@@ -23,8 +23,8 @@ export function CommentsLayout(props) {
 						return (
 							<Comment
 								key={comment._id}
-								id={comment._id}
 								text={comment.text}
+								commentid={comment._id}
 								commentUser={comment.user}
 								timestamp={comment.timestamp}
 								setComments={setComments}
