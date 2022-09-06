@@ -12,7 +12,7 @@ const StyledCommentForm = styled.form`
 	flex-direction: column;
 	align-items: center;
 	row-gap: 1em;
-	margin: 5em 0;
+	margin: 1em 0;
 `;
 
 const StyledCommentInput = styled.textarea`
@@ -52,14 +52,6 @@ export function CommentForm(props) {
 
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
-
-	// const handleCommentSubmit = async e => {
-	// 	e.preventDefault();
-
-	// 	const comment = await createComment(text, postid, userid, parentid);
-	// 	setComments(prevComments => [...prevComments, comment]);
-	// 	setFormData(commentFields);
-	// };
 
 	return (
 		<StyledCommentForm

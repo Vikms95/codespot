@@ -11,7 +11,7 @@ import { createComment } from '../../services/createComment';
 import { commentFields } from '../../data/formFields';
 
 const StyledPost = styled.section`
-	margin: 5em;
+	margin: 0 5em 5em 5em;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

@@ -21,6 +21,7 @@ const Image = styled.img`
 
 const Text = styled.p`
 	font-size: 1.5em;
+	margin-bottom: 5em;
 	display: flex;
 	flex-direction: column;
 	text-align: justify;
