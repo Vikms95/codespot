@@ -123,7 +123,7 @@ function CommentBody(props) {
 		setFormData,
 		text,
 		userid,
-		commentid,
+		commentid
 	) => {
 		e.preventDefault();
 
@@ -137,7 +137,14 @@ function CommentBody(props) {
 			commentsContext,
 			isDeletedWithChildren
 		);
-		setComments(prevComments => [...prevComments, comment]);
+
+		setComments(prevComments =>
+			prevComments.map(prevComment => {
+				console.log(comment);
+				return prevComment._id === commentid ? comment : prevComment;
+			})
+		);
+
 		setFormData(commentFields);
 	};
 

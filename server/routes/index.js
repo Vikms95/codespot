@@ -55,9 +55,9 @@ router.get('/api/:postid/comments', getPostComments);
 
 router.get('/api/:postid/comments-count', getPostCommentsCount);
 
-router.put('/api/comments/:commentid', flagCommentWithChildren);
+router.put('/api/comments/:commentid',  flagCommentWithChildren);
 
-router.put('/api/:postid/comments/:commentid/', updateComment)
+router.put('/api/:postid/comments/:commentid/',  updateComment)
 
 router.delete('/api/:commentid', deleteComment);
 

@@ -59,7 +59,7 @@ const deleteComment = (req, res, next) => {
 const flagCommentWithChildren = (req, res, next) => {
   const {commentid} = req.params
   const {user, post , parent, timestamp, text, isDeletedWithChildren} = req.body
-  
+
   const comment = new Comment({
     _id: commentid,
     user,
@@ -76,14 +76,12 @@ const flagCommentWithChildren = (req, res, next) => {
     } else {
       return res.status(200).json(comment)
     }
-  } )
+  })
 }
 
 const updateComment = async (req, res, next) => {
   const {text, postid, userid, timestamp, parent, isDeletedWithChildren} = req.body
   const {commentid} = req.params
-  console.log(req.body)
-  console.log(req.params)
 
   const comment = new Comment({
     _id: commentid,
@@ -92,15 +90,17 @@ const updateComment = async (req, res, next) => {
     parent,
     timestamp,
     text,
-    isDeletedWithChildren
+    isDeletedWithChildren,
   })
+
+  const {username} = await User.findById(userid)
   
-  Comment.findByIdAndUpdate(commentid, comment, {}, (err, comment) => {
+  Comment.findByIdAndUpdate(commentid, comment, {new: true}, (err, comment) => {
+
     if(err) {
       return res.status(400)
-
     } else {
-      return res.status(200).json(comment)
+      return res.status(201).json({comment, username})
     }
   })
 

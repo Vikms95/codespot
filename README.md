@@ -233,15 +233,16 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
       :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
     :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features? -->
-  :use the composition pattern to create the comment with or without children comments
   :implement icons for CRUD actions on the comments
 
     >UPDATE<
     :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
+    <!-- ! comment values are not getting changed after findbyidandupdate -->
 
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
 
+- Use composition pattern to create the comment with or without children comments
   
 - Fix Post showing undefined if you logout while a Post is displayed
 
