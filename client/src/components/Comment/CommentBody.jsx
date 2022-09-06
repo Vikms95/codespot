@@ -160,7 +160,9 @@ function CommentBody(props) {
 				<IconsContainer>
 					{loggedInUserID !== commentUser?._id && (
 						<IconButton
-							onClick={() => setIsFormActive(true)}
+							onClick={() => {
+								setIsFormActive(true);
+							}}
 							isActive={isFormActive}
 							aria-label={isFormActive ? 'Cancel reply' : 'Reply'}
 						>
@@ -188,6 +190,7 @@ function CommentBody(props) {
 
 			{isFormActive && (
 				<CommentForm
+					initialValue={text}
 					isCommentForm={true}
 					autoFocus={true}
 					commentid={commentid}

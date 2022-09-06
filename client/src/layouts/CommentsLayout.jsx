@@ -6,7 +6,7 @@ import Comment from '../components/Comment/Comment';
 const StyledCommentsLayout = styled.section`
 	display: grid;
 	grid-auto-flow: row;
-	row-gap: 4em;
+	row-gap: 3em;
 	background-color: white;
 	width: 80%;
 `;

@@ -140,7 +140,6 @@ function PostForm() {
 
 	const handleCreateSubmit = e => {
 		e.preventDefault();
-		console.log(image);
 
 		const formDataRequest = createFormData({
 			title,

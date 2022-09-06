@@ -16,7 +16,6 @@ export const updateComment = async (text, postid, userid, commentid, comments, i
   // We manually insert the user id and the username since the created database object
   // will only contain the user id, thus not letting us have the user name available
   // without the join operation
-  console.log(comment, username)
   comment.user = {_id: userid , username}
 
   return comment

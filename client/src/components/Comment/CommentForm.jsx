@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
@@ -27,7 +27,6 @@ const StyledCommentInput = styled.textarea`
 	min-width: 90%;
 	min-height: 10em;
 	padding: 2em;
-	/* padding-right: 15em; */
 	outline: none;
 	border: none;
 
@@ -62,6 +61,7 @@ const CommentInputButtons = styled.div`
 export function CommentForm(props) {
 	const {
 		type,
+		initialValue,
 		commentid,
 		autofocus,
 		isCommentForm,
@@ -86,6 +86,15 @@ export function CommentForm(props) {
 		}
 	};
 
+	useEffect(() => {
+		if (type === 'edit') {
+			setFormData(prevFormData => ({
+				...prevFormData,
+				text: initialValue,
+			}));
+		}
+	}, [initialValue]);
+
 	return (
 		<StyledCommentForm
 			isCommentForm={isCommentForm}
@@ -104,7 +113,7 @@ export function CommentForm(props) {
 				onChange={handleChange}
 				maxLength={5000}
 				placeholder='What are your thoughts?'
-			></StyledCommentInput>
+			/>
 
 			<CommentInputButtons>
 				{isCommentForm && (
