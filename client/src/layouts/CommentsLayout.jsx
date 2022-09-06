@@ -13,11 +13,11 @@ const StyledCommentsLayout = styled.section`
 
 export function CommentsLayout(props) {
 	const { comments, getChildComments, setComments } = props;
+
 	return (
 		<>
 			<StyledCommentsLayout>
-				{comments != null &&
-					comments.length > 0 &&
+				{comments?.length > 0 &&
 					comments.map(comment => {
 						return (
 							<Comment

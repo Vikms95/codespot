@@ -223,10 +223,13 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
     :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?
 
+  :since border is in the buttons container, when there is no buttons, the border won't appear
+
   :implement icons for CRUD actions on the comments
     :when reply button is clicked, display a CommentForm right below the comment to reply
 
   :user available comment icons not appearing after creating a comment, only after refreshing
+    :logged in user is being detected, but not that the user is the same as the creator of the posts
 
   :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
   

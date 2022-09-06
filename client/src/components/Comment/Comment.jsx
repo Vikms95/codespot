@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
-import React, { useContext, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
@@ -10,6 +10,7 @@ import { flagComment } from '../../services/flagComment';
 import { findByID } from '../../utils/findbyID';
 import { useCommentsContext } from '../../context/CommentsContext';
 import { useAuth } from '../../hooks/useAuth';
+import AuthContext from '../../context/AuthContext';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -48,6 +49,15 @@ const IconsContainer = styled.div`
 	display: flex;
 	gap: 10px;
 	padding-bottom: 1em;
+`;
+
+const IconButton = styled.button`
+	border: none;
+	background-color: transparent;
+	color: #6649b8;
+`;
+
+const CommentBorder = styled.div`
 	margin-bottom: 2em;
 	border: 2px solid;
 	border-image: linear-gradient(
@@ -61,12 +71,6 @@ const IconsContainer = styled.div`
 	border-right: none;
 `;
 
-const IconButton = styled.button`
-	border: none;
-	background-color: transparent;
-	color: #6649b8;
-`;
-
 function Comment(props) {
 	const {
 		id,
@@ -77,7 +81,7 @@ function Comment(props) {
 		getChildComments,
 		setComments,
 	} = props;
-	const { user: loggedInUserID } = useAuth();
+	const { user: loggedInUserID } = useContext(AuthContext);
 	const childComments = getChildComments(id);
 	const commentsContext = useCommentsContext().value;
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
@@ -139,7 +143,7 @@ function Comment(props) {
 						<IconButton>
 							<FaReply />
 						</IconButton>
-						{user?._id === loggedInUserID && (
+						{user._id === loggedInUserID && (
 							<>
 								<IconButton>
 									<FaPen />
@@ -151,7 +155,7 @@ function Comment(props) {
 						)}
 					</IconsContainer>
 				)}
-
+				<CommentBorder></CommentBorder>
 				{childComments?.length > 0 && (
 					<>
 						<ChildrenCommentsLayout areChildrenHidden={areChildrenHidden}>

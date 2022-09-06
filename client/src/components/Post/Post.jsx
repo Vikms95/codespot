@@ -1,16 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { useParams, Link } from 'react-router-dom';
-import { usePost } from '../../hooks/usePost';
-import { useAuth } from '../../hooks/useAuth';
-import { useImage } from '../../hooks/useImage';
-import { useHtmlAsText } from '../../hooks/useHtmlAsText';
-import { usePostsContext } from '../../context/PostsContext';
+import PostBody from './PostBody';
+import { useParams } from 'react-router-dom';
 import { useComments } from '../../hooks/useComments';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
-import { CommentForm } from '../Comment/CommentForm';
 import { CommentsContextProvider } from '../../context/CommentsContext';
 
 const StyledPost = styled.section`
@@ -20,74 +15,29 @@ const StyledPost = styled.section`
 	align-items: center;
 `;
 
-const Title = styled.h1`
-	font-size: 4em;
-`;
-const Image = styled.img`
-	max-width: 100%;
-	max-height: 100rem;
-	align-self: center;
-	margin-bottom: 3em;
-`;
-
-const Text = styled.p`
-	font-size: 1.5em;
-	display: flex;
-	flex-direction: column;
-	text-align: justify;
-	max-width: 70ch;
-`;
-
 const CommentsTitle = styled.h1``;
 
-const LoginLinkText = styled.div`
-	display: flex;
-	column-gap: 2em;
-	font-weight: 800;
-`;
-
 function Post() {
-  // Pass to both
-	const { user } = useAuth(); 
-
-	const { posts } = usePostsContext();
 	const { postid } = useParams();
-	const post = usePost(postid, posts);
-	const { title, image, text } = post;
 
 	const { comments, setComments } = useComments(postid);
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
-	const imageSrc = useImage(image, [post]);
-	const textRef = useHtmlAsText(text);
-
 	return (
 		<>
 			<StyledPost>
-				<Title>{title}</Title>
+				<PostBody postid={postid} setComments={setComments} />
 
-				{imageSrc?.ok && (
-					<Image src={imageSrc?.url} alt='post-portrait'></Image>
-				)}
+				<CommentsTitle>
+					{comments?.length > 0 ? 'Comments' : 'There are no comments...'}
+				</CommentsTitle>
 
-				<Text ref={textRef}></Text>
-
-				{user ? (
-					<CommentForm postid={postid} setComments={setComments}></CommentForm>
-				) : (
-					<LoginLinkText>
-						<span>Want to leave your comment?</span>{' '}
-						<Link to='/login'>Login</Link>
-					</LoginLinkText>
-				)}
-				{/* Make two components */}
-				<CommentsTitle>Comments</CommentsTitle>
 				<CommentsContextProvider value={comments}>
 					<CommentsLayout
 						comments={rootComments}
 						getChildComments={getChildComments}
 						setComments={setComments}
-					></CommentsLayout>
+					/>
 				</CommentsContextProvider>
 			</StyledPost>
 		</>
