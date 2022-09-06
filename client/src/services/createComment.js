@@ -11,8 +11,13 @@ export const createComment = async (text, postid, userid, parentid) => {
     userCreateOptions('POST', { text, postid, userid, timestamp, parent })
   );
 
-  const data = await response.json();
+  const {comment, username} = await response.json();
   
-  return data
+  // We manually insert the user id and the username since the created database object
+  // will only contain the user id, thus not letting us have the user name available
+  // without the join operation
+  comment.user = {_id: userid , username}
+
+  return comment
   
 }

@@ -1,4 +1,5 @@
 const Comment = require('../models/Comment')
+const User = require('../models/User')
 
 const getPostComments = (req, res, next) => {
   Comment
@@ -18,7 +19,7 @@ const getPostCommentsCount = (req, res, next) => {
   })
 }
 
-const createComment = (req, res, next) => {
+const createComment = async (req, res, next) => {
   const {text, postid, userid, timestamp, parent} = req.body
 
   const comment = new Comment({
@@ -30,12 +31,15 @@ const createComment = (req, res, next) => {
     isDeletedWithChildren: false
   })
   
+  const {username} = await User.findById(userid)
+
   comment.save(function(err){
     if(err){
-      console.log(err)
+
       return res.sendStatus(400)
     } else {
-      return res.status(201).json(comment)
+
+      return res.status(201).json({comment, username})
     }
   })
 }
@@ -55,6 +59,7 @@ const deleteComment = (req, res, next) => {
 const flagCommentWithChildren = (req, res, next) => {
   const {commentid} = req.params
   const {user, post , parent, timestamp, text, isDeletedWithChildren} = req.body
+  
   const comment = new Comment({
     _id: commentid,
     user,

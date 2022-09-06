@@ -55,9 +55,7 @@ export function CommentForm(props) {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		// this will return two objects
 		const comment = await createComment(text, postid, userid, parentid);
-		// make the change here on the comment object
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);
 	};
