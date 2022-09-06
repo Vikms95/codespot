@@ -190,48 +190,49 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     https://www.youtube.com/watch?v=sjAeLwuezxo
 
 
-    :when a comment with children is deleted, delete all the children too on state  
+    <!-- :when a comment with children is deleted, delete all the children too on state  
       :children on the database still exist, is it needed to delete them?
       :the only side effect besides database clutter is the comment count form PostPreview showing
       the amount with the child components too
         :use the comments state instead of fetching them?(does not seem like a good idea)
 
     >I think it'd be better if you kept the deleted users' comments as well, but show in your front end that the user was deleted due to XX. But while deleting a user, you could have a checkbox option - delete user comments - which will delete all comments and its replies, because if you do not wish to show the child comments on your site again, it would be a waste storing them in your db
-    https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table
-    >DELETE<
-    Comment gets deleted 
+    https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table -->
+    <!-- >DELETE< -->
+    <!-- Comment gets deleted  -->
       <!-- If comment children === null -->
       <!-- Delete from backend -->
       <!-- Delete from frontend -->
-      If comment has children
-        <!-- Set deleted property to true on backend -->
-        <!-- Set deleted property to true on frontend -->
-        <!-- :comments turn to undefined when deleted and no children -->
-      :delete all (deleted) comments that no longer have children comments     
-        delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
-        <!-- !:parentComment is undefined when we try to find it -->
-        <!-- :undefined because the comments that the recursed comment is being passed are just the child comments, so the parent cannot be found -->
-        <!-- >pass all comments from a post as context? -->
-        <!-- :after 2 comments, the comments are not being deleted anymore
-         -->
-         :refactor into cleaner code the way the comments are recursively deleted
+      <!-- If comment has children -->
+      <!-- Set deleted property to true on backend -->
+      <!-- Set deleted property to true on frontend -->
+      <!-- :comments turn to undefined when deleted and no children -->
+    <!-- :delete all (deleted) comments that no longer have children comments     
+      delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
+      :parentComment is undefined when we try to find it -->
+    <!-- :undefined because the comments that the recursed comment is being passed are just the child comments, so the parent cannot be found -->
+    <!-- >pass all comments from a post as context? -->
+    <!-- :after 2 comments, the comments are not being deleted anymore
+      -->
+      <!-- :refactor into cleaner code the way the comments are recursively deleted -->
+  <!-- :since border is in the buttons container, when there is no buttons, the border won't appear -->
 
-
-
-   >REPLY<
-    :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
-
-    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?
-
-  :since border is in the buttons container, when there is no buttons, the border won't appear
+  :user available comment icons not appearing after creating a comment, only after refreshing
+    :logged in user is being detected, but not that the user is the same as the creator of the posts
+    :when saved on state is being saved different as when it is saved on database (user._id is not defined, just the username)
+    COMMENTUSER IS NOT THE WHOLE USER, ITS JUST THE NAME OF THE USER
+    :user name is only received when you make a populate out of the id passed to the backend
+    :do an endpoint only to receive the user name?
 
   :implement icons for CRUD actions on the comments
     :when reply button is clicked, display a CommentForm right below the comment to reply
 
-  :user available comment icons not appearing after creating a comment, only after refreshing
-    :logged in user is being detected, but not that the user is the same as the creator of the posts
+   >REPLY<
+    :(replies is the same as comment but including the parentid instead) 
+    :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
-  :implement Comment and Replies CRUD - (replies is the same but including the parentid instead) 
+    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?
+
   
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media

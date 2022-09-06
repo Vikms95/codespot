@@ -16,6 +16,5 @@ export function useAuth() {
 			setUser(authResult.user);
 		});
 	}, []);
-
 	return { user };
 }

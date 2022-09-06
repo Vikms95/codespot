@@ -9,7 +9,6 @@ import { deleteComment } from '../../services/deleteComment';
 import { flagComment } from '../../services/flagComment';
 import { findByID } from '../../utils/findbyID';
 import { useCommentsContext } from '../../context/CommentsContext';
-import { useAuth } from '../../hooks/useAuth';
 import AuthContext from '../../context/AuthContext';
 
 const StyledComment = styled.article`
@@ -75,7 +74,7 @@ function Comment(props) {
 	const {
 		id,
 		text,
-		user,
+		commentUser,
 		timestamp,
 		isDeletedWithChildren,
 		getChildComments,
@@ -135,7 +134,8 @@ function Comment(props) {
 	return (
 		<>
 			<StyledComment>
-				<Username>{user?.username || '(deleted user)'}</Username>
+				{/* {console.log(commentUser.username)} */}
+				<Username>{commentUser?.username || '(deleted user)'}</Username>
 				<Text>{text}</Text>
 
 				{loggedInUserID && !isDeletedWithChildren && (
@@ -143,7 +143,7 @@ function Comment(props) {
 						<IconButton>
 							<FaReply />
 						</IconButton>
-						{user._id === loggedInUserID && (
+						{commentUser?._id === loggedInUserID && (
 							<>
 								<IconButton>
 									<FaPen />
@@ -156,6 +156,7 @@ function Comment(props) {
 					</IconsContainer>
 				)}
 				<CommentBorder></CommentBorder>
+
 				{childComments?.length > 0 && (
 					<>
 						<ChildrenCommentsLayout areChildrenHidden={areChildrenHidden}>

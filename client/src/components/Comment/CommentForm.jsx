@@ -47,16 +47,17 @@ const CommentFormButton = styled(Button)`
 `;
 
 export function CommentForm(props) {
-	const { postid, setComments, parentid, autofocus = false } = props;
 	const { user: userid } = useContext(AuthContext);
+	const { postid, setComments, parentid, autofocus = false } = props;
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 
+		// this will return two objects
 		const comment = await createComment(text, postid, userid, parentid);
-
+		// make the change here on the comment object
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);
 	};

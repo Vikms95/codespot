@@ -24,7 +24,7 @@ export function CommentsLayout(props) {
 								key={comment._id}
 								id={comment._id}
 								text={comment.text}
-								user={comment.user}
+								commentUser={comment.user}
 								timestamp={comment.timestamp}
 								getChildComments={getChildComments}
 								setComments={setComments}
