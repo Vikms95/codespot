@@ -61,11 +61,13 @@ const CommentInputButtons = styled.div`
 
 export function CommentForm(props) {
 	const {
+		type,
 		parentid,
-		handleCommentSubmit,
 		autofocus,
 		isCommentForm,
 		setIsFormActive,
+		handleCommentSubmit,
+		handleCommentUpdate,
 	} = props;
 
 	const { user: userid } = useContext(AuthContext);
@@ -73,14 +75,27 @@ export function CommentForm(props) {
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
 
+	const checkFormFunctionality = type => {
+		switch (type) {
+			case 'reply':
+				return 'Reply';
+			case 'edit':
+				return 'Edit';
+			default:
+				return 'Comment';
+		}
+	};
+
 	return (
 		<StyledCommentForm
 			isCommentForm={isCommentForm}
 			autoFocus={autofocus}
 			tabIndex='1'
-			onSubmit={e =>
-				handleCommentSubmit(e, setFormData, text, userid, parentid)
-			}
+			onSubmit={e => {
+				type === 'edit'
+					? handleCommentUpdate(e, setFormData, text, userid, parentid)
+					: handleCommentSubmit(e, setFormData, text, userid, parentid);
+			}}
 		>
 			<StyledCommentInput
 				type='text'
@@ -100,7 +115,7 @@ export function CommentForm(props) {
 
 				<CommentFormButton type='submit'>
 					{' '}
-					{parentid ? 'Reply' : 'Comment'}{' '}
+					{checkFormFunctionality(type)}
 				</CommentFormButton>
 			</CommentInputButtons>
 		</StyledCommentForm>

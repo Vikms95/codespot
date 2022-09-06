@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 import { FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { CommentForm } from './CommentForm';
 import { flagComment } from '../../services/flagComment';
 import { findByID } from '../../utils/findbyID';
 import { deleteComment } from '../../services/deleteComment';
 import { useCommentsContext } from '../../context/CommentsContext';
+import { updateComment } from '../../services/updateComment';
+import { commentFields } from '../../data/formFields';
 
 const Username = styled.div`
 	color: #6649b8;
@@ -59,6 +62,7 @@ function CommentBody(props) {
 
 	const [isFormActive, setIsFormActive] = useState(false);
 	const commentsContext = useCommentsContext().value;
+	const { postid } = useParams();
 
 	const handleDelete = e => {
 		e.preventDefault();
@@ -109,13 +113,35 @@ function CommentBody(props) {
 		}
 	};
 
-	const wasSoftDeleted = (children, comment) =>
-		children.length === 1 && comment.isDeletedWithChildren;
-
 	const handleCommentReply = (e, setFormData, text, userid, parentid) => {
+		console.log('reply');
 		setIsFormActive(false);
 		handleCommentSubmit(e, setFormData, text, userid, parentid);
 	};
+
+	const handleCommentUpdate = async (
+		e,
+		setFormData,
+		text,
+		userid,
+		parentid
+	) => {
+		e.preventDefault();
+		console.log('update');
+		const comment = await updateComment(
+			text,
+			postid,
+			userid,
+			parentid,
+			isDeletedWithChildren
+		);
+		setComments(prevComments => [...prevComments, comment]);
+		setFormData(commentFields);
+	};
+
+	const wasSoftDeleted = (children, comment) =>
+		children.length === 1 && comment.isDeletedWithChildren;
+
 	return (
 		<>
 			<Username>{commentUser?.username || '(deleted user)'}</Username>
@@ -123,17 +149,23 @@ function CommentBody(props) {
 
 			{loggedInUserID && !isDeletedWithChildren && (
 				<IconsContainer>
-					<IconButton
-						onClick={() => setIsFormActive(prev => !prev)}
-						isActive={isFormActive}
-						aria-label={isFormActive ? 'Cancel reply' : 'Reply'}
-					>
-						<FaReply />
-					</IconButton>
+					{loggedInUserID !== commentUser?._id && (
+						<IconButton
+							onClick={() => setIsFormActive(true)}
+							isActive={isFormActive}
+							aria-label={isFormActive ? 'Cancel reply' : 'Reply'}
+						>
+							<FaReply />
+						</IconButton>
+					)}
 
-					{commentUser?._id === loggedInUserID && (
+					{loggedInUserID === commentUser?._id && (
 						<>
-							<IconButton>
+							<IconButton
+								onClick={() => setIsFormActive(true)}
+								isActive={isFormActive}
+								aria-label={isFormActive ? 'Cancel edit' : 'Edit'}
+							>
 								<FaPen />
 							</IconButton>
 							<IconButton onClick={handleDelete}>
@@ -150,8 +182,10 @@ function CommentBody(props) {
 					isCommentForm={true}
 					autoFocus={true}
 					parentid={id}
+					type={loggedInUserID !== commentUser?._id ? 'reply' : 'edit'}
 					setIsFormActive={setIsFormActive}
 					handleCommentSubmit={handleCommentReply}
+					handleCommentUpdate={handleCommentUpdate}
 				/>
 			)}
 		</>

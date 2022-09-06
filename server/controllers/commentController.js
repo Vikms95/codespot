@@ -79,5 +79,37 @@ const flagCommentWithChildren = (req, res, next) => {
   } )
 }
 
+const updateComment = async (req, res, next) => {
+  const {text, postid, userid, timestamp, parent, isDeletedWithChildren} = req.body
+  const {commentid} = req.params
 
-module.exports = { getPostComments, getPostCommentsCount, createComment, deleteComment, flagCommentWithChildren}
+  const comment = new Comment({
+    _id: commentid,
+    user: userid,
+    post: postid,
+    parent,
+    timestamp,
+    text,
+    isDeletedWithChildren
+  })
+  
+  Comment.findByIdAndUpdate(commentid, comment, {}, (err, comment) => {
+    if(err) {
+      return res.status(400)
+
+    } else {
+      return res.status(200).json(comment)
+    }
+  })
+
+}
+
+
+module.exports = { 
+  getPostComments, 
+  getPostCommentsCount, 
+  createComment, 
+  deleteComment, 
+  flagCommentWithChildren, 
+  updateComment
+}
