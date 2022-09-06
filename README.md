@@ -198,7 +198,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
     >I think it'd be better if you kept the deleted users' comments as well, but show in your front end that the user was deleted due to XX. But while deleting a user, you could have a checkbox option - delete user comments - which will delete all comments and its replies, because if you do not wish to show the child comments on your site again, it would be a waste storing them in your db
     https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table -->
-    <!-- >DELETE< -->
+    >DELETE<
     <!-- Comment gets deleted  -->
       <!-- If comment children === null -->
       <!-- Delete from backend -->
@@ -223,6 +223,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     COMMENTUSER IS NOT THE WHOLE USER, ITS JUST THE NAME OF THE USER
     :user name is only received when you make a populate out of the id passed to the backend
     :do an endpoint only to receive the user name? -->
+    :if just one comment from the deleted parent gets deleted, all of them are deleted even if there is remaining ones
+    :that happens because when a parent is deleted, we check just check if the parent is deleted with children, we dont check if there is still childcomments
 
   :implement icons for CRUD actions on the comments
 

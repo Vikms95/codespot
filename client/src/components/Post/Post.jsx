@@ -33,8 +33,6 @@ function Post() {
 		parentid
 	) => {
 		e.preventDefault();
-		console.log('hello');
-		console.log('parentid is ', parentid);
 
 		const comment = await createComment(text, postid, userid, parentid);
 		setComments(prevComments => [...prevComments, comment]);

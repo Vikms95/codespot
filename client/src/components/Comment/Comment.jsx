@@ -128,12 +128,24 @@ function Comment(props) {
 
 	const checkForDeletedParentComent = (commentsContext, comment) => {
 		if (comment.parent) {
-			const parentComment = findByID(commentsContext, comment.parent);
+			const parentid = comment.parent;
 
-			if (parentComment.isDeletedWithChildren) {
-				hardDeleteComment(comment.parent);
+			const parentComment = findByID(commentsContext, parentid);
+			const parentChildComments = getChildComments(parentid);
+			console.log(parentChildComments);
+
+			if (
+				parentChildComments.length === 1 &&
+				parentComment.isDeletedWithChildren
+			) {
+				hardDeleteComment(parentid);
 			}
 		}
+	};
+	// userid, text and setformdata can be taken from inside the formdata
+	const handleCommentReply = (e, setFormData, text, userid, parentid) => {
+		setIsReplying(false);
+		handleCommentSubmit(e, setFormData, text, userid, parentid);
 	};
 
 	return (
@@ -170,7 +182,7 @@ function Comment(props) {
 					<CommentForm
 						autoFocus
 						parentid={id}
-						handleCommentSubmit={handleCommentSubmit}
+						handleCommentSubmit={handleCommentReply}
 					/>
 				)}
 
