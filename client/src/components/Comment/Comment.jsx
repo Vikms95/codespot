@@ -131,22 +131,21 @@ function Comment(props) {
 			const parentid = comment.parent;
 
 			const parentComment = findByID(commentsContext, parentid);
-			const parentChildComments = getChildComments(parentid);
-			console.log(parentChildComments);
+			const parentComments = getChildComments(parentid);
 
-			if (
-				parentChildComments.length === 1 &&
-				parentComment.isDeletedWithChildren
-			) {
+			if (isDeletedWithoutChildren(parentComments, parentComment)) {
 				hardDeleteComment(parentid);
 			}
 		}
 	};
-	// userid, text and setformdata can be taken from inside the formdata
+
 	const handleCommentReply = (e, setFormData, text, userid, parentid) => {
 		setIsReplying(false);
 		handleCommentSubmit(e, setFormData, text, userid, parentid);
 	};
+
+	const isDeletedWithoutChildren = (children, comment) =>
+		children.length === 1 && comment.isDeletedWithChildren;
 
 	return (
 		<>
