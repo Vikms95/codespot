@@ -27,10 +27,10 @@ export function CommentsLayout(props) {
 								text={comment.text}
 								commentUser={comment.user}
 								timestamp={comment.timestamp}
-								getChildComments={getChildComments}
 								setComments={setComments}
-								isDeletedWithChildren={comment.isDeletedWithChildren}
+								getChildComments={getChildComments}
 								handleCommentSubmit={handleCommentSubmit}
+								isDeletedWithChildren={comment.isDeletedWithChildren}
 							></Comment>
 						);
 					})}

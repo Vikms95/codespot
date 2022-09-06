@@ -1,8 +1,12 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { CommentForm } from './CommentForm';
+import { flagComment } from '../../services/flagComment';
+import { findByID } from '../../utils/findbyID';
+import { deleteComment } from '../../services/deleteComment';
+import { useCommentsContext } from '../../context/CommentsContext';
 
 const Username = styled.div`
 	color: #6649b8;
@@ -44,15 +48,74 @@ function CommentBody(props) {
 	const {
 		id,
 		text,
-		isReplying,
 		commentUser,
+		childComments,
+		setComments,
 		loggedInUserID,
 		isDeletedWithChildren,
-		setIsReplying,
-		handleDelete,
-		handleCommentReply,
+		handleCommentSubmit,
+		getChildComments,
 	} = props;
-  
+
+	const [isFormActive, setIsFormActive] = useState(false);
+	const commentsContext = useCommentsContext().value;
+
+	const handleDelete = e => {
+		e.preventDefault();
+
+		if (childComments) {
+			softDeleteComment();
+		} else {
+			hardDeleteComment(id);
+		}
+	};
+
+	const softDeleteComment = () => {
+		const comment = findByID(commentsContext, id);
+
+		flagComment(comment);
+
+		setComments(prevComments =>
+			prevComments.map(item =>
+				item._id === comment._id
+					? { ...item, isDeletedWithChildren: true, text: '(deleted)' }
+					: { ...item }
+			)
+		);
+	};
+
+	const hardDeleteComment = id => {
+		const comment = findByID(commentsContext, id);
+
+		deleteComment(id);
+
+		setComments(prevComments =>
+			prevComments.filter(comment => comment._id !== id)
+		);
+
+		checkForDeletedParentComent(commentsContext, comment);
+	};
+
+	const checkForDeletedParentComent = (commentsContext, comment) => {
+		if (comment.parent) {
+			const parentid = comment.parent;
+
+			const parentComment = findByID(commentsContext, parentid);
+			const parentComments = getChildComments(parentid);
+
+			if (wasSoftDeleted(parentComments, parentComment)) {
+				hardDeleteComment(parentid);
+			}
+		}
+	};
+
+	const wasSoftDeleted = (children, comment) =>
+		children.length === 1 && comment.isDeletedWithChildren;
+
+	const handleCommentReply = (e, setFormData, text, userid, parentid) => {
+		setIsFormActive(false);
+		handleCommentSubmit(e, setFormData, text, userid, parentid);
+	};
 	return (
 		<>
 			<Username>{commentUser?.username || '(deleted user)'}</Username>
@@ -61,9 +124,9 @@ function CommentBody(props) {
 			{loggedInUserID && !isDeletedWithChildren && (
 				<IconsContainer>
 					<IconButton
-						onClick={() => setIsReplying(prev => !prev)}
-						isActive={isReplying}
-						aria-label={isReplying ? 'Cancel reply' : 'Reply'}
+						onClick={() => setIsFormActive(prev => !prev)}
+						isActive={isFormActive}
+						aria-label={isFormActive ? 'Cancel reply' : 'Reply'}
 					>
 						<FaReply />
 					</IconButton>
@@ -82,10 +145,12 @@ function CommentBody(props) {
 			)}
 			<CommentBorder />
 
-			{isReplying && (
+			{isFormActive && (
 				<CommentForm
-					autoFocus
+					isCommentForm={true}
+					autoFocus={true}
 					parentid={id}
+					setIsFormActive={setIsFormActive}
 					handleCommentSubmit={handleCommentReply}
 				/>
 			)}

@@ -223,17 +223,18 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     COMMENTUSER IS NOT THE WHOLE USER, ITS JUST THE NAME OF THE USER
     :user name is only received when you make a populate out of the id passed to the backend
     :do an endpoint only to receive the user name? -->
-    :if just one comment from the deleted parent gets deleted, all of them are deleted even if there is remaining ones
-    :that happens because when a parent is deleted, we check just check if the parent is deleted with children, we dont check if there is still childcomments
+    <!-- :if just one comment from the deleted parent gets deleted, all of them are deleted even if there is remaining ones
+    :that happens because when a parent is deleted, we check just check if the parent is deleted with children, we dont check if there is still childcomments -->
 
-  :implement icons for CRUD actions on the comments
-
+<!-- 
    >REPLY<
     :(replies is the same as comment but including the parentid instead) 
     :when reply button is clicked, display a CommentForm right below the comment to reply
       :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
-    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?
+    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features? -->
+  :use the composition pattern to create the comment with or without children comments
+  :implement icons for CRUD actions on the comments
 
     >UPDATE<
     :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)

@@ -57,6 +57,7 @@ function PostBody(props) {
 			{user ? (
 				<CommentForm
 					postid={postid}
+					isCommentForm={false}
 					setComments={setComments}
 					handleCommentSubmit={handleCommentSubmit}
 				/>

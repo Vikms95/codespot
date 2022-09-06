@@ -10,19 +10,26 @@ const StyledCommentForm = styled.form`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: ${props => (props.isCommentForm ? 'flex-start' : 'center')};
 	row-gap: 1em;
-	margin: 1em 0;
+	margin: 1em 3em;
+	width: 90%;
+	outline: 1px solid #6649b8;
+	border-radius: 15px;
+
+	&:focus-within {
+		outline: 2px solid #6649b8;
+	}
 `;
 
 const StyledCommentInput = styled.textarea`
-	border-radius: 15px;
 	resize: none;
-	min-width: 50em;
+	min-width: 90%;
 	min-height: 10em;
 	padding: 2em;
-	padding-right: 15em;
-	outline: 1px solid #6649b8;
+	/* padding-right: 15em; */
+	outline: none;
+	border: none;
 
 	&::-webkit-scrollbar {
 		width: 0.75rem;
@@ -40,13 +47,26 @@ const StyledCommentInput = styled.textarea`
 `;
 
 const CommentFormButton = styled(Button)`
-	position: absolute;
 	bottom: 10%;
-	right: 3%;
+	right: 19%;
+`;
+
+const CommentInputButtons = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-self: flex-end;
+	gap: 2em;
+	padding: 1em 2em;
 `;
 
 export function CommentForm(props) {
-	const { parentid, autofocus = false, handleCommentSubmit } = props;
+	const {
+		parentid,
+		handleCommentSubmit,
+		autofocus,
+		isCommentForm,
+		setIsFormActive,
+	} = props;
 
 	const { user: userid } = useContext(AuthContext);
 
@@ -55,21 +75,34 @@ export function CommentForm(props) {
 
 	return (
 		<StyledCommentForm
+			isCommentForm={isCommentForm}
+			autoFocus={autofocus}
+			tabIndex='1'
 			onSubmit={e =>
 				handleCommentSubmit(e, setFormData, text, userid, parentid)
 			}
 		>
 			<StyledCommentInput
-				autoFocus={autofocus}
 				type='text'
 				name='text'
 				value={text}
 				onChange={handleChange}
-			/>
-			<CommentFormButton type='submit'>
-				{' '}
-				{parentid ? 'Reply' : 'Comment'}{' '}
-			</CommentFormButton>
+				maxLength={5000}
+				placeholder='What are your thoughts?'
+			></StyledCommentInput>
+
+			<CommentInputButtons>
+				{isCommentForm && (
+					<CommentFormButton onClick={() => setIsFormActive(false)}>
+						Cancel
+					</CommentFormButton>
+				)}
+
+				<CommentFormButton type='submit'>
+					{' '}
+					{parentid ? 'Reply' : 'Comment'}{' '}
+				</CommentFormButton>
+			</CommentInputButtons>
 		</StyledCommentForm>
 	);
 }

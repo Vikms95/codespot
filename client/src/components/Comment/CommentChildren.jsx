@@ -28,6 +28,7 @@ const ExpandButton = styled.button`
 function CommentChildren(props) {
 	const { childComments, setComments, getChildComments, handleCommentSubmit } =
 		props;
+
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
 	return (
