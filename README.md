@@ -238,7 +238,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     >UPDATE<
     :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
    comment values are not getting changed after findbyidandupdate -->
-    :pass comment text value to default form value
+    <!-- :pass comment text value to default form value -->
 
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
