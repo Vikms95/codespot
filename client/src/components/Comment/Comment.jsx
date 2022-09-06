@@ -4,6 +4,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
+import { CommentForm } from './CommentForm';
 import { FaChevronDown, FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { deleteComment } from '../../services/deleteComment';
 import { flagComment } from '../../services/flagComment';
@@ -79,10 +80,14 @@ function Comment(props) {
 		isDeletedWithChildren,
 		getChildComments,
 		setComments,
+		handleCommentSubmit,
 	} = props;
+
 	const { user: loggedInUserID } = useContext(AuthContext);
-	const childComments = getChildComments(id);
 	const commentsContext = useCommentsContext().value;
+	const childComments = getChildComments(id);
+
+	const [isReplying, setIsReplying] = useState(false);
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
 	const handleDelete = e => {
@@ -134,15 +139,19 @@ function Comment(props) {
 	return (
 		<>
 			<StyledComment>
-				{/* {console.log(commentUser.username)} */}
 				<Username>{commentUser?.username || '(deleted user)'}</Username>
 				<Text>{text}</Text>
 
 				{loggedInUserID && !isDeletedWithChildren && (
 					<IconsContainer>
-						<IconButton>
+						<IconButton
+							onClick={() => setIsReplying(prev => !prev)}
+							isActive={isReplying}
+							aria-label={isReplying ? 'Cancel reply' : 'Reply'}
+						>
 							<FaReply />
 						</IconButton>
+
 						{commentUser?._id === loggedInUserID && (
 							<>
 								<IconButton>
@@ -155,7 +164,15 @@ function Comment(props) {
 						)}
 					</IconsContainer>
 				)}
-				<CommentBorder></CommentBorder>
+				<CommentBorder />
+
+				{isReplying && (
+					<CommentForm
+						autoFocus
+						parentid={id}
+						handleCommentSubmit={handleCommentSubmit}
+					/>
+				)}
 
 				{childComments?.length > 0 && (
 					<>
@@ -168,6 +185,7 @@ function Comment(props) {
 								comments={childComments}
 								setComments={setComments}
 								getChildComments={getChildComments}
+								handleCommentSubmit={handleCommentSubmit}
 							></CommentsLayout>
 						</ChildrenCommentsLayout>
 

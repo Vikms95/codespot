@@ -12,7 +12,8 @@ const StyledCommentsLayout = styled.section`
 `;
 
 export function CommentsLayout(props) {
-	const { comments, getChildComments, setComments } = props;
+	const { comments, getChildComments, setComments, handleCommentSubmit } =
+		props;
 
 	return (
 		<>
@@ -29,6 +30,7 @@ export function CommentsLayout(props) {
 								getChildComments={getChildComments}
 								setComments={setComments}
 								isDeletedWithChildren={comment.isDeletedWithChildren}
+								handleCommentSubmit={handleCommentSubmit}
 							></Comment>
 						);
 					})}

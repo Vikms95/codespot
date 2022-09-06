@@ -33,7 +33,8 @@ const LoginLinkText = styled.div`
 	font-weight: 800;
 `;
 
-function PostBody({ postid, setComments }) {
+function PostBody(props) {
+	const { postid, setComments, handleCommentSubmit } = props;
 	const { user } = useAuth();
 
 	const { posts } = usePostsContext();
@@ -53,7 +54,11 @@ function PostBody({ postid, setComments }) {
 			<Text ref={textRef}></Text>
 
 			{user ? (
-				<CommentForm postid={postid} setComments={setComments} />
+				<CommentForm
+					postid={postid}
+					setComments={setComments}
+					handleCommentSubmit={handleCommentSubmit}
+				/>
 			) : (
 				<LoginLinkText>
 					<span>Want to leave your comment?</span>{' '}

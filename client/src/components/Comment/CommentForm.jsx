@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { commentFields } from '../../data/formFields';
 import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import { Button } from '../../style/Button';
-import { createComment } from '../../services/createComment';
+import { commentFields } from '../../data/formFields';
 
 const StyledCommentForm = styled.form`
 	position: relative;
@@ -47,21 +46,27 @@ const CommentFormButton = styled(Button)`
 `;
 
 export function CommentForm(props) {
+	const { parentid, autofocus = false, handleCommentSubmit } = props;
+
 	const { user: userid } = useContext(AuthContext);
-	const { postid, setComments, parentid, autofocus = false } = props;
+
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
 
-	const handleSubmit = async e => {
-		e.preventDefault();
+	// const handleCommentSubmit = async e => {
+	// 	e.preventDefault();
 
-		const comment = await createComment(text, postid, userid, parentid);
-		setComments(prevComments => [...prevComments, comment]);
-		setFormData(commentFields);
-	};
+	// 	const comment = await createComment(text, postid, userid, parentid);
+	// 	setComments(prevComments => [...prevComments, comment]);
+	// 	setFormData(commentFields);
+	// };
 
 	return (
-		<StyledCommentForm onSubmit={handleSubmit}>
+		<StyledCommentForm
+			onSubmit={e =>
+				handleCommentSubmit(e, setFormData, text, userid, parentid)
+			}
+		>
 			<StyledCommentInput
 				autoFocus={autofocus}
 				type='text'
