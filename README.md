@@ -217,38 +217,40 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
       <!-- :refactor into cleaner code the way the comments are recursively deleted -->
   <!-- :since border is in the buttons container, when there is no buttons, the border won't appear -->
 
-  :user available comment icons not appearing after creating a comment, only after refreshing
-    :logged in user is being detected, but not that the user is the same as the creator of the posts
-    :when saved on state is being saved different as when it is saved on database (user._id is not defined, just the username)
+  <!-- :user available comment icons not appearing after creating a comment, only after refreshing -->
+    <!-- :logged in user is being detected, but not that the user is the same as the creator of the posts -->
+    <!-- :when saved on state is being saved different as when it is saved on database (user._id is not defined, just the username)
     COMMENTUSER IS NOT THE WHOLE USER, ITS JUST THE NAME OF THE USER
     :user name is only received when you make a populate out of the id passed to the backend
-    :do an endpoint only to receive the user name?
+    :do an endpoint only to receive the user name? -->
 
   :implement icons for CRUD actions on the comments
-    :when reply button is clicked, display a CommentForm right below the comment to reply
 
    >REPLY<
     :(replies is the same as comment but including the parentid instead) 
-    :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
+    :when reply button is clicked, display a CommentForm right below the comment to reply
+      :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
     :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features?
 
-  
+    >UPDATE<
+    :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
+
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
 
-  :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
   
+- Fix Post showing undefined if you logout while a Post is displayed
 
 - Fix images showing the default one before fetching all the PostView images
-
-- Fix Post showing undefined if you logout while a Post is displayed
 
 - Fix Navbar covering the whole screen when going from mobile to desktop view
 
 - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
 
 - Implement sanitization of inputs
+
+- Implement error handling on API calls and async operations
 
 -STILYNG-
 
@@ -264,5 +266,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Style user managament forms
 
-- Implement error handling on api calls or asynchronous operations
+- Style to make it responsive
+
+
 
