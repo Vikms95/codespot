@@ -69,7 +69,7 @@ function PostPreview(props) {
 
 			<PostContentContainer>
 				<PostTopRowContainer>
-					{/* <PostTopRow>{user.username}</PostTopRow> */}
+					<PostTopRow>{user?.username}</PostTopRow>
 					<PostTopRow>{timestamp}</PostTopRow>
 				</PostTopRowContainer>
 
@@ -77,12 +77,12 @@ function PostPreview(props) {
 				<PostDesc ref={textRef}></PostDesc>
 
 				<PostBotRowContainer>
-					{/* {user._id === currentUserId && (
+					{user?._id === currentUserId && (
 						<PostButtonContainer>
 							<Button onClick={handleUpdate}>Update</Button>
 							<Button onClick={revealDeleteModal}>Delete</Button>
 						</PostButtonContainer>
-					)} */}
+					)}
 					{commentsCount > 0 && (
 						<PostCommentsContainer>
 							<FaComments />

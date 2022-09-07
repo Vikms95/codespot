@@ -26,23 +26,25 @@ function Home(props) {
 		<StyledHome>
 			{posts && (
 				<>
-					<PostsLayout section='home'>
-						{posts.map(
-							post =>
-								post.public && (
-									<PostPreview
-										key={post._id}
-										id={post._id}
-										user={post.user}
-										title={post.title}
-										text={post.text}
-										image={post.image}
-										timestamp={post.timestamp}
-										setLastClickedPostId={setLastClickedPostId}
-										setIsModalActive={setIsModalActive}
-									></PostPreview>
-								)
-						)}
+					<PostsLayout title='Latest post' section='home'>
+						{posts
+							?.reverse()
+							.map(
+								post =>
+									post.public && (
+										<PostPreview
+											key={post._id}
+											id={post._id}
+											user={post.user}
+											title={post.title}
+											text={post.text}
+											image={post.image}
+											timestamp={post.timestamp}
+											setLastClickedPostId={setLastClickedPostId}
+											setIsModalActive={setIsModalActive}
+										></PostPreview>
+									)
+							)}
 					</PostsLayout>
 				</>
 			)}
