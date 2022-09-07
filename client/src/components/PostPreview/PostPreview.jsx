@@ -22,7 +22,7 @@ import {
 	StyledBookImage,
 } from './_styles';
 
-export function PostPreview(props) {
+export default function PostPreview(props) {
 	const {
 		id,
 		user,

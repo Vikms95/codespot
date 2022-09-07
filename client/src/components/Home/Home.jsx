@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
+import { BlogItem } from '../../assets/blogItem';
 import styled from 'styled-components';
 import { LazyPostPreview } from '../PostPreview/';
 import { PostsLayout } from '../../layouts';

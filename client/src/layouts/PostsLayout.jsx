@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const StyledPostsLayout = styled.section`
 	min-height: 100vh;
+	min-width: 20vw;
 	gap: 5em;
 	margin-left: '2em';
 	margin-bottom: 5em;

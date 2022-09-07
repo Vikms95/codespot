@@ -6,19 +6,19 @@ export function userNearScreen({ distance = '100px' } = {}) {
 
 	useEffect(() => {
 		const onChange = (entries, observer) => {
-			const el = entries[0];
+			const element = entries[0];
 
-			if (el.isIntersecting) {
+			if (element.isIntersecting) {
 				setShow(true);
-				observer.disconnect();
+				observer.unobserve(element.target);
 			}
 		};
 
 		const observer = new IntersectionObserver(onChange, {
 			rootMargin: distance,
 		});
-
-		observer.observe(fromRef.current);
+    
+		observer.observe(fromRef?.current);
 
 		return () => observer.disconnect();
 	});
