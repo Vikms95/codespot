@@ -25,7 +25,8 @@ const StyledPostsLayout = styled.section`
 					> * {
 						:nth-child(1) {
 							grid-column: 1 / 8;
-							max-height: 40rem;
+							height: 40rem;
+              min-width: 50rem;
 
 							& > article > a > img {
 								height: 25rem;
@@ -34,7 +35,8 @@ const StyledPostsLayout = styled.section`
 
 						:nth-child(2) {
 							grid-column: 8 / 13;
-							max-height: 40rem;
+							height: 40rem;
+              min-width: 30rem;
 
 							& > article > a > img {
 								height: 25rem;

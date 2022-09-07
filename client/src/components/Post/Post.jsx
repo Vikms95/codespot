@@ -54,14 +54,16 @@ export function Post(props) {
 					{comments?.length > 0 ? 'Comments' : 'There are no comments...'}
 				</CommentsTitle>
 
-				<CommentsContextProvider value={comments}>
-					<CommentsLayout
-						comments={rootComments}
-						setComments={setComments}
-						getChildComments={getChildComments}
-						handleCommentSubmit={handleCommentSubmit}
-					/>
-				</CommentsContextProvider>
+				{comments?.length > 0 && (
+					<CommentsContextProvider value={comments}>
+						<CommentsLayout
+							comments={rootComments}
+							setComments={setComments}
+							getChildComments={getChildComments}
+							handleCommentSubmit={handleCommentSubmit}
+						/>
+					</CommentsContextProvider>
+				)}
 			</StyledPost>
 		</>
 	);

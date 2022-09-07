@@ -8,6 +8,8 @@ import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { useImage } from '../../hooks/useImage';
 import { PostPreviewCommentDisplay, PostPreviewButtons } from './index';
 
+import { ImageItem } from '../../assets/imageItem';
+
 import {
 	BookText,
 	PostBotRowContainer,
@@ -33,24 +35,29 @@ export default function PostPreview(props) {
 		setIsModalActive,
 		setLastClickedPostId,
 	} = props;
+
 	const { user: currentUserId } = useContext(AuthContext);
 	const commentsCount = useCommentsCount(id);
 
 	const textRef = useHtmlAsText(text);
-	const imageSrc = useImage(image, [image]);
+	const { imageSrc, loaded } = useImage(image);
 
 	return (
 		<>
 			<PostImageContainer>
-				<PostLink to={`/${id}`}>
-					<StyledBookImage />
-					<BookText>Read this article</BookText>
+				{loaded ? (
+					<PostLink to={`/${id}`}>
+						<StyledBookImage />
+						<BookText>Read this article</BookText>
 
-					<PostImage
-						src={imageSrc?.ok ? imageSrc.url : defaultPostImage}
-						alt='post-preview'
-					/>
-				</PostLink>
+						<PostImage
+							src={imageSrc?.url || defaultPostImage}
+							alt='post-preview'
+						/>
+					</PostLink>
+				) : (
+					<ImageItem />
+				)}
 			</PostImageContainer>
 
 			<PostContentContainer>

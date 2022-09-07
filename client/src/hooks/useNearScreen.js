@@ -9,7 +9,7 @@ export function userNearScreen({ distance = '100px', externalRef } = {}) {
 
 		const onChange = (entries, observer) => {
 			const element = entries[0];
-
+      
 			if (element.isIntersecting) {
 				setShow(true);
 				observer.unobserve(element.target);

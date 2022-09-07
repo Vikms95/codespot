@@ -11,6 +11,7 @@ export const StyledPostPreview = styled.section`
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	max-height: 40em;
+  min-width: 3rem;
 	text-overflow: ellipsis;
 `;
 
