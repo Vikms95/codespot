@@ -19,7 +19,8 @@ const StyledPost = styled.section`
 
 const CommentsTitle = styled.h1``;
 
-function Post() {
+function Post(props) {
+	const { setPosts } = props;
 	const { postid } = useParams();
 
 	const { comments, setComments } = useComments(postid);
@@ -44,6 +45,7 @@ function Post() {
 			<StyledPost>
 				<PostBody
 					postid={postid}
+					setPosts={setPosts}
 					setComments={setComments}
 					handleCommentSubmit={handleCommentSubmit}
 				/>

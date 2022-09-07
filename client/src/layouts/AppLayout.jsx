@@ -5,6 +5,7 @@ const AppLayout = styled.main`
 	margin-bottom: 5em;
 	margin-left: 12em;
 	display: flex;
+	justify-content: center;
 	width: 85%;
 	transition: all 200ms;
 

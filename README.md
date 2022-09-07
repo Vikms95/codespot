@@ -244,9 +244,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
 
-- Use composition pattern to create the comment with or without children comments
-  
 - Fix Post showing undefined if you logout while a Post is displayed
+  :posts context is null when user is not logged in?
+
+- Use composition pattern to create the comment with or without children comments
 
 - Fix images showing the default one before fetching all the PostView images
 

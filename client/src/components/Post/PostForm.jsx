@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
+import AuthContext from '../../context/AuthContext';
 import styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
-import { parseEditorData } from '../utils/parseEditorData';
-import { usePostToUpdate } from '../hooks/usePostToUpdate';
-import { Label } from '../style/Label';
-import { Button } from '../style/Button';
-import { createFormData } from '../utils/createFormData';
-import { usePostsContext } from '../context/PostsContext';
-import { usePostForm } from '../hooks/usePostForm';
-import { postFields } from '../data/formFields';
-import { createPost } from '../services/createPost';
-import { updatePost } from '../services/updatePost';
+import { parseEditorData } from '../../utils/parseEditorData';
+import { usePostToUpdate } from '../../hooks/usePostToUpdate';
+import { Label } from '../../style/Label';
+import { Button } from '../../style/Button';
+import { createFormData } from '../../utils/createFormData';
+import { usePostsContext } from '../../context/PostsContext';
+import { usePostForm } from '../../hooks/usePostForm';
+import { postFields } from '../../data/formFields';
+import { createPost } from '../../services/createPost';
+import { updatePost } from '../../services/updatePost';
 import { FaCheck } from 'react-icons/fa';
 
 const PostFormContainer = styled.section`
@@ -193,7 +193,7 @@ function PostForm() {
 					init={{
 						forced_root_block: '',
 						height: 500,
-						width: 800,
+						width: 1000,
 						menubar: false,
 						elementpath: false,
 					}}

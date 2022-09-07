@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { CommentForm } from '../Comment/CommentForm';
@@ -8,6 +8,8 @@ import { usePost } from '../../hooks/usePost';
 import { useImage } from '../../hooks/useImage';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { usePostsContext } from '../../context/PostsContext';
+import { useFetch } from '../../hooks/useFetch';
+import { getOptions } from '../../data/requestParams';
 
 const Title = styled.h1`
 	font-size: 4em;
@@ -35,9 +37,10 @@ const LoginLinkText = styled.div`
 `;
 
 function PostBody(props) {
-	const { postid, setComments, handleCommentSubmit } = props;
+	const { postid, setComments, handleCommentSubmit, setPosts } = props;
 	const { user } = useAuth();
 
+	const data = useFetch('/api/posts', getOptions);
 	const { posts } = usePostsContext();
 
 	const post = usePost(postid, posts);
@@ -46,13 +49,17 @@ function PostBody(props) {
 	const imageSrc = useImage(image, [post]);
 	const textRef = useHtmlAsText(text);
 
+	useEffect(() => {
+		setPosts(data);
+	}, [data]);
+
 	return (
 		<>
-			<Title>{title}</Title>
+			<Title>{title && title}</Title>
 
 			{imageSrc?.ok && <Image src={imageSrc?.url} alt='post-portrait' />}
 
-			<Text ref={textRef}></Text>
+			<Text ref={textRef && textRef}></Text>
 
 			{user ? (
 				<CommentForm

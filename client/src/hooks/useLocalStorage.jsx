@@ -18,6 +18,7 @@ export const useLocalStorage = (key, initialValue) => {
 			return initialValue;
 		}
 	});
+
 	// Return a wrapped version of useState's setter function that ...
 	// ... persists the new value to localStorage.
 	const setValue = value => {
@@ -26,6 +27,7 @@ export const useLocalStorage = (key, initialValue) => {
 			const valueToStore =
 				value instanceof Function ? value(storedValue) : value;
 			// Save state
+			console.log(value);
 			setStoredValue(valueToStore);
 			// Save to local storage
 			if (typeof window !== 'undefined') {

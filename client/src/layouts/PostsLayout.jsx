@@ -4,9 +4,12 @@ import styled from 'styled-components';
 
 const StyledPostsLayout = styled.section`
 	gap: 5em;
-	margin: 2em 0;
+	margin-left: ${props => (props.section === 'home' ? '12em' : '2em')};
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+	grid-template-columns: ${props =>
+		props.section === 'home'
+			? 'repeat(auto-fill, minmax(2.5rem, 1fr));'
+			: '2em'};
 	grid-template-rows: repeat(1, 40rem) repeat(auto-fill, minmax(3rem, 1fr));
 
 	& > section {
@@ -39,12 +42,12 @@ const PostListTitle = styled.h2`
 `;
 
 function PostsLayout(props) {
-	const { children, title } = props;
+	const { children, title, section } = props;
 	return (
 		<>
 			<PostListTitle>{title}</PostListTitle>
 
-			<StyledPostsLayout>{children}</StyledPostsLayout>
+			<StyledPostsLayout section={section}>{children}</StyledPostsLayout>
 		</>
 	);
 }

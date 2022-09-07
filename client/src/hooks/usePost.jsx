@@ -9,7 +9,7 @@ export function usePost(postid, posts) {
 
 			setPost(postToReturn);
 		}
-	}, []);
+	}, [posts]);
 
 	return post;
 }

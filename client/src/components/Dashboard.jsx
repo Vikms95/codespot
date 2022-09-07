@@ -25,7 +25,7 @@ function Dashboard(props) {
 		<StyledDashboard>
 			{posts && (
 				<>
-					<PostsLayout title='Published posts'>
+					<PostsLayout title='Published posts' section='dashboard'>
 						{posts?.map(
 							post =>
 								post.public && (

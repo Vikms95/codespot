@@ -26,7 +26,7 @@ function Home(props) {
 		<StyledHome>
 			{posts && (
 				<>
-					<PostsLayout>
+					<PostsLayout section='home'>
 						{posts.map(
 							post =>
 								post.public && (

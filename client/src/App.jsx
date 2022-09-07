@@ -5,7 +5,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
 import Navbar from './components/Navbar';
-import PostForm from './components/PostForm';
+import PostForm from './components/Post/PostForm';
 import Post from './components/Post/Post';
 import RegisterForm from './components/RegisterForm';
 import Dashboard from './components/Dashboard';
@@ -52,7 +52,7 @@ function App() {
 
 							<Route path='/login' element={<LoginForm setUser={setUser} />} />
 							<Route path='/register' element={<RegisterForm />} />
-							<Route path='/:postid' element={<Post />} />
+							<Route path='/:postid' element={<Post setPosts={setPosts} />} />
 							<Route
 								path='/'
 								element={
