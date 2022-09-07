@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-function useHtmlAsText(text) {
+export function useHtmlAsText(text) {
 	const textRef = useRef(null);
 
 	useEffect(() => {
@@ -10,5 +10,3 @@ function useHtmlAsText(text) {
 	}, [text]);
 	return textRef;
 }
-
-export { useHtmlAsText };

@@ -4,7 +4,6 @@ import { useCommentsCount } from '../../hooks/useCommentsCount';
 
 import defaultPostImage from '../../assets/default-image.jpg';
 import { AuthContext } from '../../context/AuthContext';
-import { userNearScreen } from '../../hooks/useNearScreen';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { useImage } from '../../hooks/useImage';
 import { PostPreviewCommentDisplay, PostPreviewButtons } from './index';
@@ -21,10 +20,9 @@ import {
 	PostTopRow,
 	PostTopRowContainer,
 	StyledBookImage,
-	StyledPostPreview,
 } from './_styles';
 
-function PostPreview(props) {
+export function PostPreview(props) {
 	const {
 		id,
 		user,
@@ -79,15 +77,5 @@ function PostPreview(props) {
 				</PostBotRowContainer>
 			</PostContentContainer>
 		</>
-	);
-}
-
-export function LazyPostPreview(props) {
-	const { isNearScreen, fromRef } = userNearScreen();
-
-	return (
-		<StyledPostPreview ref={fromRef}>
-			{isNearScreen ? <PostPreview {...props}></PostPreview> : null}
-		</StyledPostPreview>
 	);
 }
