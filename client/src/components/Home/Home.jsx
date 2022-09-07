@@ -2,7 +2,7 @@
 import React, { useEffect, Suspense } from 'react';
 import { BlogItem } from '../../assets/blogItem';
 import styled from 'styled-components';
-import { LazyPostPreview } from '../PostPreview/';
+import { LazyPostPreview as PostPreview } from '../PostPreview/';
 import { PostsLayout } from '../../layouts';
 import { useAuth } from '../../hooks/useAuth';
 import { useFetch } from '../../hooks/useFetch';
@@ -35,7 +35,7 @@ export function Home(props) {
 							.map(
 								post =>
 									post.public && (
-										<LazyPostPreview
+										<PostPreview
 											key={post._id}
 											id={post._id}
 											user={post.user}
@@ -45,7 +45,7 @@ export function Home(props) {
 											timestamp={post.timestamp}
 											setIsModalActive={setIsModalActive}
 											setLastClickedPostId={setLastClickedPostId}
-										></LazyPostPreview>
+										></PostPreview>
 									)
 							)}
 					</PostsLayout>

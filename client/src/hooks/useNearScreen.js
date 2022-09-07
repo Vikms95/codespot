@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export function userNearScreen({ distance = '100px' } = {}) {
+export function userNearScreen({ distance = '100px', externalRef } = {}) {
 	const [isNearScreen, setShow] = useState(false);
 	const fromRef = useRef(null);
 
 	useEffect(() => {
+    const element = externalRef ? externalRef.current : fromRef.current
+
 		const onChange = (entries, observer) => {
 			const element = entries[0];
 
@@ -18,7 +20,7 @@ export function userNearScreen({ distance = '100px' } = {}) {
 			rootMargin: distance,
 		});
     
-		observer.observe(fromRef?.current);
+		observer.observe(element);
 
 		return () => observer.disconnect();
 	});

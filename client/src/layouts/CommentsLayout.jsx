@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { Comment } from '../components/Comment';
+import { LazyComment as Comment } from '../components/Comment';
 
 const StyledCommentsLayout = styled.section`
 	display: grid;

@@ -1,19 +1,10 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
 import { AuthContext } from '../../context/AuthContext';
 import { CommentBody, CommentChildren } from './index';
 
-const StyledComment = styled.article`
-	display: flex;
-	flex-direction: column;
-	line-height: 22px;
-	padding-left: 1.5em;
-	width: 100%;
-`;
-
-export function Comment(props) {
+export default function Comment(props) {
 	const {
 		commentid,
 		text,
@@ -29,7 +20,7 @@ export function Comment(props) {
 	const childComments = getChildComments(commentid);
 
 	return (
-		<StyledComment>
+		<>
 			<CommentBody
 				text={text}
 				commentid={commentid}
@@ -50,6 +41,6 @@ export function Comment(props) {
 					handleCommentSubmit={handleCommentSubmit}
 				/>
 			)}
-		</StyledComment>
+		</>
 	);
 }
