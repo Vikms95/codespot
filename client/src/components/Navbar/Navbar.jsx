@@ -1,215 +1,36 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { logoutUser } from '../../utils/logoutUser';
-import styled from 'styled-components';
-import {
-	FaSignInAlt,
-	FaUser,
-	FaBook,
-	FaTable,
-	FaDoorOpen,
-	FaHouseUser,
-	FaChevronRight,
-} from 'react-icons/fa';
+/* eslint react/prop-types: 0 */
+import React from 'react';
 import { useWindowDimensions } from '../../hooks/useWindowDimensions';
+import { FaHouseUser } from 'react-icons/fa';
 
-import AuthContext from '../../context/AuthContext';
-const LinkText = styled.span`
-	display: none;
-	white-space: nowrap;
-`;
+import {
+	InnerNav,
+	NavArrow,
+	NavItem,
+	StyledLink,
+	StyledNavbar,
+	TitleText,
+} from './_styles';
 
-const TitleText = styled(LinkText)`
-	&&& {
-		filter: none;
-	}
-	padding-left: 1.5em;
-`;
-
-const StyledLink = styled(Link)`
-	width: 100%;
-`;
-
-const NavArrow = styled(FaChevronRight)`
-	font-weight: bold;
-	text-transform: uppercase;
-	margin-bottom: 1rem;
-	width: 100%;
-	margin-top: 0.5em;
-	color: #4f29b6;
-	width: 100%;
-	margin-left: -0.5em;
-
-	& > svg {
-		color: #4f29b6;
-		transform: rotate(0deg);
-		transition: transform 300ms;
-	}
-`;
-
-const InnerNav = styled.ul`
-	padding-inline-start: 0;
-	list-style: none;
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	flex-direction: column;
-	row-gap: 1em;
-	width: 100%;
-
-	> * {
-		&:first-child {
-			background-color: #dcdcdc;
-		}
-	}
-`;
-
-const NavItem = styled.li`
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 0.5em 0;
-	color: #6649b8;
-	font-size: 1.5em;
-	font-weight: 500;
-	filter: grayscale(100%) opacity(0.7);
-	transition: filter 400ms;
-	width: 100%;
-
-	& > svg {
-		padding-top: 0.2em;
-		padding-bottom: 0.2em;
-		padding-left: 1.5em;
-		min-width: 3rem;
-		margin-right: 1rem;
-	}
-
-	&:hover {
-		filter: grayscale(0%) opacity(1);
-	}
-`;
-
-const StyledNavbar = styled.nav`
-	background-color: white;
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 1em 0;
-	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
-	transition: width 300ms ease;
-	z-index: 100;
-	overflow: hidden;
-
-	&:hover ${NavArrow} {
-		transform: rotate(-180deg) translateX(-2rem);
-	}
-
-	&:hover ${LinkText} {
-		display: block;
-	}
-
-	@media only screen and (min-width: 600px) {
-		top: 0;
-		width: 7em;
-		height: 100%;
-
-		&:hover {
-			width: 16rem;
-		}
-
-		&:hover ${LinkText} {
-			display: inline;
-			transition: opacity 400ms;
-		}
-	}
-
-	@media only screen and (max-width: 600px) {
-		bottom: 0;
-		width: 100%;
-		height: 3rem;
-		justify-content: center;
-
-		& ${InnerNav} {
-			flex-direction: row;
-			justify-content: flex-end;
-			> * {
-				background-color: white;
-			}
-		}
-
-		&:hover ${LinkText} {
-			display: none;
-		}
-	}
-`;
-
-function Navbar() {
+export function Navbar({ children }) {
 	const { height, width } = useWindowDimensions();
-	const { user } = useContext(AuthContext);
 	return (
-		<>
-			<StyledNavbar>
-				<InnerNav>
-					<StyledLink to='/'>
-						<NavItem>
-							{width > 600 ? (
-								<>
-									<TitleText> CODESPOT </TitleText>
-									<NavArrow />
-								</>
-							) : (
-								<FaHouseUser />
-							)}
-						</NavItem>
-					</StyledLink>
-					{user && (
-						<>
-							<StyledLink to='/dashboard'>
-								<NavItem>
-									<FaTable />
-									<LinkText> Dashboard </LinkText>
-								</NavItem>
-							</StyledLink>
-
-							<StyledLink to='/create'>
-								<NavItem>
-									<FaBook />
-									<LinkText> New post </LinkText>
-								</NavItem>
-							</StyledLink>
-						</>
-					)}
-
-					{!user && (
-						<>
-							<StyledLink to='/register'>
-								<NavItem>
-									<FaUser />
-									<LinkText> Register </LinkText>
-								</NavItem>
-							</StyledLink>
-
-							<StyledLink to='/login'>
-								<NavItem>
-									<FaSignInAlt />
-									<LinkText> Login </LinkText>
-								</NavItem>
-							</StyledLink>
-						</>
-					)}
-					{user && (
-						<StyledLink to='/' onClick={logoutUser}>
-							<NavItem>
-								<FaDoorOpen />
-								<LinkText> Logout </LinkText>
-							</NavItem>
-						</StyledLink>
-					)}
-				</InnerNav>
-			</StyledNavbar>
-		</>
+		<StyledNavbar>
+			<InnerNav>
+				<StyledLink to='/'>
+					<NavItem>
+						{width > 600 ? (
+							<>
+								<TitleText> CODESPOT </TitleText>
+								<NavArrow />
+							</>
+						) : (
+							<FaHouseUser />
+						)}
+					</NavItem>
+				</StyledLink>
+				{children}
+			</InnerNav>
+		</StyledNavbar>
 	);
 }
-
-export default Navbar;

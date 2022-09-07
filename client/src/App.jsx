@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
-import Navbar from './components/Navbar/Navbar';
+import { NavbarWithUser, NavbarWithGuest } from './components/Navbar/_index';
 import PostForm from './components/Post/PostForm';
 import Post from './components/Post/Post';
 import RegisterForm from './components/RegisterForm';
@@ -29,7 +29,7 @@ function App() {
 	return (
 		<Router>
 			<AuthContext.Provider value={authContext}>
-				<Navbar />
+				{user ? <NavbarWithUser /> : <NavbarWithGuest />}
 				<AppContainer>
 					<PostsContextProvider posts={posts}>
 						<Routes>

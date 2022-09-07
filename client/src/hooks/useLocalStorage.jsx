@@ -27,7 +27,6 @@ export const useLocalStorage = (key, initialValue) => {
 			const valueToStore =
 				value instanceof Function ? value(storedValue) : value;
 			// Save state
-			console.log(value);
 			setStoredValue(valueToStore);
 			// Save to local storage
 			if (typeof window !== 'undefined') {
