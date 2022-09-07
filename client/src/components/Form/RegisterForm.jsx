@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from '../hooks/useForm';
-import { registerFields } from '../data/formFields';
-import { createUser } from '../services/createUser';
+import { useForm } from '../../hooks/useForm';
+import { registerFields } from '../../data/formFields';
+import { createUser } from '../../services/createUser';
 
-function RegisterForm() {
+export function RegisterForm() {
 	const navigate = useNavigate();
 
 	const { formData, handleChange } = useForm(registerFields);
@@ -60,5 +60,3 @@ function RegisterForm() {
 		</>
 	);
 }
-
-export default RegisterForm;

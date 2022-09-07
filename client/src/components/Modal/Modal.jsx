@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import ModalWrapper from '../containers/ModalWrapper';
-import { deletePost } from '../services/deletePost';
 import styled from 'styled-components';
-import { Button } from '../style/Button';
+import { ModalWrapper } from '../../containers/ModalWrapper';
+import { deletePost } from '../../services/deletePost';
+import { Button } from '../../style/Button';
 
 const StyledModal = styled.section`
 	background-color: white;
@@ -24,7 +24,7 @@ const ButtonContainer = styled.div`
 	gap: 2em;
 `;
 
-function Modal(props) {
+export function Modal(props) {
 	const { setPosts, lastClickedPostId, setIsModalActive, isModalActive } =
 		props;
 
@@ -54,5 +54,3 @@ function Modal(props) {
 		</ModalWrapper>
 	);
 }
-
-export default Modal;

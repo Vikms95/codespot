@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import PostBody from './PostBody';
+import { PostBody } from './PostBody';
 import { useParams } from 'react-router-dom';
 import { useComments } from '../../hooks/useComments';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
@@ -19,7 +19,7 @@ const StyledPost = styled.section`
 
 const CommentsTitle = styled.h1``;
 
-function Post(props) {
+export function Post(props) {
 	const { setPosts } = props;
 	const { postid } = useParams();
 
@@ -66,5 +66,3 @@ function Post(props) {
 		</>
 	);
 }
-
-export default Post;

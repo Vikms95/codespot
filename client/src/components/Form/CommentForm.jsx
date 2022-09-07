@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import AuthContext from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import { Button } from '../../style/Button';
 import { commentFields } from '../../data/formFields';

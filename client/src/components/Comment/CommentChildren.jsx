@@ -25,7 +25,7 @@ const ExpandButton = styled.button`
 	display: ${props => (props.areChildrenHidden ? 'flex' : 'none')};
 `;
 
-function CommentChildren(props) {
+export function CommentChildren(props) {
 	const { childComments, setComments, getChildComments, handleCommentSubmit } =
 		props;
 
@@ -56,5 +56,3 @@ function CommentChildren(props) {
 		</>
 	);
 }
-
-export default CommentChildren;

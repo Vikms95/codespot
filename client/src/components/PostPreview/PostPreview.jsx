@@ -1,18 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
-import AuthContext from '../../context/AuthContext';
+import { useCommentsCount } from '../../hooks/useCommentsCount';
+
 import defaultPostImage from '../../assets/default-image.jpg';
-import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { useImage } from '../../hooks/useImage';
-import { FaComments } from 'react-icons/fa';
-import { useCommentsCount } from '../../hooks/useCommentsCount';
-import { Button } from '../../style/Button';
+import { PostPreviewCommentDisplay, PostPreviewButtons } from './index';
+
 import {
 	BookText,
 	PostBotRowContainer,
-	PostButtonContainer,
-	PostCommentsContainer,
 	PostContentContainer,
 	PostDesc,
 	PostImage,
@@ -23,11 +21,9 @@ import {
 	PostTopRowContainer,
 	StyledBookImage,
 	StyledPostPreview,
-} from './PostPreview.styles';
+} from './_styles';
 
-function PostPreview(props) {
-	const navigate = useNavigate();
-
+export function PostPreview(props) {
 	const {
 		id,
 		user,
@@ -38,26 +34,17 @@ function PostPreview(props) {
 		setIsModalActive,
 		setLastClickedPostId,
 	} = props;
-
 	const { user: currentUserId } = useContext(AuthContext);
-	const textRef = useHtmlAsText(text);
-	const imageSrc = useImage(image, [image]);
 	const commentsCount = useCommentsCount(id);
 
-	const handleUpdate = () => {
-		return navigate('/update/' + id);
-	};
-
-	const revealDeleteModal = () => {
-		setIsModalActive(true);
-		setLastClickedPostId(id);
-	};
+	const textRef = useHtmlAsText(text);
+	const imageSrc = useImage(image, [image]);
 
 	return (
 		<StyledPostPreview>
 			<PostImageContainer>
 				<PostLink to={`/${id}`}>
-					<StyledBookImage></StyledBookImage>
+					<StyledBookImage />
 					<BookText>Read this article</BookText>
 
 					<PostImage
@@ -78,21 +65,18 @@ function PostPreview(props) {
 
 				<PostBotRowContainer>
 					{user?._id === currentUserId && (
-						<PostButtonContainer>
-							<Button onClick={handleUpdate}>Update</Button>
-							<Button onClick={revealDeleteModal}>Delete</Button>
-						</PostButtonContainer>
+						<PostPreviewButtons
+							id={id}
+							setIsModalActive={setIsModalActive}
+							setLastClickedPostId={setLastClickedPostId}
+						/>
 					)}
+
 					{commentsCount > 0 && (
-						<PostCommentsContainer>
-							<FaComments />
-							{commentsCount}
-						</PostCommentsContainer>
+						<PostPreviewCommentDisplay count={commentsCount} />
 					)}
 				</PostBotRowContainer>
 			</PostContentContainer>
 		</StyledPostPreview>
 	);
 }
-
-export default PostPreview;

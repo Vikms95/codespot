@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import AuthContext from '../context/AuthContext';
-import PostsLayout from '../layouts/PostsLayout';
-import PostPreview from './PostPreview/PostPreview';
-import { useFetch } from '../hooks/useFetch';
-import { getOptions } from '../data/requestParams';
-import { usePostsContext } from '../context/PostsContext';
+import { AuthContext } from '../../context/AuthContext';
+import { PostsLayout } from '../../layouts/PostsLayout';
+import { PostPreview } from '../PostPreview';
+import { useFetch } from '../../hooks/useFetch';
+import { getOptions } from '../../data/requestParams';
+import { usePostsContext } from '../../context/PostsContext';
 
 const StyledDashboard = styled.main``;
 
-function Dashboard(props) {
+export function Dashboard(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
 
 	const { user } = useContext(AuthContext);
@@ -72,5 +72,3 @@ function Dashboard(props) {
 		</StyledDashboard>
 	);
 }
-
-export default Dashboard;

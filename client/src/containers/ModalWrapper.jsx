@@ -18,7 +18,7 @@ const StyledModalWrapper = styled.div`
  * to make any element behind unclickable. If that div ever gets
  * clicked, change isModalActive prop to false.
  */
-function ModalWrapper(props) {
+export function ModalWrapper(props) {
 	const { children, isModalActive, handleCancel } = props;
 
 	return (
@@ -27,5 +27,3 @@ function ModalWrapper(props) {
 		)
 	);
 }
-
-export default ModalWrapper;

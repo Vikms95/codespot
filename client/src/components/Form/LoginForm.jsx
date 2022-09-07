@@ -2,12 +2,12 @@
 import React from 'react';
 import { FaSignInAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from '../hooks/useForm';
-import { loginFields } from '../data/formFields';
-import { loginUser } from '../services/loginUser';
-import { setToStorage } from '../utils/setToStorage';
+import { useForm } from '../../hooks/useForm';
+import { loginFields } from '../../data/formFields';
+import { loginUser } from '../../services/loginUser';
+import { setToStorage } from '../../utils/setToStorage';
 
-function LoginForm(props) {
+export function LoginForm(props) {
 	const { setUser } = props;
 	const navigate = useNavigate();
 
@@ -58,5 +58,3 @@ function LoginForm(props) {
 		</>
 	);
 }
-
-export default LoginForm;

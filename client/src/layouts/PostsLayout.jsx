@@ -48,7 +48,7 @@ const PostListTitle = styled.h2`
 	margin-left: 2em;
 `;
 
-function PostsLayout(props) {
+export function PostsLayout(props) {
 	const { children, title, section } = props;
 	return (
 		<>
@@ -58,5 +58,3 @@ function PostsLayout(props) {
 		</>
 	);
 }
-
-export default PostsLayout;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { FaReply, FaPen, FaTrash } from 'react-icons/fa';
-import { CommentForm } from './CommentForm';
+import { CommentForm } from '../Form/CommentForm';
 import { flagComment } from '../../services/flagComment';
 import { findByID } from '../../utils/findbyID';
 import { deleteComment } from '../../services/deleteComment';
@@ -47,7 +47,7 @@ const CommentBorder = styled.div`
 	border-right: none;
 `;
 
-function CommentBody(props) {
+export function CommentBody(props) {
 	const {
 		text,
 		commentid,
@@ -202,5 +202,3 @@ function CommentBody(props) {
 		</>
 	);
 }
-
-export default CommentBody;

@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { CommentForm } from '../Comment/CommentForm';
+import { CommentForm } from '../Form/CommentForm';
 import { useAuth } from '../../hooks/useAuth';
 import { usePost } from '../../hooks/usePost';
 import { useImage } from '../../hooks/useImage';
@@ -36,7 +36,7 @@ const LoginLinkText = styled.div`
 	font-weight: 800;
 `;
 
-function PostBody(props) {
+export function PostBody(props) {
 	const { postid, setComments, handleCommentSubmit, setPosts } = props;
 	const { user } = useAuth();
 
@@ -77,5 +77,3 @@ function PostBody(props) {
 		</>
 	);
 }
-
-export default PostBody;

@@ -2,9 +2,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import AuthContext from '../../context/AuthContext';
-import CommentBody from './CommentBody';
-import CommentChildren from './CommentChildren';
+import { AuthContext } from '../../context/AuthContext';
+import { CommentBody, CommentChildren } from './index';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -14,7 +13,7 @@ const StyledComment = styled.article`
 	width: 100%;
 `;
 
-function Comment(props) {
+export function Comment(props) {
 	const {
 		commentid,
 		text,
@@ -54,5 +53,3 @@ function Comment(props) {
 		</StyledComment>
 	);
 }
-
-export default Comment;

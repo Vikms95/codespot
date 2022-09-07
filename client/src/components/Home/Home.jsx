@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import PostPreview from './PostPreview/PostPreview';
-import PostsLayout from '../layouts/PostsLayout';
-import { useAuth } from '../hooks/useAuth';
-import { useFetch } from '../hooks/useFetch';
-import { getOptions } from '../data/requestParams';
-import { usePostsContext } from '../context/PostsContext';
+import { PostPreview } from '../PostPreview/';
+import { PostsLayout } from '../../layouts';
+import { useAuth } from '../../hooks/useAuth';
+import { useFetch } from '../../hooks/useFetch';
+import { getOptions } from '../../data/requestParams';
+import { usePostsContext } from '../../context/PostsContext';
 
 const StyledHome = styled.main``;
 
-function Home(props) {
+export function Home(props) {
 	useAuth();
 
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
@@ -36,12 +36,12 @@ function Home(props) {
 											key={post._id}
 											id={post._id}
 											user={post.user}
-											title={post.title}
 											text={post.text}
+											title={post.title}
 											image={post.image}
 											timestamp={post.timestamp}
-											setLastClickedPostId={setLastClickedPostId}
 											setIsModalActive={setIsModalActive}
+											setLastClickedPostId={setLastClickedPostId}
 										></PostPreview>
 									)
 							)}
@@ -51,5 +51,3 @@ function Home(props) {
 		</StyledHome>
 	);
 }
-
-export default Home;

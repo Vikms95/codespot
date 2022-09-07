@@ -1,19 +1,21 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './assets/global.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import LoginForm from './components/LoginForm';
-import { NavbarWithUser, NavbarWithGuest } from './components/Navbar/_index';
-import PostForm from './components/Post/PostForm';
-import Post from './components/Post/Post';
-import RegisterForm from './components/RegisterForm';
-import Dashboard from './components/Dashboard';
-import AuthRouteWrapper from './containers/AuthRouteWrapper';
+
+import { AppLayout } from './layouts';
+import { AuthRouteWrapper } from './containers/AuthRouteWrapper';
+
+import { AuthContext } from './context/AuthContext';
 import { PostsContextProvider } from './context/PostsContext';
-import AuthContext from './context/AuthContext';
-import Modal from './components/Modal';
-import AppContainer from './layouts/AppLayout';
+
+import { Home } from './components/Home';
+import { Post } from './components/Post';
+import { Modal } from './components/Modal';
+import { Dashboard } from './components/Dashboard';
+import { NavbarWithUser, NavbarWithGuest } from './components/Navbar';
+import { LoginForm, RegisterForm, PostForm } from './components/Form';
+
 import { useLocalStorage } from './hooks/useLocalStorage';
 
 function App() {
@@ -30,7 +32,8 @@ function App() {
 		<Router>
 			<AuthContext.Provider value={authContext}>
 				{user ? <NavbarWithUser /> : <NavbarWithGuest />}
-				<AppContainer>
+
+				<AppLayout>
 					<PostsContextProvider posts={posts}>
 						<Routes>
 							<Route element={<AuthRouteWrapper />}>
@@ -74,7 +77,7 @@ function App() {
 						lastClickedPostId={lastClickedPostId}
 						setIsModalActive={setIsModalActive}
 					/>
-				</AppContainer>
+				</AppLayout>
 			</AuthContext.Provider>
 		</Router>
 	);

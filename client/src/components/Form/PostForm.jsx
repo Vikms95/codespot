@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import AuthContext from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import styled from 'styled-components';
 import { Editor } from '@tinymce/tinymce-react';
 import { parseEditorData } from '../../utils/parseEditorData';
@@ -118,7 +118,7 @@ const StyledFaCheck = styled(FaCheck)`
 	color: green;
 `;
 
-function PostForm() {
+export function PostForm() {
 	const navigate = useNavigate();
 	const { postid } = useParams();
 	const { posts } = usePostsContext();
@@ -241,5 +241,3 @@ function PostForm() {
 		</PostFormContainer>
 	);
 }
-
-export default PostForm;
