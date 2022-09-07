@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import AuthContext from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
@@ -13,7 +13,7 @@ const StyledCommentForm = styled.form`
 	align-items: ${props => (props.isCommentForm ? 'flex-start' : 'center')};
 	row-gap: 1em;
 	margin: 1em 3em;
-	width: 90%;
+	width: ${props => (props.isCommentForm ? '90%' : '70%')};
 	outline: 1px solid #6649b8;
 	border-radius: 15px;
 
@@ -48,6 +48,10 @@ const StyledCommentInput = styled.textarea`
 const CommentFormButton = styled(Button)`
 	bottom: 10%;
 	right: 19%;
+
+	&:active ${StyledCommentForm} {
+		outline: 1px solid #6649b8;
+	}
 `;
 
 const CommentInputButtons = styled.div`
@@ -71,7 +75,6 @@ export function CommentForm(props) {
 	} = props;
 
 	const { user: userid } = useContext(AuthContext);
-
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { text } = formData;
 
@@ -111,7 +114,7 @@ export function CommentForm(props) {
 				name='text'
 				value={text}
 				onChange={handleChange}
-				maxLength={5000}
+				maxLength={3000}
 				placeholder='What are your thoughts?'
 			/>
 

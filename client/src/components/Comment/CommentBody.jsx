@@ -139,10 +139,9 @@ function CommentBody(props) {
 		);
 
 		setComments(prevComments =>
-			prevComments.map(prevComment => {
-				console.log(comment);
-				return prevComment._id === commentid ? comment : prevComment;
-			})
+			prevComments.map(prevComment =>
+				prevComment._id === commentid ? comment : prevComment
+			)
 		);
 
 		setFormData(commentFields);
