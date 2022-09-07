@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import LoginForm from './components/LoginForm';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import PostForm from './components/Post/PostForm';
 import Post from './components/Post/Post';
 import RegisterForm from './components/RegisterForm';
@@ -28,9 +28,9 @@ function App() {
 
 	return (
 		<Router>
-			<Navbar />
-			<AppContainer>
-				<AuthContext.Provider value={authContext}>
+			<AuthContext.Provider value={authContext}>
+				<Navbar />
+				<AppContainer>
 					<PostsContextProvider posts={posts}>
 						<Routes>
 							<Route element={<AuthRouteWrapper />}>
@@ -67,15 +67,15 @@ function App() {
 							/>
 						</Routes>
 					</PostsContextProvider>
-				</AuthContext.Provider>
 
-				<Modal
-					setPosts={setPosts}
-					isModalActive={isModalActive}
-					lastClickedPostId={lastClickedPostId}
-					setIsModalActive={setIsModalActive}
-				/>
-			</AppContainer>
+					<Modal
+						setPosts={setPosts}
+						isModalActive={isModalActive}
+						lastClickedPostId={lastClickedPostId}
+						setIsModalActive={setIsModalActive}
+					/>
+				</AppContainer>
+			</AuthContext.Provider>
 		</Router>
 	);
 }

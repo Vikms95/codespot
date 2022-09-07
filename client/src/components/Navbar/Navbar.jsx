@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../utils/logoutUser';
+import { logoutUser } from '../../utils/logoutUser';
 import styled from 'styled-components';
 import {
 	FaSignInAlt,
@@ -11,8 +11,9 @@ import {
 	FaHouseUser,
 	FaChevronRight,
 } from 'react-icons/fa';
-import { useWindowDimensions } from '../hooks/useWindowDimensions';
+import { useWindowDimensions } from '../../hooks/useWindowDimensions';
 
+import AuthContext from '../../context/AuthContext';
 const LinkText = styled.span`
 	display: none;
 	white-space: nowrap;
@@ -145,7 +146,7 @@ const StyledNavbar = styled.nav`
 
 function Navbar() {
 	const { height, width } = useWindowDimensions();
-
+	const { user } = useContext(AuthContext);
 	return (
 		<>
 			<StyledNavbar>
@@ -162,41 +163,49 @@ function Navbar() {
 							)}
 						</NavItem>
 					</StyledLink>
+					{user && (
+						<>
+							<StyledLink to='/dashboard'>
+								<NavItem>
+									<FaTable />
+									<LinkText> Dashboard </LinkText>
+								</NavItem>
+							</StyledLink>
 
-					<StyledLink to='/dashboard'>
-						<NavItem>
-							<FaTable />
-							<LinkText> Dashboard </LinkText>
-						</NavItem>
-					</StyledLink>
+							<StyledLink to='/create'>
+								<NavItem>
+									<FaBook />
+									<LinkText> New post </LinkText>
+								</NavItem>
+							</StyledLink>
+						</>
+					)}
 
-					<StyledLink to='/create'>
-						<NavItem>
-							<FaBook />
-							<LinkText> New post </LinkText>
-						</NavItem>
-					</StyledLink>
+					{!user && (
+						<>
+							<StyledLink to='/register'>
+								<NavItem>
+									<FaUser />
+									<LinkText> Register </LinkText>
+								</NavItem>
+							</StyledLink>
 
-					<StyledLink to='/register'>
-						<NavItem>
-							<FaUser />
-							<LinkText> Register </LinkText>
-						</NavItem>
-					</StyledLink>
-
-					<StyledLink to='/login'>
-						<NavItem>
-							<FaSignInAlt />
-							<LinkText> Login </LinkText>
-						</NavItem>
-					</StyledLink>
-
-					<StyledLink to='/' onClick={logoutUser}>
-						<NavItem>
-							<FaDoorOpen />
-							<LinkText> Logout </LinkText>
-						</NavItem>
-					</StyledLink>
+							<StyledLink to='/login'>
+								<NavItem>
+									<FaSignInAlt />
+									<LinkText> Login </LinkText>
+								</NavItem>
+							</StyledLink>
+						</>
+					)}
+					{user && (
+						<StyledLink to='/' onClick={logoutUser}>
+							<NavItem>
+								<FaDoorOpen />
+								<LinkText> Logout </LinkText>
+							</NavItem>
+						</StyledLink>
+					)}
 				</InnerNav>
 			</StyledNavbar>
 		</>

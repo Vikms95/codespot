@@ -26,42 +26,46 @@ function Dashboard(props) {
 			{posts && (
 				<>
 					<PostsLayout title='Published posts' section='dashboard'>
-						{posts?.map(
-							post =>
-								post.public && (
-									<PostPreview
-										key={post._id}
-										id={post._id}
-										user={post.user}
-										title={post.title}
-										text={post.text}
-										image={post.image}
-										timestamp={post.timestamp}
-										isPublic={post.public}
-										setLastClickedPostId={setLastClickedPostId}
-										setIsModalActive={setIsModalActive}
-									></PostPreview>
-								)
-						)}
+						{posts
+							?.reverse()
+							.map(
+								post =>
+									post.public && (
+										<PostPreview
+											key={post._id}
+											id={post._id}
+											user={post.user}
+											title={post.title}
+											text={post.text}
+											image={post.image}
+											timestamp={post.timestamp}
+											isPublic={post.public}
+											setLastClickedPostId={setLastClickedPostId}
+											setIsModalActive={setIsModalActive}
+										></PostPreview>
+									)
+							)}
 					</PostsLayout>
 
 					<PostsLayout title='Unpublished posts'>
-						{posts.map(
-							post =>
-								!post.public && (
-									<PostPreview
-										key={post._id}
-										id={post._id}
-										user={post.user}
-										title={post.title}
-										text={post.text}
-										image={post.image}
-										timestamp={post.timestamp}
-										setLastClickedPostId={setLastClickedPostId}
-										setIsModalActive={setIsModalActive}
-									></PostPreview>
-								)
-						)}
+						{posts
+							?.reverse()
+							.map(
+								post =>
+									!post.public && (
+										<PostPreview
+											key={post._id}
+											id={post._id}
+											user={post.user}
+											title={post.title}
+											text={post.text}
+											image={post.image}
+											timestamp={post.timestamp}
+											setLastClickedPostId={setLastClickedPostId}
+											setIsModalActive={setIsModalActive}
+										></PostPreview>
+									)
+							)}
 					</PostsLayout>
 				</>
 			)}

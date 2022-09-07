@@ -247,11 +247,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
   :posts context is null when user is not logged in? -->
 
-- Use composition pattern to create the comment with or without children comments
-
 - Fix images showing the default one before fetching all the PostView images
-
-- Fix Navbar covering the whole screen when going from mobile to desktop view
 
 - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
 
@@ -263,7 +259,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 <!-- - Style Home so the first Post is bigger than the rest -->
 <!-- :use first-children to style the first post different from the others -->
-: use.reservese to get the latest post as the first one
+<!-- : use.reservese to get the latest post as the first one -->
 <!-- : make first element occupy 1 row and 2 columns -->
   <!-- :first-child not being selected? -->
   <!-- :make first two elements be bigger -->
@@ -275,5 +271,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Style to make it responsive
 
-
+- Use composition pattern to create the comment with or without children comments
+https://www.youtube.com/watch?v=jKdt-BnTTR0&t=1080s
+15:30
 
