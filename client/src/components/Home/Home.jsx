@@ -11,6 +11,7 @@ import { usePostsContext } from '../../context/PostsContext';
 
 const StyledHome = styled.main`
 	min-height: 100vh;
+	min-width: 100%;
 `;
 
 export function Home(props) {

@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 const StyledPostsLayout = styled.section`
 	min-height: 100vh;
-	min-width: 20vw;
+	min-width: 100%;
 	gap: 5em;
-	margin-left: '2em';
 	margin-bottom: 5em;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr));
+
 	grid-template-rows:
 		${props =>
 			props.section === 'home'
@@ -18,7 +18,6 @@ const StyledPostsLayout = styled.section`
 		& > section {
 		grid-column: auto/ span 4;
 	}
-
 	${props => {
 		if (props.section === 'home') {
 			return `
@@ -31,25 +30,32 @@ const StyledPostsLayout = styled.section`
 							& > article > a > img {
 								height: 25rem;
 							}
+              
+							& > article > svg {
+								height: 25rem;
+							}
 						}
-
+            
 						:nth-child(2) {
-							grid-column: 8 / 13;
+              grid-column: 8 / 13;
 							height: 40rem;
               min-width: 30rem;
 
 							& > article > a > img {
-								height: 25rem;
+                height: 25rem;
 							}
+
+              & > article > svg {
+                height: 25rem;
+              }
 						}
 					}
 				`;
 		}
-	}}
+	}};
 `;
 const PostListTitle = styled.h2`
 	font-size: 1.5em;
-	margin-left: 2em;
 `;
 
 export function PostsLayout(props) {

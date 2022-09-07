@@ -10,7 +10,7 @@ export const StyledPostPreview = styled.section`
 	box-shadow: 1px 2px 5px -1px gray;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	max-height: 40em;
+	min-height: 40em;
   min-width: 3rem;
 	text-overflow: ellipsis;
 `;
@@ -18,6 +18,8 @@ export const StyledPostPreview = styled.section`
 export const PostImageContainer = styled.article`
 	object-fit: cover;
 	height: 100%;
+  width: 100%;
+
 `;
 
 export const PostImage = styled.img`

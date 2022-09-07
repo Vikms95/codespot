@@ -8,7 +8,10 @@ import { useFetch } from '../../hooks/useFetch';
 import { getOptions } from '../../data/requestParams';
 import { usePostsContext } from '../../context/PostsContext';
 
-const StyledDashboard = styled.main``;
+const StyledDashboard = styled.main`
+	min-height: 100vh;
+	min-width: 100%;
+`;
 
 export function Dashboard(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
