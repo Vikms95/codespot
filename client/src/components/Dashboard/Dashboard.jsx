@@ -2,8 +2,8 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { AuthContext } from '../../context/AuthContext';
-import { PostsLayout } from '../../layouts/PostsLayout';
-import { PostPreview } from '../PostPreview';
+import { PostsLayout } from '../../layouts';
+import { LazyPostPreview } from '../PostPreview';
 import { useFetch } from '../../hooks/useFetch';
 import { getOptions } from '../../data/requestParams';
 import { usePostsContext } from '../../context/PostsContext';
@@ -31,7 +31,7 @@ export function Dashboard(props) {
 							.map(
 								post =>
 									post.public && (
-										<PostPreview
+										<LazyPostPreview
 											key={post._id}
 											id={post._id}
 											user={post.user}
@@ -42,7 +42,7 @@ export function Dashboard(props) {
 											isPublic={post.public}
 											setLastClickedPostId={setLastClickedPostId}
 											setIsModalActive={setIsModalActive}
-										></PostPreview>
+										></LazyPostPreview>
 									)
 							)}
 					</PostsLayout>
@@ -53,7 +53,7 @@ export function Dashboard(props) {
 							.map(
 								post =>
 									!post.public && (
-										<PostPreview
+										<LazyPostPreview
 											key={post._id}
 											id={post._id}
 											user={post.user}
@@ -63,7 +63,7 @@ export function Dashboard(props) {
 											timestamp={post.timestamp}
 											setLastClickedPostId={setLastClickedPostId}
 											setIsModalActive={setIsModalActive}
-										></PostPreview>
+										></LazyPostPreview>
 									)
 							)}
 					</PostsLayout>

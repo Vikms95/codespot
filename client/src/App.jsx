@@ -21,10 +21,10 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 function App() {
 	// Need to create state in app to pass it as value from the context provider?
 	const [user, setUser] = useState();
-	const [posts, setPosts] = useLocalStorage('posts', []);
-
 	const [lastClickedPostId, setLastClickedPostId] = useState('');
 	const [isModalActive, setIsModalActive] = useState(false);
+
+	const [posts, setPosts] = useLocalStorage('posts', []);
 
 	const authContext = { user, setUser };
 

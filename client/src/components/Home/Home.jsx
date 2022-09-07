@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { PostPreview } from '../PostPreview/';
+import { LazyPostPreview } from '../PostPreview/';
 import { PostsLayout } from '../../layouts';
 import { useAuth } from '../../hooks/useAuth';
 import { useFetch } from '../../hooks/useFetch';
 import { getOptions } from '../../data/requestParams';
 import { usePostsContext } from '../../context/PostsContext';
 
-const StyledHome = styled.main``;
+const StyledHome = styled.main`
+	min-height: 100vh;
+`;
 
 export function Home(props) {
 	useAuth();
@@ -32,7 +34,7 @@ export function Home(props) {
 							.map(
 								post =>
 									post.public && (
-										<PostPreview
+										<LazyPostPreview
 											key={post._id}
 											id={post._id}
 											user={post.user}
@@ -42,7 +44,7 @@ export function Home(props) {
 											timestamp={post.timestamp}
 											setIsModalActive={setIsModalActive}
 											setLastClickedPostId={setLastClickedPostId}
-										></PostPreview>
+										></LazyPostPreview>
 									)
 							)}
 					</PostsLayout>

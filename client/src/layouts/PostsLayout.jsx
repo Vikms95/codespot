@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledPostsLayout = styled.section`
+	min-height: 100vh;
 	gap: 5em;
 	margin-left: '2em';
 	margin-bottom: 5em;

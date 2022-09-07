@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const AppLayout = styled.main`
+	min-height: 100vh;
 	margin-top: 5em;
 	margin-bottom: 5em;
 	margin-left: 12em;
