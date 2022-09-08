@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { FaReply, FaPen, FaTrash } from 'react-icons/fa';
 import { CommentForm } from '../Form/CommentForm';
-import { flagComment } from '../../services/flagComment';
+import {
+	flagComment,
+	deleteComment,
+	updateComment,
+} from '../../services/comment';
 import { findByID } from '../../utils/findbyID';
-import { deleteComment } from '../../services/deleteComment';
 import { useCommentsContext } from '../../context/CommentsContext';
-import { updateComment } from '../../services/updateComment';
 import { commentFields } from '../../data/formFields';
 
 const Username = styled.div`

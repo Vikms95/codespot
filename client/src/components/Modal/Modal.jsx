@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ModalWrapper } from '../../containers/ModalWrapper';
-import { deletePost } from '../../services/deletePost';
+import { deletePost } from '../../services/post';
 import { Button } from '../../style/Button';
 
 const StyledModal = styled.section`

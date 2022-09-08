@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getImage } from '../services/getImage';
+import { getImage } from '../services/post';
 
 export function useImage(image, dependencies) {
 	const [imageSrc, setImageSrc] = useState();

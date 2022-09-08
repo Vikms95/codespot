@@ -7,7 +7,7 @@ import { useComments } from '../../hooks/useComments';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { CommentsContextProvider } from '../../context/CommentsContext';
-import { createComment } from '../../services/createComment';
+import { createComment } from '../../services/comment';
 import { commentFields } from '../../data/formFields';
 
 const StyledPost = styled.section`

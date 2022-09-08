@@ -6,7 +6,7 @@ import { FaSignInAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { loginFields } from '../../data/formFields';
-import { loginUser } from '../../services/loginUser';
+import { loginUser } from '../../services/user';
 import { setToStorage } from '../../utils/setToStorage';
 import loginImage from '../../assets/login-image.webp';
 import { UserFormLayout } from '../../layouts/UserFormLayout';

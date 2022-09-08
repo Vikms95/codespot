@@ -21,7 +21,6 @@ import {
 	PostTitle,
 	PostTopRow,
 	PostTopRowContainer,
-	StyledBookImage,
 } from './_styles';
 
 export default function PostPreview(props) {

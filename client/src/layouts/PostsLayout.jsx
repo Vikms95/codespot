@@ -1,15 +1,18 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const StyledPostsLayout = styled.section`
 	min-height: 100vh;
 	min-width: 100%;
 	gap: 5em;
 	margin-bottom: 5em;
+	opacity: ${props => (props.isActive ? 1 : 0)};
+	transition: opacity 0.5s, visibility 0.5s linear;
+
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr));
-
 	grid-template-rows:
 		${props =>
 			props.section === 'home'
@@ -60,11 +63,15 @@ const PostListTitle = styled.h2`
 
 export function PostsLayout(props) {
 	const { children, title, section } = props;
+	const isActive = useFadeIn();
+
 	return (
 		<>
 			<PostListTitle section={section}>{title}</PostListTitle>
 
-			<StyledPostsLayout section={section}>{children}</StyledPostsLayout>
+			<StyledPostsLayout section={section} isActive={isActive}>
+				{children}
+			</StyledPostsLayout>
 		</>
 	);
 }

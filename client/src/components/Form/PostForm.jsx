@@ -12,9 +12,9 @@ import { createFormData } from '../../utils/createFormData';
 import { usePostsContext } from '../../context/PostsContext';
 import { usePostForm } from '../../hooks/usePostForm';
 import { postFields } from '../../data/formFields';
-import { createPost } from '../../services/createPost';
-import { updatePost } from '../../services/updatePost';
+import { createPost, updatePost } from '../../services/post';
 import { FaCheck } from 'react-icons/fa';
+import { useFadeIn } from '../../hooks/useFadeIn';
 
 const PostFormContainer = styled.section`
 	margin: 0 5em;
@@ -22,6 +22,9 @@ const PostFormContainer = styled.section`
 	justify-content: center;
 	align-items: center;
 	min-width: 100%;
+
+	opacity: ${props => (props.isActive ? 1 : 0)};
+	transition: opacity 1s;
 `;
 
 const StyledPostForm = styled.form`
@@ -125,6 +128,7 @@ export function PostForm() {
 	const { posts } = usePostsContext();
 	const { user } = useContext(AuthContext);
 	const editorRef = useRef(null);
+	const isActive = useFadeIn();
 
 	const {
 		formData,
@@ -157,6 +161,7 @@ export function PostForm() {
 
 	const handleUpdateSubmit = async e => {
 		e.preventDefault();
+
 		const formDataRequest = createFormData({
 			title,
 			text,
@@ -172,7 +177,7 @@ export function PostForm() {
 	};
 
 	return (
-		<PostFormContainer>
+		<PostFormContainer isActive={isActive}>
 			<StyledPostForm
 				onSubmit={postid ? handleUpdateSubmit : handleCreateSubmit}
 				encType='multipart/form-data'

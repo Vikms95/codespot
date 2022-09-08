@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCommentsCount } from '../services/getCommentsCount';
+import { getCommentsCount } from '../services/comment';
 
 export const useCommentsCount = commentID => {
 	const [commentsCount, setCommentsCount] = useState();

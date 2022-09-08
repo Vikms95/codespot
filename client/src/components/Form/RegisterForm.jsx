@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { useFadeIn } from '../../hooks/useFadeIn';
 import { registerFields } from '../../data/formFields';
-import { createUser } from '../../services/createUser';
+import { createUser } from '../../services/user';
 import styled from 'styled-components';
 import { Label } from '../../style/Label';
 import { Button } from '../../style/Button';
