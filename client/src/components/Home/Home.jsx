@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { LazyPostPreview as PostPreview } from '../PostPreview/';
 import { PostsLayout } from '../../layouts';
