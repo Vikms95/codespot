@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { FaSignInAlt } from 'react-icons/fa';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { loginFields } from '../../data/formFields';
 import { loginUser } from '../../services/loginUser';
@@ -12,6 +12,7 @@ import loginImage from '../../assets/login-image.webp';
 import { UserFormLayout } from '../../layouts/UserFormLayout';
 import { Button } from '../../style/Button';
 import { Label } from '../../style/Label';
+import { useFadeIn } from '../../hooks/useFadeIn';
 
 const UserFormContainer = styled.section`
 	display: flex;
@@ -72,7 +73,7 @@ const LoginButton = styled(Button)`
 export function LoginForm(props) {
 	const { setUser } = props;
 	const navigate = useNavigate();
-	const [isActive, setIsActive] = useState(false);
+	const isActive = useFadeIn();
 
 	const { formData, handleChange } = useForm(loginFields);
 	const { username, password } = formData;
@@ -87,11 +88,6 @@ export function LoginForm(props) {
 
 		return navigate('/dashboard');
 	};
-
-	useEffect(() => {
-		setIsActive(true);
-		return () => setIsActive(false);
-	});
 
 	return (
 		<UserFormLayout isActive={isActive}>

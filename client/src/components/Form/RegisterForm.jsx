@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import { useFadeIn } from '../../hooks/useFadeIn';
 import { registerFields } from '../../data/formFields';
 import { createUser } from '../../services/createUser';
 import styled from 'styled-components';
@@ -68,7 +69,7 @@ const FormImage = styled.img`
 
 export function RegisterForm() {
 	const navigate = useNavigate();
-	const [isActive, setIsActive] = useState(false);
+	const isActive = useFadeIn();
 	const { formData, handleChange } = useForm(registerFields);
 	const { username, password, password2 } = formData;
 
@@ -79,11 +80,6 @@ export function RegisterForm() {
 
 		return navigate('/login');
 	};
-
-	useEffect(() => {
-		setIsActive(true);
-		return () => setIsActive(false);
-	});
 
 	return (
 		<UserFormLayout isActive={isActive}>
