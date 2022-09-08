@@ -9,17 +9,17 @@ export const useFetch = (fetcher, args, dependencies = '') => {
     setLoading(true)
     
 		fetcher(args)
-      .then(data => {
+      .then(res => {
+        setData(res)
         setLoading(false)  
-        setData(data)
-
+        
       })
       .catch(err => {
         setLoading(false)
         setError(err)
 
       });
-
+      
 	}, [...dependencies]);
 
 	return {

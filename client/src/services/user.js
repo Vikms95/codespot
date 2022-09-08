@@ -25,12 +25,12 @@ const verifyUser = async () => {
 		},
 	});
 
-	const user = await response.json();
+	const data = await response.json();
 
 	if (response.status === 403) {
 		return null;
 	} else {
-		return user;
+		return data.user;
 	}
 };
 

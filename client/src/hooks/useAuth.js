@@ -13,7 +13,7 @@ export function useAuth() {
 
 	useEffect(() => {
 		verifyUser().then(authResult => {
-			setUser(authResult.user);
+			setUser(authResult);
 		});
 	}, []);
 	return { user };

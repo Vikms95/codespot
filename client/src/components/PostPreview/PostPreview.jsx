@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import defaultPostImage from '../../assets/default-image.jpg';
 import { AuthContext } from '../../context/AuthContext';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
+import { useFetch } from '../../hooks/useFetch';
 import { getImage } from '../../services/post';
 import { getCommentsCount } from '../../services/comment';
 import { PostPreviewCommentDisplay, PostPreviewButtons } from './index';
@@ -22,7 +23,6 @@ import {
 	PostTopRow,
 	PostTopRowContainer,
 } from './_styles';
-import { useFetch } from '../../hooks/useFetch';
 
 export default function PostPreview(props) {
 	const {
@@ -44,12 +44,11 @@ export default function PostPreview(props) {
 	return (
 		<>
 			<PostImageContainer>
-				{!loading || !image ? (
-					<PostLink to={`/${id}`}>
+				{!loading ? (
+					<PostLink to={'/' + id}>
 						<BookText>Read more → </BookText>
-
 						<PostImage
-							src={imageSrc?.url || defaultPostImage}
+							src={image ? imageSrc?.url : defaultPostImage}
 							alt='post-preview'
 						/>
 					</PostLink>
