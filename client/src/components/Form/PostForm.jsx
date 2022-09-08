@@ -20,15 +20,13 @@ const PostFormContainer = styled.section`
 	margin: 0 5em;
 	display: flex;
 	justify-content: center;
-	align-items: flex-start;
+	align-items: center;
 	min-width: 100%;
 `;
 
 const StyledPostForm = styled.form`
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
-	/* min-width: 100%; */
-	/* min-height: 100%; */
 `;
 
 const TitleInput = styled.input`

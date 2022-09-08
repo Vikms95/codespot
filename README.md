@@ -244,10 +244,12 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   :style comment list
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
 
+
+
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
   :posts context is null when user is not logged in? -->
 
-- Fix images showing the default one before fetching all the PostView images
+<!-- - Fix images showing the default one before fetching all the PostView images -->
 
 - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
 
@@ -268,6 +270,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button -->
 
 - Style user managament forms
+  <!-- !:plan out how will you handle reusing the form UI   -->
+    :UserForm will handle the UI
 
 - Style to make it responsive
 
