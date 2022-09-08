@@ -27,7 +27,6 @@ function App() {
 	const [posts, setPosts] = useLocalStorage('posts', []);
 
 	const authContext = { user, setUser };
-	console.log(posts);
 	return (
 		<Router>
 			<AuthContext.Provider value={authContext}>

@@ -5,8 +5,8 @@ import { LazyPostPreview as PostPreview } from '../PostPreview/';
 import { PostsLayout } from '../../layouts';
 import { useAuth } from '../../hooks/useAuth';
 import { useFetch } from '../../hooks/useFetch';
-import { getOptions } from '../../data/requestParams';
 import { usePostsContext } from '../../context/PostsContext';
+import { getPosts } from '../../services/post';
 
 const StyledHome = styled.main`
 	min-height: 100vh;
@@ -14,12 +14,12 @@ const StyledHome = styled.main`
 `;
 
 export function Home(props) {
-	useAuth();
-
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
 
-	const data = useFetch('/api/posts', getOptions);
+	const { data } = useFetch(getPosts);
 	const { posts } = usePostsContext();
+
+	useAuth();
 
 	useEffect(() => {
 		setPosts(data);

@@ -9,7 +9,7 @@ import { useImage } from '../../hooks/useImage';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { usePostsContext } from '../../context/PostsContext';
 import { useFetch } from '../../hooks/useFetch';
-import { getOptions } from '../../data/requestParams';
+import { getPosts } from '../../services/post';
 
 const Title = styled.h1`
 	font-size: 4em;
@@ -40,7 +40,7 @@ export function PostBody(props) {
 	const { postid, setComments, handleCommentSubmit, setPosts } = props;
 	const { user } = useAuth();
 
-	const data = useFetch('/api/posts', getOptions);
+	const { data } = useFetch(getPosts);
 	const { posts } = usePostsContext();
 
 	const post = usePost(postid, posts);

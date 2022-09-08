@@ -12,7 +12,7 @@ const StyledPostsLayout = styled.section`
 	transition: opacity 0.5s, visibility 0.5s linear;
 
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(3rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
 	grid-template-rows:
 		${props =>
 			props.section === 'home'

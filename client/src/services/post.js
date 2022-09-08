@@ -1,6 +1,25 @@
 import axios from "axios";
 import { getCurrentDate } from "../utils/getCurrentDate";
-import { deleteOptions } from "../data/requestParams";
+import { deleteOptions, getOptions } from "../data/requestParams";
+
+
+const getPosts = async () => {
+  const response = await fetch('/api/posts', getOptions)
+
+  const data = await response.json()
+
+  return data
+
+}
+
+const getUserPosts = async (userid) => {
+  const response = await fetch(`/api/${userid}/posts`, getOptions)
+
+  const data = await response.json()
+
+  return data
+
+}
 
 const getImage = async (image) => {
   if(!image) return ''
@@ -30,6 +49,8 @@ const deletePost = (postid) => {
 
 
 export {
+  getPosts,
+  getUserPosts,
   createPost,
   deletePost,
   getImage,
