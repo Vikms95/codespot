@@ -7,14 +7,15 @@ const getCommentsCount = async (commentID) => {
   const response = await fetch(`/api/${commentID}/comments-count`, getOptions)
 
   const data = await response.json()
-  return data
+  return data.count
 }
 
 const getComments = async (postID) => {
   const response = await fetch(`/api/${postID}/comments`, getOptions)
 
   const data = await response.json()
-  return data
+
+  return data.comments
 } 
 
 const createComment = async (text, postid, userid, parentid) => {

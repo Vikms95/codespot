@@ -3,12 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { PostBody } from './PostBody';
 import { useParams } from 'react-router-dom';
-import { useComments } from '../../hooks/useComments';
+import { getComments, createComment } from '../../services/comment';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { CommentsContextProvider } from '../../context/CommentsContext';
-import { createComment } from '../../services/comment';
 import { commentFields } from '../../data/formFields';
+import { useFetch } from '../../hooks/useFetch';
 
 const StyledPost = styled.section`
 	margin: 0 5em 5em 5em;
@@ -23,7 +23,11 @@ export function Post(props) {
 	const { setPosts } = props;
 	const { postid } = useParams();
 
-	const { comments, setComments } = useComments(postid);
+	const { data: comments, setData: setComments } = useFetch(
+		getComments,
+		postid
+	);
+
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	const handleCommentSubmit = async (

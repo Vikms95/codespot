@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 import { CommentForm } from '../Form/CommentForm';
 import { useAuth } from '../../hooks/useAuth';
 import { usePost } from '../../hooks/usePost';
-import { useImage } from '../../hooks/useImage';
+import { getImage, getPosts } from '../../services/post';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { usePostsContext } from '../../context/PostsContext';
 import { useFetch } from '../../hooks/useFetch';
-import { getPosts } from '../../services/post';
 
 const Title = styled.h1`
 	font-size: 4em;
@@ -46,7 +45,7 @@ export function PostBody(props) {
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
-	const { imageSrc } = useImage(image, [post]);
+	const { data: imageSrc } = useFetch(getImage, image, [post]);
 	const textRef = useHtmlAsText(text);
 
 	useEffect(() => {

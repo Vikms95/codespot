@@ -5,6 +5,7 @@ export function useFadeIn() {
 
   useEffect(() => {
 		setIsActive(true);
+    
 		return () => setIsActive(false);
 	});
 

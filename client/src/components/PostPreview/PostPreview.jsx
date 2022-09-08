@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
-import { useCommentsCount } from '../../hooks/useCommentsCount';
 
 import defaultPostImage from '../../assets/default-image.jpg';
 import { AuthContext } from '../../context/AuthContext';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
-import { useImage } from '../../hooks/useImage';
+import { getImage } from '../../services/post';
+import { getCommentsCount } from '../../services/comment';
 import { PostPreviewCommentDisplay, PostPreviewButtons } from './index';
 
 import { ImageItem } from '../../assets/imageItem';
@@ -22,6 +22,7 @@ import {
 	PostTopRow,
 	PostTopRowContainer,
 } from './_styles';
+import { useFetch } from '../../hooks/useFetch';
 
 export default function PostPreview(props) {
 	const {
@@ -36,15 +37,14 @@ export default function PostPreview(props) {
 	} = props;
 
 	const { user: currentUserId } = useContext(AuthContext);
-	const commentsCount = useCommentsCount(id);
-
+	const { data: imageSrc, loading } = useFetch(getImage, image);
+	const { data: commentsCount } = useFetch(getCommentsCount, id);
 	const textRef = useHtmlAsText(text);
-	const { imageSrc, loaded } = useImage(image);
 
 	return (
 		<>
 			<PostImageContainer>
-				{loaded || !image ? (
+				{!loading || !image ? (
 					<PostLink to={`/${id}`}>
 						<BookText>Read more → </BookText>
 
