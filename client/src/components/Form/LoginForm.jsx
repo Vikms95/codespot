@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { FaSignInAlt } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { loginFields } from '../../data/formFields';
 import { loginUser } from '../../services/loginUser';
@@ -72,6 +72,7 @@ const LoginButton = styled(Button)`
 export function LoginForm(props) {
 	const { setUser } = props;
 	const navigate = useNavigate();
+	const [isActive, setIsActive] = useState(false);
 
 	const { formData, handleChange } = useForm(loginFields);
 	const { username, password } = formData;
@@ -87,8 +88,13 @@ export function LoginForm(props) {
 		return navigate('/dashboard');
 	};
 
+	useEffect(() => {
+		setIsActive(true);
+		return () => setIsActive(false);
+	});
+
 	return (
-		<UserFormLayout>
+		<UserFormLayout isActive={isActive}>
 			<UserFormContainer>
 				<UserForm onSubmit={handleSubmit}>
 					<HeroTitle> Share your ideas with the world.</HeroTitle>
