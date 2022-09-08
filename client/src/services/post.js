@@ -4,46 +4,85 @@ import { deleteOptions, getOptions } from "../data/requestParams";
 
 
 const getPosts = async () => {
-  const response = await fetch('/api/posts', getOptions)
 
-  const data = await response.json()
-
-  return data
-
+  try{
+    const response = await fetch('/api/posts', getOptions)
+  
+    const data = await response.json()
+  
+    return data
+  } catch(err) {
+    return new Error(err)
+  }
 }
 
 const getUserPosts = async (userid) => {
-  const response = await fetch(`/api/${userid}/posts`, getOptions)
+  if(!userid) return
 
-  const data = await response.json()
-
-  return data
-
+  try{
+    const response = await fetch(`/api/${userid}/posts`, getOptions)
+  
+    const data = await response.json()
+  
+    return data
+  } catch(err) {
+    return new Error(err)
+  }
 }
 
 const getImage = async (image) => {
   if(!image) return ''
 
-  const data = await fetch('/images/' + image) 
-
-  return data
+  try{
+    const data = await fetch('/images/' + image) 
+  
+    return data
+  } catch (err) {
+    return new Error(err)
+  }
 }
 
-const createPost = (formDataRequest) => {
+const createPost = async (formDataRequest) => {
+  if(!formDataRequest) return
+
   const timestamp = getCurrentDate();
   formDataRequest.append('timestamp', timestamp)
 
-  axios.post('http://localhost:4000/api/post', formDataRequest, {});
+  try{
 
+    const response = await axios.post('http://localhost:4000/api/post', formDataRequest, {});
+    const data = response.json()
+
+    return data
+  } catch(err) {
+    throw new Error(err)
+  }
 }
 
-const updatePost = (postid, formDataRequest) => {
-  axios.put('http://localhost:4000/api/posts/' + postid, formDataRequest, {});
-
+const updatePost = async (postid, formDataRequest) => {
+  if(!postid || !formDataRequest) return
+  
+  try{
+    const response = await axios.put('http://localhost:4000/api/posts/' + postid, formDataRequest, {});
+    const data = response.json()
+  
+    return data
+  } catch(err) {
+    return new Error(err)
+  }
 }
 
-const deletePost = (postid) => {
-  fetch('/api/posts/' + postid, deleteOptions);
+const deletePost = async (postid) => {
+  if(!postid) return
+  
+  try{
+    const response = await fetch('/api/posts/' + postid, deleteOptions);
+    const data = response.json()
+
+    return data
+  } catch(err) {
+    return new Error(err)
+  }
 }
 
 

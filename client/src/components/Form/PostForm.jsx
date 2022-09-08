@@ -154,8 +154,9 @@ export function PostForm() {
 			image,
 		});
 
-		createPost(formDataRequest);
-
+		const data = createPost(formDataRequest);
+		if (!data) return;
+    
 		return navigate('/dashboard');
 	};
 

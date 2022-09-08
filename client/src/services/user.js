@@ -37,8 +37,8 @@ const loginUser = async (username, password) => {
 }
 
 const verifyUser = async () => {
+  
   try{
-
     const response = await fetch('/api/session', {
       method: 'GET',
       headers: {
