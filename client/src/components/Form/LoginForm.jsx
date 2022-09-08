@@ -82,6 +82,7 @@ export function LoginForm(props) {
 		e.preventDefault();
 
 		const data = await loginUser(username, password);
+		if (!data) return;
 
 		setUser(data.user);
 		setToStorage('token', data.token);

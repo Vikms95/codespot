@@ -1,6 +1,8 @@
 import { useEffect,  useState } from 'react';
 
 export const useFetch = (fetcher, args, dependencies = '') => {
+  if(typeof fetcher === 'undefined') return
+
 	const [data, setData] = useState();
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()

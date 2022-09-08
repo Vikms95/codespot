@@ -9,9 +9,7 @@ const StyledComment = styled.article`
 	width: 100%;
   margin-bottom: 5;
 
-	margin-left: ${props => (props.isActive ? 'none' : '5em')};
-	opacity: ${props => (props.isActive ? 1 : 0)};
-	transition: margin-left .5s ease-out, opacity 1.5s;
+
 `;
 
 const Username = styled.div`

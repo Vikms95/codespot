@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { verifyUser } from '../services/user';
 
@@ -10,11 +10,26 @@ import { verifyUser } from '../services/user';
  */
 export function useAuth() {
 	const { user, setUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState()
+  const [error, setError] = useState()
 
 	useEffect(() => {
-		verifyUser().then(authResult => {
-			setUser(authResult);
-		});
+    setLoading(true)
+
+		verifyUser()
+      .then(authResult => {
+        setUser(authResult)
+        setLoading(false)
+
+      })
+      .catch(err => {
+        setError(err)
+        setLoading(false)
+
+      })
 	}, []);
-	return { user };
+  
+  console.log(error)
+
+	return { user, loading, error };
 }

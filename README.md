@@ -245,6 +245,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
 
 
+- Implement error handling on API calls and async operations
+  :early return on whatever function that will call a service and there is no parameters
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
   :posts context is null when user is not logged in? -->
@@ -255,7 +257,6 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Implement sanitization of inputs
 
-- Implement error handling on API calls and async operations
 
 -STILYNG-
 

@@ -1,37 +1,61 @@
 import { userCreateOptions } from "../data/requestParams";
 
-const createUser = (username, password, password2) => {
-  fetch('/api/user',
-    userCreateOptions('POST', { username, password, password2 })
-  );
+const createUser = async (username, password, password2) => {
+  if(!username || !password || !password2) return
+
+  try{
+
+    const response = fetch('/api/user',
+      userCreateOptions('POST', { username, password, password2 })
+    );
+
+    const data = await response.json()
+
+    return data
+
+  } catch(err) {
+    throw new Error(err)
+  }
 }
 
 const loginUser = async (username, password) => {
-  
-  const response = await fetch('/api/session',
-    userCreateOptions('POST', { username, password })
-  );
-  const data = await response.json();
+  if(!username || !password ) return
 
-  return data
+  try{
+
+    const response = await fetch('/api/session',
+    userCreateOptions('POST', { username, password })
+    );
+
+    const data = await response.json();
+    
+    return data
+
+  } catch(err) {
+    throw new Error(err)
+  }
 }
 
 const verifyUser = async () => {
-	const response = await fetch('/api/session', {
-		method: 'GET',
-		headers: {
-			'content-type': 'application/json',
-			authorization: 'Bearer ' + localStorage.getItem('token'),
-		},
-	});
+  try{
 
-	const data = await response.json();
+    const response = await fetch('/api/session', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    });
 
-	if (response.status === 403) {
-		return null;
-	} else {
-		return data.user;
-	}
+    const data = await response.json();
+    
+    return data.user;
+    
+  } catch(err) {
+    return new Error(err)
+  }
+
+  
 };
 
 export {

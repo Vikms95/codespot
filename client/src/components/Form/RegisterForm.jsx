@@ -73,10 +73,11 @@ export function RegisterForm() {
 	const { formData, handleChange } = useForm(registerFields);
 	const { username, password, password2 } = formData;
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
 
-		createUser(username, password, password2);
+		const data = await createUser(username, password, password2);
+		if (!data) return;
 
 		return navigate('/login');
 	};
