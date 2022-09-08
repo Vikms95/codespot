@@ -8,7 +8,7 @@ export function useImage(image, dependencies) {
 	useEffect(() => {
 		if (image) {
 			getImage(image).then(res =>{
-        console.log(res)
+        console.log(image)
         setImageSrc(res)
         setLoaded(true)
       });

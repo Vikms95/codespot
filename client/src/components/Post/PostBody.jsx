@@ -46,7 +46,7 @@ export function PostBody(props) {
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
-	const imageSrc = useImage(image, [post]);
+	const { imageSrc } = useImage(image, [post]);
 	const textRef = useHtmlAsText(text);
 
 	useEffect(() => {

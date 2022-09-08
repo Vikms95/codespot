@@ -17,15 +17,18 @@ import { updatePost } from '../../services/updatePost';
 import { FaCheck } from 'react-icons/fa';
 
 const PostFormContainer = styled.section`
-	margin: 5em;
+	margin: 0 5em;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
+	min-width: 100%;
 `;
 
 const StyledPostForm = styled.form`
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
+	/* min-width: 100%; */
+	/* min-height: 100%; */
 `;
 
 const TitleInput = styled.input`
@@ -191,8 +194,8 @@ export function PostForm() {
 				<Editor
 					onInit={(_e, editor) => (editorRef.current = editor)}
 					init={{
-						height: 500,
-						width: 1000,
+						height: 600,
+						width: 1200,
 						menubar: false,
 						elementpath: false,
 					}}

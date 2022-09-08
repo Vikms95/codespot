@@ -45,7 +45,7 @@ export default function PostPreview(props) {
 	return (
 		<>
 			<PostImageContainer>
-				{loaded ? (
+				{loaded || !image ? (
 					<PostLink to={`/${id}`}>
 						<StyledBookImage />
 						<BookText>Read this article</BookText>
