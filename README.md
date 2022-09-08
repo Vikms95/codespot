@@ -275,3 +275,6 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 https://www.youtube.com/watch?v=jKdt-BnTTR0&t=1080s
 15:30
 
+- Use relative time on comments
+https://www.youtube.com/watch?v=acemrBKuDqw
+

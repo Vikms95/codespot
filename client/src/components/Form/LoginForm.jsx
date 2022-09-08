@@ -6,6 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import { loginFields } from '../../data/formFields';
 import { loginUser } from '../../services/loginUser';
 import { setToStorage } from '../../utils/setToStorage';
+import formImage from '../../assets/form-image.png';
 
 export function LoginForm(props) {
 	const { setUser } = props;
@@ -33,7 +34,7 @@ export function LoginForm(props) {
 				</h1>
 				<p>Please login</p>
 			</section>
-
+			<img src={formImage}></img>
 			<section className='form'>
 				<form action='' onSubmit={handleSubmit}>
 					<input
