@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';

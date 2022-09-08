@@ -269,7 +269,8 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- - Style file input
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button -->
 
-- Style user managament forms
+<!-- - Style user managament forms -->
+-Refactor forms to use less components
   <!-- !:plan out how will you handle reusing the form UI   -->
     :UserForm will handle the UI
 

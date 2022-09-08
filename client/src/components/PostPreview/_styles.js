@@ -7,12 +7,14 @@ export const StyledPostPreview = styled.section`
 	justify-content: space-between;
 	align-items: stretch;
 	flex-direction: column;
-	box-shadow: 1px 2px 5px -1px gray;
+	box-shadow: 1.5px 1.5px 1.5px -1px gray;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-	min-height: 40em;
+  border: none;
+	min-height: 32em;
   min-width: 3rem;
 	text-overflow: ellipsis;
+  border-radius: 5px;
 `;
 
 export const PostImageContainer = styled.article`
@@ -23,7 +25,8 @@ export const PostImageContainer = styled.article`
 `;
 
 export const PostImage = styled.img`
-	border-radius: 10px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 	width: 100%;
 	height: 18em;
 `;
@@ -34,7 +37,7 @@ export const StyledBookImage = styled(FaBookOpen)`
 	color: white;
 	font-size: 3em;
 	top: 40%;
-	left: 45%;
+	left: 75%;
 	z-index: 1;
 `;
 
@@ -43,9 +46,11 @@ export const BookText = styled.span`
 	position: absolute;
 	color: white;
 	font-size: 1em;
-	top: 60%;
-	left: 38%;
+	top: 85%;
+	left: 5%;
 	z-index: 1;
+  font-weight: 500;
+  font-size:1.5em ;
 `;
 
 export const PostLink = styled(Link)`
@@ -117,4 +122,5 @@ export const PostCommentsContainer = styled.article`
 	color: #6649b8;
 	font-size: 1.5em;
 	gap: 0.2em;
+  text-align: end;
 `;
