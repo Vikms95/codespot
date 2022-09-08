@@ -1,29 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { ChildrenCommentsLayout } from '../../layouts/ChildrenCommentsLayout';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown } from 'react-icons/fa';
-
-const CollapseButton = styled.button`
-	border: none;
-	border-right: solid 5px white;
-	border-left: solid 5px white;
-	background-color: #6649b8;
-	padding: 1.2px;
-
-	&:hover {
-		background-color: #a899d4;
-	}
-`;
-
-const ExpandButton = styled.button`
-	display: flex;
-	gap: 5px;
-	border: none;
-	background-color: transparent;
-	display: ${props => (props.areChildrenHidden ? 'flex' : 'none')};
-`;
+import { CollapseButton, ExpandButton } from './_styles';
 
 export function CommentChildren(props) {
 	const { childComments, setComments, getChildComments, handleCommentSubmit } =

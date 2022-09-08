@@ -39,14 +39,12 @@ export function PostBody(props) {
 	const { postid, setComments, handleCommentSubmit, setPosts } = props;
 	const { user } = useAuth();
 	const { data } = useFetch(getPosts);
-  
-	const post = usePost(postid, posts);
+
 	const { posts } = usePostsContext();
-  
-	const { data: imageSrc } = useFetch(getImage, image, [post]);
-
-
+	const post = usePost(postid, posts);
 	const { title, image, text } = post;
+
+	const { data: imageSrc } = useFetch(getImage, image, [post]);
 
 	const textRef = useHtmlAsText(text);
 

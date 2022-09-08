@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 export const useDerivedComments = comments => {
-  console.log(comments)
 	const commentByParentID = useMemo(() => {
 		if (!comments) return [];
 		const group = {};

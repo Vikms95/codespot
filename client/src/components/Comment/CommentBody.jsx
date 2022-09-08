@@ -1,53 +1,26 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { FaReply, FaPen, FaTrash } from 'react-icons/fa';
+import { FaReply, FaPen } from 'react-icons/fa';
 import { CommentForm } from '../Form/CommentForm';
+import { findByID } from '../../utils/findbyID';
+import { useCommentsContext } from '../../context/CommentsContext';
+import { commentFields } from '../../data/formFields';
+
 import {
 	flagComment,
 	deleteComment,
 	updateComment,
 } from '../../services/comment';
-import { findByID } from '../../utils/findbyID';
-import { useCommentsContext } from '../../context/CommentsContext';
-import { commentFields } from '../../data/formFields';
 
-const Username = styled.div`
-	color: #6649b8;
-`;
-
-const Text = styled.p``;
-
-const IconsContainer = styled.div`
-	display: flex;
-	gap: 10px;
-	padding-bottom: 1em;
-`;
-
-const IconButton = styled.button`
-	border: none;
-	background-color: transparent;
-	color: #6649b8;
-`;
-
-const StyledFaTrash = styled(FaTrash)`
-	color: red;
-`;
-
-const CommentBorder = styled.div`
-	margin-bottom: 2em;
-	border: 2px solid;
-	border-image: linear-gradient(
-			90deg,
-			rgba(83, 65, 95, 0.9),
-			rgba(60, 74, 83, 0)
-		)
-		1;
-	border-left: none;
-	border-top: none;
-	border-right: none;
-`;
+import {
+	Username,
+	Text,
+	IconsContainer,
+	IconButton,
+	StyledFaTrash,
+	CommentBorder,
+} from './_styles';
 
 export function CommentBody(props) {
 	const {
@@ -62,9 +35,9 @@ export function CommentBody(props) {
 		getChildComments,
 	} = props;
 
+	const { postid } = useParams();
 	const [isFormActive, setIsFormActive] = useState(false);
 	const commentsContext = useCommentsContext().value;
-	const { postid } = useParams();
 
 	const handleDelete = e => {
 		e.preventDefault();
