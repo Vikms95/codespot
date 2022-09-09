@@ -18,7 +18,7 @@ export function Dashboard(props) {
 
 	const { user } = useContext(AuthContext);
 	const { posts } = usePostsContext();
-	const { data } = useFetch(getUserPosts, user);
+	const { data, error } = useFetch(getUserPosts, user);
 
 	useEffect(() => {
 		setPosts(data);

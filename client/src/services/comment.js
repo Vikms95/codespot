@@ -85,8 +85,8 @@ const flagComment = async (comment) => {
   if(!comment) return
 
   try{
-    const response = fetch('/api/comments/' + comment._id, userCreateOptions('PUT', comment))
-    const data = response.json()
+    const response = await fetch('/api/comments/' + comment._id, userCreateOptions('PUT', comment))
+    const data = await response.json()
 
     return data
   } catch(err) {
@@ -98,10 +98,9 @@ const deleteComment = async (commentid) => {
   if(!commentid) return
 
   try{
-    const response = fetch('/api/' + commentid, deleteOptions);
-    const data = response.json()
+    const response = await fetch('/api/' + commentid, deleteOptions);
 
-    return data
+    return response
   } catch(err) {
     return new Error(err)
   }

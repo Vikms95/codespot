@@ -50,10 +50,10 @@ const createPost = async (formDataRequest) => {
 
   try{
 
-    const response = await axios.post('http://localhost:4000/api/post', formDataRequest, {});
-    const data = response.json()
+    const data = await axios.post('/api/post', formDataRequest, {});
 
     return data
+
   } catch(err) {
     throw new Error(err)
   }
@@ -63,8 +63,8 @@ const updatePost = async (postid, formDataRequest) => {
   if(!postid || !formDataRequest) return
   
   try{
-    const response = await axios.put('http://localhost:4000/api/posts/' + postid, formDataRequest, {});
-    const data = response.json()
+    const data = await axios.put('/api/posts/' + postid, formDataRequest, {});
+
   
     return data
   } catch(err) {
@@ -77,7 +77,7 @@ const deletePost = async (postid) => {
   
   try{
     const response = await fetch('/api/posts/' + postid, deleteOptions);
-    const data = response.json()
+    const data = await response.json()
 
     return data
   } catch(err) {

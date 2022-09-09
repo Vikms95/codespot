@@ -16,7 +16,7 @@ const StyledHome = styled.main`
 export function Home(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
 
-	const { data } = useFetch(getPosts);
+	const { data, error } = useFetch(getPosts);
 	const { posts } = usePostsContext();
 
 	useAuth();

@@ -49,10 +49,11 @@ export function CommentBody(props) {
 		}
 	};
 
-	const softDeleteComment = () => {
+	const softDeleteComment = async () => {
 		const comment = findByID(commentsContext, commentid);
 
-		flagComment(comment);
+		const data = await flagComment(comment);
+		if (!data) return;
 
 		setComments(prevComments =>
 			prevComments.map(item =>
@@ -63,10 +64,11 @@ export function CommentBody(props) {
 		);
 	};
 
-	const hardDeleteComment = commentid => {
+	const hardDeleteComment = async commentid => {
 		const comment = findByID(commentsContext, commentid);
 
-		deleteComment(commentid);
+		const data = await deleteComment(commentid);
+		if (!data) return;
 
 		setComments(prevComments =>
 			prevComments.filter(comment => comment._id !== commentid)
@@ -112,6 +114,7 @@ export function CommentBody(props) {
 			commentsContext,
 			isDeletedWithChildren
 		);
+		if (!comment) return;
 
 		setComments(prevComments =>
 			prevComments.map(prevComment =>

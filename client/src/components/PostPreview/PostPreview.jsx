@@ -37,8 +37,17 @@ export default function PostPreview(props) {
 	} = props;
 
 	const { user: currentUserId } = useContext(AuthContext);
-	const { data: imageSrc, loading } = useFetch(getImage, image);
-	const { data: commentsCount } = useFetch(getCommentsCount, id);
+
+	const {
+		data: imageSrc,
+		loading,
+		error: imageError,
+	} = useFetch(getImage, image);
+
+	const { data: commentsCount, error: commentsError } = useFetch(
+		getCommentsCount,
+		id
+	);
 	const textRef = useHtmlAsText(text);
 
 	return (

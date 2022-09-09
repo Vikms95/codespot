@@ -156,7 +156,7 @@ export function PostForm() {
 
 		const data = createPost(formDataRequest);
 		if (!data) return;
-    
+
 		return navigate('/dashboard');
 	};
 
@@ -172,7 +172,8 @@ export function PostForm() {
 			formerTimestamp: formData.timestamp,
 		});
 
-		updatePost(postid, formDataRequest);
+		const data = await updatePost(postid, formDataRequest);
+		if (!data) return;
 
 		return navigate('/dashboard');
 	};

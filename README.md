@@ -246,7 +246,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 
 - Implement error handling on API calls and async operations
-  :early return on whatever function that will call a service and there is no parameters
+  <!-- :early return on whatever function that will call a service and there is no parameters -->
+  :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect
+  :if early return is triggered, alert with frontend validation to the user that the form is not correct
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
   :posts context is null when user is not logged in? -->

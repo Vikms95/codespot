@@ -38,13 +38,15 @@ const LoginLinkText = styled.div`
 export function PostBody(props) {
 	const { postid, setComments, handleCommentSubmit, setPosts } = props;
 	const { user } = useAuth();
-	const { data } = useFetch(getPosts);
+	const { data, error: postError } = useFetch(getPosts);
 
 	const { posts } = usePostsContext();
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
-	const { data: imageSrc } = useFetch(getImage, image, [post]);
+	const { data: imageSrc, error: imageError } = useFetch(getImage, image, [
+		post,
+	]);
 
 	const textRef = useHtmlAsText(text);
 

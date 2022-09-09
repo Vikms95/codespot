@@ -23,10 +23,11 @@ export function Post(props) {
 	const { setPosts } = props;
 	const { postid } = useParams();
 
-	const { data: comments, setData: setComments } = useFetch(
-		getComments,
-		postid
-	);
+	const {
+		data: comments,
+		setData: setComments,
+		error,
+	} = useFetch(getComments, postid);
 
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
@@ -40,6 +41,8 @@ export function Post(props) {
 		e.preventDefault();
 
 		const comment = await createComment(text, postid, userid, parentid);
+		if (!comment) return;
+
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);
 	};

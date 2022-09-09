@@ -28,8 +28,9 @@ export function Modal(props) {
 	const { setPosts, lastClickedPostId, setIsModalActive, isModalActive } =
 		props;
 
-	const handleDelete = () => {
-		deletePost(lastClickedPostId);
+	const handleDelete = async () => {
+		const data = await deletePost(lastClickedPostId);
+		if (!data) return;
 
 		setPosts(prevPosts =>
 			prevPosts.filter(post => post._id !== lastClickedPostId)
