@@ -9,9 +9,7 @@ const createUser = async (username, password, password2) => {
       userCreateOptions('POST', { username, password, password2 })
     );
 
-    const data = await response.json()
-
-    return data
+    return response
 
   } catch(err) {
     throw new Error(err)

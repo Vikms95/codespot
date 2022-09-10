@@ -29,7 +29,5 @@ export function useAuth() {
       })
 	}, []);
   
-  console.log(error)
-
 	return { user, loading, error };
 }

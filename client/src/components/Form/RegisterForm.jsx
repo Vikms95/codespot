@@ -6,11 +6,15 @@ import { registerFields } from '../../data/formFields';
 import { createUser } from '../../services/user';
 import { UserFormLayout } from '../../layouts/UserFormLayout';
 import registerImage from '../../assets/register-image.webp';
+import { useValidation } from '../../hooks/useValidation';
+import { registerVal } from '../../data/validationValues';
 
 import {
 	UserFormContainer,
 	UserForm,
 	StyledLabel,
+	InputHeader,
+	ErrorMessage,
 	Input,
 	LoginButton,
 	FormImage,
@@ -20,26 +24,10 @@ import {
 export function RegisterForm() {
 	const navigate = useNavigate();
 	const isActive = useFadeIn();
+
 	const { formData, handleChange, handleBlur } = useForm(registerFields);
+	const { isFormValid, shouldMarkErr } = useValidation(registerVal, formData);
 	const { username, password, password2 } = formData;
-
-	const handleValidation = (username, password, password2) => {
-		return {
-			username: username.length === 0,
-			password: password.length <= 4 || password !== password2,
-			password2: password2.length <= 4 || password2 !== password,
-		};
-	};
-
-	const isFormValid = () => Object.keys(errors).some(field => errors[field]);
-
-	const errors = handleValidation(username, password, password2);
-
-	const shouldMarkError = field => {
-		const hasError = errors[field];
-		const shouldShow = formData.touched[field];
-		return hasError ? shouldShow : false;
-	};
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -55,7 +43,12 @@ export function RegisterForm() {
 			<UserFormContainer>
 				<UserForm onSubmit={handleSubmit}>
 					<HeroTitle> Connect with the world ideas.</HeroTitle>
-					<StyledLabel htmlFor='username'> Username </StyledLabel>
+					<InputHeader>
+						<StyledLabel htmlFor='username'> Username </StyledLabel>
+						<ErrorMessage shouldMarkError={shouldMarkErr('username')}>
+							Username is required
+						</ErrorMessage>
+					</InputHeader>
 					<Input
 						type='text'
 						id='username'
@@ -63,11 +56,17 @@ export function RegisterForm() {
 						maxLength={20}
 						minLength={1}
 						value={username}
-						onChange={handleChange}
 						onBlur={handleBlur}
-						shouldMarkError={shouldMarkError('username')}
+						onChange={handleChange}
+						shouldMarkError={shouldMarkErr('username')}
 					/>
-					<StyledLabel htmlFor='password'> Password </StyledLabel>
+					<InputHeader>
+						<StyledLabel htmlFor='password'> Password </StyledLabel>
+						<ErrorMessage shouldMarkError={shouldMarkErr('password')}>
+							{' '}
+							Password must be 5 characters or longer{' '}
+						</ErrorMessage>
+					</InputHeader>
 					<Input
 						type='password'
 						id='password'
@@ -75,11 +74,16 @@ export function RegisterForm() {
 						maxLength={20}
 						minLength={5}
 						value={password}
-						onChange={handleChange}
 						onBlur={handleBlur}
-						shouldMarkError={shouldMarkError('password')}
+						onChange={handleChange}
+						shouldMarkError={shouldMarkErr('password')}
 					/>
-					<StyledLabel htmlFor='password'> Confirm password </StyledLabel>
+					<InputHeader>
+						<StyledLabel htmlFor='password'> Confirm password </StyledLabel>
+						<ErrorMessage shouldMarkError={shouldMarkErr('password2')}>
+							Passwords should match
+						</ErrorMessage>
+					</InputHeader>
 					<Input
 						type='password'
 						id='password2'
@@ -87,11 +91,11 @@ export function RegisterForm() {
 						maxLength={20}
 						minLength={5}
 						value={password2}
-						onChange={handleChange}
 						onBlur={handleBlur}
-						shouldMarkError={shouldMarkError('password2')}
+						onChange={handleChange}
+						shouldMarkError={shouldMarkErr('password2')}
 					/>
-					<LoginButton type='submit' disabled={isFormValid}>
+					<LoginButton type='submit' disabled={isFormValid()}>
 						{' '}
 						Register{' '}
 					</LoginButton>

@@ -33,16 +33,28 @@ font-weight: 400;
 `;
 
 const LoginButton = styled(Button)`
-padding: 0.8em 4em;
-font-weight: bolder;
-margin-top: 2em;
+  padding: 0.8em 4em;
+  font-weight: bolder;
+  margin-top: 2em;
 
-background-color: ${props => props.disabled && 'grey'};
-color: ${props => props.disabled && 'white'};
-&:hover {
-  ${props => props.disabled && 'filter: none; cursor:default;'}
-}
+  background-color: ${props => props.disabled && 'grey'};
+  color: ${props => props.disabled && 'white'};
+  &:hover {
+    ${props => props.disabled && 'filter: none; cursor:default;'}
+  }
 `;
+
+const InputHeader = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
+const ErrorMessage = styled.div`
+  opacity: ${props => props.shouldMarkError ? '1': '0'};
+  color: red;
+  transition: opacity 0.5s ease-out;
+`
 
 const Input = styled.input`
 background-color: #f5f1f1;
@@ -65,8 +77,8 @@ outline: ${props =>
 `;
 
 const FormImage = styled.img`
-height: max(20em, 30vw);
-width: auto;
+  height: max(20em, 30vw);
+  width: auto;
 `;
 
-export {FormImage,HeroTitle,Input, LoginButton, StyledLabel, UserFormContainer, UserForm }
+export {FormImage,HeroTitle,Input,InputHeader,ErrorMessage, LoginButton, StyledLabel, UserFormContainer, UserForm }
