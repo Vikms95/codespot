@@ -48,7 +48,7 @@ const loginUser = async (req, res, next) => {
       return res.json({ token, user: user._id })
     })
   } else {
-    res.status(400).json({message: 'Invalid credentials. Please try again.'})
+    res.status(400).json({message: 'Somethign went wrong. Please try again.'})
   }
 }
 

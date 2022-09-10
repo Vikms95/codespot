@@ -263,6 +263,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Implement sanitization of inputs
 
+- Fix posts not appearing after redirecting to the dashboard when created(update state?)
+
+- Fix 
 
 -STILYNG-
 
