@@ -22,7 +22,7 @@ export function Home(props) {
 	useAuth();
 
 	useEffect(() => {
-		setPosts(data);
+		setPosts(data.reverse());
 	}, [data]);
 
 	return (
@@ -30,24 +30,22 @@ export function Home(props) {
 			{posts && (
 				<>
 					<PostsLayout title='Latest post' section='home'>
-						{posts
-							?.reverse()
-							.map(
-								post =>
-									post.public && (
-										<PostPreview
-											key={post._id}
-											id={post._id}
-											user={post.user}
-											text={post.text}
-											title={post.title}
-											image={post.image}
-											timestamp={post.timestamp}
-											setIsModalActive={setIsModalActive}
-											setLastClickedPostId={setLastClickedPostId}
-										></PostPreview>
-									)
-							)}
+						{posts.map(
+							post =>
+								post.public && (
+									<PostPreview
+										key={post._id}
+										id={post._id}
+										user={post.user}
+										text={post.text}
+										title={post.title}
+										image={post.image}
+										timestamp={post.timestamp}
+										setIsModalActive={setIsModalActive}
+										setLastClickedPostId={setLastClickedPostId}
+									></PostPreview>
+								)
+						)}
 					</PostsLayout>
 				</>
 			)}

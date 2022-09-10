@@ -22,7 +22,7 @@ export function Dashboard(props) {
 	const { data, error } = useFetch(getUserPosts, user);
 
 	useEffect(() => {
-		setPosts(data);
+		setPosts(data?.reverse());
 	}, [data]);
 
 	return (
@@ -34,48 +34,44 @@ export function Dashboard(props) {
 					<>
 						{posts?.some(post => post.public) && (
 							<PostsLayout title='Published posts' section='dashboard'>
-								{posts
-									.reverse()
-									.map(
-										post =>
-											post.public && (
-												<PostPreview
-													key={post._id}
-													id={post._id}
-													user={post.user}
-													title={post.title}
-													text={post.text}
-													image={post.image}
-													timestamp={post.timestamp}
-													isPublic={post.public}
-													setLastClickedPostId={setLastClickedPostId}
-													setIsModalActive={setIsModalActive}
-												></PostPreview>
-											)
-									)}
+								{posts.map(
+									post =>
+										post.public && (
+											<PostPreview
+												key={post._id}
+												id={post._id}
+												user={post.user}
+												title={post.title}
+												text={post.text}
+												image={post.image}
+												timestamp={post.timestamp}
+												isPublic={post.public}
+												setLastClickedPostId={setLastClickedPostId}
+												setIsModalActive={setIsModalActive}
+											></PostPreview>
+										)
+								)}
 							</PostsLayout>
 						)}
 
 						{posts?.some(post => !post.public) && (
 							<PostsLayout title='Unpublished posts' section='dashboard'>
-								{posts
-									.reverse()
-									.map(
-										post =>
-											!post.public && (
-												<PostPreview
-													key={post._id}
-													id={post._id}
-													user={post.user}
-													title={post.title}
-													text={post.text}
-													image={post.image}
-													timestamp={post.timestamp}
-													setLastClickedPostId={setLastClickedPostId}
-													setIsModalActive={setIsModalActive}
-												></PostPreview>
-											)
-									)}
+								{posts.map(
+									post =>
+										!post.public && (
+											<PostPreview
+												key={post._id}
+												id={post._id}
+												user={post.user}
+												title={post.title}
+												text={post.text}
+												image={post.image}
+												timestamp={post.timestamp}
+												setLastClickedPostId={setLastClickedPostId}
+												setIsModalActive={setIsModalActive}
+											></PostPreview>
+										)
+								)}
 							</PostsLayout>
 						)}
 					</>
