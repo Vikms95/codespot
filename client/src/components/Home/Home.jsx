@@ -22,7 +22,7 @@ export function Home(props) {
 	useAuth();
 
 	useEffect(() => {
-		setPosts(data.reverse());
+		setPosts(data?.reverse());
 	}, [data]);
 
 	return (

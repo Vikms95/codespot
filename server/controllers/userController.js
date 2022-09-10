@@ -62,14 +62,15 @@ const retrieveToken = (req, res, next) => {
     req.token = JSON.parse(bearerToken)
     next()
   } else {
-    return res.status(400).json({message:'Something went wrong, please try again.'})
+    return res.status(400).json({message:'Something went with validation, please try again.'})
   }
 }
 
 const verifyToken = (req, res) => {
-
+  console.log(req.token)
   jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
     if (err) {
+      console.log(authData)
       return res.status(403).json({message:'Something went wrong, please try again.'})
     } else {
       return res.json({

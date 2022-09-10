@@ -12,12 +12,13 @@ export function useAuth() {
 	const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState()
   const [error, setError] = useState()
-
+  
 	useEffect(() => {
     setLoading(true)
 
 		verifyUser()
       .then(authResult => {
+        console.log(authResult.message)
         setUser(authResult)
         setLoading(false)
 

@@ -259,15 +259,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 <!-- - Fix images showing the default one before fetching all the PostView images -->
 
-- Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
 
-- Implement sanitization of inputs
 
-- Fix posts not appearing after redirecting to the dashboard when created(update state?)
+<!-- - Fix posts not appearing after redirecting to the dashboard when created(update state?) -->
 
-- Fix 
-
--STILYNG-
 
 <!-- - Style Home so the first Post is bigger than the rest -->
 <!-- :use first-children to style the first post different from the others -->
@@ -280,16 +275,27 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button -->
 
 <!-- - Style user managament forms -->
--Refactor forms to use less components
-  <!-- !:plan out how will you handle reusing the form UI   -->
-    :UserForm will handle the UI
 
-- Style to make it responsive
+- Create error page and handle redirection when needed
 
-<!-- - Use composition pattern to create the comment with or without children comments
-https://www.youtube.com/watch?v=jKdt-BnTTR0&t=1080s
-15:30 -->
+- Create forbidden page and handle redirection when needed
 
 - Use relative time on comments
 https://www.youtube.com/watch?v=acemrBKuDqw
+
+
+- Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
+
+- Implement sanitization of inputs within the backend middleware (express-validation library)
+
+- Refactor to use less and more reusable code (composition, render props, custom hooks)
+
+- Make it responsive
+
+- Documentation
+
+- Deploy on Render
+
+
+
 
