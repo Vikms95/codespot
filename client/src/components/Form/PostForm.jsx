@@ -27,7 +27,8 @@ import {
 	FormButton,
 } from './_style';
 
-export function PostForm() {
+export function PostForm(props) {
+	const { setPosts } = props;
 	const navigate = useNavigate();
 	const { postid } = useParams();
 	const { posts } = usePostsContext();
@@ -48,7 +49,7 @@ export function PostForm() {
 
 	usePostToUpdate(postid, posts, setFormData);
 
-	const handleCreateSubmit = e => {
+	const handleCreateSubmit = async e => {
 		e.preventDefault();
 
 		const formDataRequest = createFormData({
@@ -59,8 +60,10 @@ export function PostForm() {
 			image,
 		});
 
-		const data = createPost(formDataRequest);
-		if (!data) return;
+		const post = await createPost(formDataRequest);
+		if (!post) return;
+
+		setPosts(prevPosts => [...prevPosts, post]);
 
 		return navigate('/dashboard');
 	};

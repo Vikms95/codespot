@@ -36,7 +36,7 @@ function App() {
 					<PostsContextProvider posts={posts}>
 						<Routes>
 							<Route element={<AuthRouteWrapper />}>
-								<Route path='/create' element={<PostForm />} />
+								<Route path='/create' element={<PostForm setPosts={setPosts} />} />
 								<Route path='/update/:postid' element={<PostForm />} />
 								<Route
 									path='/dashboard'

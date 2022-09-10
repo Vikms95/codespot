@@ -50,7 +50,7 @@ const createPost = async (formDataRequest) => {
 
   try{
 
-    const data = await axios.post('/api/post', formDataRequest, {});
+    const {data} = await axios.post('/api/post', formDataRequest, {});
 
     return data
 
