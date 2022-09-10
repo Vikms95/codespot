@@ -6,6 +6,13 @@ const registerVal = (fields) => {
   }
 }
 
+const loginVal = (fields) => { 
+  return { 
+    username: fields.username.length === 0,
+    password: fields.password.length <= 4,
+  }
+}
 
 
-export {registerVal}
+
+export {registerVal, loginVal}

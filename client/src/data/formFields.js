@@ -13,6 +13,11 @@ const registerFields = {
 const loginFields = {
 	username: '',
 	password: '',
+
+  touched: {
+    username: false,
+    password: false,
+  }
 };
 
 const postFields = {

@@ -57,24 +57,22 @@ const ErrorMessage = styled.div`
 `
 
 const Input = styled.input`
-background-color: #f5f1f1;
-box-shadow: inset 10 0 2px #000;
-border: none;
-border-radius: 5px;
-font-size: 1.2em;
-text-align: center;
-padding: 0.6em 6em;
+  background-color: #f5f1f1;
+  box-shadow: inset 10 0 2px #000;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+  padding: 0.6em 6em;
 
-outline: ${props =>
-  props.shouldMarkError ? '1.5px solid red' : '1px solid transparent'};
+  outline: ${props =>
+    props.shouldMarkError ? '1.5px solid red' : '1px solid transparent'};
 
-&:focus {
-  outline: 1px solid #6649b8;
-}
+  &:focus {
+    outline: 1px solid #6649b8;
+  }
+`
 
-&:blur {
-}
-`;
 
 const FormImage = styled.img`
   height: max(20em, 30vw);

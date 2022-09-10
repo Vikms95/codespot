@@ -28,7 +28,7 @@ const createUser = async (req, res, next) => {
 
   if (user) {
     user.save()
-    res.status(201).send({
+    res.status(201).json({
       _id: user.id,
       name: user.username
     })

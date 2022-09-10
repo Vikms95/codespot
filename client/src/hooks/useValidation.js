@@ -11,6 +11,7 @@ export function useValidation(validator, fields) {
   
   const shouldMarkErr = field => {
     const hasError = errors[field];
+    console.log(fields.tocu)
     const shouldShow = fields.touched[field];
     return hasError ? shouldShow : false;
   };

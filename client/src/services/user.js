@@ -5,11 +5,14 @@ const createUser = async (username, password, password2) => {
 
   try{
 
-    const response = fetch('/api/user',
+    const response = await fetch('/api/user',
       userCreateOptions('POST', { username, password, password2 })
     );
 
-    return response
+
+    const data = await response.json()
+    console.log(data)
+    return data
 
   } catch(err) {
     throw new Error(err)
