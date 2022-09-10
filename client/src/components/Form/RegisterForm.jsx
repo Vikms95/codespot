@@ -46,6 +46,13 @@ const LoginButton = styled(Button)`
 	padding: 0.8em 4em;
 	font-weight: bolder;
 	margin-top: 2em;
+
+	background-color: ${props => props.disabled && 'grey'};
+	color: ${props => props.disabled && 'white'};
+	&:hover {
+		${props => props.disabled && 'filter: none; cursor:default;'}
+	}
+
 `;
 
 const Input = styled.input`
@@ -86,7 +93,6 @@ export function RegisterForm() {
 	};
 
 	const errors = handleValidation(username, password, password2);
-	console.log(errors);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
