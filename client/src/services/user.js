@@ -14,7 +14,7 @@ const createUser = async (username, password, password2) => {
     if(response.ok) {
       return data
     }
-
+    
     throw new Error(data.message)
 
   } catch(err) {
@@ -33,10 +33,15 @@ const loginUser = async (username, password) => {
     );
 
     const data = await response.json();
-    
-    return data
 
+    if(response.ok){
+      return data
+    }
+
+    throw new Error(data.message)
+    
   } catch(err) {
+    console.error(err)
     throw new Error(err)
   }
 }

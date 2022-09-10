@@ -36,7 +36,6 @@ const StyledLabel = styled(Label)`
 const LoginButton = styled(Button)`
 	padding: 0.8em 4em;
 	font-weight: bolder;
-	margin-top: 2em;
 
 	background-color: ${props => props.disabled && 'grey'};
 	color: ${props => props.disabled && 'white'};
@@ -185,6 +184,12 @@ const StyledFaCheck = styled(FaCheck)`
 	color: green;
 `;
 
+const ServerErrorDisplay = styled.div`
+  color: red;
+  opacity: ${props => props.serverError ? '1': '0'};
+  transition: opacity 1s ease-out;
+`
+
 export {
 	FormImage,
 	FormBottomRow,
@@ -207,4 +212,5 @@ export {
 	CheckBox,
 	CheckBoxLabel,
 	FormButton,
+  ServerErrorDisplay
 };

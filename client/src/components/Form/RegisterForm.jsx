@@ -7,6 +7,7 @@ import { UserFormLayout } from '../../layouts/UserFormLayout';
 import { useValidation } from '../../hooks/useValidation';
 import { registerVal } from '../../data/validationValues';
 import registerImage from '../../assets/register-image.webp';
+
 import {
 	UserFormContainer,
 	UserForm,
@@ -17,11 +18,14 @@ import {
 	LoginButton,
 	FormImage,
 	HeroTitle,
+	ServerErrorDisplay,
 } from './_style';
+import { useState } from 'react';
 
 export function RegisterForm() {
 	const navigate = useNavigate();
 	const isActive = useFadeIn();
+	const [serverError, setServerError] = useState('');
 
 	const { formData, handleChange, handleBlur } = useForm(registerFields);
 	const { isFormValid, shouldMarkErr } = useValidation(registerVal, formData);
@@ -34,7 +38,8 @@ export function RegisterForm() {
 		try {
 			data = await createUser(username, password, password2);
 		} catch (err) {
-			// Set a general error message to the form to notify the user of the error
+			const message = err.message.split(':')[1];
+			setServerError(message);
 		}
 
 		if (!data) return;
@@ -99,11 +104,13 @@ export function RegisterForm() {
 						onChange={handleChange}
 						shouldMarkError={shouldMarkErr('password2')}
 					/>
+					<ServerErrorDisplay serverError={serverError}>
+						{serverError || 'No error'}
+					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
 						{' '}
 						Register{' '}
 					</LoginButton>
-					<div></div>
 				</UserForm>
 			</UserFormContainer>
 			<FormImage src={registerImage}></FormImage>

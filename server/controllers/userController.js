@@ -6,14 +6,13 @@ const jwt = require('jsonwebtoken')
 const createUser = async (req, res, next) => {
   const { username, password } = req.body
   if (!username || !password) {
-    res.status(400)
-    throw new Error('Please add all fields')
+    return res.status(500).json({message:'Please, fill all fields.'})
   }
   // Check if user exists
   const userExist = await User.findOne({ username })
 
   if (userExist) {
-    return res.status(409).json({message:'Username already exists'})
+    return res.status(409).json({message:'Username already exists, please choose a different one.'})
   }
 
   // Hash password
@@ -33,15 +32,14 @@ const createUser = async (req, res, next) => {
       name: user.username
     })
   } else {
-    res.status(400)
-    throw new Error('Invalid user data')
+    return res.status(400).json({message:'Something went wrong, please try again.'})
   }
 }
 
 const loginUser = async (req, res, next) => {
   const { username, password } = req.body
-  const user = await User.findOne({ username })
 
+  const user = await User.findOne({ username })
 
   if (user && (await bcrypt.compare(password, user.password))) {
     jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
@@ -50,13 +48,13 @@ const loginUser = async (req, res, next) => {
       return res.json({ token, user: user._id })
     })
   } else {
-    res.status(400)
-    throw new Error('Invalid credentials')
+    res.status(400).json({message: 'Invalid credentials. Please try again.'})
   }
 }
 
 const retrieveToken = (req, res, next) => {
   const bearerHeader = req.headers.authorization
+
   if (typeof bearerHeader !== 'undefined') {
     // Token is received as 'Bearer token' string, so we split the
     // authorization header at the space and retrieve the second index
@@ -64,14 +62,15 @@ const retrieveToken = (req, res, next) => {
     req.token = JSON.parse(bearerToken)
     next()
   } else {
-    return res.sendStatus(403)
+    return res.status(400).json({message:'Something went wrong, please try again.'})
   }
 }
 
 const verifyToken = (req, res) => {
+
   jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
     if (err) {
-      return res.status(403)
+      return res.status(403).json({message:'Something went wrong, please try again.'})
     } else {
       return res.json({
         user: authData.user

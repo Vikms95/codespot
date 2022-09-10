@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { loginFields } from '../../data/formFields';
@@ -20,6 +20,7 @@ import {
 	LoginButton,
 	FormImage,
 	ErrorMessage,
+	ServerErrorDisplay,
 } from './_style';
 
 export function LoginForm(props) {
@@ -29,12 +30,19 @@ export function LoginForm(props) {
 
 	const { formData, handleChange, handleBlur } = useForm(loginFields);
 	const { isFormValid, shouldMarkErr } = useValidation(loginVal, formData);
+	const [serverError, setServerError] = useState('');
 	const { username, password } = formData;
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+		let data;
+		try {
+			data = await loginUser(username, password);
+		} catch (err) {
+			const message = err.message.split(':')[1];
+			setServerError(message);
+		}
 
-		const data = await loginUser(username, password);
 		if (!data) return;
 
 		setUser(data.user);
@@ -84,6 +92,9 @@ export function LoginForm(props) {
 						onChange={handleChange}
 						shouldMarkError={shouldMarkErr('password')}
 					/>
+					<ServerErrorDisplay serverError={serverError}>
+						{serverError || 'No error'}
+					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
 						{' '}
 						Login{' '}
