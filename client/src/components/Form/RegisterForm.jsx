@@ -29,8 +29,14 @@ export function RegisterForm() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+		let data;
 
-		const data = await createUser(username, password, password2);
+		try {
+			data = await createUser(username, password, password2);
+		} catch (err) {
+			// Set a general error message to the form to notify the user of the error
+		}
+
 		if (!data) return;
 
 		return navigate('/login');
@@ -97,6 +103,7 @@ export function RegisterForm() {
 						{' '}
 						Register{' '}
 					</LoginButton>
+					<div></div>
 				</UserForm>
 			</UserFormContainer>
 			<FormImage src={registerImage}></FormImage>

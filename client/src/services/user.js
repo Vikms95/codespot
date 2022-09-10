@@ -3,18 +3,22 @@ import { userCreateOptions } from "../data/requestParams";
 const createUser = async (username, password, password2) => {
   if(!username || !password || !password2) return
 
-  try{
 
+  try{
     const response = await fetch('/api/user',
       userCreateOptions('POST', { username, password, password2 })
     );
 
-
     const data = await response.json()
-    console.log(data)
-    return data
+    
+    if(response.ok) {
+      return data
+    }
+
+    throw new Error(data.message)
 
   } catch(err) {
+    console.error(err)
     throw new Error(err)
   }
 }

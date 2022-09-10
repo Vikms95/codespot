@@ -11,9 +11,9 @@ const createUser = async (req, res, next) => {
   }
   // Check if user exists
   const userExist = await User.findOne({ username })
+
   if (userExist) {
-    res.status(400)
-    throw new Error('User already exists')
+    return res.status(409).json({message:'Username already exists'})
   }
 
   // Hash password

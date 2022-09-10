@@ -249,9 +249,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :early return on whatever function that will call a service and there is no parameters -->
   <!-- :add client side form validation -->
   <!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
+  <!-- :avoid server from crashing when an error is thrown -->
   :handle Express sending proper error messages to the frontend
-  :avoid server from crashing when an error is thrown
-  :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect
+  :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs
 
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
