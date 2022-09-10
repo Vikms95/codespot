@@ -2,6 +2,12 @@ const registerFields = {
 	username: '',
 	password: '',
 	password2: '',
+
+  touched: {
+    username: false,
+    password: false,
+    password2: false
+  }
 };
 
 const loginFields = {
