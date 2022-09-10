@@ -1,14 +1,12 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { useFadeIn } from '../../hooks/useFadeIn';
 import { registerFields } from '../../data/formFields';
 import { createUser } from '../../services/user';
 import { UserFormLayout } from '../../layouts/UserFormLayout';
-import registerImage from '../../assets/register-image.webp';
 import { useValidation } from '../../hooks/useValidation';
 import { registerVal } from '../../data/validationValues';
-
+import registerImage from '../../assets/register-image.webp';
 import {
 	UserFormContainer,
 	UserForm,

@@ -1,20 +1,15 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import styled from 'styled-components';
 
-import { FaSignInAlt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { loginFields } from '../../data/formFields';
 import { loginUser } from '../../services/user';
 import { setToStorage } from '../../utils/setToStorage';
-import loginImage from '../../assets/login-image.webp';
 import { UserFormLayout } from '../../layouts/UserFormLayout';
-import { Button } from '../../style/Button';
-import { Label } from '../../style/Label';
 import { useFadeIn } from '../../hooks/useFadeIn';
 import { loginVal } from '../../data/validationValues';
 import { useValidation } from '../../hooks/useValidation';
+import loginImage from '../../assets/login-image.webp';
 import {
 	UserFormContainer,
 	UserForm,

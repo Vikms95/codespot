@@ -241,15 +241,18 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :pass comment text value to default form value -->
   :remove focus from form when submitted
 
-  :style comment list
-    https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media
+  <!-- :style comment list
+    https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media -->
 
 
 - Implement error handling on API calls and async operations
   <!-- :early return on whatever function that will call a service and there is no parameters -->
-  :add client side form validation
+  <!-- :add client side form validation -->
+  <!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
+  :handle Express sending proper error messages to the frontend
+  :avoid server from crashing when an error is thrown
   :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect
-  :if early return is triggered, alert with frontend validation to the user that the form is not correct
+
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
   :posts context is null when user is not logged in? -->
