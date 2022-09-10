@@ -102,6 +102,7 @@ export function LoginForm(props) {
 						name='username'
 						value={username}
 						onChange={handleChange}
+						maxLength={20}
 					/>
 					<StyledLabel htmlFor='password'> Password </StyledLabel>
 					<Input
@@ -110,6 +111,7 @@ export function LoginForm(props) {
 						name='password'
 						value={password}
 						onChange={handleChange}
+						maxLength={20}
 					/>
 					<LoginButton type='submit '> Login </LoginButton>
 				</UserForm>

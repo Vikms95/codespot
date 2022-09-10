@@ -10,6 +10,7 @@ import { Label } from '../../style/Label';
 import { Button } from '../../style/Button';
 import { UserFormLayout } from '../../layouts/UserFormLayout';
 import registerImage from '../../assets/register-image.webp';
+import { validatePassword } from '../../utils/validateInput';
 
 const UserFormContainer = styled.section`
 	display: flex;
@@ -48,17 +49,22 @@ const LoginButton = styled(Button)`
 `;
 
 const Input = styled.input`
-	text-align: center;
-	border: none;
-	outline: 1px solid transparent;
 	background-color: #f5f1f1;
-	border-radius: 5px;
-	padding: 0.6em 6em;
-	font-size: 1.2em;
 	box-shadow: inset 10 0 2px #000;
+	border: none;
+	border-radius: 5px;
+	font-size: 1.2em;
+	text-align: center;
+	padding: 0.6em 6em;
+
+	outline: ${props =>
+		props.errors[props.name] ? '1px solid red' : '1px solid transparent'};
 
 	&:focus {
 		outline: 1px solid #6649b8;
+	}
+
+	&:blur {
 	}
 `;
 
@@ -72,6 +78,15 @@ export function RegisterForm() {
 	const isActive = useFadeIn();
 	const { formData, handleChange } = useForm(registerFields);
 	const { username, password, password2 } = formData;
+
+	const handleValidation = (username, password, password2) => {
+		return (
+			username.length === 0 && password.length <= 4 && password2.length <= 4
+		);
+	};
+
+	const errors = handleValidation(username, password, password2);
+	console.log(errors);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -94,24 +109,38 @@ export function RegisterForm() {
 						name='username'
 						value={username}
 						onChange={handleChange}
+						maxLength={20}
+						errors={errors}
 					/>
 					<StyledLabel htmlFor='password'> Password </StyledLabel>
 					<Input
 						type='password'
 						id='password'
 						name='password'
-						value={password}
 						onChange={handleChange}
+						maxLength={20}
+						minLength={5}
+						value={password}
+						errors={errors}
 					/>
 					<StyledLabel htmlFor='password'> Confirm password </StyledLabel>
 					<Input
 						type='password'
 						id='password2'
 						name='password2'
-						value={password2}
 						onChange={handleChange}
+						value={password2}
+						maxLength={20}
+						minLength={5}
+						errors={errors}
 					/>
-					<LoginButton type='submit '> Register </LoginButton>
+					<LoginButton
+						type='submit'
+						disabled={!Object.keys(errors).some(x => errors[x])}
+					>
+						{' '}
+						Register{' '}
+					</LoginButton>
 				</UserForm>
 			</UserFormContainer>
 			<FormImage src={registerImage}></FormImage>
