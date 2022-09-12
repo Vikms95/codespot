@@ -17,12 +17,8 @@ const EmptyDashboardContainer = styled.section`
 	margin-right: ${props => (props.isActive ? 'none' : '5em')};
 	transition: margin-right 0.5s ease-out, opacity 0.8s, visibility 0.5s linear;
 `;
-const EmptyDashboardText = styled.h1`
-	display: flex;
-	justify-content: center;
-`;
 
-function EmptyDashboard() {
+export function EmptyDashboard() {
 	const isActive = useFadeIn();
 
 	return (
@@ -37,5 +33,3 @@ function EmptyDashboard() {
 		</EmptyDashboardContainer>
 	);
 }
-
-export default EmptyDashboard;

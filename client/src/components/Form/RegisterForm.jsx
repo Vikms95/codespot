@@ -50,7 +50,7 @@ export function RegisterForm() {
 	return (
 		<UserFormLayout isActive={isActive}>
 			<UserFormContainer>
-				<UserForm onSubmit={handleSubmit}>
+				<UserForm onSubmit={handleSubmit} autoComplete='on'>
 					<HeroTitle> Connect with the world ideas.</HeroTitle>
 					<InputHeader>
 						<StyledLabel htmlFor='username'> Username </StyledLabel>
@@ -62,6 +62,7 @@ export function RegisterForm() {
 						type='text'
 						id='username'
 						name='username'
+						autoComplete='on'
 						maxLength={20}
 						minLength={1}
 						value={username}
@@ -80,6 +81,7 @@ export function RegisterForm() {
 						type='password'
 						id='password'
 						name='password'
+						autoComplete='on'
 						maxLength={20}
 						minLength={5}
 						value={password}
@@ -97,6 +99,7 @@ export function RegisterForm() {
 						type='password'
 						id='password2'
 						name='password2'
+						autoComplete='on'
 						maxLength={20}
 						minLength={5}
 						value={password2}

@@ -54,7 +54,7 @@ export function LoginForm(props) {
 	return (
 		<UserFormLayout isActive={isActive}>
 			<UserFormContainer>
-				<UserForm onSubmit={handleSubmit}>
+				<UserForm onSubmit={handleSubmit} autoComplete='on'>
 					<HeroTitle> Share your ideas with the world.</HeroTitle>
 					<InputHeader>
 						<StyledLabel htmlFor='username'> Username </StyledLabel>
@@ -67,6 +67,7 @@ export function LoginForm(props) {
 						type='text'
 						id='username'
 						name='username'
+						autoComplete='on'
 						maxLength={20}
 						minLength={1}
 						value={username}
@@ -85,6 +86,7 @@ export function LoginForm(props) {
 						type='password'
 						id='password'
 						name='password'
+						autoComplete='on'
 						maxLength={20}
 						minLength={5}
 						value={password}

@@ -279,6 +279,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 - Create error page and handle redirection when needed
 
 - Create forbidden page and handle redirection when needed
+  :if we get a Forbidden error, display the page?
 
 - Use relative time on comments
 https://www.youtube.com/watch?v=acemrBKuDqw

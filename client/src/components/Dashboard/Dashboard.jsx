@@ -7,7 +7,7 @@ import { LazyPostPreview as PostPreview } from '../PostPreview';
 import { useFetch } from '../../hooks/useFetch';
 import { getUserPosts } from '../../services/post';
 import { usePostsContext } from '../../context/PostsContext';
-import EmptyDashboard from './EmptyDashboard';
+import { EmptyDashboard } from './EmptyDashboard';
 
 const StyledDashboard = styled.main`
 	min-height: 100vh;

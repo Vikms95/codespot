@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { Unauthorized } from '../components/Unauthorized/Unauthorized';
 import { useAuth } from '../hooks/useAuth';
 
 /**
@@ -9,7 +10,7 @@ import { useAuth } from '../hooks/useAuth';
  * Then it does return the user id if it is verified, otherwise it returns null.
  */
 export function AuthRouteWrapper() {
-	const { user } = useAuth();
+	const { user, error } = useAuth();
 
-	return user && <Outlet />;
+	return user ? <Outlet /> : <Unauthorized error={error} />;
 }

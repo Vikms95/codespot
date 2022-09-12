@@ -58,18 +58,15 @@ const verifyUser = async () => {
     });
 
     const data = await response.json();
-    console.log(response)
-    console.log(data)
+
     if(response.ok) {
       return data.user;
+    } else {
+      throw new Error(data.message)
     }
-
-    throw new Error(response.message)
-    
-    
   } catch(err) {
     console.error(err)
-    return new Error(err)
+    return Promise.reject(err)
   }
 
   
