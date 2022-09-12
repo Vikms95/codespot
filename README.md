@@ -284,13 +284,18 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 
-- Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
+<!-- - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
   :if no user > 
     :save the post id to local storage (as postToRedirect)
     :when logged in, if there is a postToRedirect in local storage, redirect to that url
-    :when any post is rendered, if there is a postToRedirect, delete it
+    :when any post is rendered, if there is a postToRedirect, delete it -->
 
-- Fix error when logging out and within the Post route
+<!-- - Fix error when logging out and within the Post route 
+  :post storage variable is getting undefined value when logging out
+    :posts is empty when I log out
+    :fixed by variable checking on usePost, but it might be because post variable only exists on PostBody? -->
+
+- Create error component for when the user tries to enter a route that does not exist
 
 - Implement sanitization of inputs within the backend middleware (express-validation library)
 

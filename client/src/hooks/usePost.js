@@ -5,9 +5,12 @@ export function usePost(postid, posts) {
 
 	useEffect(() => {
 		if (posts) {
+      console.log(postid, posts)
 			const postToReturn = posts.find(post => post._id === postid);
-
-			setPost(postToReturn);
+      console.log(postToReturn)
+      if(postToReturn){
+        setPost(postToReturn);
+      }
 		}
 	}, [posts]);
 
