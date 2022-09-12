@@ -10,6 +10,8 @@ import { useFadeIn } from '../../hooks/useFadeIn';
 import { loginVal } from '../../data/validationValues';
 import { useValidation } from '../../hooks/useValidation';
 import loginImage from '../../assets/login-image.webp';
+import { getFromStorage } from '../../utils/getFromStorage';
+
 import {
 	UserFormContainer,
 	UserForm,
@@ -47,6 +49,11 @@ export function LoginForm(props) {
 
 		setUser(data.user);
 		setToStorage('token', data.token);
+
+		if (getFromStorage('postToRedirect')) {
+			const postid = getFromStorage('postToRedirect');
+			return navigate(`/${postid}`);
+		}
 
 		return navigate('/dashboard');
 	};

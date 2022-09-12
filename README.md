@@ -276,8 +276,6 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 <!-- - Style user managament forms -->
 
-- Create error page and handle redirection when needed
-
 <!-- 
 - Create forbidden page and handle redirection when needed
   :if we get a Forbidden error, display the page? -->
@@ -287,6 +285,12 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 
 - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
+  :if no user > 
+    :save the post id to local storage (as postToRedirect)
+    :when logged in, if there is a postToRedirect in local storage, redirect to that url
+    :when any post is rendered, if there is a postToRedirect, delete it
+
+- Fix error when logging out and within the Post route
 
 - Implement sanitization of inputs within the backend middleware (express-validation library)
 

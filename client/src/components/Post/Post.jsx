@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { PostBody } from './PostBody';
 import { useParams } from 'react-router-dom';
@@ -9,6 +9,8 @@ import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { CommentsContextProvider } from '../../context/CommentsContext';
 import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
+import { AuthContext } from '../../context/AuthContext';
+import { setToStorage } from '../../utils/setToStorage';
 
 const StyledPost = styled.section`
 	margin: 0 5em 5em 5em;
@@ -22,6 +24,7 @@ const CommentsTitle = styled.h1``;
 export function Post(props) {
 	const { setPosts } = props;
 	const { postid } = useParams();
+	const { user } = useContext(AuthContext);
 
 	const {
 		data: comments,
@@ -30,6 +33,15 @@ export function Post(props) {
 	} = useFetch(getComments, postid);
 
 	const { rootComments, getChildComments } = useDerivedComments(comments);
+
+	useEffect(() => {
+		if (!user) {
+			setToStorage('postToRedirect', postid);
+		} else {
+			localStorage.removeItem('postToRedirect');
+			//
+		}
+	}, [user]);
 
 	const handleCommentSubmit = async (
 		e,
