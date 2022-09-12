@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { CommentBody, CommentChildren } from './index';
 
@@ -24,6 +24,7 @@ export default function Comment(props) {
 			<CommentBody
 				text={text}
 				commentid={commentid}
+				timestamp={timestamp}
 				commentUser={commentUser}
 				childComments={childComments}
 				setComments={setComments}

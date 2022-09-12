@@ -20,13 +20,17 @@ import {
 	IconButton,
 	StyledFaTrash,
 	CommentBorder,
+	CommentDate,
+	CommentTopRow,
 } from './_styles';
+import { getRelativeCurrentDate } from '../../utils/getRelativeCurrentDate';
 
 export function CommentBody(props) {
 	const {
 		text,
 		commentid,
 		commentUser,
+		timestamp,
 		childComments,
 		setComments,
 		loggedInUserID,
@@ -130,7 +134,10 @@ export function CommentBody(props) {
 
 	return (
 		<>
-			<Username>{commentUser?.username || '(deleted user)'}</Username>
+			<CommentTopRow>
+				<Username>{commentUser?.username || '(deleted user)'}</Username>
+				<CommentDate>{getRelativeCurrentDate(timestamp)}</CommentDate>
+			</CommentTopRow>
 			<Text>{text}</Text>
 
 			{loggedInUserID && !isDeletedWithChildren && (

@@ -278,11 +278,12 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 - Create error page and handle redirection when needed
 
+<!-- 
 - Create forbidden page and handle redirection when needed
-  :if we get a Forbidden error, display the page?
+  :if we get a Forbidden error, display the page? -->
 
-- Use relative time on comments
-https://www.youtube.com/watch?v=acemrBKuDqw
+<!-- - Use relative time on comments
+https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 
 - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post

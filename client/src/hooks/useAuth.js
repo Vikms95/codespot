@@ -11,7 +11,6 @@ import { verifyUser } from '../services/user';
 export function useAuth() {
 	const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState()
-  // Pass this and let the components know it there was an error with verifying
   const [error, setError] = useState()
   
 	useEffect(() => {
@@ -19,7 +18,6 @@ export function useAuth() {
 
 		verifyUser()
       .then(authResult => {
-        console.log(authResult)
         setUser(authResult)
         setLoading(false)
 

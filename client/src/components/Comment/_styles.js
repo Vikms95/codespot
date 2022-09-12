@@ -12,6 +12,16 @@ const StyledComment = styled.article`
 
 `;
 
+const CommentTopRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const CommentDate = styled.div`
+  color: grey;
+  font-size: smaller;
+`
+
 const Username = styled.div`
 	color: #6649b8;
 `;
@@ -69,4 +79,4 @@ const ExpandButton = styled.button`
 `;
 
 
-export {StyledComment, CommentBorder, IconButton, IconsContainer, Text , Username, StyledFaTrash, CollapseButton, ExpandButton }
+export {StyledComment, CommentBorder, IconButton, IconsContainer,CommentTopRow, CommentDate , Text , Username, StyledFaTrash, CollapseButton, ExpandButton }

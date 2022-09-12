@@ -1,5 +1,4 @@
 import { userCreateOptions , deleteOptions , getOptions } from "../data/requestParams";
-import { getCurrentDate } from "../utils/getCurrentDate";
 import { findByID } from "../utils/findbyID";
 
 
@@ -33,7 +32,8 @@ const getComments = async (postID) => {
 
 const createComment = async (text, postid, userid, parentid) => {
   if(!text || !postid || !userid || !parentid) return
-  const timestamp = getCurrentDate();
+  // Change to getCurrentRelativeName
+  const timestamp = new Date();
 
   // We check if the comment has a parentid and attach it to the object,
   // otherwise give the null value to say this is a root comment
@@ -60,7 +60,7 @@ const createComment = async (text, postid, userid, parentid) => {
 const updateComment = async (text, postid, userid, commentid, comments, isDeletedWithChildren) => {
   if(!text || !postid || !userid || !commentid || !comments || !isDeletedWithChildren) return
   
-  const timestamp = getCurrentDate();
+  const timestamp = new Date();
 
   const commentToCheck = findByID(comments, commentid)
   const parent = commentToCheck.parent
