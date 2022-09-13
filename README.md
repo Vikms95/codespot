@@ -295,9 +295,10 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
     :posts is empty when I log out
     :fixed by variable checking on usePost, but it might be because post variable only exists on PostBody? -->
 
-- Create error component for when the user tries to enter a route that does not exist
+<!-- - Create error component for when the user tries to enter a route that does not exist -->
 
 - Implement sanitization of inputs within the backend middleware (express-validation library)
+  :not locating errors when passed in within an array on the middleware route chain
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
 
