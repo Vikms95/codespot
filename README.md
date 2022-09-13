@@ -298,7 +298,10 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
 <!-- - Create error component for when the user tries to enter a route that does not exist -->
 
 - Implement sanitization of inputs within the backend middleware (express-validation library)
-  :not locating errors when passed in within an array on the middleware route chain
+  <!-- :not locating errors when passed in within an array on the middleware route chain -->
+  :sanitize post input
+  :sanitize image upload(size, dimensions)
+  :sanitize comment input
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
 

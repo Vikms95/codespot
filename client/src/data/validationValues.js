@@ -13,6 +13,20 @@ const loginVal = (fields) => {
   }
 }
 
+const postVal = (fields) => { 
+  return { 
+    title: fields.title.length === 0,
+    text: fields.text.length === 0,
+  }
+}
+
+const commentVal = (fields) => { 
+  return { 
+    title: fields.title.length === 0,
+    text: fields.text.length === 0,
+  }
+}
 
 
-export {registerVal, loginVal}
+
+export {registerVal, loginVal, postVal, commentVal}

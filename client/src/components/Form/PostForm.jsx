@@ -12,6 +12,8 @@ import { usePostForm } from '../../hooks/usePostForm';
 import { postFields } from '../../data/formFields';
 import { createPost, updatePost } from '../../services/post';
 import { useFadeIn } from '../../hooks/useFadeIn';
+import { useValidation } from '../../hooks/useValidation';
+import { postVal } from '../../data/validationValues';
 import {
 	PostFormContainer,
 	StyledPostForm,
@@ -25,6 +27,7 @@ import {
 	CheckBoxLabel,
 	CheckBox,
 	FormButton,
+	ErrorMessage,
 } from './_style';
 
 export function PostForm(props) {
@@ -46,7 +49,7 @@ export function PostForm(props) {
 	} = usePostForm(editorRef, postFields);
 
 	const { title, text, isPublic, image } = formData;
-
+	const { isFormValid, shouldMarkErr } = useValidation(postVal, formData);
 	usePostToUpdate(postid, posts, setFormData);
 
 	const handleCreateSubmit = async e => {
@@ -134,6 +137,10 @@ export function PostForm(props) {
 						{image && <StyledFaCheck></StyledFaCheck>}
 					</InputContainer>
 					<br />
+					<ErrorMessage>
+						Image size should not exceed 100 megabytes{' '}
+					</ErrorMessage>
+					<br />
 					<BottomRight>
 						<CheckBoxTitle>Make this post public</CheckBoxTitle>
 						<CheckBoxContainer>
@@ -147,7 +154,7 @@ export function PostForm(props) {
 						</CheckBoxContainer>
 						<br />
 
-						<FormButton type='submit'>
+						<FormButton type='submit' disabled={isFormValid()}>
 							{postid ? 'Update post' : 'Submit post'}
 						</FormButton>
 					</BottomRight>

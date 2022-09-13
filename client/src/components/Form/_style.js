@@ -173,6 +173,12 @@ const CheckBox = styled.input`
 const FormButton = styled(Button)`
 	width: 10em;
 	margin-left: 4em;
+
+  background-color: ${props => props.disabled && 'grey'};
+	color: ${props => props.disabled && 'white'};
+	&:hover {
+		${props => props.disabled && 'filter: none; cursor:default;'}
+  }
 `;
 
 const BottomRight = styled.div`

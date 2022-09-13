@@ -52,7 +52,7 @@ const updatePost = (req, res, next) => {
     title,
     text,
     public: isPublic,
-    timestamp:formerTimestamp,
+    timestamp: formerTimestamp,
     image: req.file.filename || ''
   })
 
