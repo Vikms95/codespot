@@ -33,8 +33,9 @@ export function RegisterForm() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		let data;
+		setServerError('');
 
+		let data;
 		try {
 			data = await createUser(username, password, password2);
 		} catch (err) {

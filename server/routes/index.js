@@ -26,7 +26,7 @@ const {
   updateComment
 } = require('../controllers/commentController')
 
-const { validateUserCreation } = require('../validators/validateUserCreation.js')
+const { validateUserCreation, validateUserLogin } = require('../validators/user.js')
 
 // Setup multer
 // Refactor to another file
@@ -36,7 +36,7 @@ router.get('/api/session', [retrieveToken, verifyToken])
 
 router.post('/api/user', [validateUserCreation, createUser])
 
-router.post('/api/session', loginUser)
+router.post('/api/session', [validateUserLogin, loginUser])
 
 // Post
 router.get('/api/posts', getPosts)

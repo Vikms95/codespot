@@ -5,10 +5,11 @@ const jwt = require('jsonwebtoken')
 const { validationResult } = require('express-validator')
 
 const createUser = async (req, res, next) => {
-  const errors = validationResult(req)
-  console.log(errors)
-  if (!errors.isEmpty()) {
-    return res.status(500).json({ message: 'Please, fill all fields correctly.' })
+  const result = validationResult(req)
+
+  if (!result.isEmpty()) {
+    const message = result.errors[0].msg
+    return res.status(500).json({ message })
   }
   const { username, password } = req.body
   const userExist = await User.findOne({ username })
@@ -37,6 +38,13 @@ const createUser = async (req, res, next) => {
 }
 
 const loginUser = async (req, res, next) => {
+  const results = validationResult(req)
+
+  if (!results.isEmpty()) {
+    const message = results.errors[0].msg
+    return res.status(500).json({ message })
+  }
+
   const { username, password } = req.body
 
   const user = await User.findOne({ username })

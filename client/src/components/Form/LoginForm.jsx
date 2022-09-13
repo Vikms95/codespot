@@ -37,7 +37,10 @@ export function LoginForm(props) {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+		setServerError('');
+
 		let data;
+
 		try {
 			data = await loginUser(username, password);
 		} catch (err) {
