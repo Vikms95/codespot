@@ -54,7 +54,7 @@ export default function PostPreview(props) {
 		<>
 			<PostImageContainer>
 				{!loading ? (
-					<PostLink to={'/' + id}>
+					<PostLink to={'/posts/' + id}>
 						<BookText>Read more → </BookText>
 						<PostImage
 							src={image ? imageSrc?.url : defaultPostImage}

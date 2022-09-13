@@ -1,7 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import './assets/global.css';
 import React, { useState } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Redi,
+	Navigate,
+} from 'react-router-dom';
 
 import { AppLayout } from './layouts';
 import { AuthRouteWrapper } from './containers/AuthRouteWrapper';
@@ -12,6 +18,7 @@ import { PostsContextProvider } from './context/PostsContext';
 import { Home } from './components/Home';
 import { Post } from './components/Post';
 import { Modal } from './components/Modal';
+import { Error } from './components/Error';
 import { Dashboard } from './components/Dashboard';
 import { NavbarWithUser, NavbarWithGuest } from './components/Navbar';
 import { LoginForm, RegisterForm, PostForm } from './components/Form';
@@ -57,7 +64,10 @@ function App() {
 
 							<Route path='/login' element={<LoginForm setUser={setUser} />} />
 							<Route path='/register' element={<RegisterForm />} />
-							<Route path='/:postid' element={<Post setPosts={setPosts} />} />
+							<Route
+								path='/posts/:postid'
+								element={<Post setPosts={setPosts} />}
+							/>
 							<Route
 								path='/'
 								element={
@@ -70,6 +80,8 @@ function App() {
 									/>
 								}
 							/>
+							<Route path='/404' element={<Error />} />
+							<Route path='*' element={<Navigate to='/404' replace />} />
 						</Routes>
 					</PostsContextProvider>
 
