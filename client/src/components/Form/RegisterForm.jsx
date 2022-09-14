@@ -75,7 +75,7 @@ export function RegisterForm() {
 						<StyledLabel htmlFor='password'> Password </StyledLabel>
 						<ErrorMessage shouldMarkError={shouldMarkErr('password')}>
 							{' '}
-							Password must be 5 characters or longer{' '}
+							Must be 5 characters or longer{' '}
 						</ErrorMessage>
 					</InputHeader>
 					<Input

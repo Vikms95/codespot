@@ -10,10 +10,14 @@ const UserFormContainer = styled.section`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-height: 60%;
-	max-width: 100%;
-	padding: 2em max(3em, 4vw);
-  margin-left: max(10em, 5vw);
+	min-height: min(22em, 60%);
+	max-width: max(3em, 100%);
+	padding: 2em min(3em, 4vw);
+  margin-left: max(11em, 5vw);
+
+  @media screen and (max-width: 600px) {
+    margin-left: max(4em, 5vw);
+  }
 `;
 
 const UserForm = styled.form`
@@ -26,22 +30,26 @@ const UserForm = styled.form`
 
 const HeroTitle = styled.h1`
 	font-weight: 100;
-	font-size: 2em;
+	font-size: clamp(16px, 2.2vw, 2em);
 `;
 
 const StyledLabel = styled(Label)`
 	align-self: flex-start;
 	font-weight: 400;
+  font-size: clamp(16px, 2vw, 1em);
+  max-width:80%;
 `;
 
 const LoginButton = styled(Button)`
-	padding: 0.8em 4em;
+  border-radius: 50px;
 	font-weight: bolder;
-
+	padding: 0.8em clamp(1.5em, 3vw, 4em);
+  font-size: clamp(16px, 4.5vw, 1em);
+  
 	background-color: ${props => props.disabled && 'grey'};
 	color: ${props => props.disabled && 'white'};
 	&:hover {
-		${props => props.disabled && 'filter: none; cursor:default;'}
+		${props => props.disabled && 'filter: none; cursor: default;'}
 	}
 `;
 
@@ -49,11 +57,14 @@ const InputHeader = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+  padding: 0 max(2em, 8vw);
 `;
 
 const ErrorMessage = styled.div`
 	opacity: ${props => (props.shouldMarkError ? '1' : '0')};
+	display: ${props => (props.shouldMarkError ? 'flex' : 'none')};
 	color: red;
+  font-size: clamp(.7em, 2vw, 1em);
 	transition: opacity 0.5s ease-out;
 `;
 
@@ -62,9 +73,9 @@ const Input = styled.input`
 	box-shadow: inset 10 0 2px #000;
 	border: none;
 	border-radius: 5px;
-	font-size: 1.2em;
+	font-size: clamp(16px, 2vw, 1.2em);
 	text-align: center;
-	padding: 0.6em 6em;
+	padding: max(.3em, .5vw) max(2em, 7vw);
 
 	outline: ${props =>
 		props.shouldMarkError ? '1.5px solid red' : '1px solid transparent'};
