@@ -14,6 +14,7 @@ import {
 
 export function Navbar({ children }) {
 	const { height, width } = useWindowDimensions();
+
 	return (
 		<StyledNavbar>
 			<InnerNav>

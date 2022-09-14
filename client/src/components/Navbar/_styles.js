@@ -40,8 +40,8 @@ const InnerNav = styled.ul`
 	padding-inline-start: 0;
 	list-style: none;
 	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
+	justify-content: space-around;
+	align-items: center;
 	flex-direction: column;
 	row-gap: 1em;
 	width: 100%;
@@ -71,6 +71,10 @@ const NavItem = styled.li`
 		padding-left: 1.5em;
 		min-width: 3rem;
 		margin-right: 1rem;
+
+    @media only screen and (max-width: 600px) {
+      padding-left: 0;
+    }
 	}
 
 	&:hover {
@@ -114,11 +118,12 @@ const StyledNavbar = styled.nav`
 	}
 
 	@media only screen and (max-width: 600px) {
+    display:flex;
+		justify-content: center;
+		align-items: center;
 		bottom: 0;
 		width: 100%;
 		height: 3rem;
-		justify-content: center;
-		align-items: center;
 
 		& ${InnerNav} {
 			margin-left: 3em;
