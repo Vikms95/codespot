@@ -31,7 +31,7 @@ const getComments = async (postID) => {
 } 
 
 const createComment = async (text, postid, userid, parentid) => {
-  if(!text || !postid || !userid || !parentid) return
+  if(!text || !postid || !userid ) return
   // Change to getCurrentRelativeName
   const timestamp = new Date();
 
@@ -58,7 +58,14 @@ const createComment = async (text, postid, userid, parentid) => {
 }
 
 const updateComment = async (text, postid, userid, commentid, comments, isDeletedWithChildren) => {
-  if(!text || !postid || !userid || !commentid || !comments || !isDeletedWithChildren) return
+  if(!text 
+    || !postid 
+    || !userid 
+    || !commentid 
+    || !comments 
+    || typeof isDeletedWithChildren === 'undefined' ){
+      return
+    } 
   
   const timestamp = new Date();
 

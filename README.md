@@ -299,9 +299,12 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 - Implement sanitization of inputs within the backend middleware (express-validation library)
   <!-- :not locating errors when passed in within an array on the middleware route chain -->
-  :sanitize post input
-  :sanitize image upload(size, dimensions)
+  <!-- :sanitize post input
+  :sanitize image upload(size, dimensions) -->
   :sanitize comment input
+
+- Fix big comment not submitting and small comments not updating
+  :check comment api
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
 

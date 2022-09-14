@@ -5,6 +5,8 @@ import { AuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import { Button } from '../../style/Button';
 import { commentFields } from '../../data/formFields';
+import { useValidation } from '../../hooks/useValidation';
+import { commentVal } from '../../data/validationValues';
 
 const StyledCommentForm = styled.form`
 	position: relative;
@@ -52,6 +54,12 @@ const CommentFormButton = styled(Button)`
 	&:active ${StyledCommentForm} {
 		outline: 1px solid #6649b8;
 	}
+
+	background-color: ${props => props.disabled && 'grey'};
+	color: ${props => props.disabled && 'white'};
+	&:hover {
+		${props => props.disabled && 'filter: none; cursor:default;'}
+	}
 `;
 
 const CommentInputButtons = styled.div`
@@ -76,6 +84,7 @@ export function CommentForm(props) {
 
 	const { user: userid } = useContext(AuthContext);
 	const { formData, setFormData, handleChange } = useForm(commentFields);
+	const { isFormValid } = useValidation(commentVal, formData);
 	const { text } = formData;
 
 	const checkFormFunctionality = type => {
@@ -125,7 +134,7 @@ export function CommentForm(props) {
 					</CommentFormButton>
 				)}
 
-				<CommentFormButton type='submit'>
+				<CommentFormButton type='submit' disabled={isFormValid()}>
 					{' '}
 					{checkFormFunctionality(type)}
 				</CommentFormButton>

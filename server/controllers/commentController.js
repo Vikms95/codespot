@@ -35,7 +35,7 @@ const createComment = async (req, res, next) => {
 
   comment.save(function (err) {
     if (err) {
-      return res.sendStatus(400)
+      return res.status(400).json({ message: 'Comment could not be created.' })
     } else {
       return res.status(201).json({ comment, username })
     }
@@ -95,7 +95,7 @@ const updateComment = async (req, res, next) => {
 
   Comment.findByIdAndUpdate(commentid, comment, { new: true }, (err, comment) => {
     if (err) {
-      return res.status(400)
+      return res.status(400).json({ message: 'Comment could not be updated.' })
     } else {
       return res.status(201).json({ comment, username })
     }

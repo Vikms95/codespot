@@ -22,7 +22,6 @@ const postVal = (fields) => {
 
 const commentVal = (fields) => { 
   return { 
-    title: fields.title.length === 0,
     text: fields.text.length === 0,
   }
 }
