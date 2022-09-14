@@ -297,18 +297,21 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 <!-- - Create error component for when the user tries to enter a route that does not exist -->
 
-- Implement sanitization of inputs within the backend middleware (express-validation library)
+<!-- - Implement sanitization of inputs within the backend middleware (express-validation library) -->
   <!-- :not locating errors when passed in within an array on the middleware route chain -->
   <!-- :sanitize post input
   :sanitize image upload(size, dimensions) -->
-  :sanitize comment input
+  <!-- :sanitize comment input
 
-- Fix big comment not submitting and small comments not updating
-  :check comment api
+<!-- - Fix big comment not submitting and small comments not updating
+  :check comment api --> -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
 
 - Make it responsive
+: https://www.youtube.com/watch?v=VsNAuGkCpQU
+
+Obviously the context will determine what works in a given situation, but an easy fix in many cases is replacing width or height with max-width or min-height (min-width and max-height are also valid and may be useful depending on the context).
 
 - Documentation
 

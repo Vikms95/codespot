@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
+import { useFadeIn } from '../hooks/useFadeIn';
 
 const StyledModalWrapper = styled.div`
 	backdrop-filter: brightness(70%);
@@ -10,6 +11,7 @@ const StyledModalWrapper = styled.div`
 	width: 120vw;
 	position: fixed;
 	transform: translate(-50%, -50%);
+	z-index: 2;
 `;
 
 /**
@@ -20,10 +22,13 @@ const StyledModalWrapper = styled.div`
  */
 export function ModalWrapper(props) {
 	const { children, isModalActive, handleCancel } = props;
+	const { isActive } = useFadeIn();
 
 	return (
 		isModalActive && (
-			<StyledModalWrapper onClick={handleCancel}>{children}</StyledModalWrapper>
+			<StyledModalWrapper onClick={handleCancel} isActive={isActive}>
+				{children}
+			</StyledModalWrapper>
 		)
 	);
 }

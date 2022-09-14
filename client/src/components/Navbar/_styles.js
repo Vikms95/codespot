@@ -87,7 +87,7 @@ const StyledNavbar = styled.nav`
 	padding: 1em 0;
 	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
 	transition: width 300ms ease;
-	z-index: 100;
+	z-index: 1;
 	overflow: hidden;
 
 	&:hover ${NavArrow} {
