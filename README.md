@@ -310,6 +310,7 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 - Make it responsive
 : https://www.youtube.com/watch?v=VsNAuGkCpQU
+https://css-tricks.com/min-max-and-clamp-are-css-magic/
 
 Obviously the context will determine what works in a given situation, but an easy fix in many cases is replacing width or height with max-width or min-height (min-width and max-height are also valid and may be useful depending on the context).
 

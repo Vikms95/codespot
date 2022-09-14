@@ -10,7 +10,15 @@ export const AppLayout = styled.main`
 	width: 85%;
 	transition: all 200ms;
 
+	@media screen and (max-width: 1050px) {
+		margin-left: 0;
+	}
+
 	@media only screen and (max-width: 600px) {
 		margin-left: 2em;
+	}
+
+	@media only screen and (max-width: 600px) {
+		margin-left: 0;
 	}
 `;

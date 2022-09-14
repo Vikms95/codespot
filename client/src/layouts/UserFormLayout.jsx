@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 export const UserFormLayout = styled.section`
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	gap: 5em;
+	column-gap: min(5vw, 5em);
 	margin-top: -5em;
 
 	opacity: ${props => (props.isActive ? 1 : 0)};

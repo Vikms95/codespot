@@ -4,15 +4,16 @@ import { Label } from '../../style/Label';
 import { FaCheck } from 'react-icons/fa';
 
 const UserFormContainer = styled.section`
+	border-radius: 10px;
+	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	box-shadow: 21px 2px 48px -1px rgba(0, 0, 0, 0.09);
-	height: 60%;
-	width: 100%;
-	padding: 3em 10em;
-	border-radius: 10px;
+	min-height: 60%;
+	max-width: 100%;
+	padding: 2em max(3em, 4vw);
+  margin-left: max(10em, 5vw);
 `;
 
 const UserForm = styled.form`
@@ -76,6 +77,11 @@ const Input = styled.input`
 const FormImage = styled.img`
 	height: max(20em, 30vw);
 	width: auto;
+  margin-right: max(5vw, 5rem);
+
+  @media screen and (max-width: 1050px) {
+    display: none;
+}
 `;
 
 const PostFormContainer = styled.section`
