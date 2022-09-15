@@ -1,8 +1,8 @@
 # PROJECT NAME
 
-# 👉 [LIVE PREVIEW](link) 👈
+# 👉 [LIVE PREVIEW](blog-api-frontend.onrender.com/) 👈
 
-![alt text](src/assets/memolearn-preview.gif?raw=true "screenshot of memory card gameplay")
+![alt text](src/assets/memolearn-preview.gif?raw=true "blog api demo")
 
 ## Description
 
