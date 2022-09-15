@@ -7,6 +7,7 @@ export const UserFormLayout = styled.section`
 	align-items: center;
 	column-gap: min(5vw, 5em);
 	margin-top: -5em;
+	margin-left: -4em;
 
 	opacity: ${props => (props.isActive ? 1 : 0)};
 	margin-right: ${props => (props.isActive ? 'none' : '5em')};

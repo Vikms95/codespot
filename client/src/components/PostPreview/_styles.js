@@ -5,23 +5,27 @@ import { Link } from 'react-router-dom';
 export const StyledPostPreview = styled.section`
 	display: flex;
 	justify-content: space-between;
-	align-items: stretch;
 	flex-direction: column;
 	box-shadow: 1.5px 1.5px 1.5px -1px gray;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
   border: none;
 	min-height: 32em;
-  min-width: 3rem;
+  min-width: 3em;
 	text-overflow: ellipsis;
   border-radius: 5px;
+
+  @media screen and (max-width: 450px) {
+    max-width: 80%;
+    min-height: 3em;
+	}
+
 `;
 
 export const PostImageContainer = styled.article`
 	object-fit: cover;
-	height: 100%;
-  width: 100%;
-
+	height: auto;
+  max-width: 100%;
 `;
 
 export const PostImage = styled.img`
