@@ -10,8 +10,8 @@
 ## Getting started
 
 ```
-git clone https://github.com/user/project-name.git
-cd project-name
+git clone git@github.com:Vikms95/blog-api.git
+cd blog-api
 npm install
 npm start
 ```
