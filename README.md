@@ -1,3 +1,52 @@
+# PROJECT NAME
+
+# 👉 [LIVE PREVIEW](link) 👈
+
+![alt text](src/assets/memolearn-preview.gif?raw=true "screenshot of memory card gameplay")
+
+## Description
+
+
+## Getting started
+
+```
+git clone https://github.com/user/project-name.git
+cd project-name
+npm install
+npm start
+```
+
+## Project Objectives
+
+1. 
+2. 
+3. 
+
+## What I've learnt with this project
+
+1. 
+2. 
+3. 
+4. 
+
+## Technologies used
+
+1. 
+2. 
+3. 
+
+## Challenges I faced 
+
+1. 
+2. 
+3. 
+
+## Room for improvement
+
+
+
+Notes
+
 - Collections
   - Users
   - Posts - hold all the posts with a id key of the author(user)
