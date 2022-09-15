@@ -2,7 +2,6 @@
 import React, { useContext, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import { Editor } from '@tinymce/tinymce-react';
 import { parseEditorData } from '../../utils/parseEditorData';
 import { usePostToUpdate } from '../../hooks/usePostToUpdate';
 import { Label } from '../../style/Label';
@@ -28,6 +27,7 @@ import {
 	CheckBox,
 	FormButton,
 	ErrorMessage,
+	StyledEditor,
 } from './_style';
 
 export function PostForm(props) {
@@ -107,12 +107,12 @@ export function PostForm(props) {
 				<br />
 
 				<Label htmlFor='text'>Post </Label>
-				<Editor
+				<StyledEditor
 					onInit={(_e, editor) => (editorRef.current = editor)}
 					init={{
 						height: 600,
 						width: 1200,
-						menubar: false,
+						menubar: true,
 						elementpath: false,
 					}}
 					apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'

@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Button } from '../../style/Button';
 import { Label } from '../../style/Label';
 import { FaCheck } from 'react-icons/fa';
+import { Editor } from '@tinymce/tinymce-react';
+
+const StyledEditor = styled(Editor)`
+`;
 
 const UserFormContainer = styled.section`
 	border-radius: 10px;
@@ -235,5 +239,7 @@ export {
 	CheckBox,
 	CheckBoxLabel,
 	FormButton,
-  ServerErrorDisplay
+  ServerErrorDisplay,
+  StyledEditor
+
 };

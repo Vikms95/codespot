@@ -79,6 +79,7 @@ const NavItem = styled.li`
 
   @media only screen and (max-width: 600px) {
       justify-content: center;
+  }
 
 	&:hover {
 		filter: grayscale(0%) opacity(1);

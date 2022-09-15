@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { useFadeIn } from '../hooks/useFadeIn';
 
 const StyledPostsLayout = styled.section`
-	min-height: 100vh;
 	min-width: 100%;
 	gap: 5em;
 	margin-bottom: 5em;
@@ -16,11 +15,12 @@ const StyledPostsLayout = styled.section`
 	grid-template-rows:
 		${props =>
 			props.section === 'home'
-				? 'repeat(1, 40rem) repeat(auto-fill, minmax(3rem, 1fr));'
+				? 'repeat(1, 40rem) repeat(auto-fit, minmax(3rem, 1fr));'
 				: 'repeat(auto-fill, minmax(3rem, 1fr));'}
 		& > section {
 		grid-column: auto/ span 4;
 	}
+
 	${props => {
 		if (props.section === 'home') {
 			return `
