@@ -1,5 +1,5 @@
 import React from 'react';
-import { userNearScreen } from '../../hooks/useNearScreen';
+import { useNearScreen } from '../../hooks/useNearScreen';
 import { StyledPostPreview } from './_styles';
 
 const PostPreviewWithButtons = React.lazy(() =>
@@ -7,7 +7,7 @@ const PostPreviewWithButtons = React.lazy(() =>
 );
 
 export function LazyPostPreviewWithButtons(props) {
-	const { isNearScreen, fromRef } = userNearScreen({ distance: '200px' });
+	const { isNearScreen, fromRef } = useNearScreen({ distance: '200px' });
 	return (
 		<StyledPostPreview ref={fromRef}>
 			{isNearScreen ? (
