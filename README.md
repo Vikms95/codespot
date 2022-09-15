@@ -6,7 +6,7 @@
 =======
 
 ## Description
-
+-
 
 ## Getting started
 
@@ -17,24 +17,26 @@ npm install
 npm start
 ```
 
-## Project Objectives
-
-1. 
-2. 
-3. 
-
 ## What I've learnt with this project
 
-1. 
-2. 
-3. 
-4. 
+1. Create a fullstack application with the MERN stack
+2. Serve an API following the REST conventions and serve meaningful error responses from the server
+3. Managing Authentication and Authorization with JWT
+4. Manage all CRUD operations with MongoDB and Mongoose
+5. Make endpoint requests with Postman
+6. Create a nested comment system between users 
+7. Modularize React logic by creating my owns custom hooks
+8. Implement optimization techniques in the frontend to improve user experience, such as the useMemo hook and the IntersectionObserver API
+9. Use the styled-components library to modularize the CSS in JS
 
 ## Technologies used
 
-1. 
-2. 
-3. 
+1. React / react-router
+2. Express
+3. MongoDB / Mongoose
+4. JWT
+5. styled-components
+6. TinyMCE
 
 ## Challenges I faced 
 
@@ -44,7 +46,9 @@ npm start
 
 ## Room for improvement
 
-
+1. Give UI a more professional look
+2. Improve loading image times on production
+3.
 
 Notes
 

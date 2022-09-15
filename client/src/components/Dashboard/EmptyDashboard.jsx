@@ -27,7 +27,7 @@ export function EmptyDashboard() {
 			<h2>Want to show us your first one? </h2>
 			<h3>
 				{' '}
-				<a href='/#/create'> Create your first post </a>{' '}
+				<a href='/create'> Create your first post </a>{' '}
 			</h3>
 			<EmptyDashboardImage src={emptyDashboardImage} />
 		</EmptyDashboardContainer>

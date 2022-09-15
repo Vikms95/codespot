@@ -1,8 +1,6 @@
-import * as dotenv from 'dotenv'
 import axios from "axios";
 import { getCurrentDate } from "../utils/getCurrentDate";
 import { deleteOptions, getOptions } from "../data/requestParams";
-dotenv.config()
 
 
 const getPosts = async () => {
