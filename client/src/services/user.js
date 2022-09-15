@@ -1,4 +1,6 @@
+import * as dotenv from 'dotenv'
 import { userCreateOptions } from "../data/requestParams";
+dotenv.config()
 
 const createUser = async (username, password, password2) => {
   if(!username || !password || !password2) return

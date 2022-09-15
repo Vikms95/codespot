@@ -1,5 +1,7 @@
+import * as dotenv from 'dotenv'
 import { userCreateOptions , deleteOptions , getOptions } from "../data/requestParams";
 import { findByID } from "../utils/findbyID";
+dotenv.config()
 
 
 const getCommentsCount = async (commentID) => {
