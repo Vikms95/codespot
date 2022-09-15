@@ -11,15 +11,12 @@ const StyledPostsLayout = styled.section`
 	transition: opacity 0.5s, visibility 0.5s linear;
 
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr));
-	grid-template-rows:
-		${props =>
-			props.section === 'home'
-				? 'repeat(1, 40rem) repeat(auto-fill, minmax(3rem, 1fr));'
-				: 'repeat(auto-fill, minmax(3rem, 1fr));'}
-		& > section {
-		grid-column: auto/ span 4;
-	}
+	grid-template-columns: repeat(auto-fill, minmax(2.2rem, 1fr));
+
+	grid-template-rows: ${props =>
+		props.section === 'home'
+			? 'repeat(1, 40rem) repeat(auto-fill, minmax(3rem, 1fr));'
+			: 'repeat(auto-fill, minmax(3rem, 1fr));'};
 
 	${props => {
 		if (props.section === 'home') {
@@ -27,8 +24,8 @@ const StyledPostsLayout = styled.section`
 					> * {
 						:nth-child(1) {
 							grid-column: 1 / 8;
-							height: 40rem;
-              min-width: 50rem;
+							min-height: 40rem;
+              max-width: 50rem;
 
 							& > article > a > img {
 								height: 25rem;
@@ -41,8 +38,8 @@ const StyledPostsLayout = styled.section`
             
 						:nth-child(2) {
               grid-column: 8 / 13;
-							height: 40rem;
-              min-width: 30rem;
+							min-height: 40rem;
+              max-width: 35rem;
 
 							& > article > a > img {
                 height: 25rem;
@@ -53,18 +50,57 @@ const StyledPostsLayout = styled.section`
               }
 						}
 					}
+
+          @media screen and (max-width: 1485px) {
+            grid-template-rows:repeat(auto-fill, minmax(3rem, 1fr));
+
+            > * {
+						:nth-child(1) {
+              min-height: initial;
+              max-width: 100%;
+              grid-column: auto / span 4;
+
+
+							& > article > a > img {
+								height: 18em;
+							}
+              
+							& > article > svg {
+								height: 18em;
+							}
+						}
+            
+						:nth-child(2) {
+              min-height: initial;
+              max-width: 100%;
+              grid-column: auto / span 4;
+
+							& > article > a > img {
+                height: 18em;
+							}
+
+              & > article > svg {
+                height: 18em;
+              }
+						}
+					}
+          }
 				`;
 		}
 	}};
 
+	& > section {
+		grid-column: auto / span 4;
+	}
+
 	@media screen and (max-width: 600px) {
-		margin-left: 3rem;
+		margin-left: 2rem;
 	}
 `;
 const PostListTitle = styled.h2`
 	font-size: 1.5em;
 	@media screen and (max-width: 600px) {
-		margin-left: 3rem;
+		margin-left: 2rem;
 	}
 `;
 

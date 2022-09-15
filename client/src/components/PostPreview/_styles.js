@@ -16,8 +16,7 @@ export const StyledPostPreview = styled.section`
   border-radius: 5px;
 
   @media screen and (max-width: 450px) {
-    max-width: 80%;
-    min-height: 3em;
+    max-width: 80% !important;
 	}
 
 `;

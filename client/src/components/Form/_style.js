@@ -17,10 +17,10 @@ const UserFormContainer = styled.section`
 	min-height: min(22em, 60%);
 	max-width: max(3em, 100%);
 	padding: 2em min(3em, 4vw);
-  margin-left: max(11em, 5vw);
+  margin-left: max(15em, 10vw);
 
   @media screen and (max-width: 600px) {
-    margin-left: max(4em, 5vw);
+    margin-left: max(1em, 5vw);
   }
 `;
 
@@ -47,7 +47,7 @@ const StyledLabel = styled(Label)`
 const LoginButton = styled(Button)`
   border-radius: 50px;
 	font-weight: bolder;
-	padding: 0.8em clamp(1.5em, 3vw, 4em);
+	padding: 0.6em clamp(1.5em, 3vw, 4em);
   font-size: clamp(16px, 4.5vw, 1em);
   
 	background-color: ${props => props.disabled && 'grey'};
