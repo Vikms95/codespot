@@ -1,6 +1,6 @@
 # PROJECT NAME
 
-# 👉 [LIVE PREVIEW](https://blog-api-frontend.onrender.com/) 👈
+# 👉 [LIVE PREVIEW](https://codespot.vercel.app/) 👈
 
 ![alt text](client/src/assets/app-demo.gif?raw=true "blog api demo")
 =======
