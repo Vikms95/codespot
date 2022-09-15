@@ -2,7 +2,7 @@
 
 # 👉 [LIVE PREVIEW](https://blog-api-frontend.onrender.com/) 👈
 
-![alt text](src/assets/app-demo1.gif?raw=true "blog api demo")
+![alt text](client/src/assets/app-demo1.gif?raw=true "blog api demo")
 
 ## Description
 
