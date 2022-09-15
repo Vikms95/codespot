@@ -48,7 +48,7 @@ npm start
 
 1. Give UI a more professional look
 2. Improve loading image times on production
-3.
+3. Add favicon
 
 Notes
 
