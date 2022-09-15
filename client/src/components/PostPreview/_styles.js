@@ -13,6 +13,7 @@ export const StyledPostPreview = styled.section`
 	min-height: 32em;
   min-width: 3em;
 	text-overflow: ellipsis;
+
   border-radius: 5px;
 
   @media screen and (max-width: 450px) {
@@ -78,6 +79,7 @@ export const PostLink = styled(Link)`
 export const PostContentContainer = styled.article`
 	display: flex;
 	flex-direction: column;
+  justify-content: space-between;
 	row-gap: 1em;
 	padding: 1.5em;
 	height: 100%;
@@ -104,7 +106,7 @@ export const PostTitle = styled.h2`
 export const PostDesc = styled.div`
 	display: -webkit-box;
 	overflow: hidden;
-	-webkit-line-clamp: 1;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	margin-bottom: 1rem;
 	padding: 0;
@@ -120,10 +122,14 @@ export const PostButtonContainer = styled.article`
 	column-gap: 2em;
 `;
 
-export const PostCommentsContainer = styled.article`
-	display: flex;
-	color: #6649b8;
+export const PostCommentsContainer = styled.span`
+	position: absolute;
+  top: 85%;
+	right: 5%;
+  display: flex;
+	color: white;
 	font-size: 1.5em;
 	gap: 0.2em;
   text-align: end;
+  z-index: 1;
 `;

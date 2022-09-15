@@ -245,13 +245,13 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
     https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media -->
 
 
-- Implement error handling on API calls and async operations
+<!-- - Implement error handling on API calls and async operations -->
   <!-- :early return on whatever function that will call a service and there is no parameters -->
   <!-- :add client side form validation -->
   <!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
   <!-- :avoid server from crashing when an error is thrown -->
-  :handle Express sending proper error messages to the frontend
-  :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs
+  <!-- :handle Express sending proper error messages to the frontend
+  :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs -->
 
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
@@ -306,15 +306,15 @@ https://www.youtube.com/watch?v=acemrBKuDqw -->
 <!-- - Fix big comment not submitting and small comments not updating
   :check comment api --> -->
 
-- Refactor to use less and more reusable code (composition, render props, custom hooks)
-
-- Make it responsive
+<!-- - Make it responsive
 : https://www.youtube.com/watch?v=VsNAuGkCpQU
 https://css-tricks.com/min-max-and-clamp-are-css-magic/
 
 Obviously the context will determine what works in a given situation, but an easy fix in many cases is replacing width or height with max-width or min-height (min-width and max-height are also valid and may be useful depending on the context).
 
-  <!-- !:working on user forms -->
+  !:working on user forms -->
+
+- Refactor to use less and more reusable code (composition, render props, custom hooks)
 
 - Documentation
 

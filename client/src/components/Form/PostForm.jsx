@@ -102,7 +102,7 @@ export function PostForm(props) {
 					onChange={handleChange}
 					placeholder='Post title ...'
 					value={title}
-					maxLength='40'
+					maxLength='35'
 				/>
 				<br />
 

@@ -7,7 +7,7 @@ import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { useFetch } from '../../hooks/useFetch';
 import { getImage } from '../../services/post';
 import { getCommentsCount } from '../../services/comment';
-import { PostPreviewCommentDisplay, PostPreviewButtons } from './index';
+import { FaComments } from 'react-icons/fa';
 
 import { ImageItem } from '../../assets/imageItem';
 
@@ -22,6 +22,7 @@ import {
 	PostTitle,
 	PostTopRow,
 	PostTopRowContainer,
+	PostCommentsContainer,
 } from './_styles';
 
 export default function PostPreview(props) {
@@ -34,20 +35,14 @@ export default function PostPreview(props) {
 		timestamp,
 		setIsModalActive,
 		setLastClickedPostId,
+		children,
 	} = props;
 
 	const { user: currentUserId } = useContext(AuthContext);
 
-	const {
-		data: imageSrc,
-		loading,
-		error: imageError,
-	} = useFetch(getImage, image);
+	const { data: imageSrc, loading } = useFetch(getImage, image);
 
-	const { data: commentsCount, error: commentsError } = useFetch(
-		getCommentsCount,
-		id
-	);
+	const { data: commentsCount } = useFetch(getCommentsCount, id);
 	const textRef = useHtmlAsText(text);
 
 	return (
@@ -56,6 +51,12 @@ export default function PostPreview(props) {
 				{!loading ? (
 					<PostLink to={'/posts/' + id}>
 						<BookText>Read more → </BookText>
+						{commentsCount > 0 && (
+							<PostCommentsContainer>
+								<FaComments />
+								{commentsCount}
+							</PostCommentsContainer>
+						)}
 						<PostImage
 							src={image ? imageSrc?.url : defaultPostImage}
 							alt='post-preview'
@@ -75,19 +76,15 @@ export default function PostPreview(props) {
 				<PostTitle>{title}</PostTitle>
 				<PostDesc ref={textRef}></PostDesc>
 
-				<PostBotRowContainer>
-					{user?._id === currentUserId && (
-						<PostPreviewButtons
-							id={id}
-							setIsModalActive={setIsModalActive}
-							setLastClickedPostId={setLastClickedPostId}
-						/>
-					)}
-
-					{commentsCount > 0 && (
-						<PostPreviewCommentDisplay count={commentsCount} />
-					)}
-				</PostBotRowContainer>
+				{children && (
+					<PostBotRowContainer>
+						{React.cloneElement(children, {
+							id,
+							setIsModalActive,
+							setLastClickedPostId,
+						})}
+					</PostBotRowContainer>
+				)}
 			</PostContentContainer>
 		</>
 	);

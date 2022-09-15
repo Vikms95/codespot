@@ -1,3 +1,2 @@
 export {LazyPostPreview} from './LazyPostPreview'
-export {PostPreviewButtons} from './PostPreviewButtons'
-export {PostPreviewCommentDisplay} from './PostPreviewCommentDisplay'
+export {LazyPostPreviewWithButtons} from './LazyPostPreviewWithButtons'

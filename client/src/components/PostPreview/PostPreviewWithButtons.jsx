@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import PostPreview from './PostPreview';
 import { useNavigate } from 'react-router-dom';
 import { PostButtonContainer } from './_styles';
 import { Button } from '../../style/Button';
 
-export function PostPreviewButtons(props) {
+export default function PostPreviewWithButtons(props) {
 	const { id, setIsModalActive, setLastClickedPostId } = props;
 	const navigate = useNavigate();
 
@@ -16,10 +17,13 @@ export function PostPreviewButtons(props) {
 		setIsModalActive(true);
 		setLastClickedPostId(id);
 	};
+
 	return (
-		<PostButtonContainer>
-			<Button onClick={handleUpdate}>Update</Button>
-			<Button onClick={revealDeleteModal}>Delete</Button>
-		</PostButtonContainer>
+		<PostPreview {...props}>
+			<PostButtonContainer>
+				<Button onClick={handleUpdate}>Update</Button>
+				<Button onClick={revealDeleteModal}>Delete</Button>
+			</PostButtonContainer>
+		</PostPreview>
 	);
 }

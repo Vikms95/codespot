@@ -15,8 +15,8 @@ const loginVal = (fields) => {
 
 const postVal = (fields) => { 
   return { 
-    title: fields.title.length === 0,
-    text: fields.text.length === 0,
+    title: fields.title.length < 5,
+    text: fields.text.length < 30,
   }
 }
 
