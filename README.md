@@ -83,7 +83,7 @@ https://styled-components.com/docs/basics
 4. user includes token in the header when accessing protected route
 5. server verifies token and either lets user in or denies -->
 
-TODO-
+TODO
 <!-- -Create models -->
 <!-- - Create routes structure -->
 <!-- - Setup db with mongo and mongoose -->
