@@ -229,7 +229,7 @@ https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regu
 https://dribbble.com/shots/16265164-Side-Menu-Design
 https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
-- Create Comments component
+<!-- - Create Comments component -->
   <!-- : comments have their own separate collection -->
   <!-- : they have 2 Joins, the user id and the post id -->
   <!-- : create comment count per post endpoint -->
@@ -257,13 +257,13 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table -->
   <!-- >DELETE< -->
   <!-- Comment gets deleted  -->
-    <!-- If comment children === null -->
-    <!-- Delete from backend -->
-    <!-- Delete from frontend -->
-    <!-- If comment has children -->
-    <!-- Set deleted property to true on backend -->
-    <!-- Set deleted property to true on frontend -->
-    <!-- :comments turn to undefined when deleted and no children -->
+  <!-- If comment children === null -->
+  <!-- Delete from backend -->
+  <!-- Delete from frontend -->
+  <!-- If comment has children -->
+  <!-- Set deleted property to true on backend -->
+  <!-- Set deleted property to true on frontend -->
+  <!-- :comments turn to undefined when deleted and no children -->
   <!-- :delete all (deleted) comments that no longer have children comments     
     delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
     :parentComment is undefined when we try to find it -->
@@ -271,7 +271,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- >pass all comments from a post as context? -->
   <!-- :after 2 comments, the comments are not being deleted anymore
     -->
-    <!-- :refactor into cleaner code the way the comments are recursively deleted -->
+<!-- :refactor into cleaner code the way the comments are recursively deleted -->
 <!-- :since border is in the buttons container, when there is no buttons, the border won't appear -->
 
 <!-- :user available comment icons not appearing after creating a comment, only after refreshing -->
