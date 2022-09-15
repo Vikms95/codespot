@@ -1,6 +1,6 @@
 # PROJECT NAME
 
-# 👉 [LIVE PREVIEW](blog-api-frontend.onrender.com/) 👈
+# 👉 [LIVE PREVIEW](https://blog-api-frontend.onrender.com/) 👈
 
 ![alt text](src/assets/memolearn-preview.gif?raw=true "blog api demo")
 
