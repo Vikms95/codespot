@@ -49,15 +49,18 @@ npm start
 1. Give UI a more professional look
 2. Improve loading image times on production
 3. Add favicon
+4. Upload images in DB instead of Backend 
+  https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
 
-Notes
 
+<!-- Notes -->
+<!-- 
 - Collections
   - Users
   - Posts - hold all the posts with a id key of the author(user)
-          - hold an array of the comments and an id key of the post
+          - hold an array of the comments and an id key of the post -->
 
-REST URL CONVENTIONS
+<!-- REST URL CONVENTIONS
 https://www.theodinproject.com/lessons/nodejs-api-basics
 https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/#h-use-nouns-instead-of-verbs-in-endpoint-paths
 /api/posts/:postid/comments
@@ -78,7 +81,7 @@ https://styled-components.com/docs/basics
 2. user logs in - Token returned
 3. user saves token
 4. user includes token in the header when accessing protected route
-5. server verifies token and either lets user in or denies
+5. server verifies token and either lets user in or denies -->
 
 TODO-
 <!-- -Create models -->
@@ -238,78 +241,78 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :make comment form appear only if a user is logged in, show login link instead -->
   <!-- :style comment form(lookup dribble) -->
   <!-- :conditionally render icons on the comment, if logged user id is not equals to the comment user, do not show edit and delete, if no user at all, do not show reply button -->
-
+<!-- 
   :implement functionality to reply comments(parent, child relations)
     https://www.youtube.com/watch?v=lyNetvEfvT0&t=6687s
-    https://www.youtube.com/watch?v=sjAeLwuezxo
+    https://www.youtube.com/watch?v=sjAeLwuezxo -->
 
 
-    <!-- :when a comment with children is deleted, delete all the children too on state  
-      :children on the database still exist, is it needed to delete them?
-      :the only side effect besides database clutter is the comment count form PostPreview showing
-      the amount with the child components too
-        :use the comments state instead of fetching them?(does not seem like a good idea)
+  <!-- :when a comment with children is deleted, delete all the children too on state  
+    :children on the database still exist, is it needed to delete them?
+    :the only side effect besides database clutter is the comment count form PostPreview showing
+    the amount with the child components too
+      :use the comments state instead of fetching them?(does not seem like a good idea)
 
-    >I think it'd be better if you kept the deleted users' comments as well, but show in your front end that the user was deleted due to XX. But while deleting a user, you could have a checkbox option - delete user comments - which will delete all comments and its replies, because if you do not wish to show the child comments on your site again, it would be a waste storing them in your db
-    https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table -->
-    >DELETE<
-    <!-- Comment gets deleted  -->
-      <!-- If comment children === null -->
-      <!-- Delete from backend -->
-      <!-- Delete from frontend -->
-      <!-- If comment has children -->
-      <!-- Set deleted property to true on backend -->
-      <!-- Set deleted property to true on frontend -->
-      <!-- :comments turn to undefined when deleted and no children -->
-    <!-- :delete all (deleted) comments that no longer have children comments     
-      delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
-      :parentComment is undefined when we try to find it -->
-    <!-- :undefined because the comments that the recursed comment is being passed are just the child comments, so the parent cannot be found -->
-    <!-- >pass all comments from a post as context? -->
-    <!-- :after 2 comments, the comments are not being deleted anymore
-      -->
-      <!-- :refactor into cleaner code the way the comments are recursively deleted -->
-  <!-- :since border is in the buttons container, when there is no buttons, the border won't appear -->
+  >I think it'd be better if you kept the deleted users' comments as well, but show in your front end that the user was deleted due to XX. But while deleting a user, you could have a checkbox option - delete user comments - which will delete all comments and its replies, because if you do not wish to show the child comments on your site again, it would be a waste storing them in your db
+  https://stackoverflow.com/questions/26565475/delete-parent-record-and-keep-child-in-comments-table -->
+  <!-- >DELETE< -->
+  <!-- Comment gets deleted  -->
+    <!-- If comment children === null -->
+    <!-- Delete from backend -->
+    <!-- Delete from frontend -->
+    <!-- If comment has children -->
+    <!-- Set deleted property to true on backend -->
+    <!-- Set deleted property to true on frontend -->
+    <!-- :comments turn to undefined when deleted and no children -->
+  <!-- :delete all (deleted) comments that no longer have children comments     
+    delete current comment > it goes through the handleDelete function > if current comment has parent and it had deletedWithChildren > delete the parent (use recursion?)
+    :parentComment is undefined when we try to find it -->
+  <!-- :undefined because the comments that the recursed comment is being passed are just the child comments, so the parent cannot be found -->
+  <!-- >pass all comments from a post as context? -->
+  <!-- :after 2 comments, the comments are not being deleted anymore
+    -->
+    <!-- :refactor into cleaner code the way the comments are recursively deleted -->
+<!-- :since border is in the buttons container, when there is no buttons, the border won't appear -->
 
-  <!-- :user available comment icons not appearing after creating a comment, only after refreshing -->
-    <!-- :logged in user is being detected, but not that the user is the same as the creator of the posts -->
-    <!-- :when saved on state is being saved different as when it is saved on database (user._id is not defined, just the username)
-    COMMENTUSER IS NOT THE WHOLE USER, ITS JUST THE NAME OF THE USER
-    :user name is only received when you make a populate out of the id passed to the backend
-    :do an endpoint only to receive the user name? -->
-    <!-- :if just one comment from the deleted parent gets deleted, all of them are deleted even if there is remaining ones
-    :that happens because when a parent is deleted, we check just check if the parent is deleted with children, we dont check if there is still childcomments -->
+<!-- :user available comment icons not appearing after creating a comment, only after refreshing -->
+  <!-- :logged in user is being detected, but not that the user is the same as the creator of the posts -->
+  <!-- :when saved on state is being saved different as when it is saved on database (user._id is not defined, just the username)
+  COMMENTUSER IS NOT THE WHOLE USER, ITS JUST THE NAME OF THE USER
+  :user name is only received when you make a populate out of the id passed to the backend
+  :do an endpoint only to receive the user name? -->
+  <!-- :if just one comment from the deleted parent gets deleted, all of them are deleted even if there is remaining ones
+  :that happens because when a parent is deleted, we check just check if the parent is deleted with children, we dont check if there is still childcomments -->
 
 <!-- 
-   >REPLY<
-    :(replies is the same as comment but including the parentid instead) 
-    :when reply button is clicked, display a CommentForm right below the comment to reply
-      :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
+  >REPLY<
+  :(replies is the same as comment but including the parentid instead) 
+  :when reply button is clicked, display a CommentForm right below the comment to reply
+    :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
-    :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features? -->
-  <!-- :implement icons for CRUD actions on the comments
+  :implement parentid being passed if the comment form is triggered with the reply button >>> create a specialized CommentFormWithParent which will have the id passed as props + extra features? -->
+<!-- :implement icons for CRUD actions on the comments
 
-    >UPDATE<
-    :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
-   comment values are not getting changed after findbyidandupdate -->
-  <!-- :pass comment text value to default form value -->
-  :remove focus from form when submitted
+  >UPDATE<
+  :make timestamp be used to calculate how long from the moment it was created (3 hours ago, 3 months ago...)
+  comment values are not getting changed after findbyidandupdate -->
+<!-- :pass comment text value to default form value -->
+<!-- :remove focus from form when submitted -->
 
-  <!-- :style comment list
-    https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media -->
+<!-- :style comment list
+  https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media -->
 
 
 <!-- - Implement error handling on API calls and async operations -->
-  <!-- :early return on whatever function that will call a service and there is no parameters -->
-  <!-- :add client side form validation -->
-  <!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
-  <!-- :avoid server from crashing when an error is thrown -->
-  <!-- :handle Express sending proper error messages to the frontend
-  :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs -->
+<!-- :early return on whatever function that will call a service and there is no parameters -->
+<!-- :add client side form validation -->
+<!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
+<!-- :avoid server from crashing when an error is thrown -->
+<!-- :handle Express sending proper error messages to the frontend
+:handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs -->
 
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
-  :posts context is null when user is not logged in? -->
+:posts context is null when user is not logged in? -->
 
 <!-- - Fix images showing the default one before fetching all the PostView images -->
 
@@ -322,43 +325,43 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- :use first-children to style the first post different from the others -->
 <!-- : use.reservese to get the latest post as the first one -->
 <!-- : make first element occupy 1 row and 2 columns -->
-  <!-- :first-child not being selected? -->
-  <!-- :make first two elements be bigger -->
+<!-- :first-child not being selected? -->
+<!-- :make first two elements be bigger -->
 
 <!-- - Style file input
-  :https://stackoverflow.com/questions/572768/styling-an-input-type-file-button -->
+:https://stackoverflow.com/questions/572768/styling-an-input-type-file-button -->
 
 <!-- - Style user managament forms -->
 
 <!-- 
 - Create forbidden page and handle redirection when needed
-  :if we get a Forbidden error, display the page? -->
+:if we get a Forbidden error, display the page? -->
 
 <!-- - Use relative time on comments
 https://www.youtube.com/watch?v=acemrBKuDqw -->
 
 
 <!-- - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
-  :if no user > 
-    :save the post id to local storage (as postToRedirect)
-    :when logged in, if there is a postToRedirect in local storage, redirect to that url
-    :when any post is rendered, if there is a postToRedirect, delete it -->
+:if no user > 
+  :save the post id to local storage (as postToRedirect)
+  :when logged in, if there is a postToRedirect in local storage, redirect to that url
+  :when any post is rendered, if there is a postToRedirect, delete it -->
 
 <!-- - Fix error when logging out and within the Post route 
-  :post storage variable is getting undefined value when logging out
-    :posts is empty when I log out
-    :fixed by variable checking on usePost, but it might be because post variable only exists on PostBody? -->
+:post storage variable is getting undefined value when logging out
+  :posts is empty when I log out
+  :fixed by variable checking on usePost, but it might be because post variable only exists on PostBody? -->
 
 <!-- - Create error component for when the user tries to enter a route that does not exist -->
 
 <!-- - Implement sanitization of inputs within the backend middleware (express-validation library) -->
-  <!-- :not locating errors when passed in within an array on the middleware route chain -->
-  <!-- :sanitize post input
-  :sanitize image upload(size, dimensions) -->
-  <!-- :sanitize comment input
+<!-- :not locating errors when passed in within an array on the middleware route chain -->
+<!-- :sanitize post input
+:sanitize image upload(size, dimensions) -->
+<!-- :sanitize comment input
 
 <!-- - Fix big comment not submitting and small comments not updating
-  :check comment api --> -->
+:check comment api --> -->
 
 <!-- - Make it responsive
 : https://www.youtube.com/watch?v=VsNAuGkCpQU
@@ -366,14 +369,14 @@ https://css-tricks.com/min-max-and-clamp-are-css-magic/
 
 Obviously the context will determine what works in a given situation, but an easy fix in many cases is replacing width or height with max-width or min-height (min-width and max-height are also valid and may be useful depending on the context).
 
-  :working on user forms -->
+:working on user forms -->
+
+<!-- - Deploy on Render
+https://www.youtube.com/watch?v=8vkvsv1Mcg0
+https://dashboard.render.com/ -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
 
 - Documentation
-
-- Deploy on Render
-https://www.youtube.com/watch?v=8vkvsv1Mcg0
-https://dashboard.render.com/
 
 
