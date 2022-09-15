@@ -319,7 +319,7 @@ Obviously the context will determine what works in a given situation, but an eas
 - Documentation
 
 - Deploy on Render
-
-
+https://www.youtube.com/watch?v=8vkvsv1Mcg0
+https://dashboard.render.com/
 
 
