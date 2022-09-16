@@ -56,6 +56,7 @@ npm start
 14. Make the grid system of the Home component allow the first two items to be of different size
 15. Deploy my first fullstack app with a backend serving a static website
 16. Adapting the endpoint formatting to REST standars
+17. Use Bcrypt to hash user passwords to a secure encryption when stored
 
 ## Room for improvement
 
@@ -390,6 +391,9 @@ https://dashboard.render.com/ -->
 <!-- - Documentation -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
+  :Form can be composed from a root Form component that holds the shared JSX and State
+  :
 
+- Modularize all styled-components to separate files
 
 
