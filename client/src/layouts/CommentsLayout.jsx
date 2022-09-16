@@ -9,18 +9,15 @@ const StyledCommentsLayout = styled.section`
 	row-gap: 3em;
 	background-color: white;
 	width: 80%;
-
-
 `;
 
 export function CommentsLayout(props) {
 	const { comments, getChildComments, setComments, handleCommentSubmit } =
 		props;
 
-
 	return (
 		<>
-			<StyledCommentsLayout >
+			<StyledCommentsLayout>
 				{comments.map(comment => {
 					return (
 						<Comment

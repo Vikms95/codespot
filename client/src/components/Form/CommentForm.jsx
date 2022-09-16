@@ -15,7 +15,7 @@ const StyledCommentForm = styled.form`
 	align-items: ${props => (props.isCommentForm ? 'flex-start' : 'center')};
 	row-gap: 1em;
 	margin: 1em 3em;
-	width: ${props => (props.isCommentForm ? '90%' : '70%')};
+	width: ${props => (props.isCommentForm ? 'none' : '70%')};
 	outline: 1px solid #6649b8;
 	border-radius: 15px;
 

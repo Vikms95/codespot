@@ -24,7 +24,12 @@ const StyledPost = styled.section`
   `;
 
 
-const CommentsTitle = styled.h1``;
+const CommentsTitle = styled.h1`
+  padding-left:1em;
+  padding-bottom: 1em;
+  padding-top: 2em;
+
+`;
 
 const Title = styled.h2`
 	font-size: clamp(16px, 5vw,4em);
