@@ -7,11 +7,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useFetch } from '../../hooks/useFetch';
 import { usePostsContext } from '../../context/PostsContext';
 import { getPosts } from '../../services/post';
-
-const StyledHome = styled.main`
-	min-height: 100vh;
-	min-width: 100%;
-`;
+import { StyledHome } from './_styles';
 
 export function Home(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;

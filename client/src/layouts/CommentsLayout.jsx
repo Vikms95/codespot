@@ -17,24 +17,22 @@ export function CommentsLayout(props) {
 		props;
 
 	return (
-		<>
-			<StyledCommentsLayout>
-				{comments.map(comment => {
-					return (
-						<Comment
-							key={comment._id}
-							text={comment.text}
-							commentid={comment._id}
-							commentUser={comment.user}
-							timestamp={comment.timestamp}
-							setComments={setComments}
-							getChildComments={getChildComments}
-							handleCommentSubmit={handleCommentSubmit}
-							isDeletedWithChildren={comment.isDeletedWithChildren}
-						></Comment>
-					);
-				})}
-			</StyledCommentsLayout>
-		</>
+		<StyledCommentsLayout>
+			{comments.map(comment => {
+				return (
+					<Comment
+						key={comment._id}
+						text={comment.text}
+						commentid={comment._id}
+						commentUser={comment.user}
+						timestamp={comment.timestamp}
+						setComments={setComments}
+						getChildComments={getChildComments}
+						handleCommentSubmit={handleCommentSubmit}
+						isDeletedWithChildren={comment.isDeletedWithChildren}
+					></Comment>
+				);
+			})}
+		</StyledCommentsLayout>
 	);
 }

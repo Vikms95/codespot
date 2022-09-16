@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
 import { AuthContext } from '../../context/AuthContext';
 import { PostsLayout } from '../../layouts';
 import { LazyPostPreviewWithButtons as PostPreviewWithButtons } from '../PostPreview';
@@ -8,11 +7,7 @@ import { useFetch } from '../../hooks/useFetch';
 import { getUserPosts } from '../../services/post';
 import { usePostsContext } from '../../context/PostsContext';
 import { EmptyDashboard } from './EmptyDashboard';
-
-const StyledDashboard = styled.main`
-	min-height: 100vh;
-	min-width: 100%;
-`;
+import { StyledDashboard } from './_styles';
 
 export function Dashboard(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;

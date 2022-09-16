@@ -28,7 +28,7 @@ import {
 	FormButton,
 	ErrorMessage,
 	StyledEditor,
-} from './_style';
+} from './_styles';
 
 export function PostForm(props) {
 	const { setPosts } = props;

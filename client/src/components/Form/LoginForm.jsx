@@ -23,7 +23,7 @@ import {
 	FormImage,
 	ErrorMessage,
 	ServerErrorDisplay,
-} from './_style';
+} from './_styles';
 
 export function LoginForm(props) {
 	const { setUser } = props;

@@ -216,6 +216,72 @@ const ServerErrorDisplay = styled.div`
   opacity: ${props => props.serverError ? '1': '0'};
   transition: opacity 1s ease-out;
 `
+const StyledCommentForm = styled.form`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: ${props => (props.isCommentForm ? 'flex-start' : 'center')};
+	row-gap: 1em;
+	margin: 1em 3em;
+	width: ${props => (props.isCommentForm ? '90%' : '70%')};
+	outline: 1px solid #6649b8;
+	border-radius: 15px;
+	align-self: flex-start;
+
+	&:focus-within {
+		outline: 2px solid #6649b8;
+	}
+
+	@media screen and (max-width: 850px) {
+		width: ${props => props.isCommentForm && 'unset'};
+	}
+`;
+
+const StyledCommentInput = styled.textarea`
+	resize: none;
+	min-width: 90%;
+	min-height: 10em;
+	padding: 2em;
+	outline: none;
+	border: none;
+
+	&::-webkit-scrollbar {
+		width: 0.75rem;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgb(255, 255, 255);
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #6649b8;
+		border-radius: 10px;
+	}
+`;
+
+const CommentFormButton = styled(Button)`
+	bottom: 10%;
+	right: 19%;
+
+	&:active ${StyledCommentForm} {
+		outline: 1px solid #6649b8;
+	}
+
+	background-color: ${props => props.disabled && 'grey'};
+	color: ${props => props.disabled && 'white'};
+	&:hover {
+		${props => props.disabled && 'filter: none; cursor:default;'}
+	}
+`;
+
+const CommentInputButtons = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	align-self: flex-end;
+	gap: 2em;
+	padding: 1em 2em;
+`;
 
 export {
 	FormImage,
@@ -240,6 +306,9 @@ export {
 	CheckBoxLabel,
 	FormButton,
   ServerErrorDisplay,
-  StyledEditor
-
+  StyledEditor,
+  StyledCommentInput,
+  CommentFormButton,
+  CommentInputButtons,
+  StyledCommentForm
 };

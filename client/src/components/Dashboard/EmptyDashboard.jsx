@@ -2,21 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import emptyDashboardImage from '../../assets/empty-dashboard.webp';
 import { useFadeIn } from '../../hooks/useFadeIn';
-
-const EmptyDashboardImage = styled.img`
-	height: auto;
-	width: 40em;
-`;
-const EmptyDashboardContainer = styled.section`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
-	opacity: ${props => (props.isActive ? 1 : 0)};
-	margin-right: ${props => (props.isActive ? 'none' : '5em')};
-	transition: margin-right 0.5s ease-out, opacity 0.8s, visibility 0.5s linear;
-`;
+import { EmptyDashboardContainer, EmptyDashboardImage } from './_styles';
 
 export function EmptyDashboard() {
 	const isActive = useFadeIn();

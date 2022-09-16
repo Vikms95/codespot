@@ -19,7 +19,7 @@ import {
 	FormImage,
 	HeroTitle,
 	ServerErrorDisplay,
-} from './_style';
+} from './_styles';
 import { useState } from 'react';
 
 export function RegisterForm() {

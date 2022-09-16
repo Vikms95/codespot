@@ -392,8 +392,8 @@ https://dashboard.render.com/ -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
   :Form can be composed from a root Form component that holds the shared JSX and State
-  :
+  :Turn Comment > Comment and CommentWithChildren
 
 - Modularize all styled-components to separate files
-
+  :Make styled-components share more properties between components
 

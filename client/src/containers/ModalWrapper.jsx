@@ -1,18 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
 import { useFadeIn } from '../hooks/useFadeIn';
-
-const StyledModalWrapper = styled.div`
-	backdrop-filter: brightness(70%);
-	top: 50%;
-	left: 50%;
-	height: 100vh;
-	width: 120vw;
-	position: fixed;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-`;
+import { StyledModalWrapper } from './_styles';
 
 /**
  * Handles the logic on whether the modal should be rendered
