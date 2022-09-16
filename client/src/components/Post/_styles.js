@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 const StyledPost = styled.section`
-	max-width: clamp(3em, 100vw, 80ch);
+	max-width: clamp(3em, 100vw, 100ch);
 	margin: 0 5em 5em 5em;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
   justify-content: center;
   
   > p > pre  {
