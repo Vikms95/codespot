@@ -8,8 +8,7 @@ const StyledComment = styled.article`
 	padding-left: 1.5em;
 	width: 100%;
   margin-bottom: 5;
-
-
+  align-self:flex-start;
 `;
 
 const CommentTopRow = styled.div`

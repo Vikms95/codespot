@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const StyledPost = styled.section`
 	max-width: clamp(3em, 100vw, 100ch);
-	margin: 0 5em 5em 5em;
+	margin: 2em 5em 5em 5em;
 	display: flex;
 	flex-direction: column;
   justify-content: center;
+  align-items: center;
   
   > p > pre  {
     display: flex;
@@ -18,8 +19,8 @@ const StyledPost = styled.section`
   }
 
   @media screen and(max-width:600px){
-    margin-left:12em;
-    margin-right: 0px;
+    margin-left: 12em;
+    margin-right: 5em;
   }
   `;
 
@@ -28,6 +29,7 @@ const CommentsTitle = styled.h1`
   padding-left:1em;
   padding-bottom: 1em;
   padding-top: 2em;
+  align-self:flex-start;
 
 `;
 
@@ -44,7 +46,7 @@ const Image = styled.img`
 
 const Text = styled.p`
 	font-size: clamp(16px, 2vw, 1.5em);
-  max-width: clamp(18em, 65vw, 70ch);
+  max-width: clamp(18em, 65vw, 80ch);
 	margin-bottom: 5em;
 	display: flex;
 	flex-direction: column;

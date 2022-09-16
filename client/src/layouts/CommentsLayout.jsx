@@ -9,6 +9,7 @@ const StyledCommentsLayout = styled.section`
 	row-gap: 3em;
 	background-color: white;
 	width: 80%;
+	align-self: flex-start;
 `;
 
 export function CommentsLayout(props) {

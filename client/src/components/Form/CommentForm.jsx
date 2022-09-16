@@ -15,12 +15,17 @@ const StyledCommentForm = styled.form`
 	align-items: ${props => (props.isCommentForm ? 'flex-start' : 'center')};
 	row-gap: 1em;
 	margin: 1em 3em;
-	width: ${props => (props.isCommentForm ? 'none' : '70%')};
+	width: ${props => (props.isCommentForm ? '90%' : '70%')};
 	outline: 1px solid #6649b8;
 	border-radius: 15px;
+	align-self: flex-start;
 
 	&:focus-within {
 		outline: 2px solid #6649b8;
+	}
+
+	@media screen and (max-width: 850px) {
+		width: ${props => props.isCommentForm && 'unset'};
 	}
 `;
 
