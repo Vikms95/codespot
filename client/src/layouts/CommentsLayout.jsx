@@ -18,7 +18,7 @@ export function CommentsLayout(props) {
 
 	return (
 		<StyledCommentsLayout>
-			{comments.map(comment => {
+			{comments?.map(comment => {
 				return (
 					<Comment
 						key={comment._id}

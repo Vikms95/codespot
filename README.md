@@ -390,12 +390,17 @@ https://dashboard.render.com/ -->
 
 <!-- - Documentation -->
 
+<!-- - Fix app crashing on dev mode when Comment component renders on screen
+  :now comments is showing undefined when render? but on Post load, the comments state is good
+  :add error guard on comments.map to avoid crashing -->
+
+<!-- - Modularize all styled-components to separate files -->
+
 - Fix 'no error' showing up when an error is resolved in a form and then submitted again
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
   :Form can be composed from a root Form component that holds the shared JSX and State
   :Turn Comment > Comment and CommentWithChildren
 
-<!-- - Modularize all styled-components to separate files -->
 - Make styled-components share more properties between components
 

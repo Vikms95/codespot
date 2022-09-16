@@ -31,7 +31,6 @@ export function Post(props) {
 			setToStorage('postToRedirect', postid);
 		} else {
 			localStorage.removeItem('postToRedirect');
-			//
 		}
 	}, [user]);
 
