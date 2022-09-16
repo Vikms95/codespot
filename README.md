@@ -6,9 +6,7 @@
 =======
 
 ## Description
-- Shared blog with ability to create your own user and share your articles with the rest of the users. Users can comment on each others articles and comments. Text editor that allows using several fonts, upload images and even embed code.
-
-Enforces user/author permissions through protected routes on the frontend and authorized routes on the backend.
+Shared blog with ability to create your own user and share your articles with the rest of the users. Users can comment on each others articles and comments. Text editor that allows using several fonts, upload images and even embed code. Enforces user/author permissions through protected routes on the frontend and authorized routes on the backend.
 
 ## Getting started
 
