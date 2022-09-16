@@ -6,7 +6,9 @@
 =======
 
 ## Description
--
+- Shared blog with ability to create your own user and share your articles with the rest of the users. Users can comment on each others articles and comments. Text editor that allows using several fonts, upload images and even embed code.
+
+Enforces user/author permissions through protected routes on the frontend and authorized routes on the backend.
 
 ## Getting started
 
@@ -40,9 +42,22 @@ npm start
 
 ## Challenges I faced 
 
-1. 
-2. 
-3. 
+1. Sending token to the backend from the frontend component to verify that the token is valid
+2. Checking the token on every route to see if the user has access to the protected route
+3. Keeping the UI state in sync with the database data
+4. Keep the data in state when any page that uses data from the database is reloaded
+5. Creating pieces of reusable React logic for all components
+6. Allow the user to upload an image with a post
+7. Filter sensible data from database models when the models are fetched for use on the frontend
+8. Create recursive comment system where comment replies get nested into the parent
+9. Make comments get soft deleted when they are deleted by the user and have child comments remaining, otherwise hard delete it from the comment section
+10. Send meaningful error messages from the backend so the frontend can act accordingly
+11. Make PostPreview and Comment components only load whenever they appear on the screen with the IntersectionObserver API
+12. Make the JS from PostPreview and Comment component only load when the IntersectionObserver API is triggered
+13. Add pre-load image placeholders with SVG and the react-content-loader library
+14. Make the grid system of the Home component allow the first two items to be of different size
+15. Deploy my first fullstack app with a backend serving a static website
+16. Adapting the endpoint formatting to REST standars
 
 ## Room for improvement
 
@@ -307,7 +322,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- :add client side form validation -->
 <!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
 <!-- :avoid server from crashing when an error is thrown -->
-<!-- :handle Express sending proper error messages to the frontend
+<!-- !:handle Express sending proper error messages to the frontend
 :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs -->
 
 
@@ -316,10 +331,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 <!-- - Fix images showing the default one before fetching all the PostView images -->
 
-
-
 <!-- - Fix posts not appearing after redirecting to the dashboard when created(update state?) -->
-
 
 <!-- - Style Home so the first Post is bigger than the rest -->
 <!-- :use first-children to style the first post different from the others -->
@@ -375,10 +387,11 @@ Obviously the context will determine what works in a given situation, but an eas
 https://www.youtube.com/watch?v=8vkvsv1Mcg0
 https://dashboard.render.com/ -->
 
-- Refactor to use less and more reusable code (composition, render props, custom hooks)
-
 <!-- - Adjusts posts layout to 1920 x 1080 -->
 
-- Documentation
+<!-- - Documentation -->
+
+- Refactor to use less and more reusable code (composition, render props, custom hooks)
+
 
 
