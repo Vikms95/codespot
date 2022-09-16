@@ -1,6 +1,5 @@
 export const createFormData = data => {
-	const { title, text, isPublic, user, image } =
-		data;
+	const { title, text, isPublic, user, image } = data;
 
 	const formData = new FormData();
 

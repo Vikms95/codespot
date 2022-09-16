@@ -10,14 +10,14 @@ export const useForm = formFields => {
 		}));
 	};
 
-  const handleBlur = (e) => {
-    const field = e.target.name
+	const handleBlur = e => {
+		const field = e.target.name;
 
-    setFormData(prev => ({
-      ...prev,
-      touched: { ...prev.touched, [field]: true } 
-    }))
-  }
+		setFormData(prev => ({
+			...prev,
+			touched: { ...prev.touched, [field]: true },
+		}));
+	};
 
 	return { formData, setFormData, handleChange, handleBlur };
 };

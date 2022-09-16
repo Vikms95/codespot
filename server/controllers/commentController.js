@@ -1,26 +1,24 @@
-const Comment = require('../models/Comment')
-const User = require('../models/User')
+const Comment = require("../models/Comment");
+const User = require("../models/User");
 
 const getPostComments = (req, res, next) => {
-  Comment
-    .find({ post: req.params.postid })
-    .populate('user', ['_id', '__v', 'username'])
+  Comment.find({ post: req.params.postid })
+    .populate("user", ["_id", "__v", "username"])
     .exec((err, comments) => {
-      if (err) return next(err)
-      res.json({ comments })
-    })
-}
+      if (err) return next(err);
+      res.json({ comments });
+    });
+};
 
 const getPostCommentsCount = (req, res, next) => {
-  Comment
-    .countDocuments({ post: req.params.postid }, (err, count) => {
-      if (err) return next(err)
-      res.json({ count })
-    })
-}
+  Comment.countDocuments({ post: req.params.postid }, (err, count) => {
+    if (err) return next(err);
+    res.json({ count });
+  });
+};
 
 const createComment = async (req, res, next) => {
-  const { text, postid, userid, timestamp, parent } = req.body
+  const { text, postid, userid, timestamp, parent } = req.body;
 
   const comment = new Comment({
     text,
@@ -28,35 +26,35 @@ const createComment = async (req, res, next) => {
     parent,
     user: userid,
     post: postid,
-    isDeletedWithChildren: false
-  })
+    isDeletedWithChildren: false,
+  });
 
-  const { username } = await User.findById(userid)
+  const { username } = await User.findById(userid);
 
   comment.save(function (err) {
     if (err) {
-      return res.status(400).json({ message: 'Comment could not be created.' })
+      return res.status(400).json({ message: "Comment could not be created." });
     } else {
-      return res.status(201).json({ comment, username })
+      return res.status(201).json({ comment, username });
     }
-  })
-}
+  });
+};
 
 const deleteComment = (req, res, next) => {
-  const { commentid } = req.params
+  const { commentid } = req.params;
 
   Comment.findByIdAndDelete(commentid, (err, comment) => {
     if (err) {
-      return res.status(400)
+      return res.status(400);
     } else {
-      return res.status(200).json(comment)
+      return res.status(200).json(comment);
     }
-  })
-}
+  });
+};
 
 const flagCommentWithChildren = (req, res, next) => {
-  const { commentid } = req.params
-  const { user, post, parent, timestamp } = req.body
+  const { commentid } = req.params;
+  const { user, post, parent, timestamp } = req.body;
 
   const comment = new Comment({
     _id: commentid,
@@ -64,22 +62,23 @@ const flagCommentWithChildren = (req, res, next) => {
     post,
     parent,
     timestamp,
-    text: '(deleted)',
-    isDeletedWithChildren: true
-  })
+    text: "(deleted)",
+    isDeletedWithChildren: true,
+  });
 
   Comment.findByIdAndUpdate(commentid, comment, {}, (err, comment) => {
     if (err) {
-      return res.status(400)
+      return res.status(400);
     } else {
-      return res.status(200).json(comment)
+      return res.status(200).json(comment);
     }
-  })
-}
+  });
+};
 
 const updateComment = async (req, res, next) => {
-  const { text, postid, userid, timestamp, parent, isDeletedWithChildren } = req.body
-  const { commentid } = req.params
+  const { text, postid, userid, timestamp, parent, isDeletedWithChildren } =
+    req.body;
+  const { commentid } = req.params;
 
   const comment = new Comment({
     _id: commentid,
@@ -88,19 +87,26 @@ const updateComment = async (req, res, next) => {
     parent,
     timestamp,
     text,
-    isDeletedWithChildren
-  })
+    isDeletedWithChildren,
+  });
 
-  const { username } = await User.findById(userid)
+  const { username } = await User.findById(userid);
 
-  Comment.findByIdAndUpdate(commentid, comment, { new: true }, (err, comment) => {
-    if (err) {
-      return res.status(400).json({ message: 'Comment could not be updated.' })
-    } else {
-      return res.status(201).json({ comment, username })
+  Comment.findByIdAndUpdate(
+    commentid,
+    comment,
+    { new: true },
+    (err, comment) => {
+      if (err) {
+        return res
+          .status(400)
+          .json({ message: "Comment could not be updated." });
+      } else {
+        return res.status(201).json({ comment, username });
+      }
     }
-  })
-}
+  );
+};
 
 module.exports = {
   getPostComments,
@@ -108,5 +114,5 @@ module.exports = {
   createComment,
   deleteComment,
   flagCommentWithChildren,
-  updateComment
-}
+  updateComment,
+};

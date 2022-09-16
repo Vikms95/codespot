@@ -10,24 +10,22 @@ import { verifyUser } from '../services/user';
  */
 export function useAuth() {
 	const { user, setUser } = useContext(AuthContext);
-  const [loading, setLoading] = useState()
-  const [error, setError] = useState()
-  
+	const [loading, setLoading] = useState();
+	const [error, setError] = useState();
+
 	useEffect(() => {
-    setLoading(true)
+		setLoading(true);
 
 		verifyUser()
-      .then(authResult => {
-        setUser(authResult)
-        setLoading(false)
-
-      })
-      .catch(err => {
-        setError(err)
-        setLoading(false)
-
-      })
+			.then(authResult => {
+				setUser(authResult);
+				setLoading(false);
+			})
+			.catch(err => {
+				setError(err);
+				setLoading(false);
+			});
 	}, []);
-  
+
 	return { user, loading, error };
 }

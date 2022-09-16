@@ -4,8 +4,7 @@ import { Label } from '../../style/Label';
 import { FaCheck } from 'react-icons/fa';
 import { Editor } from '@tinymce/tinymce-react';
 
-const StyledEditor = styled(Editor)`
-`;
+const StyledEditor = styled(Editor)``;
 
 const UserFormContainer = styled.section`
 	border-radius: 10px;
@@ -17,11 +16,11 @@ const UserFormContainer = styled.section`
 	min-height: min(22em, 60%);
 	max-width: max(3em, 100%);
 	padding: 2em min(3em, 4vw);
-  margin-left: max(15em, 10vw);
+	margin-left: max(15em, 10vw);
 
-  @media screen and (max-width: 600px) {
-    margin-left: max(1em, 5vw);
-  }
+	@media screen and (max-width: 600px) {
+		margin-left: max(1em, 5vw);
+	}
 `;
 
 const UserForm = styled.form`
@@ -40,16 +39,16 @@ const HeroTitle = styled.h1`
 const StyledLabel = styled(Label)`
 	align-self: flex-start;
 	font-weight: 400;
-  font-size: clamp(16px, 2vw, 1em);
-  max-width:80%;
+	font-size: clamp(16px, 2vw, 1em);
+	max-width: 80%;
 `;
 
 const LoginButton = styled(Button)`
-  border-radius: 50px;
+	border-radius: 50px;
 	font-weight: bolder;
 	padding: 0.6em clamp(1.5em, 3vw, 4em);
-  font-size: clamp(16px, 4.5vw, 1em);
-  
+	font-size: clamp(16px, 4.5vw, 1em);
+
 	background-color: ${props => props.disabled && 'grey'};
 	color: ${props => props.disabled && 'white'};
 	&:hover {
@@ -61,14 +60,14 @@ const InputHeader = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-  padding: 0 max(2em, 8vw);
+	padding: 0 max(2em, 8vw);
 `;
 
 const ErrorMessage = styled.div`
 	opacity: ${props => (props.shouldMarkError ? '1' : '0')};
 	display: ${props => (props.shouldMarkError ? 'flex' : 'none')};
 	color: red;
-  font-size: clamp(.7em, 2vw, 1em);
+	font-size: clamp(0.7em, 2vw, 1em);
 	transition: opacity 0.5s ease-out;
 `;
 
@@ -79,7 +78,7 @@ const Input = styled.input`
 	border-radius: 5px;
 	font-size: clamp(16px, 2vw, 1.2em);
 	text-align: center;
-	padding: max(.3em, .5vw) max(2em, 7vw);
+	padding: max(0.3em, 0.5vw) max(2em, 7vw);
 
 	outline: ${props =>
 		props.shouldMarkError ? '1.5px solid red' : '1px solid transparent'};
@@ -92,11 +91,11 @@ const Input = styled.input`
 const FormImage = styled.img`
 	height: max(20em, 30vw);
 	width: auto;
-  margin-right: max(5vw, 5rem);
+	margin-right: max(5vw, 5rem);
 
-  @media screen and (max-width: 1050px) {
-    display: none;
-}
+	@media screen and (max-width: 1050px) {
+		display: none;
+	}
 `;
 
 const PostFormContainer = styled.section`
@@ -195,11 +194,11 @@ const FormButton = styled(Button)`
 	width: 10em;
 	margin-left: 4em;
 
-  background-color: ${props => props.disabled && 'grey'};
+	background-color: ${props => props.disabled && 'grey'};
 	color: ${props => props.disabled && 'white'};
 	&:hover {
 		${props => props.disabled && 'filter: none; cursor:default;'}
-  }
+	}
 `;
 
 const BottomRight = styled.div`
@@ -212,10 +211,10 @@ const StyledFaCheck = styled(FaCheck)`
 `;
 
 const ServerErrorDisplay = styled.div`
-  color: red;
-  opacity: ${props => props.serverError ? '1': '0'};
-  transition: opacity 1s ease-out;
-`
+	color: red;
+	opacity: ${props => (props.serverError ? '1' : '0')};
+	transition: opacity 1s ease-out;
+`;
 const StyledCommentForm = styled.form`
 	position: relative;
 	display: flex;
@@ -305,10 +304,10 @@ export {
 	CheckBox,
 	CheckBoxLabel,
 	FormButton,
-  ServerErrorDisplay,
-  StyledEditor,
-  StyledCommentInput,
-  CommentFormButton,
-  CommentInputButtons,
-  StyledCommentForm
+	ServerErrorDisplay,
+	StyledEditor,
+	StyledCommentInput,
+	CommentFormButton,
+	CommentInputButtons,
+	StyledCommentForm,
 };

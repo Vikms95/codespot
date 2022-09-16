@@ -1,2 +1,2 @@
-export { NavbarWithGuest } from './NavbarWithGuest'
-export { NavbarWithUser } from './NavbarWithUser'
+export { NavbarWithGuest } from './NavbarWithGuest';
+export { NavbarWithUser } from './NavbarWithUser';

@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa';
 
 const LinkText = styled.span`
@@ -72,14 +72,14 @@ const NavItem = styled.li`
 		min-width: 3rem;
 		margin-right: 1rem;
 
-    @media only screen and (max-width: 600px) {
-      padding-left: 0;
-    }
+		@media only screen and (max-width: 600px) {
+			padding-left: 0;
+		}
 	}
 
-  @media only screen and (max-width: 600px) {
-      justify-content: center;
-  }
+	@media only screen and (max-width: 600px) {
+		justify-content: center;
+	}
 
 	&:hover {
 		filter: grayscale(0%) opacity(1);
@@ -122,7 +122,7 @@ const StyledNavbar = styled.nav`
 	}
 
 	@media only screen and (max-width: 600px) {
-    display:flex;
+		display: flex;
 		justify-content: center;
 		align-items: center;
 		bottom: 0;
@@ -145,12 +145,11 @@ const StyledNavbar = styled.nav`
 `;
 
 export {
-  InnerNav,
-  LinkText,
-  NavArrow,
-  NavItem,
-  StyledLink,
-  StyledNavbar,
-  TitleText,
-    
-}
+	InnerNav,
+	LinkText,
+	NavArrow,
+	NavItem,
+	StyledLink,
+	StyledNavbar,
+	TitleText,
+};

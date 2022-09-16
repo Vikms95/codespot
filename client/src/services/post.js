@@ -1,98 +1,83 @@
-import axios from "axios";
-import { getCurrentDate } from "../utils/getCurrentDate";
-import { deleteOptions, getOptions } from "../data/requestParams";
-
+import axios from 'axios';
+import { getCurrentDate } from '../utils/getCurrentDate';
+import { deleteOptions, getOptions } from '../data/requestParams';
 
 const getPosts = async () => {
+	try {
+		const response = await fetch('/api/posts', getOptions);
 
-  try{
-    const response = await fetch('/api/posts', getOptions)
-  
-    const data = await response.json()
-  
-    return data
-  } catch(err) {
-    return new Error(err)
-  }
-}
+		const data = await response.json();
 
-const getUserPosts = async (userid) => {
-  if(!userid) return
+		return data;
+	} catch (err) {
+		return new Error(err);
+	}
+};
 
-  try{
-    const response = await fetch(`/api/${userid}/posts`, getOptions)
-  
-    const data = await response.json()
-  
-    return data
-  } catch(err) {
-    return new Error(err)
-  }
-}
+const getUserPosts = async userid => {
+	if (!userid) return;
 
-const getImage = async (image) => {
-  if(!image) return ''
+	try {
+		const response = await fetch(`/api/${userid}/posts`, getOptions);
 
-  try{
-    const data = await fetch('/images/' + image) 
-  
-    return data
-  } catch (err) {
-    return new Error(err)
-  }
-}
+		const data = await response.json();
 
-const createPost = async (formDataRequest) => {
-  if(!formDataRequest) return
+		return data;
+	} catch (err) {
+		return new Error(err);
+	}
+};
 
-  const timestamp = getCurrentDate();
-  formDataRequest.append('timestamp', timestamp)
+const getImage = async image => {
+	if (!image) return '';
 
-  try{
+	try {
+		const data = await fetch('/images/' + image);
 
-    const {data} = await axios.post('/api/post', formDataRequest, {});
+		return data;
+	} catch (err) {
+		return new Error(err);
+	}
+};
 
-    return data
+const createPost = async formDataRequest => {
+	if (!formDataRequest) return;
 
-  } catch(err) {
-    throw new Error(err)
-  }
-}
+	const timestamp = getCurrentDate();
+	formDataRequest.append('timestamp', timestamp);
+
+	try {
+		const { data } = await axios.post('/api/post', formDataRequest, {});
+
+		return data;
+	} catch (err) {
+		throw new Error(err);
+	}
+};
 
 const updatePost = async (postid, formDataRequest) => {
-  if(!postid || !formDataRequest) return
-  
-  try{
-    const data = await axios.put('/api/posts/' + postid, formDataRequest, {});
+	if (!postid || !formDataRequest) return;
 
-  
-    return data
-  } catch(err) {
-    return new Error(err)
-  }
-}
+	try {
+		const data = await axios.put('/api/posts/' + postid, formDataRequest, {});
 
-const deletePost = async (postid) => {
-  if(!postid) return
-  
-  try{
-    const response = await fetch('/api/posts/' + postid, deleteOptions);
-    const data = await response.json()
+		return data;
+	} catch (err) {
+		return new Error(err);
+	}
+};
 
-    return data
-  } catch(err) {
-    return new Error(err)
-  }
-}
+const deletePost = async postid => {
+	if (!postid) return;
 
+	try {
+		const response = await fetch('/api/posts/' + postid, deleteOptions);
+		const data = await response.json();
 
+		return data;
+	} catch (err) {
+		return new Error(err);
+	}
+};
 
-export {
-  getPosts,
-  getUserPosts,
-  createPost,
-  deletePost,
-  getImage,
-  updatePost
-
-}
+export { getPosts, getUserPosts, createPost, deletePost, getImage, updatePost };

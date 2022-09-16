@@ -1,21 +1,21 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { upload } = require('../controllers/fileController')
+const { upload } = require("../controllers/fileController");
 const {
   createUser,
   loginUser,
   retrieveToken,
-  verifyToken
-} = require('../controllers/userController')
+  verifyToken,
+} = require("../controllers/userController");
 
 const {
   getPosts,
   getUserPosts,
   createPost,
   updatePost,
-  deletePost
-} = require('../controllers/postController')
+  deletePost,
+} = require("../controllers/postController");
 
 const {
   getPostComments,
@@ -23,43 +23,46 @@ const {
   createComment,
   deleteComment,
   flagCommentWithChildren,
-  updateComment
-} = require('../controllers/commentController')
+  updateComment,
+} = require("../controllers/commentController");
 
-const { validateUserCreation, validateUserLogin } = require('../validators/user.js')
+const {
+  validateUserCreation,
+  validateUserLogin,
+} = require("../validators/user.js");
 
 // Setup multer
 // Refactor to another file
 
 // User - Session
-router.get('/api/session', [retrieveToken, verifyToken])
+router.get("/api/session", [retrieveToken, verifyToken]);
 
-router.post('/api/user', [validateUserCreation, createUser])
+router.post("/api/user", [validateUserCreation, createUser]);
 
-router.post('/api/session', [validateUserLogin, loginUser])
+router.post("/api/session", [validateUserLogin, loginUser]);
 
 // Post
-router.get('/api/posts', getPosts)
+router.get("/api/posts", getPosts);
 
-router.get('/api/:userid/posts', getUserPosts)
+router.get("/api/:userid/posts", getUserPosts);
 
-router.post('/api/post', upload.single('image'), createPost)
+router.post("/api/post", upload.single("image"), createPost);
 
-router.put('/api/posts/:postid', upload.single('image'), updatePost)
+router.put("/api/posts/:postid", upload.single("image"), updatePost);
 
-router.delete('/api/posts/:postid', deletePost)
+router.delete("/api/posts/:postid", deletePost);
 
 // Comments
-router.post('/api/comment', createComment)
+router.post("/api/comment", createComment);
 
-router.get('/api/:postid/comments', getPostComments)
+router.get("/api/:postid/comments", getPostComments);
 
-router.get('/api/:postid/comments-count', getPostCommentsCount)
+router.get("/api/:postid/comments-count", getPostCommentsCount);
 
-router.put('/api/comments/:commentid', flagCommentWithChildren)
+router.put("/api/comments/:commentid", flagCommentWithChildren);
 
-router.put('/api/:postid/comments/:commentid/', updateComment)
+router.put("/api/:postid/comments/:commentid/", updateComment);
 
-router.delete('/api/:commentid', deleteComment)
+router.delete("/api/:commentid", deleteComment);
 
-module.exports = { router }
+module.exports = { router };

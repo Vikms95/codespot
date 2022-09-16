@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledDashboard = styled.main`
 	min-height: 100vh;
@@ -20,4 +20,4 @@ const EmptyDashboardContainer = styled.section`
 	transition: margin-right 0.5s ease-out, opacity 0.8s, visibility 0.5s linear;
 `;
 
-export {StyledDashboard, EmptyDashboardContainer, EmptyDashboardImage}
+export { StyledDashboard, EmptyDashboardContainer, EmptyDashboardImage };

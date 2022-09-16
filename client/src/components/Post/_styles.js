@@ -1,43 +1,40 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledPost = styled.section`
 	max-width: clamp(3em, 100vw, 100ch);
 	margin: 2em 5em 5em 5em;
 	display: flex;
 	flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-  pre,
-  .highlight .javascript
-  {
-    display: flex;
-    flex-wrap:wrap;
-    background-color: black;
-    color: white;
-    padding: 1em;
-    border-radius: 5px;
-    overflow: hidden;
-  }
+	justify-content: center;
+	align-items: center;
 
-  @media screen and(max-width:600px){
-    margin-left: 12em;
-    margin-right: 5em;
-  }
-  `;
+	pre,
+	.highlight .javascript {
+		display: flex;
+		flex-wrap: wrap;
+		background-color: black;
+		color: white;
+		padding: 1em;
+		border-radius: 5px;
+		overflow: hidden;
+	}
 
+	@media screen and(max-width:600px) {
+		margin-left: 12em;
+		margin-right: 5em;
+	}
+`;
 
 const CommentsTitle = styled.h1`
-  padding-left:1em;
-  padding-bottom: 1em;
-  padding-top: 2em;
-  align-self:flex-start;
-
+	padding-left: 1em;
+	padding-bottom: 1em;
+	padding-top: 2em;
+	align-self: flex-start;
 `;
 
 const Title = styled.h2`
-	font-size: clamp(16px, 5vw,4em);
-  max-width: 80ch;
+	font-size: clamp(16px, 5vw, 4em);
+	max-width: 80ch;
 `;
 const Image = styled.img`
 	max-width: 100%;
@@ -48,12 +45,12 @@ const Image = styled.img`
 
 const Text = styled.p`
 	font-size: clamp(16px, 2vw, 1.5em);
-  max-width: clamp(18em, 65vw, 80ch);
+	max-width: clamp(18em, 65vw, 80ch);
 	margin-bottom: 5em;
 	display: flex;
 	flex-direction: column;
 	text-align: justify;
-  `;
+`;
 
 const LoginLinkText = styled.div`
 	display: flex;
@@ -61,4 +58,4 @@ const LoginLinkText = styled.div`
 	font-weight: 800;
 `;
 
-export { CommentsTitle,Image,LoginLinkText,StyledPost,Text,Title}
+export { CommentsTitle, Image, LoginLinkText, StyledPost, Text, Title };

@@ -1,2 +1,1 @@
-export const validatePassword = () => {
-}
+export const validatePassword = () => {};

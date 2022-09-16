@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 
 export function useFadeIn() {
 	const [isActive, setIsActive] = useState(false);
 
-  useEffect(() => {
+	useEffect(() => {
 		setIsActive(true);
-    
+
 		return () => setIsActive(false);
 	});
 
-  return isActive
+	return isActive;
 }

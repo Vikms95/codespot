@@ -3,21 +3,21 @@ const registerFields = {
 	password: '',
 	password2: '',
 
-  touched: {
-    username: false,
-    password: false,
-    password2: false
-  }
+	touched: {
+		username: false,
+		password: false,
+		password2: false,
+	},
 };
 
 const loginFields = {
 	username: '',
 	password: '',
 
-  touched: {
-    username: false,
-    password: false,
-  }
+	touched: {
+		username: false,
+		password: false,
+	},
 };
 
 const postFields = {

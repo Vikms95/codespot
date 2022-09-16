@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {FaTrash} from 'react-icons/fa'
+import styled from 'styled-components';
+import { FaTrash } from 'react-icons/fa';
 
 const StyledComment = styled.article`
 	display: flex;
@@ -7,19 +7,19 @@ const StyledComment = styled.article`
 	line-height: 22px;
 	padding-left: 1.5em;
 	width: 100%;
-  margin-bottom: 5;
-  align-self:flex-start;
+	margin-bottom: 5;
+	align-self: flex-start;
 `;
 
 const CommentTopRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
+	display: flex;
+	justify-content: space-between;
+`;
 
 const CommentDate = styled.div`
-  color: grey;
-  font-size: smaller;
-`
+	color: grey;
+	font-size: smaller;
+`;
 
 const Username = styled.div`
 	color: #6649b8;
@@ -77,5 +77,16 @@ const ExpandButton = styled.button`
 	display: ${props => (props.areChildrenHidden ? 'flex' : 'none')};
 `;
 
-
-export {StyledComment, CommentBorder, IconButton, IconsContainer,CommentTopRow, CommentDate , Text , Username, StyledFaTrash, CollapseButton, ExpandButton }
+export {
+	StyledComment,
+	CommentBorder,
+	IconButton,
+	IconsContainer,
+	CommentTopRow,
+	CommentDate,
+	Text,
+	Username,
+	StyledFaTrash,
+	CollapseButton,
+	ExpandButton,
+};

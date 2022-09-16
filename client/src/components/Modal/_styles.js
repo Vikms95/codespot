@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledModal = styled.section`
 	background-color: white;
@@ -19,4 +19,4 @@ const ButtonContainer = styled.div`
 	gap: 2em;
 `;
 
-export {StyledModal, ButtonContainer}
+export { StyledModal, ButtonContainer };

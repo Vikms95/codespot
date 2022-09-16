@@ -394,6 +394,6 @@ https://dashboard.render.com/ -->
   :Form can be composed from a root Form component that holds the shared JSX and State
   :Turn Comment > Comment and CommentWithChildren
 
-- Modularize all styled-components to separate files
-  :Make styled-components share more properties between components
+<!-- - Modularize all styled-components to separate files -->
+- Make styled-components share more properties between components
 

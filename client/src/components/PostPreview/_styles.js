@@ -9,23 +9,22 @@ export const StyledPostPreview = styled.section`
 	box-shadow: 1.5px 1.5px 1.5px -1px gray;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
-  border: none;
+	border: none;
 	min-height: 32em;
-  min-width: 3em;
+	min-width: 3em;
 	text-overflow: ellipsis;
 
-  border-radius: 5px;
+	border-radius: 5px;
 
-  @media screen and (max-width: 450px) {
-    max-width: 80% !important;
+	@media screen and (max-width: 450px) {
+		max-width: 80% !important;
 	}
-
 `;
 
 export const PostImageContainer = styled.article`
 	object-fit: cover;
 	height: auto;
-  max-width: 100%;
+	max-width: 100%;
 `;
 
 export const PostImage = styled.img`
@@ -53,8 +52,8 @@ export const BookText = styled.span`
 	top: 85%;
 	left: 5%;
 	z-index: 1;
-  font-weight: 500;
-  font-size:1.5em ;
+	font-weight: 500;
+	font-size: 1.5em;
 `;
 
 export const PostLink = styled(Link)`
@@ -79,7 +78,7 @@ export const PostLink = styled(Link)`
 export const PostContentContainer = styled.article`
 	display: flex;
 	flex-direction: column;
-  justify-content: space-between;
+	justify-content: space-between;
 	row-gap: 1em;
 	padding: 1.5em;
 	height: 100%;
@@ -124,12 +123,12 @@ export const PostButtonContainer = styled.article`
 
 export const PostCommentsContainer = styled.span`
 	position: absolute;
-  top: 85%;
+	top: 85%;
 	right: 5%;
-  display: flex;
+	display: flex;
 	color: white;
 	font-size: 1.5em;
 	gap: 0.2em;
-  text-align: end;
-  z-index: 1;
+	text-align: end;
+	z-index: 1;
 `;

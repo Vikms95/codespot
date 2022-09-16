@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const StyledModalWrapper = styled.div`
 	backdrop-filter: brightness(70%);
@@ -11,4 +11,4 @@ const StyledModalWrapper = styled.div`
 	z-index: 2;
 `;
 
-export {StyledModalWrapper}
+export { StyledModalWrapper };

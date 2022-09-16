@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ErrorImage = styled.img`
 	height: auto;
@@ -15,4 +15,4 @@ const ErrorContainer = styled.section`
 	transition: margin-right 0.5s ease-out, opacity 0.8s, visibility 0.5s linear;
 `;
 
-export {ErrorImage, ErrorContainer}
+export { ErrorImage, ErrorContainer };

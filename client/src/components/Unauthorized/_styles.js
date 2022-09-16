@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const UnauthorizedImage = styled.img`
 	height: auto;
@@ -15,4 +15,4 @@ const UnauthorizedContainer = styled.section`
 	transition: margin-right 0.5s ease-out, opacity 0.8s, visibility 0.5s linear;
 `;
 
-export {UnauthorizedImage, UnauthorizedContainer}
+export { UnauthorizedImage, UnauthorizedContainer };

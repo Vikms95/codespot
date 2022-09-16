@@ -42,7 +42,6 @@ code {
 		monospace;
 }
 
-
 body::-webkit-scrollbar {
 	width: 0.75rem;
 }
@@ -67,5 +66,5 @@ a {
 }
 
 * {
-  /* outline:solid 1px lime; */
-} 
+	/* outline:solid 1px lime; */
+}

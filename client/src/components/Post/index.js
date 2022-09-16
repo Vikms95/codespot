@@ -1,2 +1,2 @@
-export {Post} from './Post'
-export {PostBody} from './PostBody'
+export { Post } from './Post';
+export { PostBody } from './PostBody';

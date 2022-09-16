@@ -6,9 +6,9 @@ export function usePost(postid, posts) {
 	useEffect(() => {
 		if (posts) {
 			const postToReturn = posts.find(post => post._id === postid);
-      if(postToReturn){
-        setPost(postToReturn);
-      }
+			if (postToReturn) {
+				setPost(postToReturn);
+			}
 		}
 	}, [posts]);
 

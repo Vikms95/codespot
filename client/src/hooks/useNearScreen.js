@@ -5,11 +5,11 @@ export function useNearScreen({ distance = '100px', externalRef } = {}) {
 	const fromRef = useRef(null);
 
 	useEffect(() => {
-    const element = externalRef ? externalRef.current : fromRef.current
+		const element = externalRef ? externalRef.current : fromRef.current;
 
 		const onChange = (entries, observer) => {
 			const element = entries[0];
-      
+
 			if (element.isIntersecting) {
 				setShow(true);
 				observer.unobserve(element.target);
@@ -19,7 +19,7 @@ export function useNearScreen({ distance = '100px', externalRef } = {}) {
 		const observer = new IntersectionObserver(onChange, {
 			rootMargin: distance,
 		});
-    
+
 		observer.observe(element);
 
 		return () => observer.disconnect();
