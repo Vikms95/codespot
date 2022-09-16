@@ -8,7 +8,9 @@ const StyledPost = styled.section`
   justify-content: center;
   align-items: center;
   
-  > p > pre  {
+  pre,
+  .highlight .javascript
+  {
     display: flex;
     flex-wrap:wrap;
     background-color: black;
