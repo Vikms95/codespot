@@ -26,7 +26,7 @@ export function Error() {
 		<ErrorContainer isActive={isActive}>
 			<h1>It seems like you are lost.</h1>
 			<h2>
-				Let us guide you by bringing you to our<a href='/#/'> Home</a>
+				Let us guide you by bringing you to our<a href='/'> Home</a>
 			</h2>
 			<ErrorImage src={errorImage} />
 		</ErrorContainer>

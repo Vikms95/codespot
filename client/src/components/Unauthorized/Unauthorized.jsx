@@ -28,8 +28,8 @@ export function Unauthorized() {
 			<h2>Want to share your ideas? </h2>
 			<h3>
 				{' '}
-				<a href='/#/register'>Register</a>
-				<span> or </span> <a href='/#/login'>Login</a>{' '}
+				<a href='/register'>Register</a>
+				<span> or </span> <a href='/login'>Login</a>{' '}
 			</h3>
 			<UnauthorizedImage src={unauthorizedImage} />
 		</UnauthorizedContainer>

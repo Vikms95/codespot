@@ -55,7 +55,7 @@ export function LoginForm(props) {
 
 		if (getFromStorage('postToRedirect')) {
 			const postid = getFromStorage('postToRedirect');
-			return navigate(`/${postid}`);
+			return navigate(`/posts/${postid}`);
 		}
 
 		return navigate('/dashboard');
