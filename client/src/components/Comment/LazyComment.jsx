@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNearScreen } from '../../hooks/useNearScreen';
-
 import { StyledComment } from './_styles.js';
 
 const Comment = React.lazy(() => import('./Comment'));

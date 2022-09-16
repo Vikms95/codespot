@@ -44,16 +44,8 @@ const StyledLabel = styled(Label)`
 `;
 
 const LoginButton = styled(Button)`
-	border-radius: 50px;
-	font-weight: bolder;
 	padding: 0.6em clamp(1.5em, 3vw, 4em);
 	font-size: clamp(16px, 4.5vw, 1em);
-
-	background-color: ${props => props.disabled && 'grey'};
-	color: ${props => props.disabled && 'white'};
-	&:hover {
-		${props => props.disabled && 'filter: none; cursor: default;'}
-	}
 `;
 
 const InputHeader = styled.div`
@@ -193,12 +185,6 @@ const CheckBox = styled.input`
 const FormButton = styled(Button)`
 	width: 10em;
 	margin-left: 4em;
-
-	background-color: ${props => props.disabled && 'grey'};
-	color: ${props => props.disabled && 'white'};
-	&:hover {
-		${props => props.disabled && 'filter: none; cursor:default;'}
-	}
 `;
 
 const BottomRight = styled.div`
@@ -265,12 +251,6 @@ const CommentFormButton = styled(Button)`
 
 	&:active ${StyledCommentForm} {
 		outline: 1px solid #6649b8;
-	}
-
-	background-color: ${props => props.disabled && 'grey'};
-	color: ${props => props.disabled && 'white'};
-	&:hover {
-		${props => props.disabled && 'filter: none; cursor:default;'}
 	}
 `;
 

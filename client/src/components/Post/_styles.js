@@ -16,7 +16,24 @@ const StyledPost = styled.section`
 		color: white;
 		padding: 1em;
 		border-radius: 5px;
-		overflow: hidden;
+		overflow: scroll;
+	}
+
+  pre::-webkit-scrollbar,
+	.highlight .javascript::-webkit-scrollbar {
+		width: 0.75rem;
+	}
+
+	pre::-webkit-scrollbar-track,
+  .highlight .javascript {
+		background: black;
+		border-radius: 10px;
+	}
+
+	pre::-webkit-scrollbar-thumb,
+  .highlight .javascript::-webkit-scrollbar-thumb {
+		background: #6649b8;
+		border-radius: 10px;
 	}
 
 	@media screen and(max-width:600px) {
