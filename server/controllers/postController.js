@@ -29,7 +29,7 @@ const createPost = (req, res, next) => {
     text,
     public: isPublic,
     timestamp,
-    image: req.file?.filename || ''
+    image: req.file.filename || ''
   })
 
   post.save(function (err) {

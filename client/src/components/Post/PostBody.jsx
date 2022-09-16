@@ -9,31 +9,7 @@ import { getImage, getPosts } from '../../services/post';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { usePostsContext } from '../../context/PostsContext';
 import { useFetch } from '../../hooks/useFetch';
-
-const Title = styled.h1`
-	font-size: 4em;
-`;
-const Image = styled.img`
-	max-width: 100%;
-	max-height: 100rem;
-	align-self: center;
-	margin-bottom: 3em;
-`;
-
-const Text = styled.p`
-	font-size: 1.5em;
-	margin-bottom: 5em;
-	display: flex;
-	flex-direction: column;
-	text-align: justify;
-	max-width: 70ch;
-`;
-
-const LoginLinkText = styled.div`
-	display: flex;
-	column-gap: 2em;
-	font-weight: 800;
-`;
+import { Title, Image, Text, LoginLinkText } from './_styles';
 
 export function PostBody(props) {
 	const { postid, setComments, handleCommentSubmit, setPosts } = props;

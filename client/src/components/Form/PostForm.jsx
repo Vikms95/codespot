@@ -112,8 +112,9 @@ export function PostForm(props) {
 					init={{
 						height: 600,
 						width: 1200,
-						menubar: true,
 						elementpath: false,
+						plugins: 'code',
+						menubar: true,
 					}}
 					apiKey='k1kgs8qmzd0isvug3s4btubgrps7yutyhiy7jbsi038go8sq'
 					name='html'

@@ -11,15 +11,7 @@ import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
 import { AuthContext } from '../../context/AuthContext';
 import { setToStorage } from '../../utils/setToStorage';
-
-const StyledPost = styled.section`
-	margin: 0 5em 5em 5em;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`;
-
-const CommentsTitle = styled.h1``;
+import { StyledPost, CommentsTitle } from './_styles';
 
 export function Post(props) {
 	const { setPosts } = props;
