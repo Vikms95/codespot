@@ -1,4 +1,4 @@
-# PROJECT NAME
+# Codespot
 
 # 👉 [LIVE PREVIEW](https://codespot.vercel.app/) 👈
 
