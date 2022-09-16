@@ -377,6 +377,8 @@ https://dashboard.render.com/ -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
 
+<!-- - Adjusts posts layout to 1920 x 1080 -->
+
 - Documentation
 
 

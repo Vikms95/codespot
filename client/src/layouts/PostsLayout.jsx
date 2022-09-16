@@ -11,7 +11,7 @@ const StyledPostsLayout = styled.section`
 	transition: opacity 0.5s, visibility 0.5s linear;
 
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(2.2rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
 
 	grid-template-rows: ${props =>
 		props.section === 'home'
@@ -25,7 +25,7 @@ const StyledPostsLayout = styled.section`
 						:nth-child(1) {
 							grid-column: 1 / 8;
 							min-height: 40rem;
-              max-width: 50rem;
+              max-width: 55rem;
 
 							& > article > a > img {
 								height: 25rem;
@@ -39,7 +39,7 @@ const StyledPostsLayout = styled.section`
 						:nth-child(2) {
               grid-column: 8 / 13;
 							min-height: 40rem;
-              max-width: 35rem;
+              max-width: 40rem;
 
 							& > article > a > img {
                 height: 25rem;
