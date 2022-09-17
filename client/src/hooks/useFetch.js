@@ -13,15 +13,20 @@ export const useFetch = (fetcher, args, dependencies = '') => {
 		try {
 			const response = await fetcher(...args);
 			setData(response);
+      setLoading(false);
+      return response
+
 		} catch (err) {
 			const formattedError = formatError(err);
 			setError(formattedError);
+      setLoading(false);
 		}
-		setLoading(false);
 	};
 
 	useEffect(() => {
-		commitFetch(args);
+    if(dependencies){
+      commitFetch(args);
+    }
 	}, [...dependencies]);
 
 	return [

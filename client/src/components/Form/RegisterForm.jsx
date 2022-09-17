@@ -33,7 +33,7 @@ export function RegisterForm() {
 
 	// Make it only trigger when handleSubmit is pressed?
 	// Otherwise will trigger each time the component is rendered
-	const [{ loading, error }, commitFetch] = useFetch(createUser, [
+	const [{ data, loading, error }, commitFetch] = useFetch(createUser, [
 		username,
 		password,
 		password2,
@@ -42,8 +42,8 @@ export function RegisterForm() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		const data = await commitFetch();
-		if (!data) return;
+		const isSuccess = await commitFetch();
+		if (!isSuccess) return;
 
 		return navigate('/login');
 	};

@@ -397,6 +397,7 @@ https://dashboard.render.com/ -->
 - Make styled-components share more properties between components
 
 - Refactor useFetch to return a function to be used outside of the hook which fetches the data
-  :tested on register, user is being created - pending:
-  :show spinner while loading
-  :errors being received and handled
+  <!-- :tested on register, user is being created - pending: -->
+  <!-- :show spinner while loading -->
+  <!-- :errors being received and handled -->
+  :make the hook not load on first re-render, only when submit is triggered
