@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
 import { PostBody } from './PostBody';
 import { useParams } from 'react-router-dom';
 import { getComments, createComment } from '../../services/comment';
@@ -24,6 +23,7 @@ export function Post(props) {
 		[]
 	);
 
+	const [{ commitFetch }] = useFetch(createComment);
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	useEffect(() => {
@@ -43,7 +43,7 @@ export function Post(props) {
 	) => {
 		e.preventDefault();
 
-		const comment = await createComment(text, postid, userid, parentid);
+		const comment = await commitFetch([text, postid, userid, parentid]);
 		if (!comment) return;
 
 		setComments(prevComments => [...prevComments, comment]);

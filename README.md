@@ -401,5 +401,8 @@ https://dashboard.render.com/ -->
   <!-- :show spinner while loading -->
   <!-- :errors being received and handled -->
   <!-- :make the hook not load on first re-render, only when submit is triggered -->
-  
+  :how to make commitToFetch to have the ability to change its arguments
+    :trying to implement it on Post component
+      <!-- !:Post.jsx:46 Uncaught (in promise) TypeError: commitFetch is not a function at handleCommentSubmit (Post.jsx:46:1) -->
+
 - Handle postController error responses
