@@ -197,9 +197,9 @@ const StyledFaCheck = styled(FaCheck)`
 `;
 
 const ServerErrorDisplay = styled.div`
-	color: red;
+	color: ${props => (props.serverError ? 'red' : 'transparent')};
 	opacity: ${props => (props.serverError ? '1' : '0')};
-	transition: opacity 1s ease-out;
+	transition: opacity .3s ease-out;
 `;
 const StyledCommentForm = styled.form`
 	position: relative;

@@ -65,6 +65,7 @@ npm start
 3. Add favicon
 4. Upload images in DB instead of Backend 
   https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
+5. Show a spinner on animation when a button that triggers a query is pressed
 
 
 <!-- Notes -->
@@ -321,7 +322,7 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- :add client side form validation -->
 <!-- :if early return is triggered, alert with frontend validation to the user that the form is not correct -->
 <!-- :avoid server from crashing when an error is thrown -->
-<!-- !:handle Express sending proper error messages to the frontend
+<!-- :handle Express sending proper error messages to the frontend
 :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs -->
 
 

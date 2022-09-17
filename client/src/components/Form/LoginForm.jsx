@@ -11,6 +11,7 @@ import { loginVal } from '../../data/validationValues';
 import { useValidation } from '../../hooks/useValidation';
 import loginImage from '../../assets/login-image.webp';
 import { getFromStorage } from '../../utils/getFromStorage';
+import { Spinner } from '../../style/Spinner';
 
 import {
 	UserFormContainer,
@@ -108,8 +109,9 @@ export function LoginForm(props) {
 						{serverError || 'No error'}
 					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
-						{' '}
-						Login{' '}
+						{/* {' '} */}
+						{/* Login */}
+						<Spinner></Spinner>
 					</LoginButton>
 				</UserForm>
 			</UserFormContainer>

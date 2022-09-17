@@ -6,6 +6,7 @@ import { createUser } from '../../services/user';
 import { UserFormLayout } from '../../layouts/UserFormLayout';
 import { useValidation } from '../../hooks/useValidation';
 import { registerVal } from '../../data/validationValues';
+import { Spinner } from '../../style/Spinner';
 import registerImage from '../../assets/register-image.webp';
 
 import {
@@ -29,6 +30,7 @@ export function RegisterForm() {
 
 	const { formData, handleChange, handleBlur } = useForm(registerFields);
 	const { isFormValid, shouldMarkErr } = useValidation(registerVal, formData);
+	const { isLoading, setIsLoading } = useState(false);
 	const { username, password, password2 } = formData;
 
 	const handleSubmit = async e => {
@@ -36,12 +38,16 @@ export function RegisterForm() {
 		setServerError('');
 
 		let data;
+
 		try {
 			data = await createUser(username, password, password2);
+			// End animation here
 		} catch (err) {
 			const message = err.message.split(':')[1];
 			setServerError(message);
 		}
+
+		// Start spinning animation on button
 
 		if (!data) return;
 
@@ -113,7 +119,8 @@ export function RegisterForm() {
 					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
 						{' '}
-						Register{' '}
+						Register
+						{/* <Spinner></Spinner> */}
 					</LoginButton>
 				</UserForm>
 			</UserFormContainer>
