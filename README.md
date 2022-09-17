@@ -2,10 +2,10 @@
 
 # 👉 [LIVE PREVIEW](https://codespot.vercel.app/) 👈
 
-![alt text](client/src/assets/app-demo.gif?raw=true "blog api demo")
-=======
+# ![alt text](client/src/assets/app-demo.gif?raw=true "blog api demo")
 
 ## Description
+
 Shared blog with ability to create your own user and share your articles with the rest of the users. Users can comment on each others articles and comments. Text editor that allows using several fonts, upload images and even embed code. Enforces user/author permissions through protected routes on the frontend and authorized routes on the backend.
 
 ## Getting started
@@ -24,7 +24,7 @@ npm start
 3. Managing Authentication and Authorization with JWT
 4. Manage all CRUD operations with MongoDB and Mongoose
 5. Make endpoint requests with Postman
-6. Create a nested comment system between users 
+6. Create a nested comment system between users
 7. Modularize React logic by creating my owns custom hooks
 8. Implement optimization techniques in the frontend to improve user experience, such as the useMemo hook and the IntersectionObserver API
 9. Use the styled-components library to modularize the CSS in JS
@@ -38,7 +38,7 @@ npm start
 5. styled-components
 6. TinyMCE
 
-## Challenges I faced 
+## Challenges I faced
 
 1. Sending token to the backend from the frontend component to verify that the token is valid
 2. Checking the token on every route to see if the user has access to the protected route
@@ -63,13 +63,12 @@ npm start
 1. Give UI a more professional look
 2. Improve loading image times on production
 3. Add favicon
-4. Upload images in DB instead of Backend 
-  https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
+4. Upload images in DB instead of Backend
+   https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
 5. Show a spinner on animation when a button that triggers a query is pressed
 
-
 <!-- Notes -->
-<!-- 
+<!--
 - Collections
   - Users
   - Posts - hold all the posts with a id key of the author(user)
@@ -99,6 +98,7 @@ https://styled-components.com/docs/basics
 5. server verifies token and either lets user in or denies -->
 
 TODO
+
 <!-- -Create models -->
 <!-- - Create routes structure -->
 <!-- - Setup db with mongo and mongoose -->
@@ -112,8 +112,7 @@ TODO
   <!-- :figure out how to send token to the backend from Dashboard component to verify that the token is valid -->
   <!-- :implement useEffect getting the token on protected routes? -->
 
-
-<!-- 
+<!--
 - Give context to the app about the logged in user
   :The problem is that after logging in, the state is still not updated
   :Call setter from context before redirecting to the route -->
@@ -123,7 +122,6 @@ x - Can acces directly when logged in
 x - Can't access directly when token set manually
 x- Can't access directly when token is modified manually to an invalid one -->
 
-
 <!-- - /createpost is just a form where you will have to fill the required
   :implement functionality for a user to create a post -->
   <!-- :create a form webpage -->
@@ -132,7 +130,6 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :get user from jwt.verify payload -->
   <!-- :refactor context so it uses the userid? -->
 
-
 <!-- - /dashboard is where all your own posts are located -->
   <!-- /api/:userid/posts -->
   <!-- :implement functionality to fetch posts with your id by calling GET /api/:userid/posts? -->
@@ -140,7 +137,6 @@ x- Can't access directly when token is modified manually to an invalid one -->
   <!-- :you can make a post public and private, edit and delete from /dashboard -->
   <!-- <Dashboard/> -->
   <!-- :map all the fetched posts and pass the data as props to <Post/> -->
-
 
 <!-- - / will be where all the posts from all the users are shown -->
   <!-- :implement functionality to fetch for all the posts no matter the user -->
@@ -182,7 +178,6 @@ x- Can't access directly when token is modified manually to an invalid one -->
 <!-- - Setup TinyMCE
   :contents of the Editor are being passed as undefined -->
 
-
 <!-- - Setup multer to let the user upload post image value
 https://www.npmjs.com/package/multer
 https://github.com/expressjs/multer -->
@@ -208,7 +203,7 @@ TRY THIS:
   :post request errors because I'm trying to access req.file inside the middleware
   :file won't print on the multer option callbacks
   :now file is not saved T_T
-  :before deleting postController file it wassaving? maybe review the createPost on postController? --> 
+  :before deleting postController file it wassaving? maybe review the createPost on postController? -->
   <!-- :make the image appear on each posts based on the files saved on the backend and the path saved on the database -->
   <!-- :how to retrieve image from the app.use(static..) ?? do i need that or another endpoint? -->
   <!-- https://expressjs.com/en/starter/static-files.html -->
@@ -238,8 +233,8 @@ TRY THIS:
   :https://reactjs.org/docs/hooks-custom.html
 
 <!-- - Try to abstract context with this 
-https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/ --> 
-<!-- - Make not authorized page --> 
+https://www.reddit.com/r/reactjs/comments/ww2azd/what_hooks_do_you_use_on_a_regular_basis/ -->
+<!-- - Make not authorized page -->
 <!-- - Style Navbar > make it a slide navbar with only icons at the beginning and button to show names
 https://dribbble.com/shots/16265164-Side-Menu-Design
 https://www.youtube.com/watch?v=biOMz4puGt8 -->
@@ -256,11 +251,10 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :make comment form appear only if a user is logged in, show login link instead -->
   <!-- :style comment form(lookup dribble) -->
   <!-- :conditionally render icons on the comment, if logged user id is not equals to the comment user, do not show edit and delete, if no user at all, do not show reply button -->
-<!-- 
+<!--
   :implement functionality to reply comments(parent, child relations)
     https://www.youtube.com/watch?v=lyNetvEfvT0&t=6687s
     https://www.youtube.com/watch?v=sjAeLwuezxo -->
-
 
   <!-- :when a comment with children is deleted, delete all the children too on state  
     :children on the database still exist, is it needed to delete them?
@@ -298,9 +292,9 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
   <!-- :if just one comment from the deleted parent gets deleted, all of them are deleted even if there is remaining ones
   :that happens because when a parent is deleted, we check just check if the parent is deleted with children, we dont check if there is still childcomments -->
 
-<!-- 
+<!--
   >REPLY<
-  :(replies is the same as comment but including the parentid instead) 
+  :(replies is the same as comment but including the parentid instead)
   :when reply button is clicked, display a CommentForm right below the comment to reply
     :that reply button has attached the id from the comment as props, so the comment form will have the parentid on state
 
@@ -316,7 +310,6 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- :style comment list
   https://dribbble.com/shots/16102470-Help-Center-Existing-Tickets-Exploration/attachments/7953319?mode=media -->
 
-
 <!-- - Implement error handling on API calls and async operations -->
 <!-- :early return on whatever function that will call a service and there is no parameters -->
 <!-- :add client side form validation -->
@@ -324,7 +317,6 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 <!-- :avoid server from crashing when an error is thrown -->
 <!-- :handle Express sending proper error messages to the frontend
 :handle React not doing any other process if the data is incorrect or not present, and redirecting to the Error  page if needed, with useEffect or show error messages within the inputs -->
-
 
 <!-- - Fix Post showing undefined if you logout while a Post is displayed
 :posts context is null when user is not logged in? -->
@@ -345,21 +337,20 @@ https://www.youtube.com/watch?v=biOMz4puGt8 -->
 
 <!-- - Style user managament forms -->
 
-<!-- 
+<!--
 - Create forbidden page and handle redirection when needed
 :if we get a Forbidden error, display the page? -->
 
 <!-- - Use relative time on comments
 https://www.youtube.com/watch?v=acemrBKuDqw -->
 
-
 <!-- - Implement redirecting to the post that was being read when logged in after cliking on the Login link from the post
-:if no user > 
+:if no user >
   :save the post id to local storage (as postToRedirect)
   :when logged in, if there is a postToRedirect in local storage, redirect to that url
   :when any post is rendered, if there is a postToRedirect, delete it -->
 
-<!-- - Fix error when logging out and within the Post route 
+<!-- - Fix error when logging out and within the Post route
 :post storage variable is getting undefined value when logging out
   :posts is empty when I log out
   :fixed by variable checking on usePost, but it might be because post variable only exists on PostBody? -->
@@ -407,5 +398,5 @@ https://dashboard.render.com/ -->
 
 - Refactor useFetch to return a function to be used outside of the hook which fetches the data
   :tested on register, user is being created - pending:
-    :show spinner while loading
-    :errors being received and handled
+  :show spinner while loading
+  :errors being received and handled

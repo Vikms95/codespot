@@ -1,16 +1,17 @@
 import { userCreateOptions } from '../data/requestParams';
 
 const createUser = async (username, password, password2) => {
-  console.log("before check!")
 	if (!username || !password || !password2) return;
-  console.log("there are values!")
+
+	let data;
+
 	try {
 		const response = await fetch(
 			'/api/user',
 			userCreateOptions('POST', { username, password, password2 })
 		);
 
-		const data = await response.json();
+		data = await response.json();
 
 		if (response.ok) {
 			return data;
@@ -19,7 +20,7 @@ const createUser = async (username, password, password2) => {
 		throw new Error(data.message);
 	} catch (err) {
 		console.error(err);
-		throw new Error(err);
+		return Promise.reject(err);
 	}
 };
 

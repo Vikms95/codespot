@@ -109,9 +109,9 @@ export function LoginForm(props) {
 						{serverError || 'No error'}
 					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
-						{/* {' '} */}
-						{/* Login */}
-						<Spinner></Spinner>
+						{' '}
+						Login
+						{/* <Spinner></Spinner> */}
 					</LoginButton>
 				</UserForm>
 			</UserFormContainer>

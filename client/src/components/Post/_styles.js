@@ -19,19 +19,19 @@ const StyledPost = styled.section`
 		overflow: scroll;
 	}
 
-  pre::-webkit-scrollbar,
+	pre::-webkit-scrollbar,
 	.highlight .javascript::-webkit-scrollbar {
 		width: 0.75rem;
 	}
 
 	pre::-webkit-scrollbar-track,
-  .highlight .javascript {
+	.highlight .javascript {
 		background: black;
 		border-radius: 10px;
 	}
 
 	pre::-webkit-scrollbar-thumb,
-  .highlight .javascript::-webkit-scrollbar-thumb {
+	.highlight .javascript::-webkit-scrollbar-thumb {
 		background: #6649b8;
 		border-radius: 10px;
 	}

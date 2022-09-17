@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
-import { useFadeIn } from '../../hooks/useFadeIn';
-import { registerFields } from '../../data/formFields';
-import { createUser } from '../../services/user';
-import { UserFormLayout } from '../../layouts/UserFormLayout';
 import { useValidation } from '../../hooks/useValidation';
+import { useFadeIn } from '../../hooks/useFadeIn';
+import { useFetch } from '../../hooks/useFetch';
+import { createUser } from '../../services/user';
+import { registerFields } from '../../data/formFields';
 import { registerVal } from '../../data/validationValues';
+import { UserFormLayout } from '../../layouts/UserFormLayout';
 import { Spinner } from '../../style/Spinner';
 import registerImage from '../../assets/register-image.webp';
 
@@ -21,13 +22,10 @@ import {
 	HeroTitle,
 	ServerErrorDisplay,
 } from './_styles';
-import { useState } from 'react';
-import { useFetch } from '../../hooks/useFetch';
 
 export function RegisterForm() {
 	const navigate = useNavigate();
 	const isActive = useFadeIn();
-	const [serverError, setServerError] = useState('');
 
 	const { formData, handleChange, handleBlur } = useForm(registerFields);
 	const { isFormValid, shouldMarkErr } = useValidation(registerVal, formData);
@@ -35,7 +33,7 @@ export function RegisterForm() {
 
 	// Make it only trigger when handleSubmit is pressed?
 	// Otherwise will trigger each time the component is rendered
-	const [{ data, loading, error }, commitFetch] = useFetch(createUser, [
+	const [{ loading, error }, commitFetch] = useFetch(createUser, [
 		username,
 		password,
 		password2,
@@ -43,20 +41,8 @@ export function RegisterForm() {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		setServerError('');
 
-		let data;
-		console.log('allo');
-		try {
-			data = await commitFetch();
-			// End animation here
-		} catch (err) {
-			const message = err.message.split(':')[1];
-			setServerError(message);
-		}
-
-		// Start spinning animation on button
-
+		const data = await commitFetch();
 		if (!data) return;
 
 		return navigate('/login');
@@ -122,13 +108,11 @@ export function RegisterForm() {
 						onChange={handleChange}
 						shouldMarkError={shouldMarkErr('password2')}
 					/>
-					<ServerErrorDisplay serverError={serverError}>
-						{serverError || 'No error'}
+					<ServerErrorDisplay serverError={error}>
+						{error || 'No error'}
 					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
-						{' '}
-						Register
-						{/* <Spinner></Spinner> */}
+						{loading ? <Spinner></Spinner> : 'Register'}
 					</LoginButton>
 				</UserForm>
 			</UserFormContainer>

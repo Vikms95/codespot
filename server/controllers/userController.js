@@ -15,11 +15,9 @@ const createUser = async (req, res, next) => {
   const userExist = await User.findOne({ username });
 
   if (userExist) {
-    return res
-      .status(409)
-      .json({
-        message: "Username already exists, please choose a different one.",
-      });
+    return res.status(409).json({
+      message: "Username already exists, please choose a different one.",
+    });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -78,11 +76,9 @@ const retrieveToken = (req, res, next) => {
     req.token = JSON.parse(bearerToken);
     next();
   } else {
-    return res
-      .status(400)
-      .json({
-        message: "Something went wrong with validation, please try again.",
-      });
+    return res.status(400).json({
+      message: "Something went wrong with validation, please try again.",
+    });
   }
 };
 
