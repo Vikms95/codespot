@@ -397,7 +397,7 @@ https://dashboard.render.com/ -->
 
 <!-- - Modularize all styled-components to separate files -->
 
-- Fix 'no error' showing up when an error is resolved in a form and then submitted again
+<!-- - Fix 'no error' showing up when an error is resolved in a form and then submitted again -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
   :Form can be composed from a root Form component that holds the shared JSX and State
@@ -405,3 +405,7 @@ https://dashboard.render.com/ -->
 
 - Make styled-components share more properties between components
 
+- Refactor useFetch to return a function to be used outside of the hook which fetches the data
+  :tested on register, user is being created - pending:
+    :show spinner while loading
+    :errors being received and handled

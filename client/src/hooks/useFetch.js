@@ -5,24 +5,29 @@ export const useFetch = (fetcher, args, dependencies = '') => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState();
 
-	useEffect(() => {
-		setLoading(true);
+    // Do I need to pass in the arguments?
+  const commitFetch = async () => {
+    console.log(fetcher, args)
+    setError(false)
+    setLoading(true)
 
-		fetcher(args)
-			.then(res => {
-				setData(res);
-				setLoading(false);
-			})
-			.catch(err => {
-				setLoading(false);
-				setError(err);
-			});
+    try {
+      const res = await fetcher(...args)
+      setData(res)
+    }catch(err) {
+      setError(err)
+    }
+    setLoading(false)
+  }
+
+	useEffect(() => {
+    commitFetch(args)
 	}, [...dependencies]);
 
-	return {
+	return [{
 		data,
 		loading,
 		error,
-		setData,
-	};
+		setData
+	}, commitFetch];
 };

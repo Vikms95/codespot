@@ -22,6 +22,7 @@ import {
 	ServerErrorDisplay,
 } from './_styles';
 import { useState } from 'react';
+import { useFetch } from '../../hooks/useFetch';
 
 export function RegisterForm() {
 	const navigate = useNavigate();
@@ -30,17 +31,24 @@ export function RegisterForm() {
 
 	const { formData, handleChange, handleBlur } = useForm(registerFields);
 	const { isFormValid, shouldMarkErr } = useValidation(registerVal, formData);
-	const { isLoading, setIsLoading } = useState(false);
 	const { username, password, password2 } = formData;
+
+	// Make it only trigger when handleSubmit is pressed?
+	// Otherwise will trigger each time the component is rendered
+	const [{ data, loading, error }, commitFetch] = useFetch(createUser, [
+		username,
+		password,
+		password2,
+	]);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 		setServerError('');
 
 		let data;
-
+		console.log('allo');
 		try {
-			data = await createUser(username, password, password2);
+			data = await commitFetch();
 			// End animation here
 		} catch (err) {
 			const message = err.message.split(':')[1];

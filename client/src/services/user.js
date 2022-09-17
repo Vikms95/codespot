@@ -1,8 +1,9 @@
 import { userCreateOptions } from '../data/requestParams';
 
 const createUser = async (username, password, password2) => {
+  console.log("before check!")
 	if (!username || !password || !password2) return;
-
+  console.log("there are values!")
 	try {
 		const response = await fetch(
 			'/api/user',
