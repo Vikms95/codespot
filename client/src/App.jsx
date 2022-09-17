@@ -5,7 +5,6 @@ import {
 	BrowserRouter as Router,
 	Routes,
 	Route,
-	Redi,
 	Navigate,
 } from 'react-router-dom';
 
@@ -16,7 +15,6 @@ import { AuthContext } from './context/AuthContext';
 import { PostsContextProvider } from './context/PostsContext';
 
 import { Home } from './components/Home';
-import { Post } from './components/Post';
 import { Modal } from './components/Modal';
 import { Error } from './components/Error';
 import { Dashboard } from './components/Dashboard';
@@ -24,14 +22,14 @@ import { NavbarWithUser, NavbarWithGuest } from './components/Navbar';
 import { LoginForm, RegisterForm, PostForm } from './components/Form';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
+import PostProvider from './components/Post/PostProvider';
 
 function App() {
 	// Need to create state in app to pass it as value from the context provider?
 	const [user, setUser] = useState();
+	const [posts, setPosts] = useLocalStorage('posts', []);
 	const [lastClickedPostId, setLastClickedPostId] = useState('');
 	const [isModalActive, setIsModalActive] = useState(false);
-
-	const [posts, setPosts] = useLocalStorage('posts', []);
 
 	const authContext = { user, setUser };
 	return (
@@ -66,7 +64,7 @@ function App() {
 							<Route path='/register' element={<RegisterForm />} />
 							<Route
 								path='/posts/:postid'
-								element={<Post setPosts={setPosts} />}
+								element={<PostProvider setPosts={setPosts} />}
 							/>
 							<Route
 								path='/'

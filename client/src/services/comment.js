@@ -23,7 +23,7 @@ const getCommentsCount = async commentID => {
 
 const getComments = async postID => {
 	if (!postID) return;
-	console.log(postID);
+
 	try {
 		const response = await fetch(`/api/${postID}/comments`, getOptions);
 

@@ -390,6 +390,8 @@ https://dashboard.render.com/ -->
 <!-- - Fix 'no error' showing up when an error is resolved in a form and then submitted again -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
+  :Post > PostWithComments
+    :PostProvider not rendering the right component, rendering them in an alternate way
   :Form can be composed from a root Form component that holds the shared JSX and State
   :Turn Comment > Comment and CommentWithChildren
 
@@ -400,8 +402,7 @@ https://dashboard.render.com/ -->
   <!-- :show spinner while loading -->
   <!-- :errors being received and handled -->
   <!-- :make the hook not load on first re-render, only when submit is triggered -->
-  :how to make commitToFetch to have the ability to change its arguments
+  <!-- :how to make commitToFetch to have the ability to change its arguments
     :trying to implement it on Post component
-      <!-- !:Post.jsx:46 Uncaught (in promise) TypeError: commitFetch is not a function at handleCommentSubmit (Post.jsx:46:1) -->
 
 - Handle postController error responses

@@ -18,8 +18,8 @@ export function PostBody(props) {
 	const { postid } = useParams();
 	const { posts } = usePostsContext();
 	const post = usePost(postid, posts);
-
 	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
+
 	const { title, image, text } = post;
 
 	const textRef = useHtmlAsText(text);

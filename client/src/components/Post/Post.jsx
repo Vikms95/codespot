@@ -1,19 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getComments, createComment } from '../../services/comment';
-import { useDerivedComments } from '../../hooks/useDerivedComments';
-import { CommentsLayout } from '../../layouts/CommentsLayout';
-import { CommentsContextProvider } from '../../context/CommentsContext';
 import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
 import { AuthContext } from '../../context/AuthContext';
 import { setToStorage } from '../../utils/setToStorage';
 import { StyledPost } from './_styles';
+import { getComments, createComment } from '../../services/comment';
 import { PostBodyWithGuest, PostBodyWithUser } from './index';
 
 export function Post(props) {
-	const { setPosts } = props;
+	console.log('this is a post without children');
+	const { children, setPosts } = props;
 	const { postid } = useParams();
 	const { user } = useContext(AuthContext);
 
@@ -24,7 +22,6 @@ export function Post(props) {
 	);
 
 	const [{ data }, commitFetch] = useFetch(createComment);
-	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	useEffect(() => {
 		if (!user) {
@@ -63,15 +60,15 @@ export function Post(props) {
 				<PostBodyWithGuest comments={comments} setPosts={setPosts} />
 			)}
 
-			{comments?.length > 0 && (
-				<CommentsContextProvider value={comments}>
-					<CommentsLayout
-						comments={rootComments}
-						setComments={setComments}
-						getChildComments={getChildComments}
-						handleCommentSubmit={handleCommentSubmit}
-					/>
-				</CommentsContextProvider>
+			{children && (
+				<div>
+					{React.cloneElement(children, {
+						comments,
+						setPosts,
+						setComments,
+						handleCommentSubmit,
+					})}
+				</div>
 			)}
 		</StyledPost>
 	);
