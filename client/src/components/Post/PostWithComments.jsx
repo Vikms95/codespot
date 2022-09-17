@@ -8,7 +8,6 @@ import { CommentsContextProvider } from '../../context/CommentsContext';
 export function PostWithComments(props) {
 	const { comments, setPosts, setComments, handleCommentSubmit } = props;
 	const { rootComments, getChildComments } = useDerivedComments(comments);
-	console.log('this is a post with children');
 
 	return (
 		<CommentsContextProvider value={comments}>

@@ -11,14 +11,12 @@ function PostProvider({ setPosts }) {
 	const [{ data: commentsCount }] = useFetch(getCommentsCount, [postid], []);
 
 	if (typeof commentsCount !== 'undefined') {
-		console.log(commentsCount);
 		return (
 			<>
 				{commentsCount === 0 ? (
 					<Post setPosts={setPosts} />
 				) : (
 					<PostWithComments setPosts={setPosts} />
-					// <div>hi</div>
 				)}
 			</>
 		);

@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
+import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { AuthContext } from '../../context/AuthContext';
 import { setToStorage } from '../../utils/setToStorage';
 import { StyledPost } from './_styles';
@@ -10,8 +11,7 @@ import { getComments, createComment } from '../../services/comment';
 import { PostBodyWithGuest, PostBodyWithUser } from './index';
 
 export function Post(props) {
-	console.log('this is a post without children');
-	const { children, setPosts } = props;
+	const { setPosts } = props;
 	const { postid } = useParams();
 	const { user } = useContext(AuthContext);
 
@@ -21,7 +21,9 @@ export function Post(props) {
 		[]
 	);
 
-	const [{ data }, commitFetch] = useFetch(createComment);
+	const { rootComments, getChildComments } = useDerivedComments(comments);
+
+	const [, commitFetch] = useFetch(createComment);
 
 	useEffect(() => {
 		if (!user) {
@@ -60,16 +62,13 @@ export function Post(props) {
 				<PostBodyWithGuest comments={comments} setPosts={setPosts} />
 			)}
 
-			{children && (
-				<div>
-					{React.cloneElement(children, {
-						comments,
-						setPosts,
-						setComments,
-						handleCommentSubmit,
-					})}
-				</div>
-			)}
+			{props.children &&
+				React.cloneElement(props.children, {
+					comments,
+					setPosts,
+					setComments,
+					handleCommentSubmit,
+				})}
 		</StyledPost>
 	);
 }

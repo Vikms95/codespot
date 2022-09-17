@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { CommentForm } from '../Form/CommentForm';
+import { useParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { usePost } from '../../hooks/usePost';
 import { getPosts } from '../../services/post';

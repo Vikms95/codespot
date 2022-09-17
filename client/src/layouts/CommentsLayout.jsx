@@ -15,6 +15,7 @@ const StyledCommentsLayout = styled.section`
 export function CommentsLayout(props) {
 	const { comments, getChildComments, setComments, handleCommentSubmit } =
 		props;
+
 	return (
 		<StyledCommentsLayout>
 			{comments?.map(comment => {
@@ -29,7 +30,7 @@ export function CommentsLayout(props) {
 						getChildComments={getChildComments}
 						handleCommentSubmit={handleCommentSubmit}
 						isDeletedWithChildren={comment.isDeletedWithChildren}
-					></Comment>
+					/>
 				);
 			})}
 		</StyledCommentsLayout>
