@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { formatError } from '../utils/formatError';
 
-export const useFetch = (fetcher, args, dependencies = '') => {
+export const useFetch = (fetcher, args = [], dependencies = '') => {
 	const [data, setData] = useState();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState();

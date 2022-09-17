@@ -7,7 +7,7 @@ const getPosts = async () => {
 		const response = await fetch('/api/posts', getOptions);
 
 		const data = await response.json();
-
+    console.log(data)
 		return data;
 	} catch (err) {
 		return new Error(err);
