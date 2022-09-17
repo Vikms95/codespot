@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import { useFetch } from '../../hooks/useFetch';
 import { loginFields } from '../../data/formFields';
 import { loginUser } from '../../services/user';
 import { setToStorage } from '../../utils/setToStorage';
@@ -33,33 +34,35 @@ export function LoginForm(props) {
 
 	const { formData, handleChange, handleBlur } = useForm(loginFields);
 	const { isFormValid, shouldMarkErr } = useValidation(loginVal, formData);
-	const [serverError, setServerError] = useState('');
 	const { username, password } = formData;
+	const [{ error, loading }, commitFetch] = useFetch(loginUser, [
+		username,
+		password,
+	]);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		setServerError('');
 
-		let data;
-
-		try {
-			data = await loginUser(username, password);
-		} catch (err) {
-			const message = err.message.split(':')[1];
-			setServerError(message);
-		}
-
+		const data = await commitFetch();
 		if (!data) return;
 
 		setUser(data.user);
 		setToStorage('token', data.token);
 
-		if (getFromStorage('postToRedirect')) {
-			const postid = getFromStorage('postToRedirect');
-			return navigate(`/posts/${postid}`);
+		if (hasPostToRedirect()) {
+			return redirectToPost();
 		}
 
 		return navigate('/dashboard');
+	};
+
+	const redirectToPost = () => {
+		const postid = getFromStorage('postToRedirect');
+		return navigate(`/posts/${postid}`);
+	};
+
+	const hasPostToRedirect = () => {
+		return getFromStorage('postToRedirect');
 	};
 
 	return (
@@ -105,13 +108,11 @@ export function LoginForm(props) {
 						onChange={handleChange}
 						shouldMarkError={shouldMarkErr('password')}
 					/>
-					<ServerErrorDisplay serverError={serverError}>
-						{serverError || 'No error'}
+					<ServerErrorDisplay serverError={error}>
+						{error || 'No error'}
 					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
-						{' '}
-						Login
-						{/* <Spinner></Spinner> */}
+						{loading ? <Spinner></Spinner> : 'Login'}
 					</LoginButton>
 				</UserForm>
 			</UserFormContainer>

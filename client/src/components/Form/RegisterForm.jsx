@@ -31,9 +31,7 @@ export function RegisterForm() {
 	const { isFormValid, shouldMarkErr } = useValidation(registerVal, formData);
 	const { username, password, password2 } = formData;
 
-	// Make it only trigger when handleSubmit is pressed?
-	// Otherwise will trigger each time the component is rendered
-	const [{ data, loading, error }, commitFetch] = useFetch(createUser, [
+	const [{ loading, error }, commitFetch] = useFetch(createUser, [
 		username,
 		password,
 		password2,
@@ -42,8 +40,8 @@ export function RegisterForm() {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
-		const isSuccess = await commitFetch();
-		if (!isSuccess) return;
+		const data = await commitFetch();
+		if (!data) return;
 
 		return navigate('/login');
 	};
@@ -112,7 +110,7 @@ export function RegisterForm() {
 						{error || 'No error'}
 					</ServerErrorDisplay>
 					<LoginButton type='submit' disabled={isFormValid()}>
-						{loading ? <Spinner></Spinner> : 'Register'}
+						{loading ? <Spinner /> : 'Register'}
 					</LoginButton>
 				</UserForm>
 			</UserFormContainer>

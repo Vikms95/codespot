@@ -42,7 +42,7 @@ const loginUser = async (username, password) => {
 		throw new Error(data.message);
 	} catch (err) {
 		console.error(err);
-		throw new Error(err);
+		return Promise.reject(err);
 	}
 };
 
