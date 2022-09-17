@@ -391,7 +391,10 @@ https://dashboard.render.com/ -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
   :Post > PostWithComments
-    :PostProvider not rendering the right component, rendering them in an alternate way
+    <!-- :is the conditional rendering on PostProvider good? -->
+      <!-- :conditional rendering seems correct -->
+    :cloneElement is not passing in the props specified within the Post render
+
   :Form can be composed from a root Form component that holds the shared JSX and State
   :Turn Comment > Comment and CommentWithChildren
 

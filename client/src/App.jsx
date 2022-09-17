@@ -22,7 +22,7 @@ import { NavbarWithUser, NavbarWithGuest } from './components/Navbar';
 import { LoginForm, RegisterForm, PostForm } from './components/Form';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
-import PostProvider from './components/Post/PostProvider';
+import PostProvider from './containers/PostWrapper';
 
 function App() {
 	// Need to create state in app to pass it as value from the context provider?

@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../../hooks/useFetch';
-import { getCommentsCount } from '../../services/comment';
-import { PostWithComments } from './PostWithComments';
-import { Post } from './Post';
+import { useFetch } from '../hooks/useFetch';
+import { getCommentsCount } from '../services/comment';
+import { PostWithComments } from '../components/Post/PostWithComments';
+import { Post } from '../components/Post/Post';
 
 function PostProvider({ setPosts }) {
 	const { postid } = useParams();
@@ -18,6 +18,7 @@ function PostProvider({ setPosts }) {
 					<Post setPosts={setPosts} />
 				) : (
 					<PostWithComments setPosts={setPosts} />
+					// <div>hi</div>
 				)}
 			</>
 		);

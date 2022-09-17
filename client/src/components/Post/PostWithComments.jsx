@@ -11,15 +11,15 @@ export function PostWithComments(props) {
 	console.log('this is a post with children');
 
 	return (
-		<Post setPosts={setPosts}>
-			<CommentsContextProvider value={comments}>
+		<CommentsContextProvider value={comments}>
+			<Post setPosts={setPosts}>
 				<CommentsLayout
 					comments={rootComments}
 					setComments={setComments}
 					getChildComments={getChildComments}
 					handleCommentSubmit={handleCommentSubmit}
 				/>
-			</CommentsContextProvider>
-		</Post>
+			</Post>
+		</CommentsContextProvider>
 	);
 }
