@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
+import React from 'react';
 
 import defaultPostImage from '../../assets/default-image.jpg';
-import { AuthContext } from '../../context/AuthContext';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { useFetch } from '../../hooks/useFetch';
 import { getImage } from '../../services/post';
@@ -38,11 +37,8 @@ export default function PostPreview(props) {
 		children,
 	} = props;
 
-	const { user: currentUserId } = useContext(AuthContext);
-
-	const { data: imageSrc, loading } = useFetch(getImage, image);
-
-	const { data: commentsCount } = useFetch(getCommentsCount, id);
+	const [{ data: imageSrc, loading }] = useFetch(getImage, [image], []);
+	const [{ data: commentsCount }] = useFetch(getCommentsCount, [id], []);
 	const textRef = useHtmlAsText(text);
 
 	return (

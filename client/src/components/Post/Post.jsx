@@ -18,11 +18,11 @@ export function Post(props) {
 	const { postid } = useParams();
 	const { user } = useContext(AuthContext);
 
-	const {
-		data: comments,
-		setData: setComments,
-		error,
-	} = useFetch(getComments, postid);
+	const [{ data: comments, setData: setComments }] = useFetch(
+		getComments,
+		[postid],
+		[]
+	);
 
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
