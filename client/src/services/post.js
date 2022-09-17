@@ -7,24 +7,25 @@ const getPosts = async () => {
 		const response = await fetch('/api/posts', getOptions);
 
 		const data = await response.json();
-    console.log(data)
-		return data;
+
+    return data;
+
 	} catch (err) {
-		return new Error(err);
+		return Promise.reject(err);
 	}
 };
 
 const getUserPosts = async userid => {
 	if (!userid) return;
-
 	try {
 		const response = await fetch(`/api/${userid}/posts`, getOptions);
 
 		const data = await response.json();
-
+    console.log(data)
 		return data;
+
 	} catch (err) {
-		return new Error(err);
+		return Promise.reject(err);
 	}
 };
 

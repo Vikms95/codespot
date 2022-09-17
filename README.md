@@ -400,4 +400,6 @@ https://dashboard.render.com/ -->
   <!-- :tested on register, user is being created - pending: -->
   <!-- :show spinner while loading -->
   <!-- :errors being received and handled -->
-  :make the hook not load on first re-render, only when submit is triggered
+  <!-- :make the hook not load on first re-render, only when submit is triggered -->
+  
+- Handle postController error responses

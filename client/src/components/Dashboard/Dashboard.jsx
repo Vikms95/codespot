@@ -14,7 +14,7 @@ export function Dashboard(props) {
 
 	const { user } = useContext(AuthContext);
 	const { posts } = usePostsContext();
-	const { data, error } = useFetch(getUserPosts, user);
+	const [{ data }] = useFetch(getUserPosts, [user], [user]);
 
 	useEffect(() => {
 		setPosts(data?.reverse());
