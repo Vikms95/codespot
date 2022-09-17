@@ -1,55 +1,43 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { CommentForm } from '../Form/CommentForm';
 import { useAuth } from '../../hooks/useAuth';
 import { usePost } from '../../hooks/usePost';
-import { getImage, getPosts } from '../../services/post';
+import { getPosts } from '../../services/post';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
 import { usePostsContext } from '../../context/PostsContext';
 import { useFetch } from '../../hooks/useFetch';
-import { Title, Image, Text, LoginLinkText } from './_styles';
+import { Text, CommentsTitle } from './_styles';
+import { PostHero } from './PostHero';
 
 export function PostBody(props) {
-	const { postid, setComments, handleCommentSubmit, setPosts } = props;
-	const { user } = useAuth();
-	const { data, error: postError } = useFetch(getPosts);
+	const { children, comments, setPosts } = props;
 
+	const { user } = useAuth();
+	const { postid } = useParams();
 	const { posts } = usePostsContext();
 	const post = usePost(postid, posts);
-	const { title, image, text } = post;
 
-	const { data: imageSrc, error: imageError } = useFetch(getImage, image, [
-		post,
-	]);
+	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
+	const { title, image, text } = post;
 
 	const textRef = useHtmlAsText(text);
 
 	useEffect(() => {
-		setPosts(data);
-	}, [data]);
+		setPosts(fetchedPosts);
+	}, [fetchedPosts]);
 
 	return (
 		<>
-			<Title>{title && title}</Title>
+			<PostHero image={image} post={post} title={title} />
+			<Text ref={textRef}></Text>
 
-			{imageSrc?.ok && <Image src={imageSrc?.url} alt='post-portrait' />}
+			{children}
 
-			<Text ref={textRef && textRef}></Text>
-
-			{user ? (
-				<CommentForm
-					postid={postid}
-					isCommentForm={false}
-					setComments={setComments}
-					handleCommentSubmit={handleCommentSubmit}
-				/>
-			) : (
-				<LoginLinkText>
-					<span>Want to leave your comment?</span>{' '}
-					<Link to='/login'>Login</Link>
-				</LoginLinkText>
-			)}
+			<CommentsTitle>
+				{comments?.length > 0 ? 'Comments' : 'There are no comments...'}
+			</CommentsTitle>
 		</>
 	);
 }

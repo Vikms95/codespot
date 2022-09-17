@@ -65,7 +65,6 @@ npm start
 3. Add favicon
 4. Upload images in DB instead of Backend
    https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
-5. Show a spinner on animation when a button that triggers a query is pressed
 
 <!-- Notes -->
 <!--

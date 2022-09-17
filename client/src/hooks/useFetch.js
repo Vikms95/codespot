@@ -2,13 +2,22 @@ import { useEffect, useState } from 'react';
 import { formatError } from '../utils/formatError';
 
 export const useFetch = (fetcher, initialArgs = '', dependencies = '') => {
-	const [data, setData] = useState();
+  const [data, setData] = useState();
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(false);
-
+  
+  /**
+   * 
+   * @param {Array} args
+   * Argument that takes the commit fetch after the hook is called. If not present, the initial arguments
+   * present in closure will be called instead. 
+   * @returns {Promise}
+   * Response value validating the AJAX call success
+   */
 	const commitFetch = async (args) => {
 		setError(false);
 		setLoading(true);
+
 
 		try {
 			const response = await fetcher(...initialArgs || args);

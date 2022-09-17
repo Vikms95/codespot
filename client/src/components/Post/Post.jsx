@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect } from 'react';
-import { PostBody } from './PostBody';
 import { useParams } from 'react-router-dom';
 import { getComments, createComment } from '../../services/comment';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
@@ -10,7 +9,8 @@ import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
 import { AuthContext } from '../../context/AuthContext';
 import { setToStorage } from '../../utils/setToStorage';
-import { StyledPost, CommentsTitle } from './_styles';
+import { StyledPost } from './_styles';
+import { PostBodyWithGuest, PostBodyWithUser } from './index';
 
 export function Post(props) {
 	const { setPosts } = props;
@@ -23,7 +23,7 @@ export function Post(props) {
 		[]
 	);
 
-	const [{ commitFetch }] = useFetch(createComment);
+	const [{ data }, commitFetch] = useFetch(createComment);
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	useEffect(() => {
@@ -51,30 +51,28 @@ export function Post(props) {
 	};
 
 	return (
-		<>
-			<StyledPost>
-				<PostBody
-					postid={postid}
+		<StyledPost>
+			{user ? (
+				<PostBodyWithUser
+					comments={comments}
 					setPosts={setPosts}
 					setComments={setComments}
 					handleCommentSubmit={handleCommentSubmit}
 				/>
+			) : (
+				<PostBodyWithGuest comments={comments} setPosts={setPosts} />
+			)}
 
-				<CommentsTitle>
-					{comments?.length > 0 ? 'Comments' : 'There are no comments...'}
-				</CommentsTitle>
-
-				{comments?.length > 0 && (
-					<CommentsContextProvider value={comments}>
-						<CommentsLayout
-							comments={rootComments}
-							setComments={setComments}
-							getChildComments={getChildComments}
-							handleCommentSubmit={handleCommentSubmit}
-						/>
-					</CommentsContextProvider>
-				)}
-			</StyledPost>
-		</>
+			{comments?.length > 0 && (
+				<CommentsContextProvider value={comments}>
+					<CommentsLayout
+						comments={rootComments}
+						setComments={setComments}
+						getChildComments={getChildComments}
+						handleCommentSubmit={handleCommentSubmit}
+					/>
+				</CommentsContextProvider>
+			)}
+		</StyledPost>
 	);
 }
