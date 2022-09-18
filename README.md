@@ -398,7 +398,10 @@ https://dashboard.render.com/ -->
   :Form can be composed from a root Form component that holds the shared JSX and State
   :Turn Comment > Comment and CommentWithChildren
 
-- Fix Post rerendering several times
+- Fix Post component rerendering several times
+  :postbody and posthero seem to be the center of the problem
+
+https://dmitripavlutin.com/use-react-memo-wisely/
 
 - Make styled-components share more properties between components
 

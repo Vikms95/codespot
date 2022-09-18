@@ -11,21 +11,16 @@ import { Text, CommentsTitle } from './_styles';
 import { PostHero } from './PostHero';
 import { useCommentsContext } from '../../context/CommentsContext';
 
-export function PostBody(props) {
+export function PostBody({ children }) {
 	console.log('postbody is rendered');
 
-	const { children } = props;
-
-	const { user } = useAuth();
 	const { postid } = useParams();
 	const { posts, setPosts } = usePostsContext().value;
-
 	const post = usePost(postid, posts);
+	const { title, image, text } = post;
 	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
 
 	const { comments } = useCommentsContext().value;
-
-	const { title, image, text } = post;
 
 	const textRef = useHtmlAsText(text);
 
@@ -34,7 +29,6 @@ export function PostBody(props) {
 			setPosts(fetchedPosts);
 		}
 	}, [fetchedPosts]);
-
 	return (
 		<>
 			{image && title && <PostHero image={image} post={post} title={title} />}

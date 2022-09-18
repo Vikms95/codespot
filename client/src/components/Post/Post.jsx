@@ -40,7 +40,6 @@ export function Post({ children }) {
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);
 	};
-
 	return (
 		<StyledPost>
 			{user ? (
