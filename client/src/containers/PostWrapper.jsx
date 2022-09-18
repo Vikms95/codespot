@@ -2,25 +2,31 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../hooks/useFetch';
-import { getCommentsCount } from '../services/comment';
-import { PostWithComments } from '../components/Post/PostWithComments';
+import { getComments } from '../services/comment';
 import { Post } from '../components/Post/Post';
+import { PostWithComments } from '../components/Post/PostWithComments';
+import { CommentsContextProvider } from '../context/CommentsContext';
 
 function PostProvider({ setPosts }) {
 	const { postid } = useParams();
-	const [{ data: commentsCount }] = useFetch(getCommentsCount, [postid], []);
+	const [{ data: comments, setData: setComments }] = useFetch(
+		getComments,
+		[postid],
+		[]
+	);
 
-	if (typeof commentsCount !== 'undefined') {
-		return (
-			<>
-				{commentsCount === 0 ? (
+	if (typeof comments === 'undefined') return;
+	return (
+		<>
+			<CommentsContextProvider value={{ comments, setComments }}>
+				{comments.length === 0 ? (
 					<Post setPosts={setPosts} />
 				) : (
 					<PostWithComments setPosts={setPosts} />
 				)}
-			</>
-		);
-	}
+			</CommentsContextProvider>
+		</>
+	);
 }
 
 export default PostProvider;

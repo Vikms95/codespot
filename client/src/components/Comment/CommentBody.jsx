@@ -41,7 +41,7 @@ export function CommentBody(props) {
 
 	const { postid } = useParams();
 	const [isFormActive, setIsFormActive] = useState(false);
-	const commentsContext = useCommentsContext().value;
+	const { comments } = useCommentsContext().value;
 
 	const handleDelete = e => {
 		e.preventDefault();
@@ -54,7 +54,7 @@ export function CommentBody(props) {
 	};
 
 	const softDeleteComment = async () => {
-		const comment = findByID(commentsContext, commentid);
+		const comment = findByID(comments, commentid);
 
 		const data = await flagComment(comment);
 		if (!data) return;
@@ -69,7 +69,7 @@ export function CommentBody(props) {
 	};
 
 	const hardDeleteComment = async commentid => {
-		const comment = findByID(commentsContext, commentid);
+		const comment = findByID(comments, commentid);
 
 		const data = await deleteComment(commentid);
 		if (!data) return;
@@ -78,7 +78,7 @@ export function CommentBody(props) {
 			prevComments.filter(comment => comment._id !== commentid)
 		);
 
-		checkForDeletedParentComent(commentsContext, comment);
+		checkForDeletedParentComent(comments, comment);
 	};
 
 	const checkForDeletedParentComent = (commentsContext, comment) => {
@@ -115,7 +115,7 @@ export function CommentBody(props) {
 			postid,
 			userid,
 			commentid,
-			commentsContext,
+			comments,
 			isDeletedWithChildren
 		);
 		if (!comment) return;

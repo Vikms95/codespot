@@ -3,22 +3,21 @@ import React from 'react';
 import { Post } from './Post';
 import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
-import { CommentsContextProvider } from '../../context/CommentsContext';
+import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostWithComments(props) {
-	const { comments, setPosts, setComments, handleCommentSubmit } = props;
+	const { setPosts, handleCommentSubmit } = props;
+	const { comments, setComments } = useCommentsContext().value;
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	return (
-		<CommentsContextProvider value={comments}>
-			<Post setPosts={setPosts}>
-				<CommentsLayout
-					comments={rootComments}
-					setComments={setComments}
-					getChildComments={getChildComments}
-					handleCommentSubmit={handleCommentSubmit}
-				/>
-			</Post>
-		</CommentsContextProvider>
+		<Post setPosts={setPosts}>
+			<CommentsLayout
+				comments={rootComments}
+				setComments={setComments}
+				getChildComments={getChildComments}
+				handleCommentSubmit={handleCommentSubmit}
+			/>
+		</Post>
 	);
 }
