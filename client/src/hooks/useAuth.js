@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { useEffect, useState } from 'react';
+import {  useAuthContext } from '../context/AuthContext';
 import { verifyUser } from '../services/user';
 
 /**
@@ -9,7 +9,7 @@ import { verifyUser } from '../services/user';
  * mean making a JWT verification for each Post rendered
  */
 export function useAuth() {
-	const { user, setUser } = useContext(AuthContext);
+	const { user, setUser } = useAuthContext();
 	const [loading, setLoading] = useState();
 	const [error, setError] = useState();
 

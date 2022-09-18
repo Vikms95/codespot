@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useEffect } from 'react';
+import { useAuthContext } from '../../context/AuthContext';
 import { useForm } from '../../hooks/useForm';
 import { commentFields } from '../../data/formFields';
 import { useValidation } from '../../hooks/useValidation';
@@ -24,7 +24,7 @@ export function CommentForm(props) {
 		handleCommentUpdate,
 	} = props;
 
-	const { user: userid } = useContext(AuthContext);
+	const { user: userid } = useAuthContext();
 	const { formData, setFormData, handleChange } = useForm(commentFields);
 	const { isFormValid } = useValidation(commentVal, formData);
 	const { text } = formData;

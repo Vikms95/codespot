@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext, useAuthContext } from '../../context/AuthContext';
 import { setToStorage } from '../../utils/setToStorage';
 import { StyledPost } from './_styles';
 import { createComment } from '../../services/comment';
@@ -13,9 +13,9 @@ import { useCommentsContext } from '../../context/CommentsContext';
 export function Post(props) {
 	const { setPosts } = props;
 	const { postid } = useParams();
-	const { user } = useContext(AuthContext);
+	const { user } = useAuthContext();
 	const [, commitFetch] = useFetch(createComment);
-	const { comments, setComments } = useCommentsContext().value;
+	const { setComments } = useCommentsContext().value;
 
 	useEffect(() => {
 		if (!user) {
@@ -45,13 +45,11 @@ export function Post(props) {
 		<StyledPost>
 			{user ? (
 				<PostBodyWithUser
-					comments={comments}
 					setPosts={setPosts}
-					setComments={setComments}
 					handleCommentSubmit={handleCommentSubmit}
 				/>
 			) : (
-				<PostBodyWithGuest comments={comments} setPosts={setPosts} />
+				<PostBodyWithGuest setPosts={setPosts} />
 			)}
 
 			{props.children &&

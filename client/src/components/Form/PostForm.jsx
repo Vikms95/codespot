@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { parseEditorData } from '../../utils/parseEditorData';
 import { usePostToUpdate } from '../../hooks/usePostToUpdate';
 import { Label } from '../../style/Label';
@@ -35,7 +35,7 @@ export function PostForm(props) {
 	const navigate = useNavigate();
 	const { postid } = useParams();
 	const { posts } = usePostsContext();
-	const { user } = useContext(AuthContext);
+	const { user } = useAuthContext();
 	const editorRef = useRef(null);
 	const isActive = useFadeIn();
 

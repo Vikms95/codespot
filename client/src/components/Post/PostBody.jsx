@@ -9,15 +9,18 @@ import { usePostsContext } from '../../context/PostsContext';
 import { useFetch } from '../../hooks/useFetch';
 import { Text, CommentsTitle } from './_styles';
 import { PostHero } from './PostHero';
+import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostBody(props) {
-	const { children, comments, setPosts } = props;
+	const { children, setPosts } = props;
 
 	const { user } = useAuth();
 	const { postid } = useParams();
 	const { posts } = usePostsContext();
 	const post = usePost(postid, posts);
 	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
+
+	const { comments } = useCommentsContext().value;
 
 	const { title, image, text } = post;
 

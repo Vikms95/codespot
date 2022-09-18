@@ -1,7 +1,7 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React from 'react';
+import { useAuthContext } from '../../context/AuthContext';
 import { CommentBody, CommentChildren } from './index';
 
 export default function Comment(props) {
@@ -16,7 +16,7 @@ export default function Comment(props) {
 		isDeletedWithChildren,
 	} = props;
 
-	const { user: loggedInUserID } = useContext(AuthContext);
+	const { user: loggedInUserID } = useAuthContext();
 	const childComments = getChildComments(commentid);
 
 	return (

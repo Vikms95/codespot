@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import React, { useEffect } from 'react';
+import { useAuthContext } from '../../context/AuthContext';
 import { PostsLayout } from '../../layouts';
 import { LazyPostPreviewWithButtons as PostPreviewWithButtons } from '../PostPreview';
 import { useFetch } from '../../hooks/useFetch';
@@ -12,7 +12,7 @@ import { StyledDashboard } from './_styles';
 export function Dashboard(props) {
 	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
 
-	const { user } = useContext(AuthContext);
+	const { user } = useAuthContext();
 	const { posts } = usePostsContext();
 	const [{ data }] = useFetch(getUserPosts, [user], []);
 
