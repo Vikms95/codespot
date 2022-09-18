@@ -393,14 +393,16 @@ https://dashboard.render.com/ -->
   :Post > PostWithComments
     <!-- :is the conditional rendering on PostProvider good? -->
       <!-- :conditional rendering seems correct -->
-    :cloneElement is not passing in the props specified within the Post render
+    <!-- :cloneElement is not passing in the props specified within the Post render -->
 
   :Form can be composed from a root Form component that holds the shared JSX and State
   :Turn Comment > Comment and CommentWithChildren
 
+- Fix Post rerendering several times
+
 - Make styled-components share more properties between components
 
-- Refactor useFetch to return a function to be used outside of the hook which fetches the data
+<!-- - Refactor useFetch to return a function to be used outside of the hook which fetches the data -->
   <!-- :tested on register, user is being created - pending: -->
   <!-- :show spinner while loading -->
   <!-- :errors being received and handled -->

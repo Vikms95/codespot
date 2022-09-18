@@ -9,7 +9,8 @@ export const useFetch = (fetcher, initialArgs = '', dependencies = '') => {
   /**
    * 
    * @param {Array} args
-   * Argument that takes the commit fetch after the hook is called. If not present, the initial arguments
+   * Argument that takes the commit fetch after the hook is called. 
+   * If not present, the initial arguments
    * present in closure will be called instead. 
    * @returns {Promise}
    * Response value validating the AJAX call success

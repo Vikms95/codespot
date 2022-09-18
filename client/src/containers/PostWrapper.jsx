@@ -7,7 +7,7 @@ import { Post } from '../components/Post/Post';
 import { PostWithComments } from '../components/Post/PostWithComments';
 import { CommentsContextProvider } from '../context/CommentsContext';
 
-function PostProvider({ setPosts }) {
+function PostWrapper({ setPosts }) {
 	const { postid } = useParams();
 	const [{ data: comments, setData: setComments }] = useFetch(
 		getComments,
@@ -29,4 +29,4 @@ function PostProvider({ setPosts }) {
 	);
 }
 
-export default PostProvider;
+export default PostWrapper;

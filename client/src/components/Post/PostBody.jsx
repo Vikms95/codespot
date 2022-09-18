@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { usePost } from '../../hooks/usePost';
@@ -27,7 +27,9 @@ export function PostBody(props) {
 	const textRef = useHtmlAsText(text);
 
 	useEffect(() => {
-		setPosts(fetchedPosts);
+		if (!posts) {
+			setPosts(fetchedPosts);
+		}
 	}, [fetchedPosts]);
 
 	return (

@@ -23,7 +23,7 @@ export const useLocalStorage = (key, initialValue) => {
 
 			setStoredValue(valueToStore);
 
-			if (typeof window !== 'undefined') {
+			if (typeof window !== 'undefined' && typeof valueToStore !== 'undefined' ) {
 				window.localStorage.setItem(key, JSON.stringify(valueToStore));
 			}
 		} catch (error) {
