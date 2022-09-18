@@ -9,6 +9,7 @@ export function PostHero(props) {
 
 	const [{ data: imageSrc }] = useFetch(getImage, [image], [post]);
 
+	console.log('posthero is rendered');
 	return (
 		<>
 			<Title>{title && title}</Title>

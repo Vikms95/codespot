@@ -40,6 +40,7 @@ export function Post(props) {
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);
 	};
+	console.log('post is rendered');
 
 	return (
 		<StyledPost>

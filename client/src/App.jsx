@@ -31,14 +31,13 @@ function App() {
 	const [lastClickedPostId, setLastClickedPostId] = useState('');
 	const [isModalActive, setIsModalActive] = useState(false);
 
-	const authContext = { user, setUser };
 	return (
 		<Router>
-			<AuthContext.Provider value={authContext}>
+			<AuthContext.Provider value={{ user, setUser }}>
 				{user ? <NavbarWithUser /> : <NavbarWithGuest />}
 
 				<AppLayout>
-					<PostsContextProvider posts={posts}>
+					<PostsContextProvider value={{ posts, setPosts }}>
 						<Routes>
 							<Route element={<AuthRouteWrapper />}>
 								<Route

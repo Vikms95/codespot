@@ -12,11 +12,12 @@ import { PostHero } from './PostHero';
 import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostBody(props) {
-	const { children, setPosts } = props;
+	const { children } = props;
 
 	const { user } = useAuth();
 	const { postid } = useParams();
-	const { posts } = usePostsContext();
+	const { posts, setPosts } = usePostsContext().value;
+
 	const post = usePost(postid, posts);
 	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
 
@@ -31,11 +32,12 @@ export function PostBody(props) {
 			setPosts(fetchedPosts);
 		}
 	}, [fetchedPosts]);
+	console.log('postbody is rendered');
 
 	return (
 		<>
-			<PostHero image={image} post={post} title={title} />
-			<Text ref={textRef}></Text>
+			{image && title && <PostHero image={image} post={post} title={title} />}
+			{text && <Text ref={textRef}></Text>}
 
 			{children}
 
