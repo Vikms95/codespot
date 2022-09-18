@@ -32,7 +32,6 @@ export function CommentBody(props) {
 		commentUser,
 		timestamp,
 		childComments,
-		setComments,
 		loggedInUserID,
 		isDeletedWithChildren,
 		handleCommentSubmit,
@@ -41,7 +40,7 @@ export function CommentBody(props) {
 
 	const { postid } = useParams();
 	const [isFormActive, setIsFormActive] = useState(false);
-	const { comments } = useCommentsContext().value;
+	const { comments, setComments } = useCommentsContext().value;
 
 	const handleDelete = e => {
 		e.preventDefault();

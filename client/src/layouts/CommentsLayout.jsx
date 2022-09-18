@@ -14,8 +14,7 @@ const StyledCommentsLayout = styled.section`
 
 export function CommentsLayout(props) {
 	console.log('commentslayout is rendered');
-	const { comments, getChildComments, setComments, handleCommentSubmit } =
-		props;
+	const { comments, getChildComments, handleCommentSubmit } = props;
 	return (
 		<StyledCommentsLayout>
 			{comments?.map(comment => {
@@ -26,7 +25,6 @@ export function CommentsLayout(props) {
 						commentid={comment._id}
 						commentUser={comment.user}
 						timestamp={comment.timestamp}
-						setComments={setComments}
 						getChildComments={getChildComments}
 						handleCommentSubmit={handleCommentSubmit}
 						isDeletedWithChildren={comment.isDeletedWithChildren}

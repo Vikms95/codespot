@@ -390,16 +390,16 @@ https://dashboard.render.com/ -->
 <!-- - Fix 'no error' showing up when an error is resolved in a form and then submitted again -->
 
 - Refactor to use less and more reusable code (composition, render props, custom hooks)
-  :Post > PostWithComments
+  <!-- :Post > PostWithComments -->
     <!-- :is the conditional rendering on PostProvider good? -->
       <!-- :conditional rendering seems correct -->
     <!-- :cloneElement is not passing in the props specified within the Post render -->
 
+  :CommentBody refactor into different ones
   :Form can be composed from a root Form component that holds the shared JSX and State
-  :Turn Comment > Comment and CommentWithChildren
 
-- Fix Post component rerendering several times
-  :postbody and posthero seem to be the center of the problem
+<!-- - Fix Post component rerendering several times
+  :postbody and posthero seem to be the center of the problem -->
 
 https://dmitripavlutin.com/use-react-memo-wisely/
 

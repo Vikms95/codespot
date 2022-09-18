@@ -6,11 +6,10 @@ import { CommentBody, CommentChildren } from './index';
 
 export default function Comment(props) {
 	const {
-		commentid,
 		text,
-		commentUser,
+		commentid,
 		timestamp,
-		setComments,
+		commentUser,
 		getChildComments,
 		handleCommentSubmit,
 		isDeletedWithChildren,
@@ -27,7 +26,6 @@ export default function Comment(props) {
 				timestamp={timestamp}
 				commentUser={commentUser}
 				childComments={childComments}
-				setComments={setComments}
 				loggedInUserID={loggedInUserID}
 				isDeletedWithChildren={isDeletedWithChildren}
 				handleCommentSubmit={handleCommentSubmit}
@@ -36,7 +34,6 @@ export default function Comment(props) {
 
 			{childComments?.length > 0 && (
 				<CommentChildren
-					setComments={setComments}
 					childComments={childComments}
 					getChildComments={getChildComments}
 					handleCommentSubmit={handleCommentSubmit}
