@@ -137,8 +137,10 @@ export function CommentBody(props) {
 				<Username>{commentUser?.username || '(deleted user)'}</Username>
 				<CommentDate>{getRelativeCurrentDate(timestamp)}</CommentDate>
 			</CommentTopRow>
+
 			<Text>{text}</Text>
 
+			{/* Look into refactoring this part v */}
 			{loggedInUserID && !isDeletedWithChildren && (
 				<IconsContainer>
 					{loggedInUserID !== commentUser?._id && (
@@ -171,6 +173,7 @@ export function CommentBody(props) {
 			)}
 			<CommentBorder />
 
+			{/* Look into refactoring this part ^ */}
 			{isFormActive && (
 				<CommentForm
 					initialValue={text}

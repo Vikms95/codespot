@@ -57,13 +57,13 @@ npm start
 15. Deploy my first fullstack app with a backend serving a static website
 16. Adapting the endpoint formatting to REST standars
 17. Use Bcrypt to hash user passwords to a secure encryption when stored
+18. Using composition pattern to create pieces of reusable code as components while also avoiding components that are too cluttered with passed props and conditional rendering depending on those props
 
 ## Room for improvement
 
 1. Give UI a more professional look
 2. Improve loading image times on production
-3. Add favicon
-4. Upload images in DB instead of Backend
+3. Upload images on DB instead of Backend
    https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
 
 <!-- Notes -->
@@ -394,7 +394,7 @@ https://dashboard.render.com/ -->
     <!-- :is the conditional rendering on PostProvider good? -->
       <!-- :conditional rendering seems correct -->
     <!-- :cloneElement is not passing in the props specified within the Post render -->
-
+  <!-- :doing CommentWithChildren might be overkill while also too complicated due to the recursion pattern -->
   :CommentBody refactor into different ones
   :Form can be composed from a root Form component that holds the shared JSX and State
 
