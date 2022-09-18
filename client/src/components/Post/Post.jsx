@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { commentFields } from '../../data/formFields';
 import { useFetch } from '../../hooks/useFetch';
-import { AuthContext, useAuthContext } from '../../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 import { setToStorage } from '../../utils/setToStorage';
 import { StyledPost } from './_styles';
 import { createComment } from '../../services/comment';

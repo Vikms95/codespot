@@ -22,16 +22,16 @@ const getUserPosts = (req, res, next) => {
 
 const createPost = (req, res, next) => {
   const { title, text, isPublic, user, timestamp } = req.body;
-
   const post = new Post({
     user,
     title,
     text,
     public: isPublic,
     timestamp,
-    image: req.file.filename || "",
+    image: req.file ? req.file.filename : "",
   });
-
+  
+  console.log("Hi")
   post.save(function (err) {
     if (err) {
       console.log(err);

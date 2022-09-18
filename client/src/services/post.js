@@ -43,16 +43,16 @@ const getImage = async image => {
 
 const createPost = async formDataRequest => {
 	if (!formDataRequest) return;
-
 	const timestamp = getCurrentDate();
 	formDataRequest.append('timestamp', timestamp);
-
+  
+  
 	try {
 		const { data } = await axios.post('/api/post', formDataRequest, {});
 
 		return data;
 	} catch (err) {
-		throw new Error(err);
+		return Promise.reject(err);
 	}
 };
 

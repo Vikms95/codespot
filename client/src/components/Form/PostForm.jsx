@@ -4,15 +4,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { parseEditorData } from '../../utils/parseEditorData';
 import { usePostToUpdate } from '../../hooks/usePostToUpdate';
-import { Label } from '../../style/Label';
 import { createFormData } from '../../utils/createFormData';
 import { usePostsContext } from '../../context/PostsContext';
 import { usePostForm } from '../../hooks/usePostForm';
 import { postFields } from '../../data/formFields';
 import { createPost, updatePost } from '../../services/post';
 import { useFadeIn } from '../../hooks/useFadeIn';
+import { useFetch } from '../../hooks/useFetch';
 import { useValidation } from '../../hooks/useValidation';
 import { postVal } from '../../data/validationValues';
+import { Label } from '../../style/Label';
+import { Spinner } from '../../style/Spinner';
 import {
 	PostFormContainer,
 	StyledPostForm,
@@ -38,6 +40,7 @@ export function PostForm(props) {
 	const { user } = useAuthContext();
 	const editorRef = useRef(null);
 	const isActive = useFadeIn();
+	const [{ loading }, commitFetch] = useFetch(createPost);
 
 	const {
 		formData,
@@ -49,7 +52,8 @@ export function PostForm(props) {
 	} = usePostForm(editorRef, postFields);
 
 	const { title, text, isPublic, image } = formData;
-	const { isFormValid, shouldMarkErr } = useValidation(postVal, formData);
+	const { isFormValid } = useValidation(postVal, formData);
+
 	usePostToUpdate(postid, posts, setFormData);
 
 	const handleCreateSubmit = async e => {
@@ -63,7 +67,7 @@ export function PostForm(props) {
 			image,
 		});
 
-		const post = await createPost(formDataRequest);
+		const post = await commitFetch([formDataRequest]);
 		if (!post) return;
 
 		setPosts(prevPosts => [...prevPosts, post]);
@@ -156,7 +160,7 @@ export function PostForm(props) {
 						<br />
 
 						<FormButton type='submit' disabled={isFormValid()}>
-							{postid ? 'Update post' : 'Submit post'}
+							{loading ? <Spinner /> : postid ? 'Update post' : 'Submit post'}
 						</FormButton>
 					</BottomRight>
 				</FormBottomRow>

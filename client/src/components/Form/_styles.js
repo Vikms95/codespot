@@ -183,8 +183,11 @@ const CheckBox = styled.input`
 `;
 
 const FormButton = styled(Button)`
-	width: 10em;
 	margin-left: 4em;
+  font-size: 16px;
+  font-weight:600;
+  padding-left:2em;
+  padding-right:2em;
 `;
 
 const BottomRight = styled.div`
