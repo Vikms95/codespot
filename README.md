@@ -396,6 +396,7 @@ https://dashboard.render.com/ -->
     <!-- :cloneElement is not passing in the props specified within the Post render -->
   <!-- :doing CommentWithChildren might be overkill while also too complicated due to the recursion pattern -->
   :CommentBody refactor into different ones
+    <!-- !:used composition with children -->
   :Form can be composed from a root Form component that holds the shared JSX and State
 
 <!-- - Fix Post component rerendering several times
