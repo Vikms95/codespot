@@ -10,10 +10,10 @@ import { EmptyDashboard } from './EmptyDashboard';
 import { StyledDashboard } from './_styles';
 
 export function Dashboard(props) {
-	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
+	const { setLastClickedPostId, setIsModalActive } = props;
 
 	const { user } = useAuthContext();
-	const { posts } = usePostsContext();
+	const { posts, setPosts } = usePostsContext().value;
 	const [{ data }] = useFetch(getUserPosts, [user], []);
 
 	useEffect(() => {

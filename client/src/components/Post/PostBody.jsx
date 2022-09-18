@@ -12,6 +12,8 @@ import { PostHero } from './PostHero';
 import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostBody(props) {
+	console.log('postbody is rendered');
+
 	const { children } = props;
 
 	const { user } = useAuth();
@@ -32,7 +34,6 @@ export function PostBody(props) {
 			setPosts(fetchedPosts);
 		}
 	}, [fetchedPosts]);
-	console.log('postbody is rendered');
 
 	return (
 		<>

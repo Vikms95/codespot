@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { ModalWrapper } from '../../containers/ModalWrapper';
+import { usePostsContext } from '../../context/PostsContext';
 import { deletePost } from '../../services/post';
 import { Button } from '../../style/Button';
 import { StyledModal, ButtonContainer } from './_styles';
 
 export function Modal(props) {
-	const { setPosts, lastClickedPostId, setIsModalActive, isModalActive } =
-		props;
+	const { lastClickedPostId, setIsModalActive, isModalActive } = props;
+
+	const { setPosts } = usePostsContext().value;
 
 	const handleDelete = async () => {
 		const data = await deletePost(lastClickedPostId);

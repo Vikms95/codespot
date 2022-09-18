@@ -9,10 +9,10 @@ import { getPosts } from '../../services/post';
 import { StyledHome } from './_styles';
 
 export function Home(props) {
-	const { setPosts, setLastClickedPostId, setIsModalActive } = props;
+	const { setLastClickedPostId, setIsModalActive } = props;
 
 	useAuth();
-	const { posts } = usePostsContext();
+	const { posts, setPosts } = usePostsContext().value;
 	const [{ data }] = useFetch(getPosts, [], []);
 
 	useEffect(() => {

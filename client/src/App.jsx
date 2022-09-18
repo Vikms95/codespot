@@ -22,7 +22,7 @@ import { NavbarWithUser, NavbarWithGuest } from './components/Navbar';
 import { LoginForm, RegisterForm, PostForm } from './components/Form';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
-import PostProvider from './containers/PostWrapper';
+import { PostWrapper } from './containers/PostWrapper';
 
 function App() {
 	// Need to create state in app to pass it as value from the context provider?
@@ -40,16 +40,12 @@ function App() {
 					<PostsContextProvider value={{ posts, setPosts }}>
 						<Routes>
 							<Route element={<AuthRouteWrapper />}>
-								<Route
-									path='/create'
-									element={<PostForm setPosts={setPosts} />}
-								/>
+								<Route path='/create' element={<PostForm />} />
 								<Route path='/update/:postid' element={<PostForm />} />
 								<Route
 									path='/dashboard'
 									element={
 										<Dashboard
-											setPosts={setPosts}
 											isModalActive={isModalActive}
 											lastClickedPostId={lastClickedPostId}
 											setIsModalActive={setIsModalActive}
@@ -61,15 +57,11 @@ function App() {
 
 							<Route path='/login' element={<LoginForm setUser={setUser} />} />
 							<Route path='/register' element={<RegisterForm />} />
-							<Route
-								path='/posts/:postid'
-								element={<PostProvider setPosts={setPosts} />}
-							/>
+							<Route path='/posts/:postid' element={<PostWrapper />} />
 							<Route
 								path='/'
 								element={
 									<Home
-										setPosts={setPosts}
 										isModalActive={isModalActive}
 										lastClickedPostId={lastClickedPostId}
 										setIsModalActive={setIsModalActive}
@@ -80,14 +72,13 @@ function App() {
 							<Route path='/404' element={<Error />} />
 							<Route path='*' element={<Navigate to='/404' replace />} />
 						</Routes>
-					</PostsContextProvider>
 
-					<Modal
-						setPosts={setPosts}
-						isModalActive={isModalActive}
-						lastClickedPostId={lastClickedPostId}
-						setIsModalActive={setIsModalActive}
-					/>
+						<Modal
+							isModalActive={isModalActive}
+							lastClickedPostId={lastClickedPostId}
+							setIsModalActive={setIsModalActive}
+						/>
+					</PostsContextProvider>
 				</AppLayout>
 			</AuthContext.Provider>
 		</Router>

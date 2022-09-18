@@ -4,9 +4,9 @@ import { PostBody } from './PostBody';
 import { CommentForm } from '../Form/CommentForm';
 
 export function PostBodyWithUser(props) {
-	const { setPosts, handleCommentSubmit } = props;
+	const { handleCommentSubmit } = props;
 	return (
-		<PostBody setPosts={setPosts}>
+		<PostBody>
 			<CommentForm
 				isCommentForm={false}
 				handleCommentSubmit={handleCommentSubmit}

@@ -13,9 +13,9 @@ const StyledCommentsLayout = styled.section`
 `;
 
 export function CommentsLayout(props) {
+	console.log('commentslayout is rendered');
 	const { comments, getChildComments, setComments, handleCommentSubmit } =
 		props;
-
 	return (
 		<StyledCommentsLayout>
 			{comments?.map(comment => {

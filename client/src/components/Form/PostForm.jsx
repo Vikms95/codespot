@@ -32,11 +32,10 @@ import {
 	StyledEditor,
 } from './_styles';
 
-export function PostForm(props) {
-	const { setPosts } = props;
+export function PostForm() {
 	const navigate = useNavigate();
 	const { postid } = useParams();
-	const { posts } = usePostsContext();
+	const { posts, setPosts } = usePostsContext().value;
 	const { user } = useAuthContext();
 	const editorRef = useRef(null);
 	const isActive = useFadeIn();

@@ -10,8 +10,8 @@ import { createComment } from '../../services/comment';
 import { PostBodyWithGuest, PostBodyWithUser } from './index';
 import { useCommentsContext } from '../../context/CommentsContext';
 
-export function Post(props) {
-	const { setPosts } = props;
+export function Post({ children }) {
+	console.log('post is rendered');
 	const { postid } = useParams();
 	const { user } = useAuthContext();
 	const [, commitFetch] = useFetch(createComment);
@@ -40,22 +40,17 @@ export function Post(props) {
 		setComments(prevComments => [...prevComments, comment]);
 		setFormData(commentFields);
 	};
-	console.log('post is rendered');
 
 	return (
 		<StyledPost>
 			{user ? (
-				<PostBodyWithUser
-					setPosts={setPosts}
-					handleCommentSubmit={handleCommentSubmit}
-				/>
+				<PostBodyWithUser handleCommentSubmit={handleCommentSubmit} />
 			) : (
-				<PostBodyWithGuest setPosts={setPosts} />
+				<PostBodyWithGuest />
 			)}
 
-			{props.children &&
-				React.cloneElement(props.children, {
-					setPosts,
+			{children &&
+				React.cloneElement(children, {
 					handleCommentSubmit,
 				})}
 		</StyledPost>

@@ -6,12 +6,12 @@ import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostWithComments(props) {
-	const { setPosts, handleCommentSubmit } = props;
+	const { handleCommentSubmit } = props;
 	const { comments, setComments } = useCommentsContext().value;
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	return (
-		<Post setPosts={setPosts}>
+		<Post>
 			<CommentsLayout
 				comments={rootComments}
 				setComments={setComments}
