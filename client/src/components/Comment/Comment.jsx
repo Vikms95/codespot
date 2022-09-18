@@ -1,8 +1,11 @@
 /* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { useAuthContext } from '../../context/AuthContext';
+import React, { useState } from 'react';
+import { CommentHeader } from './CommentHeader';
 import { CommentBody, CommentChildren } from './index';
+import { ReplyButton } from './ReplyButton';
+import { AuthButton } from './AuthButton';
+import { IconsContainer } from './_styles';
 
 export default function Comment(props) {
 	const {
@@ -15,7 +18,6 @@ export default function Comment(props) {
 		isDeletedWithChildren,
 	} = props;
 
-	const { user: loggedInUserID } = useAuthContext();
 	const childComments = getChildComments(commentid);
 
 	return (
@@ -23,14 +25,19 @@ export default function Comment(props) {
 			<CommentBody
 				text={text}
 				commentid={commentid}
-				timestamp={timestamp}
-				commentUser={commentUser}
+				commentUserId={commentUser._id}
 				childComments={childComments}
-				loggedInUserID={loggedInUserID}
 				isDeletedWithChildren={isDeletedWithChildren}
 				handleCommentSubmit={handleCommentSubmit}
 				getChildComments={getChildComments}
-			/>
+			>
+				<CommentHeader
+					timestamp={timestamp}
+					commentUserName={commentUser.username}
+				/>
+				<AuthButton />
+				<ReplyButton />
+			</CommentBody>
 
 			{childComments?.length > 0 && (
 				<CommentChildren

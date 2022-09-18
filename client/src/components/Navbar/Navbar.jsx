@@ -11,10 +11,11 @@ import {
 	StyledNavbar,
 	TitleText,
 } from './_styles';
+import { useAuth } from '../../hooks/useAuth';
 
 export function Navbar({ children }) {
-	const { height, width } = useWindowDimensions();
-
+	const { width } = useWindowDimensions();
+	useAuth();
 	return (
 		<StyledNavbar>
 			<InnerNav>

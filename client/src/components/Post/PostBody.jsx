@@ -11,7 +11,7 @@ import { PostHero } from './PostHero';
 import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostBody({ children }) {
-	console.log('postbody is rendered');
+	// console.log('postbody is rendered');
 
 	const { postid } = useParams();
 	const { posts, setPosts } = usePostsContext();
@@ -19,21 +19,19 @@ export function PostBody({ children }) {
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
-	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
-
-	const { comments } = useCommentsContext();
-
 	const textRef = useHtmlAsText(text);
+	const { comments } = useCommentsContext();
+	const [{ data: fetchedPosts }] = useFetch(getPosts, [], [posts]);
 
 	useEffect(() => {
 		if (!posts) {
 			setPosts(fetchedPosts);
 		}
-	}, [fetchedPosts]);
+	}, []);
 	return (
 		<>
-			{<PostHero image={image} post={post} title={title} />}
-			{<Text ref={textRef}></Text>}
+			<PostHero image={image} post={post} title={title} />
+			<Text ref={textRef}></Text>
 
 			{children}
 

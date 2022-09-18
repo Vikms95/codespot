@@ -5,7 +5,7 @@ import { getImage } from '../../services/post';
 import { Title, Image } from './_styles';
 
 export function PostHero(props) {
-	console.log('posthero is rendered');
+	// console.log('posthero is rendered');
 
 	const { image, title, post } = props;
 

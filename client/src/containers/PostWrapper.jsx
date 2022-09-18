@@ -8,7 +8,7 @@ import { PostWithComments } from '../components/Post/PostWithComments';
 import { CommentsContextProvider } from '../context/CommentsContext';
 
 export function PostWrapper() {
-	console.log('postwrapper is being rendered');
+	// console.log('postwrapper is being rendered');
 	const { postid } = useParams();
 	const [{ data: comments, setData: setComments }] = useFetch(
 		getComments,

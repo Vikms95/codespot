@@ -21,7 +21,6 @@ const getUserPosts = async userid => {
 		const response = await fetch(`/api/${userid}/posts`, getOptions);
 
 		const data = await response.json();
-    console.log(data)
 		return data;
 
 	} catch (err) {

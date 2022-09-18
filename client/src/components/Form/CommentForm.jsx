@@ -13,7 +13,7 @@ import {
 } from './_styles';
 
 export function CommentForm(props) {
-	console.log('commentform is rendered');
+	// console.log('commentform is rendered');
 	const {
 		type,
 		initialValue,

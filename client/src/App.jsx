@@ -27,14 +27,13 @@ import { PostWrapper } from './containers/PostWrapper';
 function App() {
 	const [user, setUser] = useState();
 	const [posts, setPosts] = useLocalStorage('posts', []);
-	const [lastClickedPostId, setLastClickedPostId] = useState('');
 	const [isModalActive, setIsModalActive] = useState(false);
+	const [lastClickedPostId, setLastClickedPostId] = useState('');
 
 	return (
 		<Router>
 			<AuthContextProvider value={{ user, setUser }}>
 				{user ? <NavbarWithUser /> : <NavbarWithGuest />}
-
 				<AppLayout>
 					<PostsContextProvider value={{ posts, setPosts }}>
 						<Routes>

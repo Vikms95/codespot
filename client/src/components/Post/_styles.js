@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledPost = styled.section`
 	max-width: clamp(3em, 100vw, 100ch);
+  min-height: 100vh;
 	margin: 2em 5em 5em 5em;
 	display: flex;
 	flex-direction: column;

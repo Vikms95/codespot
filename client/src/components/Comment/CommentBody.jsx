@@ -6,6 +6,7 @@ import { CommentForm } from '../Form/CommentForm';
 import { findByID } from '../../utils/findbyID';
 import { useCommentsContext } from '../../context/CommentsContext';
 import { commentFields } from '../../data/formFields';
+import { useAuthContext } from '../../context/AuthContext';
 
 import {
 	flagComment,
@@ -14,33 +15,29 @@ import {
 } from '../../services/comment';
 
 import {
-	Username,
-	Text,
 	IconsContainer,
 	IconButton,
 	StyledFaTrash,
 	CommentBorder,
-	CommentDate,
-	CommentTopRow,
+	Text,
 } from './_styles';
-import { getRelativeCurrentDate } from '../../utils/getRelativeCurrentDate';
 
 export function CommentBody(props) {
 	const {
 		text,
 		commentid,
-		commentUser,
-		timestamp,
+		commentUserId,
 		childComments,
-		loggedInUserID,
 		isDeletedWithChildren,
 		handleCommentSubmit,
 		getChildComments,
+		children,
 	} = props;
 
 	const { postid } = useParams();
-	const [isFormActive, setIsFormActive] = useState(false);
 	const { comments, setComments } = useCommentsContext();
+	const { user: loggedInUserID } = useAuthContext();
+	const [isFormActive, setIsFormActive] = useState(false);
 
 	const handleDelete = e => {
 		e.preventDefault();
@@ -131,56 +128,39 @@ export function CommentBody(props) {
 	const wasSoftDeleted = (children, comment) =>
 		children.length === 1 && comment.isDeletedWithChildren;
 
+	const isCommentFromUserAndNotDeleted = () =>
+		loggedInUserID && !isDeletedWithChildren;
+
+	const isCommentFromUser = () => loggedInUserID === commentUserId;
 	return (
 		<>
-			<CommentTopRow>
-				<Username>{commentUser?.username || '(deleted user)'}</Username>
-				<CommentDate>{getRelativeCurrentDate(timestamp)}</CommentDate>
-			</CommentTopRow>
+			{React.Children.toArray(children[0])}
 
 			<Text>{text}</Text>
-
-			{/* Look into refactoring this part v */}
-			{loggedInUserID && !isDeletedWithChildren && (
-				<IconsContainer>
-					{loggedInUserID !== commentUser?._id && (
-						<IconButton
-							onClick={() => {
-								setIsFormActive(true);
-							}}
-							isActive={isFormActive}
-							aria-label={isFormActive ? 'Cancel reply' : 'Reply'}
-						>
-							<FaReply />
-						</IconButton>
+			<IconsContainer>
+				{isCommentFromUserAndNotDeleted() &&
+					React.Children.toArray(
+						isCommentFromUser()
+							? React.cloneElement(children[1], {
+									handleDelete,
+									isFormActive,
+									setIsFormActive,
+							  })
+							: React.cloneElement(children[2], {
+									isFormActive,
+									setIsFormActive,
+							  })
 					)}
-
-					{loggedInUserID === commentUser?._id && (
-						<>
-							<IconButton
-								onClick={() => setIsFormActive(true)}
-								isActive={isFormActive}
-								aria-label={isFormActive ? 'Cancel edit' : 'Edit'}
-							>
-								<FaPen />
-							</IconButton>
-							<IconButton onClick={handleDelete}>
-								<StyledFaTrash />
-							</IconButton>
-						</>
-					)}
-				</IconsContainer>
-			)}
+			</IconsContainer>
 			<CommentBorder />
 
-			{/* Look into refactoring this part ^ */}
 			{isFormActive && (
 				<CommentForm
 					initialValue={text}
 					isCommentForm={true}
 					autoFocus={true}
 					commentid={commentid}
-					type={loggedInUserID !== commentUser?._id ? 'reply' : 'edit'}
+					type={loggedInUserID !== commentUserId ? 'reply' : 'edit'}
 					setIsFormActive={setIsFormActive}
 					handleCommentSubmit={handleCommentReply}
 					handleCommentUpdate={handleCommentUpdate}

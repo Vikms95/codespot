@@ -12,20 +12,20 @@ export function useAuth() {
 	const { user, setUser } = useAuthContext();
 	const [loading, setLoading] = useState();
 	const [error, setError] = useState();
-
 	useEffect(() => {
-		setLoading(true);
-
-		verifyUser()
-			.then(authResult => {
-				setUser(authResult);
+      setLoading(true);
+      
+      verifyUser()
+      .then(authResult => {
+        setUser(authResult);
 				setLoading(false);
 			})
 			.catch(err => {
-				setError(err);
+        setError(err);
 				setLoading(false);
 			});
 	}, []);
+  // console.log('useauth is triggered')
 
 	return { user, loading, error };
 }
