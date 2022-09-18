@@ -5,7 +5,7 @@ const CommentsContext = createContext({ comments: [], setComments: () => {} });
 
 const CommentsContextProvider = props => {
 	return (
-		<CommentsContext.Provider value={props}>
+		<CommentsContext.Provider value={props.value}>
 			{props.children}
 		</CommentsContext.Provider>
 	);

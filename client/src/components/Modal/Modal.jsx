@@ -9,7 +9,7 @@ import { StyledModal, ButtonContainer } from './_styles';
 export function Modal(props) {
 	const { lastClickedPostId, setIsModalActive, isModalActive } = props;
 
-	const { setPosts } = usePostsContext().value;
+	const { setPosts } = usePostsContext();
 
 	const handleDelete = async () => {
 		const data = await deletePost(lastClickedPostId);

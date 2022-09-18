@@ -1,10 +1,21 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext } from 'react';
 
-export const AuthContext = createContext({
+const AuthContext = createContext({
 	user: '',
 	setUser: () => {},
 });
 
-export const useAuthContext = () => {
+const AuthContextProvider = props => {
+	return (
+		<AuthContext.Provider value={props.value}>
+			{props.children}
+		</AuthContext.Provider>
+	);
+};
+
+const useAuthContext = () => {
 	return useContext(AuthContext);
 };
+
+export { AuthContextProvider, useAuthContext };

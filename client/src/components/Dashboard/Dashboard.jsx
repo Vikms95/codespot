@@ -13,7 +13,7 @@ export function Dashboard(props) {
 	const { setLastClickedPostId, setIsModalActive } = props;
 
 	const { user } = useAuthContext();
-	const { posts, setPosts } = usePostsContext().value;
+	const { posts, setPosts } = usePostsContext();
 	const [{ data }] = useFetch(getUserPosts, [user], []);
 
 	useEffect(() => {

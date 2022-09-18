@@ -10,7 +10,7 @@ import { StyledHome } from './_styles';
 export function Home(props) {
 	const { setLastClickedPostId, setIsModalActive } = props;
 
-	const { posts, setPosts } = usePostsContext().value;
+	const { posts, setPosts } = usePostsContext();
 	const [{ data }] = useFetch(getPosts, [], []);
 
 	useEffect(() => {

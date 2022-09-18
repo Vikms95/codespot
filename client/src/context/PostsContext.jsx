@@ -5,7 +5,7 @@ const PostsContext = createContext({ posts: [], setPosts: () => {} });
 
 const PostsContextProvider = props => {
 	return (
-		<PostsContext.Provider value={props}>
+		<PostsContext.Provider value={props.value}>
 			{props.children}
 		</PostsContext.Provider>
 	);

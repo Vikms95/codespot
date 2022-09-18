@@ -17,7 +17,7 @@ export function Post({ children }) {
 	const isActive = useFadeIn();
 	const { user } = useAuthContext();
 	const [, commitFetch] = useFetch(createComment);
-	const { setComments } = useCommentsContext().value;
+	const { setComments } = useCommentsContext();
 
 	useEffect(() => {
 		if (!user) {

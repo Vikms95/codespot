@@ -40,7 +40,7 @@ export function CommentBody(props) {
 
 	const { postid } = useParams();
 	const [isFormActive, setIsFormActive] = useState(false);
-	const { comments, setComments } = useCommentsContext().value;
+	const { comments, setComments } = useCommentsContext();
 
 	const handleDelete = e => {
 		e.preventDefault();

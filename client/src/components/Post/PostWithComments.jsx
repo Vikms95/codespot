@@ -7,7 +7,7 @@ import { useCommentsContext } from '../../context/CommentsContext';
 
 export function PostWithComments(props) {
 	const { handleCommentSubmit } = props;
-	const { comments, setComments } = useCommentsContext().value;
+	const { comments, setComments } = useCommentsContext();
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 
 	return (

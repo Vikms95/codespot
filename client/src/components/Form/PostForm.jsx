@@ -35,7 +35,7 @@ import {
 export function PostForm() {
 	const navigate = useNavigate();
 	const { postid } = useParams();
-	const { posts, setPosts } = usePostsContext().value;
+	const { posts, setPosts } = usePostsContext();
 	const { user } = useAuthContext();
 	const editorRef = useRef(null);
 	const isActive = useFadeIn();

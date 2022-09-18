@@ -11,7 +11,7 @@ import {
 import { AppLayout } from './layouts';
 import { AuthRouteWrapper } from './containers/AuthRouteWrapper';
 
-import { AuthContext } from './context/AuthContext';
+import { AuthContextProvider } from './context/AuthContext';
 import { PostsContextProvider } from './context/PostsContext';
 
 import { Home } from './components/Home';
@@ -25,7 +25,6 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 import { PostWrapper } from './containers/PostWrapper';
 
 function App() {
-	// Need to create state in app to pass it as value from the context provider?
 	const [user, setUser] = useState();
 	const [posts, setPosts] = useLocalStorage('posts', []);
 	const [lastClickedPostId, setLastClickedPostId] = useState('');
@@ -33,7 +32,7 @@ function App() {
 
 	return (
 		<Router>
-			<AuthContext.Provider value={{ user, setUser }}>
+			<AuthContextProvider value={{ user, setUser }}>
 				{user ? <NavbarWithUser /> : <NavbarWithGuest />}
 
 				<AppLayout>
@@ -42,18 +41,6 @@ function App() {
 							<Route element={<AuthRouteWrapper />}>
 								<Route path='/create' element={<PostForm />} />
 								<Route path='/update/:postid' element={<PostForm />} />
-								<Route path='/posts/:postid' element={<PostWrapper />} />
-								<Route
-									path='/'
-									element={
-										<Home
-											isModalActive={isModalActive}
-											lastClickedPostId={lastClickedPostId}
-											setIsModalActive={setIsModalActive}
-											setLastClickedPostId={setLastClickedPostId}
-										/>
-									}
-								/>
 								<Route
 									path='/dashboard'
 									element={
@@ -67,10 +54,22 @@ function App() {
 								/>
 							</Route>
 
+							<Route path='/posts/:postid' element={<PostWrapper />} />
 							<Route path='/login' element={<LoginForm setUser={setUser} />} />
 							<Route path='/register' element={<RegisterForm />} />
 							<Route path='/404' element={<Error />} />
 							<Route path='*' element={<Navigate to='/404' replace />} />
+							<Route
+								path='/'
+								element={
+									<Home
+										isModalActive={isModalActive}
+										lastClickedPostId={lastClickedPostId}
+										setIsModalActive={setIsModalActive}
+										setLastClickedPostId={setLastClickedPostId}
+									/>
+								}
+							/>
 						</Routes>
 
 						<Modal
@@ -80,7 +79,7 @@ function App() {
 						/>
 					</PostsContextProvider>
 				</AppLayout>
-			</AuthContext.Provider>
+			</AuthContextProvider>
 		</Router>
 	);
 }

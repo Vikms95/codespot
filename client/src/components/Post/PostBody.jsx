@@ -14,14 +14,14 @@ export function PostBody({ children }) {
 	console.log('postbody is rendered');
 
 	const { postid } = useParams();
-	const { posts, setPosts } = usePostsContext().value;
+	const { posts, setPosts } = usePostsContext();
 
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
 
 	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
 
-	const { comments } = useCommentsContext().value;
+	const { comments } = useCommentsContext();
 
 	const textRef = useHtmlAsText(text);
 
