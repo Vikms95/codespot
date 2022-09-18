@@ -9,10 +9,12 @@ import { StyledPost } from './_styles';
 import { createComment } from '../../services/comment';
 import { PostBodyWithGuest, PostBodyWithUser } from './index';
 import { useCommentsContext } from '../../context/CommentsContext';
+import { useFadeIn } from '../../hooks/useFadeIn';
 
 export function Post({ children }) {
 	console.log('post is rendered');
 	const { postid } = useParams();
+	const isActive = useFadeIn();
 	const { user } = useAuthContext();
 	const [, commitFetch] = useFetch(createComment);
 	const { setComments } = useCommentsContext().value;
@@ -41,7 +43,7 @@ export function Post({ children }) {
 		setFormData(commentFields);
 	};
 	return (
-		<StyledPost>
+		<StyledPost isActive={isActive}>
 			{user ? (
 				<PostBodyWithUser handleCommentSubmit={handleCommentSubmit} />
 			) : (

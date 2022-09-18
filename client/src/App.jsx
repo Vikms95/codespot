@@ -42,6 +42,18 @@ function App() {
 							<Route element={<AuthRouteWrapper />}>
 								<Route path='/create' element={<PostForm />} />
 								<Route path='/update/:postid' element={<PostForm />} />
+								<Route path='/posts/:postid' element={<PostWrapper />} />
+								<Route
+									path='/'
+									element={
+										<Home
+											isModalActive={isModalActive}
+											lastClickedPostId={lastClickedPostId}
+											setIsModalActive={setIsModalActive}
+											setLastClickedPostId={setLastClickedPostId}
+										/>
+									}
+								/>
 								<Route
 									path='/dashboard'
 									element={
@@ -57,18 +69,6 @@ function App() {
 
 							<Route path='/login' element={<LoginForm setUser={setUser} />} />
 							<Route path='/register' element={<RegisterForm />} />
-							<Route path='/posts/:postid' element={<PostWrapper />} />
-							<Route
-								path='/'
-								element={
-									<Home
-										isModalActive={isModalActive}
-										lastClickedPostId={lastClickedPostId}
-										setIsModalActive={setIsModalActive}
-										setLastClickedPostId={setLastClickedPostId}
-									/>
-								}
-							/>
 							<Route path='/404' element={<Error />} />
 							<Route path='*' element={<Navigate to='/404' replace />} />
 						</Routes>

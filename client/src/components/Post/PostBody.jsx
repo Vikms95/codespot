@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import { usePost } from '../../hooks/usePost';
 import { getPosts } from '../../services/post';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
@@ -16,8 +15,10 @@ export function PostBody({ children }) {
 
 	const { postid } = useParams();
 	const { posts, setPosts } = usePostsContext().value;
+
 	const post = usePost(postid, posts);
 	const { title, image, text } = post;
+
 	const [{ data: fetchedPosts }] = useFetch(getPosts, [], []);
 
 	const { comments } = useCommentsContext().value;
@@ -31,8 +32,8 @@ export function PostBody({ children }) {
 	}, [fetchedPosts]);
 	return (
 		<>
-			{image && title && <PostHero image={image} post={post} title={title} />}
-			{text && <Text ref={textRef}></Text>}
+			{<PostHero image={image} post={post} title={title} />}
+			{<Text ref={textRef}></Text>}
 
 			{children}
 

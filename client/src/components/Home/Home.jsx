@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { LazyPostPreview as PostPreview } from '../PostPreview/';
 import { PostsLayout } from '../../layouts';
-import { useAuth } from '../../hooks/useAuth';
 import { useFetch } from '../../hooks/useFetch';
 import { usePostsContext } from '../../context/PostsContext';
 import { getPosts } from '../../services/post';
@@ -11,7 +10,6 @@ import { StyledHome } from './_styles';
 export function Home(props) {
 	const { setLastClickedPostId, setIsModalActive } = props;
 
-	useAuth();
 	const { posts, setPosts } = usePostsContext().value;
 	const [{ data }] = useFetch(getPosts, [], []);
 

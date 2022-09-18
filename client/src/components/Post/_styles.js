@@ -40,6 +40,9 @@ const StyledPost = styled.section`
 		margin-left: 12em;
 		margin-right: 5em;
 	}
+
+  opacity: ${props => (props.isActive ? 1 : 0)};
+  transition:  opacity 0.8s;
 `;
 
 const CommentsTitle = styled.h1`
