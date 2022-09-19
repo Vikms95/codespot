@@ -400,6 +400,7 @@ https://dashboard.render.com/ -->
       :Comment, CommentBody, CommentForm and PostPreview
 
   :Form can be composed from a root Form component that holds the shared JSX and State
+  https://antongunnarsson.com/react-component-code-smells/
 
 <!-- - Fix Post component rerendering several times
   :postbody and posthero seem to be the center of the problem -->

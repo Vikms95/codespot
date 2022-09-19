@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import defaultPostImage from '../../assets/default-image.jpg';
 import { useHtmlAsText } from '../../hooks/useHtmlAsText';
@@ -41,13 +41,15 @@ export default function PostPreview(props) {
 	const [{ data: commentsCount }] = useFetch(getCommentsCount, [id], []);
 	const textRef = useHtmlAsText(text);
 
+	const hasComments = () => commentsCount > 0;
+
 	return (
 		<>
 			<PostImageContainer>
 				{!loading ? (
 					<PostLink to={'/posts/' + id}>
 						<BookText>Read more → </BookText>
-						{commentsCount > 0 && (
+						{hasComments() && (
 							<PostCommentsContainer>
 								<FaComments />
 								{commentsCount}

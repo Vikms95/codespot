@@ -32,28 +32,22 @@ export function Dashboard({ setLastClickedPost, setIsModalActive, children }) {
 		setPosts(data?.reverse());
 	}, [data]);
 
-	const hasNoPost = useMemo(() => posts?.length === 0, [posts]);
-	const hasPublicPost = useMemo(
-		() => posts?.some(post => post.public),
-		[posts]
-	);
-	const hasPrivatePost = useMemo(
-		() => posts?.some(post => !post.public),
-		[posts]
-	);
+	const hasNoPost = () => posts?.length === 0;
+	const hasPublicPost = () => posts?.some(post => post.public);
+	const hasPrivatePost = () => posts?.some(post => !post.public);
 
 	return (
 		<StyledDashboard>
-			{hasNoPost ? (
+			{hasNoPost() ? (
 				<EmptyDashboard />
 			) : (
 				<>
-					{hasPublicPost &&
+					{hasPublicPost() &&
 						React.Children.toArray(
 							addPropsToChildren(children[0], { posts, previewProps })
 						)}
 
-					{hasPrivatePost &&
+					{hasPrivatePost() &&
 						React.Children.toArray(
 							addPropsToChildren(children[1], { posts, previewProps })
 						)}

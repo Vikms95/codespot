@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import { getImage } from '../../services/post';
 import { getCommentsCount } from '../../services/comment';
@@ -19,6 +19,7 @@ export function PostPreviewImage({ image, id }) {
 	const [{ data: imageSrc, loading }] = useFetch(getImage, [image], []);
 	const [{ data: commentsCount }] = useFetch(getCommentsCount, [id], []);
 
+	const hasComments = useMemo(() => commentsCount > 0, [id]);
 	return (
 		<>
 			{loading ? (
@@ -27,7 +28,7 @@ export function PostPreviewImage({ image, id }) {
 				<PostLink to={'/posts/' + id}>
 					<BookText>Read more → </BookText>
 
-					{commentsCount > 0 && (
+					{hasComments && (
 						<PostCommentsContainer>
 							<FaComments />
 							{commentsCount}
