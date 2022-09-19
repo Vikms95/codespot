@@ -8,8 +8,7 @@ const getPosts = async () => {
 
 		const data = await response.json();
 
-    return data;
-
+		return data;
 	} catch (err) {
 		return Promise.reject(err);
 	}
@@ -22,7 +21,6 @@ const getUserPosts = async userid => {
 
 		const data = await response.json();
 		return data;
-
 	} catch (err) {
 		return Promise.reject(err);
 	}
@@ -44,8 +42,7 @@ const createPost = async formDataRequest => {
 	if (!formDataRequest) return;
 	const timestamp = getCurrentDate();
 	formDataRequest.append('timestamp', timestamp);
-  
-  
+
 	try {
 		const { data } = await axios.post('/api/post', formDataRequest, {});
 

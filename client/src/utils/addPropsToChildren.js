@@ -1,17 +1,17 @@
-import React from "react"
+import React from 'react';
 
 function addPropsToReactElement(element, props) {
-  if (React.isValidElement(element)) {
-    return React.cloneElement(element, props)
-  }
-  return element
+	if (React.isValidElement(element)) {
+		return React.cloneElement(element, props);
+	}
+	return element;
 }
 
 export function addPropsToChildren(children, props) {
-  if (!Array.isArray(children)) {
-    return addPropsToReactElement(children, props)
-  }
-  return children.map(childElement =>
-    addPropsToReactElement(childElement, props)
-  )
+	if (!Array.isArray(children)) {
+		return addPropsToReactElement(children, props);
+	}
+	return children.map(childElement =>
+		addPropsToReactElement(childElement, props)
+	);
 }

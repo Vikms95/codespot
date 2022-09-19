@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {  useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import { verifyUser } from '../services/user';
 
 /**
@@ -13,19 +13,19 @@ export function useAuth() {
 	const [loading, setLoading] = useState();
 	const [error, setError] = useState();
 	useEffect(() => {
-      setLoading(true);
-      
-      verifyUser()
-      .then(authResult => {
-        setUser(authResult);
+		setLoading(true);
+
+		verifyUser()
+			.then(authResult => {
+				setUser(authResult);
 				setLoading(false);
 			})
 			.catch(err => {
-        setError(err);
+				setError(err);
 				setLoading(false);
 			});
 	}, []);
-  // console.log('useauth is triggered')
+	// console.log('useauth is triggered')
 
 	return { user, loading, error };
 }

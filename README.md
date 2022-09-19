@@ -66,13 +66,15 @@ npm start
 3. Upload images on DB instead of Backend
    https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
 4. Make styled-components share more properties between components
+5. Comment, CommentBody, CommentForm and PostPreview have too many props, refactor them into smaller components and use them as children to those components mentioned
+6. Refactor to use less and more reusable code (composition, render props, custom hooks)
+7. Form can be composed from a root Form component that holds the shared JSX and State
+   <!-- Notes -->
+   <!--
 
-<!-- Notes -->
-<!--
 - Collections
   - Users
-  - Posts - hold all the posts with a id key of the author(user)
-          - hold an array of the comments and an id key of the post -->
+  - Posts - hold all the posts with a id key of the author(user) - hold an array of the comments and an id key of the post -->
 
 <!-- REST URL CONVENTIONS
 https://www.theodinproject.com/lessons/nodejs-api-basics
@@ -390,22 +392,15 @@ https://dashboard.render.com/ -->
 
 <!-- - Fix 'no error' showing up when an error is resolved in a form and then submitted again -->
 
-- Refactor to use less and more reusable code (composition, render props, custom hooks)
+<!-- - Refactor to use less and more reusable code (composition, render props, custom hooks) -->
   <!-- :Post > PostWithComments -->
-    <!-- :is the conditional rendering on PostProvider good? -->
-      <!-- :conditional rendering seems correct -->
-    <!-- :cloneElement is not passing in the props specified within the Post render -->
+<!-- :is the conditional rendering on PostProvider good? -->
+  <!-- :conditional rendering seems correct -->
+<!-- :cloneElement is not passing in the props specified within the Post render -->
   <!-- :doing CommentWithChildren might be overkill while also too complicated due to the recursion pattern -->
-  :Comment refactor into different ones
-      :Comment, CommentBody, CommentForm and PostPreview
-
-  :Form can be composed from a root Form component that holds the shared JSX and State
-  https://antongunnarsson.com/react-component-code-smells/
 
 <!-- - Fix Post component rerendering several times
   :postbody and posthero seem to be the center of the problem -->
-
-
 
 <!-- - Refactor useFetch to return a function to be used outside of the hook which fetches the data -->
   <!-- :tested on register, user is being created - pending: -->

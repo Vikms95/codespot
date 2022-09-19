@@ -1,35 +1,35 @@
-const multer = require('multer')
+const multer = require("multer");
 
-const dirLinux = './public/'
+const dirLinux = "./public/";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, dirLinux)
+    cb(null, dirLinux);
   },
 
   filename: (req, file, cb) => {
     // Use just the original name so when the picture gets updated, if
     // the picture is not changed, it will not save a new one to /public
-    cb(null, file.originalname)
-  }
-})
+    cb(null, file.originalname);
+  },
+});
 
 const upload = multer({
   storage,
   onFileUploadStart: (file) =>
-    console.log(file.originalname + ' is starting ...'),
+    console.log(file.originalname + " is starting ..."),
 
   fileFilter: (req, file, cb) => {
     if (
-      file.mimetype === 'image/png' ||
-      file.mimetype === 'image/jpg' ||
-      file.mimetype === 'image/jpeg'
+      file.mimetype === "image/png" ||
+      file.mimetype === "image/jpg" ||
+      file.mimetype === "image/jpeg"
     ) {
-      cb(null, true)
+      cb(null, true);
     } else {
-      cb(null, false)
-      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'))
+      cb(null, false);
+      return cb(new Error("Only .png, .jpg and .jpeg format allowed!"));
     }
-  }
-})
+  },
+});
 
-module.exports = { upload }
+module.exports = { upload };

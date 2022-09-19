@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledPost = styled.section`
 	max-width: clamp(3em, 100vw, 100ch);
-  min-height: 100vh;
+	min-height: 100vh;
 	margin: 2em 5em 5em 5em;
 	display: flex;
 	flex-direction: column;
@@ -42,8 +42,8 @@ const StyledPost = styled.section`
 		margin-right: 5em;
 	}
 
-  opacity: ${props => (props.isActive ? 1 : 0)};
-  transition:  opacity 0.8s;
+	opacity: ${props => (props.isActive ? 1 : 0)};
+	transition: opacity 0.8s;
 `;
 
 const CommentsTitle = styled.h1`

@@ -3,7 +3,6 @@ import { userCreateOptions } from '../data/requestParams';
 const createUser = async (username, password, password2) => {
 	if (!username || !password || !password2) return;
 
-
 	try {
 		const response = await fetch(
 			'/api/user',
@@ -17,7 +16,6 @@ const createUser = async (username, password, password2) => {
 		}
 
 		throw new Error(data.message);
-
 	} catch (err) {
 		console.error(err);
 		return Promise.reject(err);
@@ -40,7 +38,6 @@ const loginUser = async (username, password) => {
 		}
 
 		throw new Error(data.message);
-    
 	} catch (err) {
 		console.error(err);
 		return Promise.reject(err);
@@ -64,7 +61,6 @@ const verifyUser = async () => {
 		}
 
 		throw new Error(data.message);
-
 	} catch (err) {
 		console.error(err);
 		return Promise.reject(err);
@@ -72,4 +68,3 @@ const verifyUser = async () => {
 };
 
 export { createUser, loginUser, verifyUser };
-
