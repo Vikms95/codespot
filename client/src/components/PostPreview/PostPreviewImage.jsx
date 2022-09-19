@@ -19,7 +19,7 @@ export function PostPreviewImage({ image, id }) {
 	const [{ data: imageSrc, loading }] = useFetch(getImage, [image], []);
 	const [{ data: commentsCount }] = useFetch(getCommentsCount, [id], []);
 
-	const hasComments = useMemo(() => commentsCount > 0, [id]);
+	const hasComments = () => commentsCount > 0;
 	return (
 		<>
 			{loading ? (

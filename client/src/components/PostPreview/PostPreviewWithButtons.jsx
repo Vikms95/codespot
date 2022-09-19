@@ -6,7 +6,7 @@ import { PostButtonContainer } from './_styles';
 import { Button } from '../../style/Button';
 
 export default function PostPreviewWithButtons(props) {
-	const { id, setIsModalActive, setLastClickedPostId } = props;
+	const { id, setIsModalActive, setLastClickedPost } = props;
 	const navigate = useNavigate();
 
 	const handleUpdate = () => {
@@ -15,7 +15,7 @@ export default function PostPreviewWithButtons(props) {
 
 	const revealDeleteModal = () => {
 		setIsModalActive(true);
-		setLastClickedPostId(id);
+		setLastClickedPost(id);
 	};
 
 	return (

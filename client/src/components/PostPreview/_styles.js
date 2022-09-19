@@ -114,6 +114,7 @@ export const PostDesc = styled.div`
 export const PostBotRowContainer = styled.div`
 	display: flex;
 	justify-content: space-around;
+  padding-bottom: 1.5em;
 `;
 
 export const PostButtonContainer = styled.article`
