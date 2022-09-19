@@ -3,8 +3,7 @@ import React from 'react';
 import { PostBody } from './PostBody';
 import { CommentForm } from '../Form/CommentForm';
 
-export function PostBodyWithUser(props) {
-	const { handleCommentSubmit } = props;
+export function PostBodyWithUser({ handleCommentSubmit }) {
 	return (
 		<PostBody>
 			<CommentForm

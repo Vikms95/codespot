@@ -27,8 +27,7 @@ import {
 	ServerErrorDisplay,
 } from './_styles';
 
-export function LoginForm(props) {
-	const { setUser } = props;
+export function LoginForm({ setUser }) {
 	const navigate = useNavigate();
 	const isActive = useFadeIn();
 

@@ -5,8 +5,7 @@ import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { useDerivedComments } from '../../hooks/useDerivedComments';
 import { useCommentsContext } from '../../context/CommentsContext';
 
-export function PostWithComments(props) {
-	const { handleCommentSubmit } = props;
+export function PostWithComments({ handleCommentSubmit }) {
 	const { comments, setComments } = useCommentsContext();
 	const { rootComments, getChildComments } = useDerivedComments(comments);
 

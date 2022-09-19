@@ -5,9 +5,11 @@ import { CommentsLayout } from '../../layouts/CommentsLayout';
 import { FaChevronDown } from 'react-icons/fa';
 import { CollapseButton, ExpandButton } from './_styles';
 
-export function CommentChildren(props) {
-	const { childComments, getChildComments, handleCommentSubmit } = props;
-
+export function CommentChildren({
+	childComments,
+	getChildComments,
+	handleCommentSubmit,
+}) {
 	const [areChildrenHidden, setAreChildrenHidden] = useState(false);
 
 	return (

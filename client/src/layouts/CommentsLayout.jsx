@@ -12,9 +12,12 @@ const StyledCommentsLayout = styled.section`
 	align-self: flex-start;
 `;
 
-export function CommentsLayout(props) {
+export function CommentsLayout({
+	comments,
+	getChildComments,
+	handleCommentSubmit,
+}) {
 	// console.log('commentslayout is rendered');
-	const { comments, getChildComments, handleCommentSubmit } = props;
 	return (
 		<StyledCommentsLayout>
 			{comments?.map(comment => {

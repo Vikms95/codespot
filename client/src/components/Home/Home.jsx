@@ -7,9 +7,7 @@ import { usePostsContext } from '../../context/PostsContext';
 import { getPosts } from '../../services/post';
 import { StyledHome } from './_styles';
 
-export function Home(props) {
-	const { setLastClickedPostId, setIsModalActive } = props;
-
+export function Home({ setLastClickedPostId, setIsModalActive }) {
 	const { posts, setPosts } = usePostsContext();
 	const [{ data }] = useFetch(getPosts, [], []);
 

@@ -65,6 +65,7 @@ npm start
 2. Improve loading image times on production
 3. Upload images on DB instead of Backend
    https://www.geeksforgeeks.org/upload-and-retrieve-image-on-mongodb-using-mongoose/#:~:text=So%20for%20storing%20an%20image,in%20the%20form%20of%20arrays.
+4. Make styled-components share more properties between components
 
 <!-- Notes -->
 <!--
@@ -395,16 +396,15 @@ https://dashboard.render.com/ -->
       <!-- :conditional rendering seems correct -->
     <!-- :cloneElement is not passing in the props specified within the Post render -->
   <!-- :doing CommentWithChildren might be overkill while also too complicated due to the recursion pattern -->
-  :CommentBody refactor into different ones
-    <!-- !:used composition with children -->
+  :Comment refactor into different ones
+      :Comment, CommentBody, CommentForm and PostPreview
+
   :Form can be composed from a root Form component that holds the shared JSX and State
 
 <!-- - Fix Post component rerendering several times
   :postbody and posthero seem to be the center of the problem -->
 
-https://dmitripavlutin.com/use-react-memo-wisely/
 
-- Make styled-components share more properties between components
 
 <!-- - Refactor useFetch to return a function to be used outside of the hook which fetches the data -->
   <!-- :tested on register, user is being created - pending: -->

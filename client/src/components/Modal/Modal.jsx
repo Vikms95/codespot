@@ -6,9 +6,7 @@ import { deletePost } from '../../services/post';
 import { Button } from '../../style/Button';
 import { StyledModal, ButtonContainer } from './_styles';
 
-export function Modal(props) {
-	const { lastClickedPostId, setIsModalActive, isModalActive } = props;
-
+export function Modal({ lastClickedPostId, setIsModalActive, isModalActive }) {
 	const { setPosts } = usePostsContext();
 
 	const handleDelete = async () => {

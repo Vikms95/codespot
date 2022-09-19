@@ -4,11 +4,8 @@ import { useFetch } from '../../hooks/useFetch';
 import { getImage } from '../../services/post';
 import { Title, Image } from './_styles';
 
-export function PostHero(props) {
+export function PostHero({ image, title, post }) {
 	// console.log('posthero is rendered');
-
-	const { image, title, post } = props;
-
 	const [{ data: imageSrc }] = useFetch(getImage, [image], [post]);
 
 	return (

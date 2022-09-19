@@ -104,8 +104,7 @@ const PostListTitle = styled.h2`
 	}
 `;
 
-export function PostsLayout(props) {
-	const { children, title, section } = props;
+export function PostsLayout({ children, title, section }) {
 	const isActive = useFadeIn();
 
 	return (

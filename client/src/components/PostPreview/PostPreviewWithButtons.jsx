@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { PostButtonContainer } from './_styles';
 import { Button } from '../../style/Button';
 
-export default function PostPreviewWithButtons(props) {
-	const { id, setIsModalActive, setLastClickedPostId } = props;
+export default function PostPreviewWithButtons(
+	{ id, setIsModalActive, setLastClickedPostId },
+	{ ...props }
+) {
 	const navigate = useNavigate();
 
 	const handleUpdate = () => {
