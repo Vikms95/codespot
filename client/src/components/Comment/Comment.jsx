@@ -5,7 +5,6 @@ import { CommentHeader } from './CommentHeader';
 import { CommentBody, CommentChildren } from './index';
 import { ReplyButton } from './ReplyButton';
 import { AuthButton } from './AuthButton';
-import { IconsContainer } from './_styles';
 
 export default function Comment(props) {
 	const {

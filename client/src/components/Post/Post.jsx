@@ -10,6 +10,7 @@ import { PostBodyWithGuest, PostBodyWithUser } from './index';
 import { useCommentsContext } from '../../context/CommentsContext';
 import { useFadeIn } from '../../hooks/useFadeIn';
 import { useAuthContext } from '../../context/AuthContext';
+import { addPropsToChildren } from '../../utils/addPropsToChildren';
 
 export function Post({ children }) {
 	// console.log('post is rendered');
@@ -51,7 +52,7 @@ export function Post({ children }) {
 			)}
 
 			{children &&
-				React.cloneElement(children, {
+				addPropsToChildren(children, {
 					handleCommentSubmit,
 				})}
 		</StyledPost>

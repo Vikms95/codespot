@@ -17,7 +17,11 @@ import { PostsContextProvider } from './context/PostsContext';
 import { Home } from './components/Home';
 import { Modal } from './components/Modal';
 import { Error } from './components/Error';
-import { Dashboard } from './components/Dashboard';
+import {
+	Dashboard,
+	DashboardPrivatePosts,
+	DashboardPublicPosts,
+} from './components/Dashboard';
 import { NavbarWithUser, NavbarWithGuest } from './components/Navbar';
 import { LoginForm, RegisterForm, PostForm } from './components/Form';
 
@@ -28,7 +32,7 @@ function App() {
 	const [user, setUser] = useState();
 	const [posts, setPosts] = useLocalStorage('posts', []);
 	const [isModalActive, setIsModalActive] = useState(false);
-	const [lastClickedPostId, setLastClickedPostId] = useState('');
+	const [lastClickedPost, setLastClickedPost] = useState('');
 
 	return (
 		<Router>
@@ -44,28 +48,27 @@ function App() {
 									path='/dashboard'
 									element={
 										<Dashboard
-											isModalActive={isModalActive}
-											lastClickedPostId={lastClickedPostId}
 											setIsModalActive={setIsModalActive}
-											setLastClickedPostId={setLastClickedPostId}
-										/>
+											setLastClickedPost={setLastClickedPost}
+										>
+											<DashboardPublicPosts />
+											<DashboardPrivatePosts />
+										</Dashboard>
 									}
 								/>
 							</Route>
 
-							<Route path='/posts/:postid' element={<PostWrapper />} />
-							<Route path='/login' element={<LoginForm setUser={setUser} />} />
-							<Route path='/register' element={<RegisterForm />} />
 							<Route path='/404' element={<Error />} />
+							<Route path='/register' element={<RegisterForm />} />
+							<Route path='/posts/:postid' element={<PostWrapper />} />
 							<Route path='*' element={<Navigate to='/404' replace />} />
+							<Route path='/login' element={<LoginForm setUser={setUser} />} />
 							<Route
 								path='/'
 								element={
 									<Home
-										isModalActive={isModalActive}
-										lastClickedPostId={lastClickedPostId}
 										setIsModalActive={setIsModalActive}
-										setLastClickedPostId={setLastClickedPostId}
+										setLastClickedPostId={setLastClickedPost}
 									/>
 								}
 							/>
@@ -73,7 +76,7 @@ function App() {
 
 						<Modal
 							isModalActive={isModalActive}
-							lastClickedPostId={lastClickedPostId}
+							lastClickedPostId={lastClickedPost}
 							setIsModalActive={setIsModalActive}
 						/>
 					</PostsContextProvider>

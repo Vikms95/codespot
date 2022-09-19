@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { FaReply, FaPen } from 'react-icons/fa';
 import { CommentForm } from '../Form/CommentForm';
 import { findByID } from '../../utils/findbyID';
 import { useCommentsContext } from '../../context/CommentsContext';
@@ -14,13 +13,8 @@ import {
 	updateComment,
 } from '../../services/comment';
 
-import {
-	IconsContainer,
-	IconButton,
-	StyledFaTrash,
-	CommentBorder,
-	Text,
-} from './_styles';
+import { IconsContainer, CommentBorder, Text } from './_styles';
+import { addPropsToChildren } from '../../utils/addPropsToChildren';
 
 export function CommentBody(props) {
 	const {
@@ -36,7 +30,7 @@ export function CommentBody(props) {
 
 	const { postid } = useParams();
 	const { comments, setComments } = useCommentsContext();
-	const { user: loggedInUserID } = useAuthContext();
+	const { user: loggedUserID } = useAuthContext();
 	const [isFormActive, setIsFormActive] = useState(false);
 
 	const handleDelete = e => {
@@ -53,6 +47,7 @@ export function CommentBody(props) {
 		const comment = findByID(comments, commentid);
 
 		const data = await flagComment(comment);
+
 		if (!data) return;
 
 		setComments(prevComments =>
@@ -128,25 +123,27 @@ export function CommentBody(props) {
 	const wasSoftDeleted = (children, comment) =>
 		children.length === 1 && comment.isDeletedWithChildren;
 
-	const isCommentFromUserAndNotDeleted = () =>
-		loggedInUserID && !isDeletedWithChildren;
+	const isLoggedUserCommentDeleted = () =>
+		loggedUserID && !isDeletedWithChildren;
 
-	const isCommentFromUser = () => loggedInUserID === commentUserId;
+	const isLoggedUserComment = () => loggedUserID === commentUserId;
+
 	return (
 		<>
 			{React.Children.toArray(children[0])}
 
 			<Text>{text}</Text>
+
 			<IconsContainer>
-				{isCommentFromUserAndNotDeleted() &&
+				{isLoggedUserCommentDeleted() &&
 					React.Children.toArray(
-						isCommentFromUser()
-							? React.cloneElement(children[1], {
+						isLoggedUserComment()
+							? addPropsToChildren(children[1], {
 									handleDelete,
 									isFormActive,
 									setIsFormActive,
 							  })
-							: React.cloneElement(children[2], {
+							: addPropsToChildren(children[2], {
 									isFormActive,
 									setIsFormActive,
 							  })
@@ -160,7 +157,7 @@ export function CommentBody(props) {
 					isCommentForm={true}
 					autoFocus={true}
 					commentid={commentid}
-					type={loggedInUserID !== commentUserId ? 'reply' : 'edit'}
+					type={loggedUserID !== commentUserId ? 'reply' : 'edit'}
 					setIsFormActive={setIsFormActive}
 					handleCommentSubmit={handleCommentReply}
 					handleCommentUpdate={handleCommentUpdate}
