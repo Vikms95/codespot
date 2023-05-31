@@ -1,11 +1,12 @@
 import { userCreateOptions } from '../data/requestParams';
+import { BASE_URL } from './constants';
 
 const createUser = async (username, password, password2) => {
 	if (!username || !password || !password2) return;
 
 	try {
 		const response = await fetch(
-			'/api/user',
+			BASE_URL + '/api/user',
 			userCreateOptions('POST', { username, password, password2 })
 		);
 
@@ -27,7 +28,7 @@ const loginUser = async (username, password) => {
 
 	try {
 		const response = await fetch(
-			'/api/session',
+			BASE_URL + '/api/session',
 			userCreateOptions('POST', { username, password })
 		);
 
@@ -46,7 +47,7 @@ const loginUser = async (username, password) => {
 
 const verifyUser = async () => {
 	try {
-		const response = await fetch('/api/session', {
+		const response = await fetch(BASE_URL + '/api/session', {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',

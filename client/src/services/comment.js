@@ -4,13 +4,14 @@ import {
 	getOptions,
 } from '../data/requestParams';
 import { findByID } from '../utils/findbyID';
+import { BASE_URL } from './constants';
 
 const getCommentsCount = async commentID => {
 	if (!commentID) return;
 
 	try {
 		const response = await fetch(
-			`/api/${commentID}/comments-count`,
+			BASE_URL + `/api/${commentID}/comments-count`,
 			getOptions
 		);
 
@@ -25,7 +26,10 @@ const getComments = async postID => {
 	if (!postID) return;
 
 	try {
-		const response = await fetch(`/api/${postID}/comments`, getOptions);
+		const response = await fetch(
+			BASE_URL + `/api/${postID}/comments`,
+			getOptions
+		);
 
 		const data = await response.json();
 
@@ -46,7 +50,7 @@ const createComment = async (text, postid, userid, parentid) => {
 
 	try {
 		const response = await fetch(
-			'/api/comment',
+			BASE_URL + '/api/comment',
 			userCreateOptions('POST', { text, postid, userid, timestamp, parent })
 		);
 
@@ -89,7 +93,7 @@ const updateComment = async (
 
 	try {
 		const response = await fetch(
-			`/api/${postid}/comments/${commentid}`,
+			BASE_URL + `/api/${postid}/comments/${commentid}`,
 			userCreateOptions('PUT', {
 				text,
 				postid,
@@ -115,7 +119,7 @@ const flagComment = async comment => {
 
 	try {
 		const response = await fetch(
-			'/api/comments/' + comment._id,
+			BASE_URL + '/api/comments/' + comment._id,
 			userCreateOptions('PUT', comment)
 		);
 		const data = await response.json();
@@ -130,7 +134,7 @@ const deleteComment = async commentid => {
 	if (!commentid) return;
 
 	try {
-		const response = await fetch('/api/' + commentid, deleteOptions);
+		const response = await fetch(BASE_URL + '/api/' + commentid, deleteOptions);
 
 		return response;
 	} catch (err) {

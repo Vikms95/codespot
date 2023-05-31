@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { getCurrentDate } from '../utils/getCurrentDate';
 import { deleteOptions, getOptions } from '../data/requestParams';
+import { BASE_URL } from './constants';
 
 const getPosts = async () => {
 	try {
-		const response = await fetch('/api/posts', getOptions);
+		const response = await fetch(BASE_URL + '/api/posts', getOptions);
 
 		const data = await response.json();
 
@@ -17,7 +18,7 @@ const getPosts = async () => {
 const getUserPosts = async userid => {
 	if (!userid) return;
 	try {
-		const response = await fetch(`/api/${userid}/posts`, getOptions);
+		const response = await fetch(BASE_URL + `/api/${userid}/posts`, getOptions);
 
 		const data = await response.json();
 		return data;
@@ -30,7 +31,7 @@ const getImage = async image => {
 	if (!image) return '';
 
 	try {
-		const data = await fetch('/images/' + image);
+		const data = await fetch(BASE_URL + '/images/' + image);
 
 		return data;
 	} catch (err) {
@@ -44,7 +45,11 @@ const createPost = async formDataRequest => {
 	formDataRequest.append('timestamp', timestamp);
 
 	try {
-		const { data } = await axios.post('/api/post', formDataRequest, {});
+		const { data } = await axios.post(
+			BASE_URL + '/api/post',
+			formDataRequest,
+			{}
+		);
 
 		return data;
 	} catch (err) {
@@ -56,7 +61,11 @@ const updatePost = async (postid, formDataRequest) => {
 	if (!postid || !formDataRequest) return;
 
 	try {
-		const data = await axios.put('/api/posts/' + postid, formDataRequest, {});
+		const data = await axios.put(
+			BASE_URL + '/api/posts/' + postid,
+			formDataRequest,
+			{}
+		);
 
 		return data;
 	} catch (err) {
@@ -68,7 +77,10 @@ const deletePost = async postid => {
 	if (!postid) return;
 
 	try {
-		const response = await fetch('/api/posts/' + postid, deleteOptions);
+		const response = await fetch(
+			BASE_URL + '/api/posts/' + postid,
+			deleteOptions
+		);
 		const data = await response.json();
 
 		return data;
