@@ -1,8 +1,9 @@
-const multer = require("multer");
-
+import multer, { FileFilterCallback } from "multer";
+import { Request } from "express";
 const dirLinux = "./public/";
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (req: Request, file: Express.Multer.File, cb) => {
     cb(null, dirLinux);
   },
 
@@ -15,10 +16,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  onFileUploadStart: (file) =>
-    console.log(file.originalname + " is starting ..."),
+  //   TODO check if this is required
+  //   onFileUploadStart: (file: any) =>
+  //     console.log(file.originalname + " is starting ..."),
 
-  fileFilter: (req, file, cb) => {
+  fileFilter: (
+    req: Request,
+    file: Express.Multer.File,
+    cb: FileFilterCallback
+  ) => {
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
@@ -32,4 +38,4 @@ const upload = multer({
   },
 });
 
-module.exports = { upload };
+export { upload };

@@ -1,14 +1,21 @@
-require("dotenv").config();
-
-const path = require("path");
-const bodyParser = require("body-parser");
-const { router } = require("./routes/index");
-const createError = require("http-errors");
-const cors = require("cors");
-const logger = require("morgan");
-const express = require("express");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import "dotenv/config.js";
+import createError from "http-errors";
+import mongoose, { CallbackWithoutResult, ConnectOptions } from "mongoose";
+import logger from "morgan";
+import path from "path";
+import { fileURLToPath } from "url";
+import { router } from "./routes/index.js";
+import express, {
+  ErrorRequestHandler,
+  Response,
+  Request,
+  NextFunction,
+} from "express";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const DEV_MONGODB_URI =
   "mongodb+srv://vikms:ustdedt8@cluster0.rtqxvkw.mongodb.net/?retryWrites=true&w=majority";
@@ -16,7 +23,8 @@ const DEV_MONGODB_URI =
 mongoose.connect(process.env.MONGODB_URI || DEV_MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+} as ConnectOptions);
+
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error"));
 db.once("open", () => console.log("MongoDB connected"));
@@ -43,7 +51,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err: any, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -51,6 +59,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-});
+} as ErrorRequestHandler);
 
-module.exports = app;
+export default app;

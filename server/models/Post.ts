@@ -1,5 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose, { InferSchemaType } from "mongoose";
 const Schema = mongoose.Schema;
+
+export type TPost = InferSchemaType<typeof PostSchema>;
+
 const PostSchema = new Schema({
   // Will be taken from whoever is signed in at the moment of post creation
   user: { type: Schema.Types.ObjectId, ref: "UserSchema", required: true },
@@ -15,4 +18,4 @@ PostSchema.virtual("url").get(function () {
   return "/post/" + this._id;
 });
 
-module.exports = mongoose.model("PostSchema", PostSchema);
+export default mongoose.model("PostSchema", PostSchema);

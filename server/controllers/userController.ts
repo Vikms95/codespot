@@ -1,13 +1,15 @@
-require("dotenv").config();
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { validationResult } = require("express-validator");
+import "dotenv/config.js";
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
+import jwt, { Secret, JwtPayload, JsonWebTokenError } from "jsonwebtoken";
+import { validationResult } from "express-validator";
+import { NextFunction, Request, Response } from "express";
 
-const createUser = async (req, res, next) => {
+const createUser = async (req: Request, res: Response, next: NextFunction) => {
   const result = validationResult(req);
 
   if (!result.isEmpty()) {
+    // @ts-expect-error
     const message = result.errors[0].msg;
     return res.status(500).json({ message });
   }
@@ -41,10 +43,11 @@ const createUser = async (req, res, next) => {
   }
 };
 
-const loginUser = async (req, res, next) => {
+const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   const results = validationResult(req);
 
   if (!results.isEmpty()) {
+    // @ts-expect-error
     const message = results.errors[0].msg;
     return res.status(500).json({ message });
   }
@@ -53,12 +56,16 @@ const loginUser = async (req, res, next) => {
 
   const user = await User.findOne({ username });
 
-  if (user && (await bcrypt.compare(password, user.password))) {
-    jwt.sign({ user: user._id }, process.env.JWT_SECRET, (err, token) => {
-      if (err) return next(err);
-      // Send the token and the user id to the front end
-      return res.json({ token, user: user._id });
-    });
+  if (user?.password && (await bcrypt.compare(password, user.password))) {
+    jwt.sign(
+      { user: user._id },
+      process.env.JWT_SECRET,
+      (err: any, token: any) => {
+        if (err) return next(err);
+        // Send the token and the user id to the front end
+        return res.json({ token, user: user._id });
+      }
+    );
   } else {
     res
       .status(400)
@@ -66,7 +73,11 @@ const loginUser = async (req, res, next) => {
   }
 };
 
-const retrieveToken = (req, res, next) => {
+const retrieveToken = (
+  req: Request & { token: string },
+  res: Response,
+  next: NextFunction
+) => {
   const bearerHeader = req.headers.authorization;
 
   if (typeof bearerHeader !== "undefined") {
@@ -82,21 +93,18 @@ const retrieveToken = (req, res, next) => {
   }
 };
 
-const verifyToken = (req, res) => {
-  jwt.verify(req.token, process.env.JWT_SECRET, (err, authData) => {
+const verifyToken = (req: Request & { token: string }, res: Response) => {
+  jwt.verify(req.token, process.env.JWT_SECRET as Secret, (err, authData) => {
     if (err) {
       return res.status(403).json({ message: "Unauthorized access." });
     } else {
+      if (!authData) return;
+
       return res.json({
-        user: authData.user,
+        user: (authData as JwtPayload).user,
       });
     }
   });
 };
 
-module.exports = {
-  createUser,
-  loginUser,
-  retrieveToken,
-  verifyToken,
-};
+export { createUser, loginUser, retrieveToken, verifyToken };

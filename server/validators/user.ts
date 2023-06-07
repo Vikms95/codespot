@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-const { body } = require("express-validator");
+import { body } from "express-validator";
 
 const validateUserCreation = [
   body("username")
@@ -61,4 +61,4 @@ const validateUserLogin = [
     .escape(),
 ];
 
-module.exports = { validateUserCreation, validateUserLogin };
+export { validateUserCreation, validateUserLogin };

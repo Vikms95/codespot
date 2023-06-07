@@ -1,6 +1,7 @@
-const Post = require("../models/Post");
-
-const getPosts = (req, res, next) => {
+import { CallbackError, Document } from "mongoose";
+import Post from "../models/Post.js";
+import { Response, Request, NextFunction } from "express";
+const getPosts = (req: Request, res: Response, next: NextFunction) => {
   Post.find()
     .populate("user", ["_id", "__v", "username"])
     .exec(function (err, posts) {
@@ -9,7 +10,7 @@ const getPosts = (req, res, next) => {
     });
 };
 
-const getUserPosts = (req, res, next) => {
+const getUserPosts = (req: Request, res: Response, next: NextFunction) => {
   const { userid } = req.params;
 
   Post.find({ user: userid })
@@ -20,7 +21,11 @@ const getUserPosts = (req, res, next) => {
     });
 };
 
-const createPost = (req, res, next) => {
+const createPost = (
+  req: Request & { file: { filename: string } },
+  res: Response,
+  next: NextFunction
+) => {
   const { title, text, isPublic, user, timestamp } = req.body;
   const post = new Post({
     user,
@@ -42,7 +47,11 @@ const createPost = (req, res, next) => {
   });
 };
 
-const updatePost = (req, res, next) => {
+const updatePost = (
+  req: Request & { file: { filename: string } },
+  res: Response,
+  next: NextFunction
+) => {
   const { title, text, isPublic, user, formerTimestamp } = req.body;
   const { postid } = req.params;
 
@@ -65,10 +74,10 @@ const updatePost = (req, res, next) => {
   });
 };
 
-const deletePost = (req, res, next) => {
+const deletePost = (req: Request, res: Response, next: NextFunction) => {
   const { postid } = req.params;
 
-  Post.findByIdAndDelete(postid, (err, post) => {
+  Post.findByIdAndDelete(postid, (err: CallbackError, post: Document) => {
     if (err) {
       return res.status(400);
     } else {
@@ -77,4 +86,4 @@ const deletePost = (req, res, next) => {
   });
 };
 
-module.exports = { getPosts, getUserPosts, createPost, updatePost, deletePost };
+export { getPosts, getUserPosts, createPost, updatePost, deletePost };

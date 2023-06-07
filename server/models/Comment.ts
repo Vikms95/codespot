@@ -1,5 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose, { InferSchemaType } from "mongoose";
 const Schema = mongoose.Schema;
+
+export type TComment = InferSchemaType<typeof CommentSchema>;
+
 const CommentSchema = new Schema({
   // Will be taken from whoever is signed in at the moment of post creation
   user: { type: Schema.Types.ObjectId, ref: "UserSchema", required: true },
@@ -14,4 +17,4 @@ CommentSchema.virtual("url").get(function () {
   return "/comment/" + this._id;
 });
 
-module.exports = mongoose.model("CommentSchema", CommentSchema);
+export default mongoose.model("CommentSchema", CommentSchema);
